@@ -2,6 +2,11 @@ require "rubygems"
 require "bundler/setup"
 require "stringex"
 
+def alias_task(alias_task, original)
+  desc "Alias #{original}"
+  task alias_task, *Rake.application[original].arg_names, :needs => original
+end
+
 ## -- Rsync Deploy config -- ##
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
 ssh_user       = "user@domain.com"
@@ -90,7 +95,7 @@ end
 
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
 desc "Begin a new post in #{source_dir}/#{posts_dir}"
-task :post, :new_post, :title do |t, args|
+task :new_post, :title do |t, args|
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   mkdir_p "#{source_dir}/#{posts_dir}"
   args.with_defaults(:title => 'new-post')
@@ -115,10 +120,11 @@ task :post, :new_post, :title do |t, args|
     post.puts "---"
   end
 end
+alias_task(:post, :new_post)
 
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")
 desc "Create a new page in #{source_dir}/(filename)/index.#{new_page_ext}"
-task :page, :new_page , :filename do |t, args|
+task :new_page, :filename do |t, args|
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   args.with_defaults(:filename => 'new-page')
   page_dir = [source_dir]
@@ -157,6 +163,8 @@ task :page, :new_page , :filename do |t, args|
     puts "Syntax error: #{args.filename} contains unsupported characters"
   end
 end
+alias_task(:page, :new_page)
+
 
 # usage rake isolate[my-post]
 desc "Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much quicker."
@@ -228,8 +236,9 @@ task :deploy do
 end
 
 desc "Generate website and deploy"
-task :gen_deploy :publish => [:integrate, :generate, :deploy] do
+task :gen_deploy => [:integrate, :generate, :deploy] do
 end
+alias_task(:publish, :gen_deploy)
 
 desc "copy dot files for deployment"
 task :copydot, :source, :dest do |t, args|
