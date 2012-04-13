@@ -4,7 +4,7 @@ require "stringex"
 
 def alias_task(alias_task, original)
   desc "Alias #{original}"
-  task alias_task, *Rake.application[original].arg_names, :needs => original
+  task alias_task, Rake.application[original].arg_names => [original]
 end
 
 ## -- Rsync Deploy config -- ##
@@ -102,7 +102,7 @@ task :new_post, :title do |t, args|
   title = args.title
   filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
   if File.exist?(filename)
-    abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+    abort("Post existed!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
   end
   puts "Creating new post: #{filename}"
   open(filename, 'w') do |post|
@@ -143,7 +143,7 @@ task :new_page, :filename do |t, args|
     mkdir_p page_dir
     file = "#{page_dir}/#{filename}.#{extension}"
     if File.exist?(file)
-      abort("rake aborted!") if ask("#{file} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+      abort("Page existed!") if ask("#{file} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
     end
     puts "Creating new page: #{file}"
     open(file, 'w') do |page|
