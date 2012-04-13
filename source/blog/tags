@@ -1,0 +1,91 @@
+---
+layout: page
+title: Blog Tag Cloud
+footer: false
+---
+<style type="text/css">
+	.tagCloud {
+		list-style:none;
+		margin:0;
+		padding:5px 0 ;
+		overflow:hidden;
+	}
+	.tagCloud li {
+		line-height:28px;
+	}
+	.tagCloud.inline li {
+		float:left;
+	}
+	.tagCloud a {
+		padding: 3px 6px;
+		margin: 2px;
+		background: #eee;
+		color:#005F6B;
+		border-radius: 3px;
+		text-decoration:none;
+	}
+	.tagCloud a span{
+		vertical-align:super;
+		font-size:0.8em;
+	}
+	.tagCloud a.active {
+		background:#57A957;
+		border:1px solid #4C964D;
+		color:#FFF;
+	}
+</style>
+<div id="blog-tag-cloud" >
+	<ul class="tagCloud inline">
+	{% if site.tags.first[0] == null %}
+	  {% for tag in site.tags %} 
+	  	<li><a href="#{{ tag }}-ref">{{ tag }} <span>{{ site.tags[tag].size }}</span></a></li>
+	  {% endfor %}
+	{% else %}
+	  {% for tag in site.tags %} 
+	  	<li><a href="#{{ tag[0] }}-ref">{{ tag[0] }} <span>{{ tag[1].size }}</span></a></li>
+	  {% endfor %}
+	{% endif %}
+	</ul>
+</div>
+
+<div id="blog-tag-posts">
+	{% for tag in site.tags %}
+		<h2 id="{{ tag[0] }}-ref">{{ tag[0] }}</h2>
+	  	<ul>
+	     {% for node in tag[1] %}
+		    {% if node.title != null %}
+		      	{% if page.url == node.url %}
+		      	<li class="active"><a href="{{ BASE_PATH }}{{node.url}}" class="active">{{node.title}}</a></li>
+		      	{% else %}
+		      	<li><a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a></li>
+		      	{% endif %}
+		    {% endif %}
+		  {% endfor %}
+	  	</ul>
+	{% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
