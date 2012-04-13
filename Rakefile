@@ -90,7 +90,7 @@ end
 
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
 desc "Begin a new post in #{source_dir}/#{posts_dir}"
-task :new_post, :title do |t, args|
+task :post, :new_post, :title do |t, args|
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   mkdir_p "#{source_dir}/#{posts_dir}"
   args.with_defaults(:title => 'new-post')
@@ -104,16 +104,21 @@ task :new_post, :title do |t, args|
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
+    post.puts 'description: ""'
     post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
     post.puts "comments: true"
     post.puts "categories: "
+    post.puts "category: "
+    post.puts "tags: []"
+    post.puts "sharing: true"
+    post.puts "footer: false"  
     post.puts "---"
   end
 end
 
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")
 desc "Create a new page in #{source_dir}/(filename)/index.#{new_page_ext}"
-task :new_page, :filename do |t, args|
+task :page, :new_page , :filename do |t, args|
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   args.with_defaults(:filename => 'new-page')
   page_dir = [source_dir]
@@ -139,8 +144,11 @@ task :new_page, :filename do |t, args|
       page.puts "---"
       page.puts "layout: page"
       page.puts "title: \"#{title}\""
+      page.puts 'description: ""'
       page.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
-      page.puts "comments: true"
+      page.puts "comments: false"
+      page.puts "category: "
+      page.puts "tags: []"
       page.puts "sharing: true"
       page.puts "footer: true"
       page.puts "---"
