@@ -3,7 +3,7 @@ layout: post
 title: "A way to expose singleton object and its constructor in node.js"
 description: ""
 category: javascript
-tags: [javascript", "node.js", "js hack", "js", "pattern", "singleton", "module", "exports"]
+tags: ["javascript", "node.js", "js hack", "js", "pattern", "singleton", "module", "exports"]
 languages: ["js"]
 ---
 
@@ -28,8 +28,9 @@ moudle.exports.newService = Service;
 
 {% endcodeblock %}
 
-But for some reason, node.js doesn't allow module to expose object by assigning the a object to module.exports. 
-To export a whole object, it is required to copy all the members of the object to `moudle.exports`, which drives out all kinds of tricky code.
+<del>But for some reason, node.js doesn't allow module to expose object by assigning the a object to module.exports. 
+To export a whole object, it is required to copy all the members of the object to `moudle.exports`, which drives out all kinds of tricky code.</del>
+<ins>I misunderstood how node.js require works, and [HERE](/blog/2012/04/20/exports_vs_module_exports_in_node_js) is the right understanding. Even I misunderstood the mechanism, but the conclusion of this post is still correct. To export function is still a more convenient way to export both default instance and the constructor.</ins>
 
 And things can become much worse when there are backward reference from the object property to itself.
 So to solve this problem gracefully, we need to change our mind.

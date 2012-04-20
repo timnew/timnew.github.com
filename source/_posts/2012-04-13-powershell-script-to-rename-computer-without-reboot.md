@@ -18,7 +18,7 @@ So we need to do some manual provision work before user can use the new booted i
 Administrator password can be changed in several ways, it is not a difficult job. But to rename the computer running Windows is not an easy work. The typical way is to call the WMI interface to rename the computer, which is taken as the most "formal" and "documented" way to rename the computer. But this approach require to reboot the instance, which is what we don't like.
 
 So we try some "hack" way to solve this problem, we use powershell scripts to hack the registry. By doing this, we can rename the computer without rebooting, and it works fine on our environment. 
-But since it is a hacking way, so there might be some unknown potential issues. Take if on your own risk:
+But since it is a hacking way, it only changed the most common values in registry, which means it won't modify the rare ones and all kind of cached values. Such as the values cached in the SQL Server or MSMQ service, etc. So there might be some unknown potential issues. Take if on your own risk:
 
 Here is the gist:
 
