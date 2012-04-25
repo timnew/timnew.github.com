@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>public/sitemap.xml</string>
+	<string>plugins/backtick_code_block.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,6 +21,48 @@
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
+		<key>Rakefile</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>5</integer>
+				<key>line</key>
+				<integer>105</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>87</integer>
+		</dict>
+		<key>plugins/backtick_code_block.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>plugins/blockquote.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>plugins/category_generator.rb</key>
 		<dict>
 			<key>caret</key>
@@ -51,6 +93,20 @@
 				<integer>105</integer>
 			</dict>
 		</dict>
+		<key>plugins/haml.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>plugins/include_array.rb</key>
 		<dict>
 			<key>caret</key>
@@ -77,7 +133,21 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
+			<integer>9</integer>
+		</dict>
+		<key>plugins/jsfiddle.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
 			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>2</integer>
 		</dict>
 		<key>plugins/octopress_filters.rb</key>
 		<dict>
@@ -93,7 +163,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>plugins/pagination.rb</key>
+		<key>plugins/pullquote.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -107,7 +177,63 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>plugins/preview_unpublished.rb</key>
+		<key>plugins/pygments_code.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>plugins/raw.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>plugins/render_partial.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>plugins/rubypants.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>453</integer>
+		</dict>
+		<key>plugins/sitemap_generator.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -135,31 +261,22 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>public/sitemap.xml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>public/atom.xml</string>
-		<string>plugins/octopress_filters.rb</string>
-		<string>plugins/include_array.rb</string>
+		<string>Rakefile</string>
+		<string>plugins/blockquote.rb</string>
+		<string>plugins/backtick_code_block.rb</string>
+		<string>plugins/haml.rb</string>
 		<string>plugins/include_code.rb</string>
+		<string>plugins/jsfiddle.rb</string>
+		<string>plugins/pullquote.rb</string>
+		<string>plugins/pygments_code.rb</string>
+		<string>plugins/raw.rb</string>
+		<string>plugins/render_partial.rb</string>
+		<string>plugins/sitemap_generator.rb</string>
+		<string>plugins/rubypants.rb</string>
 		<string>plugins/category_generator.rb</string>
-		<string>public/sitemap.xml</string>
-		<string>plugins/preview_unpublished.rb</string>
-		<string>plugins/pagination.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
