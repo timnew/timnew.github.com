@@ -6,7 +6,7 @@ date: 2012-04-26 01:02
 comments: true
 categories: 
 category: Mac
-tags: ["Mac","Bash","Shell","Configuration","User Profile"]
+tags: ["Mac","Bash","Shell","Configuration","User Profile","Terminal"]
 sharing: true
 footer: false
 ---
