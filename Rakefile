@@ -165,7 +165,6 @@ task :new_page, :filename do |t, args|
 end
 alias_task(:page, :new_page)
 
-
 # usage rake isolate[my-post]
 desc "Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much quicker."
 task :isolate, :filename do |t, args|
@@ -238,7 +237,10 @@ end
 desc "Generate website and deploy"
 task :gen_deploy => [:integrate, :generate, :deploy] do
 end
-alias_task(:publish, :gen_deploy)
+
+desc "Generate the blog and push both source and generated pages to remote repository"
+task :publish => [:gen_deploy, :push_source] do
+end
 
 desc "copy dot files for deployment"
 task :copydot, :source, :dest do |t, args|
@@ -274,6 +276,21 @@ multitask :push do
     system "git push origin #{deploy_branch} --force"
     puts "\n## Github Pages deploy complete"
   end
+end
+
+desc "push the source to remote repository"
+multitask :push_source do
+   puts "## Commit source change to remote repository..."
+   cd "#{source_dir}" do
+     system "git add ."
+     system "git add -u"
+     puts "\n## Commiting Posts at #{Time.now.utc}"
+     message = "Posts Commited at #{Time.now.utc}"
+     system "git commit -m \"#{message}\""
+     puts "\n## Pushing Posts..."
+     system "git push origin source"
+     puts "\n## Posts push complete"
+   end
 end
 
 desc "Update configurations to support publishing to root or sub directory"
