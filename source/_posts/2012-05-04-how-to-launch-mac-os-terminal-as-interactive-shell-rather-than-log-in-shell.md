@@ -16,11 +16,10 @@ As described in [previous post](/blog/2012/04/26/bash-profile-on-mac-os-x/), Mac
 This unique behavior might cause some problem when you try to port CLI tool from Unix or Linux. 
 Because basically, the ported app infers that the bash_profile should be loaded only once, and only when user just logged in. But in Mac OS, this inference is wrong, which can cause some weird problem.
 
-This defau lt behavior sometimes is annoying, and in fact, this Mac OS Terminal's "unique" behavior can be configured. And even more, you can use other shell program, such as ksh, rather than the default bash.
+This default behavior sometimes is annoying, and in fact, this Mac OS Terminal's "unique" behavior can be configured. And even more, you can use other shell program, such as ksh, rather than the default bash.
 
 Mac user can customize this behavior in Terminal's Preferences dialog of Terminal app. 
 {% img /images/2012-05-04-how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/PreferencesDialog.png "Terminal Preferences Dialog" %}
 
 If you choose the command to launch bash, the launched shell will become a interactive shell, which will load .bashrc file rather than .bash_profile file.
 
-TIP: i
