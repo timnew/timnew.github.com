@@ -1,4 +1,0 @@
-cd /Users/timnew/Workspace/timnew.github.com/source/_posts
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-rake publish
