@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Pitfall on space in coffee-script"
+title: "Space Pitfall in coffee-script"
 description: ""
 date: 2012-05-14 10:59
 comments: true
