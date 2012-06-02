@@ -6,7 +6,7 @@ date: 2012-05-25 15:25
 comments: true
 categories: 
 category: "ruby"
-tags: ["ruby", "meta programming", "eigen", "eigenclass", "meta class"]
+tags: ["ruby", "meta programming", "eigen", "eigenclass", "meta class", "singleton class"]
 sharing: true
 footer: false
 ---
