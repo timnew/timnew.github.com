@@ -67,8 +67,29 @@ So we can figure out that keyword `def` works different than method `define_meth
 
 To me it is kind of hard to understand. and confusing. And I think it is not a good design!
 Ruby is different to other Java or C#, ruby uses methods on class to take place of the keywords in other languages, such as public, protected and private. In most of the language, they are keywords. But in ruby they are actually the class methods of Class.
-This design is good, because it is kind of enabled the developer to extend the "keyword" they can use! But at the same time, this design melted the boundary between customizable methods and predefined keywords, so people won't pay much attention to the difference of the two. So it is important to keep the consistency between methods and keyword behaviors.
-But `def` breaks the consistency, so I'm confused! 
+This design is good, because it is kind of enabled the developer to extend the "keyword" they can use! But at the same time, this design melted the boundary between customizable methods and predefined keywords, so people won't pay much attention to the difference of the two. So it is important to keep the consistency between methods and keyword behaviors. But `def` breaks the consistency, so it is confusing!
+
+Look the following code:
+
+{% codeblock def vs define_method lang:ruby %}
+
+definition_block = Proc.new do
+  def foo
+    :foo
+  end
+  
+  define_method :bar do
+    :bar
+  end
+end
 
 
+class A; end
+class B; end
 
+A.class_eval &definition_block
+B.instance_eval &definition_block
+
+{% endcodeblock %}
+
+Comparing class `A` and class `B`, we can find that they are different, even they are defined with exactly same block!
