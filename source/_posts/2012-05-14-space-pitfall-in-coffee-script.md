@@ -37,7 +37,7 @@ show = message(function() {
   return console.log(message);
 });
 
-show("space pitfall");
+showe("space pitfall");
 {% endcodeblock %}
 
 Look the fun declaration, you will see it is not a function declaration as we want but a function call.
