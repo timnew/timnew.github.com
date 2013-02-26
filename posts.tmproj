@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>source/_posts/2013-02-22-manage-configuration-scheme-in-rails-way-on-node-dot-js-by-using-inheritance.md</string>
+	<string>source/_posts/2013-02-26-google-glass-isnt-really-an-enhanced-reality-device.md</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -119,28 +119,43 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>source/_posts/2013-02-22-manage-configuration-scheme-in-rails-way-on-node-dot-js-by-using-inheritance.md</key>
+		<key>source/_posts/2013-02-24-some-tricky-ways-to-calculate-integer-in-javascript.md</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>23</integer>
+				<integer>18</integer>
 				<key>line</key>
-				<integer>224</integer>
+				<integer>40</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>199</integer>
+			<integer>24</integer>
+		</dict>
+		<key>source/_posts/2013-02-26-google-glass-isnt-really-an-enhanced-reality-device.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>82</integer>
+				<key>line</key>
+				<integer>31</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>source/_posts/2013-02-22-manage-configuration-scheme-in-rails-way-on-node-dot-js-by-using-inheritance.md</string>
+		<string>source/_posts/2013-02-24-some-tricky-ways-to-calculate-integer-in-javascript.md</string>
+		<string>source/_posts/2013-02-26-google-glass-isnt-really-an-enhanced-reality-device.md</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{214, 0}, {1152, 746}}</string>
+	<string>{{4, 0}, {1152, 746}}</string>
 </dict>
 </plist>
