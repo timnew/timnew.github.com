@@ -17,7 +17,8 @@ footer: false
 ---
 
 Just watched [a demo of Google Glass](http://youtu.be/V6Tsrg_EQMw), which provides a close view of the experience of using Google Glass in daily life.
-Check out the video here: http://youtu.be/V6Tsrg_EQMw
+Check out the video here:  
+[http://youtu.be/V6Tsrg_EQMw](http://youtu.be/V6Tsrg_EQMw)
 
 After watching the video, I found glass behaves a little bit different to my previously understanding, it is could be a disadvantage of Google Glass, and will hurt the experience a lot!
 
