@@ -17,14 +17,16 @@ footer: false
 
 ## Preface
 
-I have been worked on Node.js related project for quite a while, and had built some apps with node both for our clients or my personal projects: [LiveHall](https://live-hall.herokuapp.com), [CiMonitor](https://github.com/timnew/CiMonitor), etc.
-And I have promised a lot of people to write something on node.js for long time. So today, I'll begin to work on this. This will be the first blog of the series.
+I have been worked on Node.js related projects for quite a while, and had built some apps with node both for the clients or for my personal projects: [LiveHall](https://live-hall.herokuapp.com), [CiMonitor](https://github.com/timnew/CiMonitor), etc.
+And I have promised some people to share some experience on node.js for long time. Today I'll begin to work on this. This will be the first blog of the series.
 
 ## Some background
 
-In this blog, I want to talk something about the configuration, which is very common problem we need to solve when we're working on a web app.
+In this blog, I want to talk about the configuration in node.js, which is very common problem we need to solve on almost every apps.
 
-Configuration isn't new, and there have been dozens of solutions. Perhaps configuration could be a kind of special data, usually people prefers to use data language to describe their configurations. Here are some examples:
+Problems related to configuration isn't new, and there have been dozens of mature solutions, but for Node.js apps, there is still something worth to be discussed.
+
+Perhaps configuration could be treated some kind of special data, usually people prefers to use data language to describe their configurations. Here are some examples:
 
 * .net and Java developer usually uses Xml to describe their configuration
 * Ruby developer prefers Yaml as their configuration language
@@ -32,6 +34,7 @@ Configuration isn't new, and there have been dozens of solutions. Perhaps config
 
 Data languages are convenient, because we can easily build DSL over it, and then describe our configuration with the DSL. But does the data language is the only option available?
 
+Before we answer the question, I want to say something about the problem we're facing to.   
 There is one very common requirement to all kind of configuration solutions, that is default values and overriding.  
 
 For example, we prefers use port 80 for our web app by default, but in development environment, to make our lives easier, we perhaps prefer to use a port number over 1024, could be 3000.  
@@ -59,31 +62,33 @@ For the example languages I mentioned before, except Yaml, Xml and JSON doesn't 
 }
 {% endcodeblock %}
 
-The previous JSON snippet is very typical web app configuration, it has `default` section to provide the default values for all environment, and 3 sections for specific environments. And in our app, we need to load and parse the JSON file to get all data, then load the values of `default` section first, then override the value with the values from specific environment. And we need to do some security check that yields error if the environment provided is not available.
+The previous JSON snippet is very typical web app configuration, it has `default` section to provide the default values for all environments, and 3 sections for specific environments. And in our app, we need to load and parse the JSON file to get all data, then load the values of `default` section first, then override the value with the values from specific environment. And we might wish to have the validation that yields error when the configuration for provided environment is not available.
 
 This solution looks simple and seems work fine. But when you try to apply this approach in your real app, you need to watch out some pitfalls!  
 Let me explain:
 
 ## Issue 1: Secret data
 
-In real world, configuration sometimes could be very sensitive and need to be confidential.  
-It could contain the endpoint, user name and password to access your database, or it could contain the secret to encrypt your cookies, or it might contain the private key to identify and authenticate yourself to other services.  
-That means you need to keep your configuration in secret and safe, or you might run into big troubles!
+In real world, values in configuration sometimes could be sensitive and need to be kept confidential.  
+For example, it could contain the credential to access your database, or it could contain the secret to decrypt your cookies, or it could contain the private certificate to identify and authenticate yourself to other services, or even some secrets shared between your app and other services.  
+That means you need to keep your configuration in secret and safe, or you might run into troubles!
 
-This issue could be more obvious when you're working on some open-source applications. You won't be happy if everyone can get your cookie secret in your public repo on github.
+This issue could be more obvious when you're working on open-source projects. You won't be happy if everyone can get your cookie secret in your public repo hosted on github.
 
-To solve the issue, you might think about to add some hack to your configuration mechanism that handles these confidential configurations, or your might even add another layer of DSL that allow you to tell the app to load the value from environment variables rather than loaded it directly.
+To solve the issue, you might think about to add some hack to your configuration mechanism that handles these confidential configurations, such as loading it in a different way to even from a different source.   
+Or to make it more generic, your might wish to add another layer of DSL that allow you to tell the app how to load your configurations rather than provide the value by default.
 
-These hacks are reasonable and works fine, but it add additional complexity and sometimes makes your code hard to debug or hard to maintain.
+These hacks might work fine, but they also added additional complexity to your app. And sometimes makes your code hard to debug or hard to maintain.
 
 ## Issue 2: Dynamic data
 
 Someone said, to solve the first issue, I will store the environment related but sensitive data in the environment variables.  
-This approach is simple but works perfectly. I like it, but it means you need the capability to load the value not just form the JSON but also form the environment variables.
+This approach is simple but works perfectly. I like the idea and recommend you to do this in our app.  
+But to do this means you need the capability to load the value not just form the JSON but also form the environment variables.
 
-And sometimes, such as deploying your app to heroku or nojitsu, you might encounter some more tricky issues, such as provide the default value directly, then override it with the value from environment variables, or vise versa!
+Sometimes, such as deploying your app to heroku or nojitsu, you might encounter some more tricky cases, such as to provide the default value in JSON directly, but to override it with the value from environment variables, or vise versa!
 
-These tricky requirements might blow your mind and your code away very easily. You might need to write hundreds lines of code just to load your configuration properly, which is obviously not good!
+These tricky requirements might blow away your mind and your code very easily. You might need to design complicated DSL and write hundreds lines of code just to load your configuration properly, which is obviously not good!
 
 ## Issue 3: Complicated Inheritance Relationship
 
@@ -98,11 +103,18 @@ In some big and complicated web apps, you might have more than 3 basic environme
 * staging: for ops and QAs to test the app in production like environment before it really goes live
 * production: the environment serves your real users
 
-I just lists some samples, in real life, it could be more complicated. You might have multiple integration environments to test integration with different services. Or you might have different staging environment for different level of release. Or you might have more environment for some special usage: such as to running tests on CI, or to test DB migrations.... I can list tens of possibilities easily.
+If you think the previous sample isn't complicated enough. Then in real life, it could be more complicated:
 
-And when you writes the configurations for these environments, you might find there are a few differences between environments. To make your life easier, for better maintainability, you might eager to avoid the redundancy by introducing the inheritance between configurations.
+* You might have multiple integration environments to test integration with different services.
+* Or you might have different staging environment for different level of release.
+* Or you might have more environment for some special usage: such as to running tests on CI, or to test DB migrations....
 
-As a result, you might find you successfully build up a complex inheritance relationship between configurations. And to support this kind of configuration inheritance, you might need another hundreds lines of codes.
+I can list tens of possibilities easily.
+
+And when you try to describe the configurations for these environments, you might find there are only a few differences between environments.  
+To make your life easier, for better maintainability and readability, you might eager to avoid the redundancy by introducing the inheritance between configurations.
+
+As a result, you might find you successfully build up a complex inheritance relationship between configurations. And to support this kind of configuration inheritance, you might need another complicated DSL and hundreds lines of codes to parse it.
 
 ## Some comments
 
@@ -163,3 +175,5 @@ In fact, to my experience, it might work better than you expected! You can get s
 1. You just need one set of configuration when you deploying your app to cloud or cluster. Because all the host specific configurations are usually provided via the environment variables.
 2. You might have some simple and straight forward logic in your configuration, which could be very useful if you have some naming convention in your configuration. But complicated or tricky logic should be strictly avoid, because it is hurts to readability and maintainability.
 3. You can easily write test to test your configuration, to make sure your app is properly configured. It could be very handy when you have complicated inheritance relationship between configurations, or you have some simple logics in your configuration.
+4. Avoid to instantiate and execute the code doesn't related to your current environment, which could be helpful to avoid unnecessary error due to lack of something in specific environment, and avoid overhead to parse and instantiate some expensive resources.
+5. You will get runtime error when the configuration for the environment doesn't exists.
