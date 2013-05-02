@@ -10,101 +10,101 @@ tags:
   - node
   - express
   - node over express
-  - configurationsharing: true
+  - autoload
+sharing: true
 footer: false
 ---
 
 ## Preface
 
-This is the 2nd post of my `Node over Express` series blog. I'd like to discuss a famous paint point of Node.js.
+This is the 2nd post of the [Node over Express](/blog/tags/#node over express-ref) series (Previous one is [Configuration](/blog/2013/04/25/node-over-express-configuration/)). In this post, I'd like to discuss a famous pain point in Node.js.
 
 ## Pain Point
 
-There is well known joke about LISP that you might heard of: 
+There is well known joke about Lisp: 
 
 {% blockquote %}
-A top hacker successfully stole the last 100 lines of a top secret program from the Pentagon. The program is written in LISP, so the code he found is just thousands of all kinds of end brackets.
+A top hacker successfully stole the last 100 lines of a top secret program from the Pentagon. Because the program is written in Lisp, so the code stolen is just close brackets.
 {% endblockquote %}
 
-Actually, in Node.js there is a similar issue: 
+It is joking about there are too many brackets in Lisp. In Node.js there is similar issue that there are too many `require`. Open any node.js file, usually one could find several lines of `require`.
 
-{% blockquote %}
-Open a complex node.js program file, the top tens of lines could be all kinds 'require'.
-{% endblockquote %}
-
-Due to the sandbox design of Node.js, the developer need to require every external resources used in current file, which could be very boring and hurt the readability of the code. Once if the developer want to replace one library with another used in the code, such as to replace `underscore` with `lodash`, then developer need to replace every require statement across files. It is big hurt to maintainability.
-
-If we take the packages or files we required as kind of dependency, then our issue could be solved with `dependency injection` and `IoC`. Actually, rails does well in this domain.
+Due to the node's sandbox model, developer has to require resources time and time again in every files. It is boring to write or read lines of meaningless `require`. And the worst, it could be a nightmare once developer wish to replace some library with another. 
 
 ## Rails Approaches
 
-"Require hell" doesn't only occur in node.js apps, but also in Ruby apps. But rails have solved this issue gracefully, you barely need to require anything manually in Rails app.
+"Require hell" isn't only for node.js, but also for Ruby apps. Rails has solved it gracefully, and the developer barely need to require anything manually in Rails.
+
+There are 2 kinds of dependencies in rails app, one the is external resource, another is internal resource.
 
 ### External Resources
 
-My saying `external resources` here means the resources encapsulated into and provided with ruby gems. In rails or other ruby apps, developer describe the dependencies in `Gemfile`, and load the dependencies with the `Bundler`. For the frameworks already integrated with `Bundler`, such as Rails 3.x+, developer doesn't need to do anything manually. For other cases, developer can use `bundle execute` to load the ruby code into a environment with all gems required.
+External resources are classes encapsulated in ruby gems. In ruby application, developer describe the dependencies in `Gemfile`, and load them with `Bundler`. Some frameworks have already integrated with `Bundler`, such as Rails. When using them, developer doesn't need to do anything manually, all the dependencies are required automatically. For others, use `bundle execute` to create the ruby runtime with all gems required.
 
 ### Internal Resources
 
-The term `Internal Resources` here means the code in your app, such as the models, the services or the controllers. `Railtie` takes the responsibility to require the internal resources for the app automatically when the app first time need them. So the whole process is "Lazy", Rails will only require the class when you need it (In fact Rails behaves different in different environment. In production, Rails require pre-require all classes when app starts, but the loading progress is still similar).
+Internal Resources are the classes declared in the app, they could be models, the services or the controllers. Rails uses `Railtie` to to require them automatically. The resource is loaded when first time used, the requiring process is "Lazy". (In fact, this description isn't that precise, because Rails behaves differently in production environment. It loads all the classes during the launching for performance reason).
 
 ## Autoload in Node.js
 
-Rails avoid the "require-hell" with two "autoload" mechanisms. Although there are still debates about whether autoload is good. But at least, developer not required to keep a close eye on dependency is helpful to increase the developer productivity. And the most important, developers loves this feature in most cases.
+Rails avoid the "require-hell" with two "autoload" mechanisms. Although there are still debates about whether autoload is good or not. But at least, autoload frees the developer from the boring dependency management and increases the productivity of developers. Developers love autoload in most cases.
 
-So to avoid require-hell in Node.js, my solution is to provide autoload mechanism for Node.js app. 
-
-Since there are some significant differences between Node.js and Ruby, before I go deep into my solution, I would like to explain Node.js module system fist.
+So to avoid "require-hell" in Node.js, I prefers autoload mechanism. But because there are significant differences in type system between Node.js and Ruby, we cannot copy the mechanism from ruby to node as is. So before dive into the solution, we need to understand the differences first.
 
 ### Node.js Module System
 
-Node.js have similar mechanisms as Ruby. `npm` in Node.js is equivalent to `Gem` and `Bundler` in `Ruby`. And we have `package.json`, which takes the place of `Gemfile` and `Gemfile.lock` in Ruby. And Node.js have module and package, which is similar to `Gem` in Ruby.
+There are a number of similarities between Node.js and ruby, things in node.js usually have the equivalences in ruby. For example, `package` in node is similar to the `gem` in Ruby, `npm` equals to `Gem` and `Bundler`, `package.json` takes the responsibility of `Gemfile` and `Gemfile.lock`. The similarity enables porting autoload from ruby to node. 
 
-Although there are similarity between Node.js and Ruby. But it is still not easy to achieve autoload in Node.js. The major reason isNode.js's sandbox model, which works quite different to Ruby Type system.
+Although there are similarities between Node.js and Ruby in some aspects, but there are also significant differences between them in some other aspects. One of the major differences is the type system and module sandbox in Node.js, which works in a quite different way to Ruby type system.
 
-Because Javascript doesn't have a real type system, all the types in Node.js are actually the functions stored in local variables. And Node.js load each file into different sandboxes, all the local variables are isolated between files to resolve "global leak", a deep-seated ill of JavaScript.
+JavaScript isn't a real OO language, so it doesn't have real type system. All the types in JavaScript are actually functions, which are stored in local variables instead of in type system. Node.js loads files into different sandboxes, all the local variables are isolated between files to avoid "global leak", a well-known deep-seated bad part of JavaScript. As a result, Node.js developer need to require used types again and again in every file.
 
-Because of the isolation, Node.js developer need to require every all used types in every file. In ruby, developer just need to require the types not required yet. So in Node.js the problem is more severe and more annoying. And the problem is also more difficult to resolve because it is caused by design. 
+In ruby, it is a lot better. With the help of the well designed type system, types are shared all over the runtime, developer just need to require the types not yet loaded.
 
-In the days before Node.js, in the browser, global leak in bad written JavaScript program drives thousands of JS developers up to the wall. People aware the horror of global leak so deep, so born such a strict limitation in Node.js. We understand it, but tens of require statements in each files are not acceptable, but are common in production-level node.js web apps. 
+So in node.js programs, there are much more `require` statements than in ruby. And due to the design of node.js and javascript, the issue is harder to be resolved.
 
 ### Global Variable
 
-The root cause of the problem is caused because Node.js enforced a strict isolations on modules. And with the help of JSLint or coffe-script language, and awareness of the problem, global leak isn't as scary as imagined. So  in my point of view, the isolation seems to be somehow over strict.
+In the browser, the JavaScript runtime other than node, global variables are very common. Global variable could be abused easily, which brings global leak to bad written JavaScript programs, and drives thousands of developers up to the wall. The JavaScript developers are scared of global leak so much that they designed such a strict isolation model in node.js. But to my understanding, the isolation avoided global leaks effectively. But at the same time, it brought tens of require statements to every files, which is also not acceptable.
 
-The issue is caused because of isolation, so we should be able to solve it by sharing the variables between files in a managed way. Luckily, Node.js have considered this when it is designed.
+In fact, with the help of JSLint, CoffeScript and some other tools, developer can avoid global leak easily. And global sharing isn't the source of evil. If abuse is avoided, I believes a reasonable level of global sharing could be useful and helpful. Actually Node.js have built-in a global sharing mechanism.
 
-There is a special variable called `global`, which is accessible in every file and the values is shared between files. And the most important, node.js treats global as default context of functions, you can refer the child of global without explicitly identify it. So `SomeType === global.SomeType`.
+To share values across file, a special variable `global` is needed, which could be accessed in every file, and the value of which is also shared across files.
+
+Besides sharing value around, `global` has another important feature: node treats `global` as default context, you can refer the child of `global` without explicitly identifying. So `SomeType === global.SomeType`.
+
+With the help of `global`, we find a way to share types across files naturally.
 
 ### JS Property
 
-Autoload mechanism in Rails loads the class lazily. It only load the class when it doesn't exists. Rails achieve it by tracking the exception of "Uninitialized Constant". But it is hard to do this in Node.js, so I chose a different approach, I uses JSProperty.
+Autoload mechanism of Rails loads the classes lazily. It only load the class when it is used for first time. It is a neat feature, and Rails achieve it by tracking the exception of "Uninitialized Constant". To implement similar feature in Node.js, tracking exception is hardly feasible, so I chose a different approach, I uses Property.
 
-Property(called attribute in Ruby) is a popular feature among OO languages, which enables functions invoked as same accessing field on object. But due to JavaScript ins't a real OO language, property is a "new" feature declared in [ECMAScript 5 standard](http://www.ecma-international.org/publications/standards/Ecma-262.htm). ([Doc for Object.defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty))
+Property(Attribute in Ruby) enables method(function) being invoked as the field of an object is accessed. Property is a common feature among OO languages, but is a "new" feature to JavaScript. Property is a feature declared in [ECMAScript 5 standard](http://www.ecma-international.org/publications/standards/Ecma-262.htm), which enables the developers to declare property on object by using the API [Object.defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty). With the property, we're able to hook the callback on the type variables, and require the types when the type is accessed. So the module won't be required until it is used. On the other hand, node.js `require` function have built in the cache mechanism, that it won't load the file twice, instead it return the value from its cache. 
 
-With the help of property, we're enabled to hook the callback on the type is accessed, and we can require the type in callback. So the module won't be required when it is not used. And node.js `require` is smart enough to cache the module its required before. So as a result, we make the autoload lazy!
+With property, we make the autoload lazy!
 
 ### My Implementation
 
-To make autoload work, we need to require a bootstrap script when the app starts. 
+To make autoload work, we need to create a magic host object to hold the type variables. In my implementation, I call the magic object Autoloader
+we need to require a bootstrap script when the app starts, which is used to describe which types and how they should be required.
 
 {% codeblock Bootstrap Script: initEnvironment.coffee lang:coffeescript %}
-global.createLazyLoader = require('./services/LazyLoader')
+global.createAutoLoader = require('./services/AutoLoader')
 global.createPathHelper = require('./services/PathHelper')
 
-global.rootPath = createPathHelper(__dirname).consolidate()
+global.rootPath = createPathHelper(__dirname, true)
 
 global.Configuration = require(rootPath.config('configuration'))
 
-global.Services = createLazyLoader rootPath.services()
-global.Routes = createLazyLoader rootPath.routes()
-global.Records = createLazyLoader rootPath.records()
-global.Models = createLazyLoader rootPath.models()
-global.Admin = createLazyLoader rootPath.adminTools()
+global.Services = createAutoLoader rootPath.services()
+global.Routes = createAutoLoader rootPath.routes()
+global.Records = createAutoLoader rootPath.records()
+global.Models = createAutoLoader rootPath.models()
+
 global.assets = {} # initialize this context for connect-assets helpers
 {% endcodeblock %}
 
-The script setup the autoload stubs for all services, routes, records, models for my app. Then the following code is feasible:
+The script setup the autoload hosts for all services, routes, records, models for my app. And we can reference the types as following:
 
 {% codeblock Sample Usage lang:coffeescript %}
 Records.User.findById uid, (err, user) ->
@@ -113,64 +113,100 @@ Records.User.findById uid, (err, user) ->
   user.save()
 {% endcodeblock %}
 
-Besides of the `initEnvironment.coffee` script, there are 2 very important classes: `PathHelper` and "LazyLoader"
+In the `initEnvironment.coffee` script, there are 2 very important classes are used:
+* AutoLoader: The class that works as the type variable hosts. All the magic happens here.
+* PathHelper: The class used to handle the path combination issue.
+
+The detailed implementation is here:
+{% codeblock Autoload lang:coffeescript %}
+_ = require('lodash')
+path = require('path')
+fs = require('fs')
+createPathHelper = require('./PathHelper')
+
+createLoaderMethod = (host, name, fullName) ->
+  host.__names.push name
+  Object.defineProperty host, name,
+                        get: ->
+                          require(fullName)
+
+class AutoLoader
+  constructor: (source) ->
+    @__names = []
+    for name, fullName of source
+      extName = path.extname fullName
+      createLoaderMethod(this, name, fullName) if require.extensions[extName]? or extName == ''
+
+expandPath = (rootPath) ->
+  createPathHelper(rootPath).toPathObject()
+
+buildSource = (items) ->
+  result = {}
+
+  for item in items
+    extName = path.extname(item)
+    name = path.basename(item, extName)
+    result[name] = item
+
+  result
+
+createAutoLoader = (option) ->
+  pathObj = switch typeof(option)
+    when 'string'
+      expandPath(option)
+    when 'object'
+      if option instanceof Array
+        buildSource(option)
+      else
+        option
+
+  new AutoLoader(pathObj)
+
+createAutoLoader.AutoLoader = AutoLoader
+
+exports = module.exports = createAutoLoader
+{% endcodeblock %}
 
 {% codeblock PathHelper lang:coffeescript %}
-_ = require('underscore')
+_ = require('lodash')
 fs = require('fs')
 path = require('path')
 
-makePath = (rootPath) ->
+createPathHelper = (rootPath, isConsolidated) ->
   rootPath = path.normalize rootPath
   result = (args...) ->
     return rootPath if args.length == 0
     parts = _.flatten [rootPath, args]
     path.join.apply(this, parts)
 
-  result.consolidate = ->
+  result.toPathObject = ->
     self = result()
     files = fs.readdirSync(self)
-    _.forEach files, (file) ->
+    pathObj = {}
+
+    for file in files
       fullName = path.join(self, file)
+      extName =  path.extname(file)
+      name = path.basename(file, extName)
+      pathObj[name] = fullName
+
+    pathObj
+
+  result.consolidate = ->
+    pathObj = result.toPathObject()
+
+    for name, fullName of pathObj
       stats = fs.statSync(fullName)
-      if stats.isDirectory()
-        extName = path.extname(file)
-        name = path.basename(file, extName)
-        result[name] = makePath(fullName)
+      result[name] = createPathHelper(fullName) if stats.isDirectory()
+
     result
 
-  result
+  if isConsolidated
+    result.consolidate()
+  else
+    result
 
-exports = module.exports = makePath
+exports = module.exports = createPathHelper
 {% endcodeblock %}
 
-{% codeblock LazyLoader lang:coffeescript %}
-_ = require('underscore')
-path = require('path')
-fs = require('fs')
-
-class LazyLoader
-  constructor: (@__rootPath) ->
-    files = fs.readdirSync(@__rootPath)
-
-    @__names = []
-    _.forEach files, (file) =>
-      extName = path.extname file
-      if require.extensions[extName]?
-        name = path.basename file, extName
-        fullname = path.join(@__rootPath, file)
-        @__names.push name
-        Object.defineProperty this, name,
-          get: ->
-            require(fullname)
-
-createLazyLoader = (rootPath) ->
-  new LazyLoader(rootPath)
-
-createLazyLoader.LazyLoader = LazyLoader
-
-exports = module.exports = createLazyLoader
-{% endcodeblock %}
-
-
-
+The code above are part of the [Express over Node](https://github.com/timnew/ExpressOverNode), to access the complete codebase, please check out the [repo](https://github.com/timnew/ExpressOverNode) on github.
