@@ -116,7 +116,8 @@ task :new_post, :title do |t, args|
     post.puts "category: "
     post.puts "tags: []"
     post.puts "sharing: true"
-    post.puts "footer: false"  
+    post.puts "footer: false"
+    post.pusts"published: false"  
     post.puts "---"
   end
 end
