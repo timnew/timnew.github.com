@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>source/_posts/2013-02-26-google-glass-isnt-really-an-enhanced-reality-device.md</string>
+	<string>source/_posts/2013-04-27-node-over-express-autoload.md</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,62 +21,6 @@
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
-		<key>source/_posts/2010-03-05-The_Problem_Introduced_by_making_structure_as_a_property.md</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>34</integer>
-				<key>line</key>
-				<integer>17</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>source/_posts/2010-11-13-inheritancedelegate.md</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>source/_posts/2011-08-25--vs-.md</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>source/_posts/2011-09-14-fluentassertion-is-not-compatible-with-xunitextensions.md</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>162</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>source/_posts/2012-03-21-a-way-to-expose-singleton-object-and-its-constructor-in-nodejs.md</key>
 		<dict>
 			<key>caret</key>
@@ -91,71 +35,86 @@
 			<key>firstVisibleLine</key>
 			<integer>15</integer>
 		</dict>
-		<key>source/_posts/2012-04-20-exports_vs_module_exports_in_node_js.md</key>
+		<key>source/_posts/2012-06-21-a-pitfall-in-jquery-form-serialization.md</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>80</integer>
+				<integer>78</integer>
 				<key>line</key>
-				<integer>50</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>26</integer>
-		</dict>
-		<key>source/_posts/2012-04-26-bash-profile-on-mac-os-x.md</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>53</integer>
-				<key>line</key>
-				<integer>8</integer>
+				<integer>13</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>source/_posts/2013-02-24-some-tricky-ways-to-calculate-integer-in-javascript.md</key>
+		<key>source/_posts/2012-07-19-inject-jquery-to-current-page.md</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>18</integer>
+				<integer>196</integer>
 				<key>line</key>
-				<integer>40</integer>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>24</integer>
+			<integer>0</integer>
 		</dict>
-		<key>source/_posts/2013-02-26-google-glass-isnt-really-an-enhanced-reality-device.md</key>
+		<key>source/_posts/2013-03-15-jsonview-chrome-extension-dark-theme.md</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>82</integer>
+				<integer>19</integer>
 				<key>line</key>
-				<integer>31</integer>
+				<integer>20</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>source/_posts/2013-04-27-node-over-express-autoload.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>28</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>173</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>209</integer>
+				<key>line</key>
+				<integer>211</integer>
+			</dict>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>source/_posts/2013-02-24-some-tricky-ways-to-calculate-integer-in-javascript.md</string>
-		<string>source/_posts/2013-02-26-google-glass-isnt-really-an-enhanced-reality-device.md</string>
+		<string>source/_posts/2013-04-27-node-over-express-autoload.md</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{4, 0}, {1152, 746}}</string>
+	<string>{{214, 0}, {1152, 746}}</string>
 </dict>
 </plist>
