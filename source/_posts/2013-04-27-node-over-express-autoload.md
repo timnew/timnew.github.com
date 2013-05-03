@@ -108,6 +108,9 @@ global.assets = {} # initialize this context for connect-assets helpers
 The script setup the autoload hosts for all services, routes, records, models for my app. And we can reference the types as following:
 
 {% codeblock Sample Usage lang:coffeescript %}
+# User = require('../models/User')
+# Badget = require('../models/Badget')
+# With the help of AutoLoader, the require statement above is not needed any longer
 Records.User.findById uid, (err, user) ->
   badge = new Models.Badget(badgeInfo)
   user.addBadge badge
