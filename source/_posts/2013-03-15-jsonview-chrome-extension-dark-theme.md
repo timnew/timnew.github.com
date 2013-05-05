@@ -25,7 +25,7 @@ JSONView provide a very sweety feature that allow user to customize the css used
 Here is my theme css, and you can copy it to your JSONView theme editor to apply.  
 Also you can find code on gist: [https://gist.github.com/timnew/5167241](https://gist.github.com/timnew/5167241)
 
-![Theme Preview](/images/2013-03-15-jsonview-chrome-extension-dark-theme/preview.png "Theme Preview")
+![Theme Preview](preview.png "Theme Preview")
 
 {% codeblock Dark Theme for JSONView lang:css %}
 body {

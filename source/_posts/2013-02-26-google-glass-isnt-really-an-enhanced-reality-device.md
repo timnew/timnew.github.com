@@ -37,11 +37,11 @@ Here are 2 images that explain the idea:
 
 ** View when you look around **  
 The view around is clear, but the map is blur
-![View when you look around](/images/2013-02-26-google-glass-isnt-really-an-enhanced-reality-device/optical-view.jpg "View when you look around")
+![View when you look around](optical-view.jpg "View when you look around")
 
 ** View when you read Glass **  
 The map become clear, but the view around is blur
-![View when you read Glass](/images/2013-02-26-google-glass-isnt-really-an-enhanced-reality-device/digital-view.jpg "View when you read Glass")
+![View when you read Glass](digital-view.jpg "View when you read Glass")
 
 To solve this problem, it requires device to detect the focus point of human eye, then adjust the image accordingly in real time. But still now, we don't have mature technology that can detect the eye focus point and compact enough to built into a wearable device.
 

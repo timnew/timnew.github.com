@@ -13,7 +13,7 @@ Then I try to connect the iMac from Win 7 via Chrome Remote Desktop!
 The performance is really amazing!!!! It is less well than Windows RDP but much better than the famous but sucks VNC!!!!!
 I totally have no idea how Google implemented this! But it do works super well in my environment!
 
-![Control Mac](/images/2011-10-13-remote-desktop-from-win-to-mac-via-chrome-remote-desktop/Chrome-Remote-Desktop-Control-Mac.png "Chrome Remote Desktop to Mac")
+![Control Mac](Chrome-Remote-Desktop-Control-Mac.png "Chrome Remote Desktop to Mac")
 
 You know, before Chrome Remote Desktop, there is only one real cross platform remote desktop solution: VNC, and the performance of which is unacceptable poor, and we have to install a lot of ugly software to make it happen.
  But now, we can achieve it by simply install chrome and the chrome extension....
@@ -21,7 +21,7 @@ It is amazing!
 
 I found the desktop fade in animation works smoothly via remote desktop! And I can even play movie from Mac!!!!!
 
-![Play Movie](/images/2011-10-13-remote-desktop-from-win-to-mac-via-chrome-remote-desktop/Chrome-Remote-Desktop-Play-Video.png "Play Movie on Mac via Chrome Remote Desktop")
+![Play Movie](Chrome-Remote-Desktop-Play-Video.png "Play Movie on Mac via Chrome Remote Desktop")
 
 While playing video, the peak of the network traffic might be reach 800kBps to 1MBps... but normally it should be 300 kBps.....
 

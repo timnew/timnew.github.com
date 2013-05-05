@@ -113,4 +113,4 @@ This design is wield to me, and kind of hard to understand, so for quite a long 
 I drew a graph to show the relationship about the classes, in graph I use `<class:A>` to indicate the class is the eigen class of `A`. And the line with a empty triangle to represents the inheritance, and arrow line to represents the instantiation. 
 And this graph is not a complete one, I omitted some unimportant classes, and I uses the dot line to indicate that something is missing on the line.
 
-![Inheritance Hierarchy](/images/2012-08-23-ruby-class-inheritance/Inheritance-Hierarchy.png "Inheritance Hierarchy")
+![Inheritance Hierarchy](Inheritance-Hierarchy.png "Inheritance Hierarchy")
