@@ -97,3 +97,6 @@ google_analytics_tracking_id: UA-30567867-1
 
 # Facebook Like
 facebook_like: true
+
+# Post Attachments
+attachment_dir: images
