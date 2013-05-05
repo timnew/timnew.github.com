@@ -1,6 +1,7 @@
 require "rubygems"
 require "bundler/setup"
 require "stringex"
+require "yaml"
 
 def alias_task(alias_task, original)
   desc "Alias #{original}"
@@ -9,27 +10,27 @@ end
 
 ## -- Rsync Deploy config -- ##
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
-ssh_user       = "user@domain.com"
-ssh_port       = "22"
-document_root  = "~/website.com/"
-rsync_delete   = true
+ssh_user = "user@domain.com"
+ssh_port = "22"
+document_root = "~/website.com/"
+rsync_delete = true
 deploy_default = "push"
 
 # This will be configured for you when you run config_deploy
-deploy_branch  = "master"
+deploy_branch = "master"
 
 ## -- Misc Configs -- ##
 
-public_dir      = "public"    # compiled site directory
-source_dir      = "source"    # source file directory
-blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
-deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
-stash_dir       = "_stash"    # directory to stash posts for speedy generation
-posts_dir       = "_posts"    # directory for blog files
-themes_dir      = ".themes"   # directory for blog files
-new_post_ext    = "md"  # default new post file extension when using the new_post task
-new_page_ext    = "md"  # default new page file extension when using the new_page task
-server_port     = "4000"      # port for preview server eg. localhost:4000
+public_dir = "public" # compiled site directory
+source_dir = "source" # source file directory
+blog_index_dir = 'source' # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
+deploy_dir = "_deploy" # deploy directory (for Github pages deployment)
+stash_dir = "_stash" # directory to stash posts for speedy generation
+posts_dir = "_posts" # directory for blog files
+themes_dir = ".themes" # directory for blog files
+new_post_ext = "md" # default new post file extension when using the new_post task
+new_page_ext = "md" # default new page file extension when using the new_page task
+server_port = "4000" # port for preview server eg. localhost:4000
 
 
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
@@ -65,7 +66,7 @@ task :watch do
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "Starting to watch source with Jekyll and Compass."
   system "compass compile --css-dir #{source_dir}/stylesheets" unless File.exist?("#{source_dir}/stylesheets/screen.css")
-  jekyllPid = Process.spawn({"OCTOPRESS_ENV"=>"preview"}, "jekyll --auto")
+  jekyllPid = Process.spawn({"OCTOPRESS_ENV" => "preview"}, "jekyll --auto")
   compassPid = Process.spawn("compass watch")
 
   trap("INT") {
@@ -81,7 +82,7 @@ task :preview do
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "Starting to watch source with Jekyll and Compass. Starting Rack on port #{server_port}"
   system "compass compile --css-dir #{source_dir}/stylesheets" unless File.exist?("#{source_dir}/stylesheets/screen.css")
-  jekyllPid = Process.spawn({"OCTOPRESS_ENV"=>"preview"}, "jekyll --auto")
+  jekyllPid = Process.spawn({"OCTOPRESS_ENV" => "preview"}, "jekyll --auto")
   compassPid = Process.spawn("compass watch")
   rackupPid = Process.spawn("rackup --port #{server_port}")
 
@@ -108,7 +109,7 @@ task :new_post, :title do |t, args|
   open(filename, 'w') do |post|
     post.puts "---"
     post.puts "layout: post"
-    post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
+    post.puts "title: \"#{title.gsub(/&/, '&amp;')}\""
     post.puts 'description: ""'
     post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
     post.puts "comments: true"
@@ -117,7 +118,7 @@ task :new_post, :title do |t, args|
     post.puts "tags: []"
     post.puts "sharing: true"
     post.puts "footer: false"
-    post.pusts"published: false"  
+    post.puts "published: false"
     post.puts "---"
   end
 end
@@ -130,15 +131,15 @@ task :new_page, :filename do |t, args|
   args.with_defaults(:filename => 'new-page')
   page_dir = [source_dir]
   if args.filename.downcase =~ /(^.+\/)?(.+)/
-    filename, dot, extension = $2.rpartition('.').reject(&:empty?)         # Get filename and extension
+    filename, dot, extension = $2.rpartition('.').reject(&:empty?) # Get filename and extension
     title = filename
-    page_dir.concat($1.downcase.sub(/^\//, '').split('/')) unless $1.nil?  # Add path to page_dir Array
+    page_dir.concat($1.downcase.sub(/^\//, '').split('/')) unless $1.nil? # Add path to page_dir Array
     if extension.nil?
       page_dir << filename
       filename = "index"
     end
     extension ||= new_page_ext
-    page_dir = page_dir.map! { |d| d = d.to_url }.join('/')                # Sanitize path
+    page_dir = page_dir.map! { |d| d = d.to_url }.join('/') # Sanitize path
     filename = filename.downcase.to_url
 
     mkdir_p page_dir
@@ -191,7 +192,7 @@ task :update_style, :theme do |t, args|
   theme = args.theme || 'classic'
   if File.directory?("sass.old")
     puts "removed existing sass.old directory"
-    rm_r "sass.old", :secure=>true
+    rm_r "sass.old", :secure => true
   end
   mv "sass", "sass.old"
   puts "## Moved styles into sass.old/"
@@ -205,15 +206,15 @@ task :update_source, :theme do |t, args|
   theme = args.theme || 'classic'
   if File.directory?("#{source_dir}.old")
     puts "## Removed existing #{source_dir}.old directory"
-    rm_r "#{source_dir}.old", :secure=>true
+    rm_r "#{source_dir}.old", :secure => true
   end
   mkdir "#{source_dir}.old"
   cp_r "#{source_dir}/.", "#{source_dir}.old"
   puts "## Copied #{source_dir} into #{source_dir}.old/"
-  cp_r "#{themes_dir}/"+theme+"/source/.", source_dir, :remove_destination=>true
-  cp_r "#{source_dir}.old/_includes/custom/.", "#{source_dir}/_includes/custom/", :remove_destination=>true
+  cp_r "#{themes_dir}/"+theme+"/source/.", source_dir, :remove_destination => true
+  cp_r "#{source_dir}.old/_includes/custom/.", "#{source_dir}/_includes/custom/", :remove_destination => true
   cp "#{source_dir}.old/favicon.png", source_dir
-  mv "#{source_dir}/index.html", "#{blog_index_dir}", :force=>true if blog_index_dir != source_dir
+  mv "#{source_dir}/index.html", "#{blog_index_dir}", :force => true if blog_index_dir != source_dir
   cp "#{source_dir}.old/index.html", source_dir if blog_index_dir != source_dir && File.exists?("#{source_dir}.old/index.html")
   puts "## Updated #{source_dir} ##"
 end
@@ -281,17 +282,17 @@ end
 
 desc "push the source to remote repository"
 multitask :push_source do
-   puts "## Commit source change to remote repository..."
-   cd "#{source_dir}" do
-     system "git add ."
-     system "git add -u"
-     puts "\n## Commiting Posts at #{Time.now.utc}"
-     message = "Posts Commited at #{Time.now.utc}"
-     system "git commit -m \"#{message}\""
-     puts "\n## Pushing Posts..."
-     system "git push origin source"
-     puts "\n## Posts push complete"
-   end
+  puts "## Commit source change to remote repository..."
+  cd "#{source_dir}" do
+    system "git add ."
+    system "git add -u"
+    puts "\n## Commiting Posts at #{Time.now.utc}"
+    message = "Posts Commited at #{Time.now.utc}"
+    system "git commit -m \"#{message}\""
+    puts "\n## Pushing Posts..."
+    system "git push origin source"
+    puts "\n## Posts push complete"
+  end
 end
 
 desc "Update configurations to support publishing to root or sub directory"
@@ -398,7 +399,7 @@ end
 
 def ask(message, valid_options)
   if valid_options
-    answer = get_stdin("#{message} #{valid_options.to_s.gsub(/"/, '').gsub(/, /,'/')} ") while !valid_options.include?(answer)
+    answer = get_stdin("#{message} #{valid_options.to_s.gsub(/"/, '').gsub(/, /, '/')} ") while !valid_options.include?(answer)
   else
     answer = get_stdin(message)
   end
@@ -409,4 +410,88 @@ desc "list tasks"
 task :list do
   puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(', ')}"
   puts "(type rake -T for more detail)\n\n"
+end
+
+NAME_PATTERN = /^(?<dir>.+\/)*(?<date>\d+-\d+-\d+)-(?<title>.*)(?<ext>\.[^.]+)$/
+
+desc "Rename post"
+task :rename_post, :post, :new_title do |t, args|
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
+
+  args.with_defaults(post: nil, new_title: '')
+  raise "post is not provided." if args.post.nil?
+  raise "post cannot be found." unless File.exists?(args.post)
+
+  new_title = args.new_title.strip
+  new_title = YAML.load_file(args.post)['title'] if new_title.empty?
+  new_title = new_title.to_url
+
+  name_parts = args.post.match NAME_PATTERN
+  abort("Not a post") if name_parts.nil?
+
+  new_name = File.join(name_parts[:dir], "#{name_parts[:date]}-#{new_title}#{name_parts[:ext]}")
+
+  if args.post == new_name
+    puts "No need to rename"
+  else
+    abort("Post #{new_name} existed!") if File.exists?(new_name)
+
+    puts "Renaming #{args.post}"
+    puts "To #{new_name}"
+    FileUtils.move args.post, new_name
+
+    attachment_dir = "#{source_dir}/attachments/#{name_parts[:date]}-#{name_parts[:title]}"
+
+    if File.exists?(attachment_dir)
+      puts "Attachment found, renmaing..."
+      FileUtils.move attachment_dir, "#{source_dir}/attachments/#{name_parts[:date]}-#{new_title}"
+    end
+  end
+end
+
+namespace :attachment do
+  desc "Create attachment folder for post"
+  task :create, :post do |t, args|
+    args.with_defaults(post: '')
+    name_parts = args.post.match NAME_PATTERN
+    abort("Not a post") if name_parts.nil?
+
+    attachment_dir = "#{source_dir}/attachments/#{name_parts[:date]}-#{name_parts[:title]}"
+
+    FileUtils.mkdir_p attachment_dir
+
+    sh %Q{open "#{attachment_dir}"}
+  end
+
+  desc "Delete all attachments for post"
+  task :delete, :post do |t, args|
+    args.with_defaults(post: '')
+    name_parts = args.post.match NAME_PATTERN
+    abort("Not a post") if name_parts.nil?
+
+    attachment_dir = "#{source_dir}/attachments/#{name_parts[:date]}-#{name_parts[:title]}"
+    abort("No attachments") unless File.exists?(attachment_dir)
+
+    FileUtils.rm_rf attachment_dir if ask("Sure to delete the folder #{attachment_dir}",%w{y n}) == 'y'
+  end
+
+  desc "Delete all empty attachment folders"
+  task :clean do
+    Dir.glob("#{source_dir}/attachments/*") do |dir|
+      if Dir.glob(File.join(dir, '*')).to_a.empty?
+        puts "Removing empty attachment folder: #{File.basename(dir)}"
+        FileUtils.rm_r(dir)
+      end
+    end
+  end
+
+  desc "Open attachment folder"
+  task :open, :post do |t, args|
+    args.with_defaults(post: '')
+    name_parts = args.post.match NAME_PATTERN
+    abort("Not a post") if name_parts.nil?
+
+    attachment_dir = "#{source_dir}/attachments/#{name_parts[:date]}-#{name_parts[:title]}"
+    sh %Q{open "#{attachment_dir}"}
+  end
 end
