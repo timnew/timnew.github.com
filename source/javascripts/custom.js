@@ -1,4 +1,4 @@
 $.domReady(function() {
-  var padding = $(window).height() * 0.8;
-  $('<style> body > header:hover { padding-top: '+ padding +'px; } </style>').prependTo('body')
+  var padding = $(window).height() * 0.7;
+  $('<style> body > header .header-expander:hover { padding-bottom: '+ padding +'px; } </style>').prependTo('body')
 });

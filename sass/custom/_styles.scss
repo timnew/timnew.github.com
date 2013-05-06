@@ -1,2 +1,18 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+@import './fontawesome';
+@import "compass/css3";
+
+body > header .header-expander {
+  width: 100%;
+  float: right;
+  color: rgba(#c86bff, .5);
+
+  @include transition(comma-list(color, padding-bottom), 1s);
+
+  &:hover {
+    color: rgba(white, .9);
+  }
+}
+
