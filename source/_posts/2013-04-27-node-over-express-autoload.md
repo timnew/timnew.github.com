@@ -43,7 +43,7 @@ External resources are classes encapsulated in ruby gems. In ruby application, d
 
 ### Internal Resources
 
-Internal Resources are the classes declared in the app, they could are models, the services or the controllers. Rails uses `Railtie` to require them automatically. The resource is loaded the first time it is used, the requiring process is "Lazy". (In fact, this description isn't that precise because Rails behaves differently in production environment. It loads all the classes during the launching for performance reason).
+Internal Resources are the classes declared in the app, they could be models, the services or the controllers. Rails uses `Railtie` to require them automatically. The resource is loaded the first time it is used, the requiring process is "Lazy". (In fact, this description isn't that precise because Rails behaves differently in production environment. It loads all the classes during the launching for performance reason).
 
 ## Autoload in Node.js
 
@@ -210,3 +210,7 @@ exports = module.exports = createPathHelper
 {% endcodeblock %}
 
 The code above are part of the [Express over Node](https://github.com/timnew/ExpressOverNode), to access the complete codebase, please check out the [repo](https://github.com/timnew/ExpressOverNode) on github.
+
+<hr>
+
+Besides of the content, I want to say thank you to my English teacher Marina Sarg, who helped me on this series of blog a lot. Without her, there won't be this series of blogs. Marina, thank you very much.

@@ -148,3 +148,7 @@ In fact, with my suggestions, it might work better than expected! Here are the a
 3. Easy to write tests for configurations, to ensure the values are properly set. It could be very handy when there are complicated inheritance relationships between configurations, or have some simple logic in your configuration.
 4. Avoid to instantiate and execute the code that isn’t related to the current environment, which could be helpful to avoid overhead to instantiate unused expensive resources or to avoid errors caused because of incompatibility between environments.
 5. Get runtime error when the configuration for the environment doesn’t exist.
+
+<hr>
+
+Besides of the content, I want to say thank you to my English teacher Marina Sarg, who helped me on this series of blog a lot. Without her, there won't be this series of blogs. Marina, thank you very much.
