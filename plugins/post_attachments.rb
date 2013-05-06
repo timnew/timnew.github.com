@@ -1,6 +1,7 @@
 # encoding: utf-8
 #
 # Jekyll post attachment generator
+# https://github.com/timnew/jekyll-attachments
 #
 # Version: 0.1
 #
