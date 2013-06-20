@@ -12,7 +12,7 @@ tags:
   - node over express
   - autoload
 sharing: true
-footer: false
+footer: true
 ---
 
 ## Preface
