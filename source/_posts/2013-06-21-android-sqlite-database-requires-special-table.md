@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Android SQLite database require speical table"
+title: "Android SQLite database requires special table"
 description: ""
 date: 2013-06-21 00:03
 comments: true
