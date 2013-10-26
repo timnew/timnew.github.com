@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>source/_posts/2013-07-18-pitfall-in-java-enumeration-reflection.md</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -19,6 +21,20 @@
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
+		<key>source/_posts/2011-10-13-remote-desktop-from-win-to-mac-via-chrome-remote-desktop.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>source/_posts/2012-03-21-a-way-to-expose-singleton-object-and-its-constructor-in-nodejs.md</key>
 		<dict>
 			<key>caret</key>
@@ -33,6 +49,20 @@
 			<key>firstVisibleLine</key>
 			<integer>15</integer>
 		</dict>
+		<key>source/_posts/2012-04-13-powershell-script-to-rename-computer-without-reboot.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>source/_posts/2012-06-21-a-pitfall-in-jquery-form-serialization.md</key>
 		<dict>
 			<key>caret</key>
@@ -41,6 +71,20 @@
 				<integer>78</integer>
 				<key>line</key>
 				<integer>13</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>source/_posts/2012-07-17-use-postgres-multiple-schema-database-in-rails.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>33</integer>
+				<key>line</key>
+				<integer>16</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -75,7 +119,113 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>source/_posts/2013-06-21-android-sqlite-database-requires-special-table.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>9</integer>
+				<key>line</key>
+				<integer>11</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>source/_posts/2013-06-21-json-transformation.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>17</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>source/_posts/2013-07-18-pitfall-in-java-enumeration-reflection.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>36</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>source/_posts/2013-07-19-dsl-to-build-hierarchy-model-tree-in-java.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>172</integer>
+				<key>line</key>
+				<integer>24</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>4</integer>
+		</dict>
+		<key>source/_posts/2013-07-19-sql-dsl-in-android-development-part-dot-1-make-java-understand-sql.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>source/_posts/2013-07-20-sql-dsl-in-android-development-part-dot-2-injector-to-simplify-batch-injection.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>source/_posts/2013-07-21-sql-dsl-in-android-development-part-dot-3-customized-injector-to-build-model-tree.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>48</integer>
+				<key>line</key>
+				<integer>2</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>4</integer>
+		</dict>
 	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>source/_posts/2013-07-19-dsl-to-build-hierarchy-model-tree-in-java.md</string>
+		<string>source/_posts/2013-07-18-pitfall-in-java-enumeration-reflection.md</string>
+		<string>source/_posts/2013-07-19-sql-dsl-in-android-development-part-dot-1-make-java-understand-sql.md</string>
+		<string>source/_posts/2013-07-21-sql-dsl-in-android-development-part-dot-3-customized-injector-to-build-model-tree.md</string>
+		<string>source/_posts/2013-07-20-sql-dsl-in-android-development-part-dot-2-injector-to-simplify-batch-injection.md</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
