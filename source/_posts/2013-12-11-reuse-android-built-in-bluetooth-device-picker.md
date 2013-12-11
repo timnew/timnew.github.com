@@ -27,3 +27,5 @@ But it is possible to reuse such resources, so I wrote the following code. But d
 [Code is available as Gist](https://gist.github.com/timnew/7908603)
 
 {% gist 7908603 %}
+
+In the code I uses the [Android Annotations](https://github.com/excilys/androidannotations), but it should be easy to remove the dependency on `Android Annotations` by adding a constructor to BluetoothDeviceManager that accepts `Context`.
