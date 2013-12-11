@@ -15,7 +15,7 @@ Thanks to Ruby powerful meta programming capability and Rails `delegate` syntax,
 
 In traditional language such as C#, usually we write singleton code like this:
 
-{% codeblock Singleton in C# lang:C# %}
+{% codeblock Singleton in C# lang:c# %}
 class Foo 
 {
 	// Singleton Declaration
@@ -40,7 +40,7 @@ class Foo
 The previous approach works fine but the code that uses `Foo` will be kind of ugly. Every time when we want to invoke the method `Bar` on `Foo`, we need to write `Foo.Instance.Bar()` rather than more graceful way `Foo.Bar()`. 
 To solve this problem we need implement the class in this way:
 
-{% codeblock Class Delegation in C# lang:C# %}
+{% codeblock Class Delegation in C# lang:c# %}
 
 class Foo
 {
