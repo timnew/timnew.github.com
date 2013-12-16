@@ -19,7 +19,7 @@ tags:
   - folder
 sharing: true
 footer: false
-published: false
+published: true
 ---
 
 According to [Android guideline document](https://developer.android.com/tools/projects/index.html#ApplicationProjects), the assets folder is created automatically and is positioned under the root of the project folder.  

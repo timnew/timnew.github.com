@@ -17,7 +17,7 @@ tags:
   - on the fly  
 sharing: true
 footer: false
-published: false
+published: true
 ---
 
 There is a fascinating idea that inflates UI according to an android layout xml downloaded from server. According to the Android API, it looks quite feasible.
