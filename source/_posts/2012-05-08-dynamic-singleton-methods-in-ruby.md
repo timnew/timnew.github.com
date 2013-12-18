@@ -157,15 +157,15 @@ class Array
 end
 {% endcodeblock %}
 
-So we can have the code like this:
+<del>So we can have the code like this:</del>
 
 {% codeblock call dynamic_inject lang:ruby %}
 Candidate.scoped_by_id(candidate_ids).dynamic_inject(CandidateCollection).approve!
 {% endcodeblock %}
 
-The code looks cool, but failed to run. 
+<del>The code looks cool, but failed to run. 
 The reason is that we opened the meta class of the instance, which means we enter another level of context, so the parameter module is no longer visible. 
-To solve this problem, we need to flatten the context by using closure. So we modified the code as following:
+To solve this problem, we need to flatten the context by using closure. So we modified the code as following:</del>
 
 {% codeblock dynamic_inject version 2 lang:ruby %}
 class Array
@@ -179,12 +179,12 @@ class Array
 end
 {% endcodeblock %}
 
-The code `metaclass = class << self; self; end` is very tricky, we use this statement to get the meta class of the array instance.
-Then we call class_eval on meta class, which then mixed-in the module we want.
+<del>The code `metaclass = class << self; self; end` is very tricky, we use this statement to get the meta class of the array instance.
+Then we call class_eval on meta class, which then mixed-in the module we want.</del>
 
-Now the code is looked nice. We can dynamically inject any module into "Array" instance.
+<del>Now the code is looked nice. We can dynamically inject any module into "Array" instance.
 Wait a minute, why only "Array"? We'd like to have this capability on any object! 
-Ok, that's easy, let's move the method to Kernel module, which is mixed-in by Object class.
+Ok, that's easy, let's move the method to Kernel module, which is mixed-in by Object class.</del>
 
 {% codeblock dynamic_inject version 3 lang:ruby %}
 module Kernel
@@ -198,10 +198,15 @@ module Kernel
 end
 {% endcodeblock %}
 
-Now we can say the code looks beautiful.
+<del>Now we can say the code looks beautiful.</del>
 
-NOTICE:
-	Have you noticed that we have a `self` expression at the end of the `dynamic_inject` method as return value.
-	This statement is quite important! 
-	Since we will get "undefined method error" when calling `Candidate.scoped_by_id(candidate_ids).dynamic_inject(CandidateCollection).approve!` if we missed this statement.
-	We spent almost 1 hour to figure out this stupid mistake. It is really a stupid but expensive mistake!
+**NOTICE:**
+<del>Have you noticed that we have a `self` expression at the end of the `dynamic_inject` method as return value.
+This statement is quite important! 
+Since we will get "undefined method error" when calling `Candidate.scoped_by_id(candidate_ids).dynamic_inject(CandidateCollection).approve!` if we missed this statement.
+We spent almost 1 hour to figure out this stupid mistake. It is really a stupid but expensive mistake!</del>
+
+<ins>
+Instead of these tricky ways, for Ruby 1.9+, it is okay to use `extend` method to replace the tricky code.
+The `extend` method is the official way to do "dyanamic inject" as described before.
+</ins>
