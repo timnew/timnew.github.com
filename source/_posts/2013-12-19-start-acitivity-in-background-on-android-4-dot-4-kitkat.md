@@ -33,6 +33,7 @@ I don't want the my splash screen to interrupt the user if the user returned to 
 
 It isn't an issue on Android 4.3, but on Android 4.4 KitKat, it causes problem.
 I googled this issue and tried the `FLAG_ACTIVITY_MULTIPLE_TASK`, and comfirmed that it is not helping to this issue.
+
 So I have to come up some kind of "hacking" solution as described below:
 
 I add a `isPaused` property to `BaseAcitity`, which is the base class of all activities in my app.
@@ -54,7 +55,7 @@ public class BaseActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        paused = true;
+        paused = false;
     }
 
     public boolean isPaused() {
