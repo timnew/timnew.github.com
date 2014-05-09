@@ -13,7 +13,7 @@ tags:
   - inflator  
 sharing: true
 footer: false
-published: false
+published: true
 ---
 
 I wrote a very simple layout file with a `ViewPager`, but the app crashes when inflating it.
