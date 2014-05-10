@@ -29,22 +29,22 @@ Today I found a better way to solve this issue, using the Chrome OmniBox! Chrome
 After the registration, we can use Mingle search direct from OmniBox, and we can open a specific card by typing "#card number".
 
 1. Keyword Mingle in OmniBox
-![OmniBox](omnibox_1.png "Keyword mingle in OmniBox")
+![OmniBox](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox/omnibox_1.png "Keyword mingle in OmniBox")
 2. Search in OmniBox
-![OmniBox](omnibox_2.png "Search in OmniBox")
+![OmniBox](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox/omnibox_2.png "Search in OmniBox")
 3. Open the page
-![OmniBox](omnibox_3.png "Open the page")
+![OmniBox](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox/omnibox_3.png "Open the page")
 
 To register Mingle to Chrome OmniBox, you can use following approach:
 
 Find out the Mingle search page url first:
 
 1. Open Mingle project home page, type `test` in the Search Box. Press enter, copy the url, and replace word `test` with `%s`. That's the search url.
-![Setup](setup_1.png "Find Search Url")
+![Setup](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox/setup_1.png "Find Search Url")
 2. Open url `chrome://settings`, find `Manage search engines`.
-![Setup](setup_2.png "Find Manage search engines")
+![Setup](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox/setup_2.png "Find Manage search engines")
 3. Register new search engine.
   ** The first box is the display name of item, `Mingle`, `project_name Mingle` is recommended
   ** The second box is the keyword triggers the search, `mingle` is recommended. In most cases, you will work with only 1 mingle instance, so it will not cause confusion. But if it does, add more specific keyword to it.
   ** The third box is the url search url, paste the url you just found
-![Setup](setup_3.png "Register mingle")  
+![Setup](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox/setup_3.png "Register mingle")  
