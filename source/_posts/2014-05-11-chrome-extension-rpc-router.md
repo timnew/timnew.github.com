@@ -48,9 +48,9 @@ So I come up a new more graceful solution: RPC Message Router
 
 {% codeblock RCPRouter lang:coffeescript %}
 
-extractResponseHandler = (args) ->  
+extractResponseHandler = (args) ->
   return undefined if args.length == 0
-  
+
   last = args.pop()
 
   if typeof last == 'function'
@@ -64,22 +64,26 @@ class @RPCRouter
     chrome.runtime.onMessage.addListener @handleMassage
 
   handleMassage: (message, sender, sendResponse) =>
-    {methodName, args} = message
+    {method: methodName, args} = message
     method = this[methodName]
 
     unless method?
-      console.error "Unknown RPC method: #{methodName}"
-      return 
+      console.error "Unknown RPC method: %s", methodName
+      return
 
     args.push sendResponse
+
+    console.log "RPC Call: %s, args: %o", methodName, args
     method.apply(this, args)
 
   callBackground: (method, args...) ->
     responseHandler = extractResponseHandler(args)
+    console.log "RPC Call to Background: %s, args: %o", method, args
     chrome.runtime.sendMessage {method, args}, responseHandler
 
   callTab: (tabId, method, args...) ->
     responseHandler = extractResponseHandler(args)
+    console.log "RPC Call to Tab \"%s\": %s, args: %o", tabId, method, args
     chrome.tabs.sendMessage tabId, {method, args}, responseHandler
 
 {% endcodeblock %}
