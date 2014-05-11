@@ -68,5 +68,5 @@ Adding migration for a specific version of schema is quite simple. Just as metho
 
 `'undefined'` method is a special migration method, which is invoked there is no previous configuration found. So I initialize the configuration from seed data json file, which is generated from the version 1 DSL. 
 
-The seed data generation is also an interesting topic. Please refer to next post of this series for details.
+The seed data generation is also an interesting topic. Please refer to [next post(Redfine DSL behavior)](/blog/2014/05/11/upgrading-dsl-from-coffeescript-to-json-part-dot-2-redefine-dsl-behavior) of this series for details.
 
