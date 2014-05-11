@@ -31,7 +31,7 @@ Finally I decided to replace CoffeeScript to JSON, which can be easily edited an
 
 After introducing JSON DSL, to enable DSL upgrading in the future, an migration system become important and urgent. (Actually, this prediction is so solid. I have changed the JSON schema once today.) So I come up a new migration system:
 
-{% codeblock Upgrader lang: coffeescript %}
+{% codeblock Upgrader lang:coffeescript %}
 
 class Upgrader
   constructor: ->
