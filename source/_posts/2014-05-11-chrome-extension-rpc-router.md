@@ -59,7 +59,7 @@ extractResponseHandler = (args) ->
     args.push last
     return undefined
 
-class RPCRouter
+class @RPCRouter
   constructor: ->
     chrome.runtime.onMessage.addListener @handleMassage
 
