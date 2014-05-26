@@ -13,7 +13,7 @@ tags:
   - shortcut
 sharing: true
 footer: false
-published: false
+published: true
 ---
 
 A few days ago, I post a blog([Create shortcut for your project Mingle with Chrome OmniBox](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox)) about that we can access specific Mingle story card directly from Chrome "OmniBox". The shortcut is created by registering Mingle search as custom search in Chrome.
