@@ -60,6 +60,8 @@ Still now, I figured out several potentisal workarounds to this issue, hope thes
   If you not really needs SDK 19 features, try to downgrade the SDK version to 18 to fix the issue.
 2. Use IntelliJ instead of Android Studio  
   I encounters a different issue when using IDEA, it fails to sync the Gradle file.
+3. Use Maven or ANT instead of Gradle  
+  Gradle is powerful, but there are too many environment issues when using with IDEs... Maven is relatively more stable.
 
 I haven't figure out a perfect solution to this issue, just hope the Google can fix the issue as soon as possible.
 
