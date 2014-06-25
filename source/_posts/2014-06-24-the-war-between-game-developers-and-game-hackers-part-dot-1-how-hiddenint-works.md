@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The war between Game developers and Game Hackers - Part.1 How HiddenInt works"
+title: "The battle between Game developers and Game Hackers - Part.1 How HiddenInt works"
 description: ""
 date: 2014-06-24 11:24
 comments: true
