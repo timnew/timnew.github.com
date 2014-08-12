@@ -1,12 +1,17 @@
----
 layout: post
-title: "Enhanced typeof() operator in JavaScript"
-description: ""
-category: javascript
-tags: ["javascript", "pitfall", "fix", "js hack", "typeof", "type", "js"]
-languages: ["js"]
+title: Enhanced typeof() operator in JavaScript
+tags:
+  - javascript
+  - pitfall
+  - fix
+  - js hack
+  - typeof
+  - type
+  - js
+categories: javascript
+comments: true
+date: 2012-03-18 08:00:00
 ---
-
 Javascript is weakly typed, and its type system always behaves different than your expectation.
 Javascript provide typeof operator to test the type of a variable. it works fine generally. e.g.
 

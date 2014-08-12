@@ -1,23 +1,16 @@
----
 layout: post
-title: "Android Studio 0.6.1 SDK recognition issue when using Android SDK 19 and Gradle"
-description: ""
-date: 2014-06-20 16:20
+title: Android Studio 0.6.1 SDK recognition issue when using Android SDK 19 and Gradle
 comments: true
-categories: 
-category: android
-tags: 
-  - android 
+categories: android
+tags:
+  - android
   - android studio
   - sdk
   - gradle
   - android.jar
   - jar
-sharing: true
-footer: false
-published: true
+date: 2014-06-20 08:00:00
 ---
-
 A few days ago I upgraded my Android Studio to version 0.6.1. And migrated my android project build system from Maven to Gradle. Then nightmare happened!
 
 ![Android Studio Version](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/android_studio_version.png)

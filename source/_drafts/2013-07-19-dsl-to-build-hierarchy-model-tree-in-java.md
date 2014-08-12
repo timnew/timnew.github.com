@@ -1,12 +1,9 @@
----
 layout: post
-title: "DSL to build hierarchy model tree in Java"
-description: ""
-date: 2013-07-19 21:42
+title: DSL to build hierarchy model tree in Java
 comments: true
-categories: 
-category: 
-tags: 
+categories:
+  - general
+tags:
   - Java
   - DSL
   - hierarchy
@@ -14,11 +11,8 @@ tags:
   - prepare data
   - factory
   - builder
-sharing: true
-footer: false
-published: false
+date: 2013-07-19 08:00:00
 ---
-
 In my unit test of my current android project, I need to inject some location data into the database. The location data consists 3 level of nodes, the cities, the counties and the towns. Several towns are belongs a county, and several counties are belongs to a city.  
 The relationship is a typical one-to-many mapping, so I uses an extra column `parent_id` in child node to hold the `id` of its parent.
 

@@ -1,13 +1,15 @@
----
 layout: post
 title: "Shell Script to fetch CPU, Memory and Disk Info in Linux"
-tagline: 
-description: ""
-category: Bash
-tags: ["bash", "hardware", "cpu", "disk", "memory"]
-languages: ["bash"]
+tags:
+  - bash
+  - hardware
+  - cpu
+  - disk
+  - memory
+categories: Bash
+comments: true
+date: 2012-04-08 08:00:00
 ---
-
 This is a script to populate computer hardware configuration in Linux.
 
 {% codeblock Script to populate CPU, Memory and Disk Info lang:bash %}

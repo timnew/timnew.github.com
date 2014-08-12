@@ -1,16 +1,16 @@
----
 layout: post
-title: "Space Pitfall in coffee-script"
-description: ""
-date: 2012-05-14 10:59
+title: Space Pitfall in coffee-script
 comments: true
-categories: 
-category: "coffee-script" 
-tags: ["pitfall", "space", "javascript", "compile", "best-practice","coffee-script"]
-sharing: true
-footer: false
+categories: coffee-script
+tags:
+  - pitfall
+  - space
+  - javascript
+  - compile
+  - best-practice
+  - coffee-script
+date: 2012-05-14 08:00:00
 ---
-
 Coffee Script had fixed quite a lot of pitfalls in Javascript. But on another hand it also introduced some other pitfalls, the most common one is the space.
 
 ### Space in function declaration

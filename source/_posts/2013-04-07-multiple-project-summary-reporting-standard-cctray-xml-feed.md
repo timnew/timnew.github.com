@@ -1,12 +1,8 @@
----
 layout: post
-title: "Multiple Project Summary Reporting Standard - cctray xml feed"
-description: ""
-date: 2013-04-07 11:48
+title: Multiple Project Summary Reporting Standard - cctray xml feed
 comments: true
-categories: 
-category: CI
-tags: 
+categories: CI
+tags:
   - CI
   - continues integration
   - jenkins
@@ -20,10 +16,8 @@ tags:
   - standard
   - report
   - cruise control
-sharing: true
-footer: false
+date: 2013-04-07 08:00:00
 ---
-
 CCTray.xml is an RSS-like CI server build status xml feed, which is originally developed for CruiseControl.net.  
 ThoughtWorks declared it in a standard called "Multiple Project Summary Reporting Standard", which now have become some kind of unofficial standard of CI server feed that is widely supported by all kind of popular CI servers.
 

@@ -1,11 +1,19 @@
----
 layout: post
-title: "Powershell Script for Environment Provision and Auto Deploy"
-description:
-category: Powershell 
-tags: ["Powershell", "Continues Integration", "Continues Delivery", "CI", "Deploy", "Deployment", "Automation", "Script", "Remote"]
+title: Powershell Script for Environment Provision and Auto Deploy
+tags:
+  - Powershell
+  - Continues Integration
+  - Continues Delivery
+  - CI
+  - Deploy
+  - Deployment
+  - Automation
+  - Script
+  - Remote
+categories: Powershell
+comments: true
+date: 2012-04-05 08:00:00
 ---
-
 I've been working on MetaPaas project for a while. And composing deploy script is one of the my major tasks.
 Here are some script snippets I found or I compose, which could be very useful in my daily work.
 

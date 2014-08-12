@@ -1,13 +1,16 @@
----
 layout: post
-title: "TextMate command to create new post for jekyll"
-description: ""
-category: textmate
-tags: ["textmate", "jekyll", "tmbundle", "bash", "shell", "script"]
-tagline:
-languages: ["bash"]
+title: TextMate command to create new post for jekyll
+tags:
+  - textmate
+  - jekyll
+  - tmbundle
+  - bash
+  - shell
+  - script
+categories: textmate
+comments: true
+date: 2012-04-08 08:00:00
 ---
-
 Here is a bash script that acts as a TextMate command, which enables blogger to create new post without leaving TextMate.
 It depends on "Post" task of the Rakefile in Jekyll Bootstrap.
 

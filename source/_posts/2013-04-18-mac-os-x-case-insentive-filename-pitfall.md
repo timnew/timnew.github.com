@@ -1,12 +1,8 @@
----
 layout: post
-title: "Mac OS X Case Insentive Filename Pitfall"
-description: ""
-date: 2013-04-18 13:22
+title: Mac OS X Case Insentive Filename Pitfall
 comments: true
-categories: 
-category: Mac
-tags: 
+categories: Mac
+tags:
   - Mac
   - OSX
   - Case Insensitve
@@ -18,10 +14,8 @@ tags:
   - JavaScript
   - Snockets
   - Connect-Assets
-sharing: true
-footer: false
+date: 2013-04-18 08:00:00
 ---
-
 I was working on the YouTube video playback feature for [LiveHall](http://live-hall.herokuapp.com) last night, and have it works successfully on my local devbox, which is running Mac OS X. Then I deployed the code to Heroku, without any regression.
 
 But today morning, when I have the demonstrate the new features, I met server error! It says 1 of the 4 javascripts are missing, so the Jade template failed to render. 

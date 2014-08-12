@@ -1,16 +1,16 @@
----
 layout: post
-title: "Eigenclass in ruby"
-description: ""
-date: 2012-05-25 15:25
+title: Eigenclass in ruby
 comments: true
-categories: 
-category: "ruby"
-tags: ["ruby", "meta programming", "eigen", "eigenclass", "meta class", "singleton class"]
-sharing: true
-footer: false
+categories: ruby
+tags:
+  - ruby
+  - meta programming
+  - eigen
+  - eigenclass
+  - meta class
+  - singleton class
+date: 2012-05-25 08:00:00
 ---
-
 To me, "Eigenclass" is a weird name. Here is the definition of "Eigenclass" from [wikipedia](https://en.wiktionary.org/wiki/eigenclass):
 
 {% blockquote 松本行弘(Yukihiro Matsumoto) https://en.wiktionary.org/wiki/eigenclass [Wikipedia] %}

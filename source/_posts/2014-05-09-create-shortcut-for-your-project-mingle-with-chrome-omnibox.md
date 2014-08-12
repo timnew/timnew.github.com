@@ -1,22 +1,15 @@
----
 layout: post
-title: "Create shortcut for your project Mingle with Chrome OmniBox"
-description: ""
-date: 2014-05-09 10:22
+title: Create shortcut for your project Mingle with Chrome OmniBox
 comments: true
-categories: 
-category: chrome
-tags: 
+categories: chrome
+tags:
   - mingle
   - chrome
   - omnibox
   - custom search
   - shortcut
-sharing: true
-footer: false
-published: true
+date: 2014-05-09 08:00:00
 ---
-
 Mingle is a common choice of story wall management system in ThoughtWorks internal projects.
 
 Mingle uses rest style url to identify card or entities in the system, so the url contains the account id and project id in it.

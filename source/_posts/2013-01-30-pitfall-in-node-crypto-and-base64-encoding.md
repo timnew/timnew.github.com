@@ -1,12 +1,8 @@
----
 layout: post
-title: "Pitfall in node crypto and base64 encoding"
-description: ""
-date: 2013-01-30 23:15
+title: Pitfall in node crypto and base64 encoding
 comments: true
-categories: 
-category: node.js
-tags: 
+categories: node.js
+tags:
   - node.js
   - pitfall
   - base64
@@ -14,10 +10,8 @@ tags:
   - decipher
   - buffer
   - encoding
-sharing: true
-footer: false
+date: 2013-01-30 08:00:00
 ---
-
 Today, we found there is a huge pitfall in node.js crypto module! Decipher has potential problem when processing Base64 encoding.
 
 We're building RESTful web service based on Node.js, which talks to some other services implemented with Ruby.

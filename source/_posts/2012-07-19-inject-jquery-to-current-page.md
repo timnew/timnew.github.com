@@ -1,14 +1,17 @@
----
 layout: post
-title: "Inject jQuery to current page"
-description: ""
-date: 2012-07-19 00:09
+title: Inject jQuery to current page
 comments: true
-categories: 
-category: browser
-tags: ['jquery', browser, javascript, bookmark, execution, inject, script, trick]
-sharing: true
-footer: false
+categories: browser
+tags:
+  - jquery
+  - browser
+  - javascript
+  - bookmark
+  - execution
+  - inject
+  - script
+  - trick
+date: 2012-07-19 08:00:00
 ---
 Now I'm hacking some web sites to try to grab the interesting informations from the page. But for some reason, all the sites I'm working on now, doesn't included jQuery, they uses YUI or extJS, which makes me feel super inconvenient when trying hacking the page pattern.
 

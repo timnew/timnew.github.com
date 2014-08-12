@@ -1,12 +1,16 @@
----
 layout: post
-title: "Plants vs Zombie Cheat Engine +3 Trainer"
-description: ""
-category: Game
-tags: ["PVZ", "Game", "Cheat Engine", "Trainer", "Cheat", "CHT"]
-
+title: Plants vs Zombie Cheat Engine +3 Trainer
+tags:
+  - PVZ
+  - Game
+  - Cheat Engine
+  - Trainer
+  - Cheat
+  - CHT
+categories: Game
+comments: true
+date: 2010-09-05 08:00:00
 ---
-
 * Collect Sunshine Cheat: Give 0x8FF sunshine when player pick any sun shine, overflow protection is enabled
 * Consume Sunshine Cheat: Set Sunhine to 0xFFF when any sunshine is consumed
 * Cool Down Cheat: No Cool Down time for plants

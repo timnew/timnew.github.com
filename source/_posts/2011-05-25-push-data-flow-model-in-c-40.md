@@ -1,12 +1,18 @@
----
 layout: post
 title: "Push Data Flow Model in C# 4.0"
-description: ""
-category: CSharp
-tags: ["C#", "LINQ", "Push", "Rx", "Reactive Extension", "New Feature", "Data Flow", "FP"]
-languages:
+tags:
+  - "C#"
+  - LINQ
+  - Push
+  - Rx
+  - Reactive Extension
+  - New Feature
+  - Data Flow
+  - FP
+categories: CSharp
+comments: true
+date: 2011-05-25 08:00:00
 ---
-
 In the pre 4.0 era, there are two interfaces reveal a new world to .net world. The two hero are `IEnumerable<T>` and `IEnumerator<T>`.
 Based on these two interfaces, .net introduced a lot of amazing staffs that dramatically simplified the development related to data flow, these well known features are: foreach loop, yield keyword, and LINQ.
 These 2 interfaces provide an common abstraction layer for the operation that pull data from the data source. And with this abstraction, you can apply foreach loop to almost every kind of data source in the .net world.

@@ -1,14 +1,14 @@
----
 layout: post
-title: "ZShell cannot invoke parameterized Rake Task"
-description: ""
-date: 2012-07-20 23:52
+title: ZShell cannot invoke parameterized Rake Task
 comments: true
-categories: zsh 
-category: 
-tags: ['zsh', 'rake', 'task', 'compatibility', 'parameter']
-sharing: true
-footer: false
+categories: zsh
+tags:
+  - zsh
+  - rake
+  - task
+  - compatibility
+  - parameter
+date: 2012-07-20 08:00:00
 ---
 Just met a super wield question in zsh when I trying to invoke a parameterized rake task.
 I have a rake task that helps me to create class and related test case for coffee script. It should be invoked in this way:

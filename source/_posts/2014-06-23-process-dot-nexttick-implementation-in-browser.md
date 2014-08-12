@@ -1,22 +1,15 @@
----
 layout: post
-title: "Process.nextTick Implementation in Browser"
-description: ""
-date: 2014-06-23 15:12
+title: Process.nextTick Implementation in Browser
 comments: true
-categories: 
-category: javascript
-tags: 
+categories: javascript
+tags:
   - node.js
   - nextTick
   - browser
   - nextTick
   - infinite recursion
-sharing: true
-footer: false
-published: true
+date: 2014-06-23 08:00:00
 ---
-
 Recursion is a common trick that is often used in JavaScript programming. So infinite recursion will cause stack overflow errors. 
 Some languages resolves this issue by introduce automatically tail call optimization, but in JavaScript we need to take care it on our own.
 

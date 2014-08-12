@@ -1,12 +1,8 @@
----
 layout: post
-title: "Dynamically inflates UI in Android App"
-description: ""
-date: 2013-12-13 23:49
+title: Dynamically inflates UI in Android App
 comments: true
-categories: 
-category: android
-tags: 
+categories: android
+tags:
   - android
   - dynamic
   - ui
@@ -14,12 +10,9 @@ tags:
   - layout inflater
   - xml
   - runtime
-  - on the fly  
-sharing: true
-footer: false
-published: true
+  - on the fly
+date: 2013-12-13 08:00:00
 ---
-
 There is a fascinating idea that inflates UI according to an android layout xml downloaded from server. According to the Android API, it looks quite feasible.
 
 One of `LayoutInflate.inflate` <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup)">method overloads</a> accept Layout Xml as `XmlPullParser`.

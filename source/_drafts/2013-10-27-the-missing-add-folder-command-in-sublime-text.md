@@ -1,12 +1,8 @@
----
 layout: post
-title: "The missing add_folder command in Sublime Text"
-description: ""
-date: 2013-10-27 18:26
+title: The missing add_folder command in Sublime Text
 comments: true
-categories: 
-category: Sublime Text
-tags: 
+categories: Sublime Text
+tags:
   - Project
   - Folder
   - Sublime Text
@@ -17,11 +13,8 @@ tags:
   - Missing
   - prompt_add_folder
   - remove_folder
-sharing: true
-footer: false
-published: false
+date: 2013-10-27 08:00:00
 ---
-
 I'm using [Stino](https://github.com/Robot-Will/Stino), a feature-rich plug-in turns Sublime Text into an Arduino IDE.
 
 Stino is perfect on may ways, but there is one thing I found not that convinient is that it open the sketches as independent files rather than open it as a project. As a result, each time when you try to add new file to your sketch, you have to type the full path to your sketch folder or the file will be created in home folder.

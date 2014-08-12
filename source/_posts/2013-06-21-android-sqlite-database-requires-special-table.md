@@ -1,23 +1,16 @@
----
 layout: post
-title: "Android SQLite database requires special table"
-description: ""
-date: 2013-06-21 00:03
+title: Android SQLite database requires special table
 comments: true
-categories: 
-category: android
-tags: 
+categories: android
+tags:
   - android
   - sqlite
   - table
   - crash
   - exception
   - android_metadata
-sharing: true
-footer: false
-published: true
+date: 2013-06-21 08:00:00
 ---
-
 I'm working on an Android application recently. During the development, our new app inherited a legacy SQLite database that created by a WinCE application.
 
 Android announce that it supports the SQLite database, so we don't worry about that too much. But when we try to open the legacy database with  `SQLiteDatabase.openDatabase`, it throws exception on our face!

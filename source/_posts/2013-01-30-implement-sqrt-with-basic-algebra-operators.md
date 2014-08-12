@@ -1,16 +1,14 @@
----
 layout: post
-title: "Implement sqrt with basic algebra operators"
-description: ""
-date: 2013-01-30 00:11
+title: Implement sqrt with basic algebra operators
 comments: true
-categories: 
-category: algorithm
-tags: [algorithm,facebook,sqrt,"binary search"]
-sharing: true
-footer: false
+categories: algorithm
+tags:
+  - algorithm
+  - facebook
+  - sqrt
+  - binary search
+date: 2013-01-30 08:00:00
 ---
-
 It is a very basic question, but to solve it in a time limited environment, require solid knowledge about algorithm, and could use these knowledges flexibly.  
 I found the problem of myself is that I know it, but I cannot use it as flexible as my hand.
 

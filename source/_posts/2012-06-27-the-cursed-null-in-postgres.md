@@ -1,16 +1,18 @@
----
 layout: post
-title: 'The "Cursed" NULL in postgres'
-description: ""
-date: 2012-06-27 14:09
+title: "The \"Cursed\" NULL in postgres"
 comments: true
-categories: 
-category: postgres
-tags: ["postgres", "postgresql", "NULL", "sql", "database", "pivot table", "pivot", "equality comparison"]
-sharing: true
-footer: false
+categories: postgres
+tags:
+  - postgres
+  - postgresql
+  - "NULL"
+  - sql
+  - database
+  - pivot table
+  - pivot
+  - equality comparison
+date: 2012-06-27 08:00:00
 ---
-
 ## Comparison to NULL
 In postgres, NULL is treat as a speical value, that which is not equal to any other value, which means the expression `NULL = NULL` yields false.
 It can be verified by using the following query

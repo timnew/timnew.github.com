@@ -1,16 +1,15 @@
----
 layout: post
-title: "Pitfall in Nokogiri XPath and Namepace"
-description: ""
-date: 2012-10-25 11:35
+title: Pitfall in Nokogiri XPath and Namepace
 comments: true
-categories: 
-category: ruby
-tags: ['ruby','nokogiri','xpath','namespace','pitfall']
-sharing: true
-footer: false
+categories: ruby
+tags:
+  - ruby
+  - nokogiri
+  - xpath
+  - namespace
+  - pitfall
+date: 2012-10-25 08:00:00
 ---
-
 `Nokogiri` is a really popular Xml and Html library for Ruby. People loves `Nokogiri` is not just because it is powerful and fast, the most important is its flexible and convenient. 
 `Nokogiri` works perfect in most aspects, but there is a big pitfall when handling the xml namespace!
 

@@ -1,21 +1,14 @@
----
 layout: post
-title: "Create shortcut for your project Mingle with Alfred"
-description: ""
-date: 2014-05-26 18:06
+title: Create shortcut for your project Mingle with Alfred
 comments: true
-categories: 
-category: alfred
-tags: 
+categories: alfred
+tags:
   - mingle
   - Alfred
   - custom search
   - shortcut
-sharing: true
-footer: false
-published: true
+date: 2014-05-26 08:00:00
 ---
-
 A few days ago, I post a blog([Create shortcut for your project Mingle with Chrome OmniBox](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox)) about that we can access specific Mingle story card directly from Chrome "OmniBox". The shortcut is created by registering Mingle search as custom search in Chrome.
 
 Today I found applying the same trick to launch apps, we can have one step further. In Mac OS, almost all the launcher apps support custom search, such as [Aflred](http://www.alfredapp.com/), [QuickSilver](http://qsapp.com/), [Launcher](http://www.nulana.com/launcher). Even in Windows, we also have [Launchy](http://www.launchy.net/). For Linux, I believe there should be similar stuff. So the trick is environment independent.

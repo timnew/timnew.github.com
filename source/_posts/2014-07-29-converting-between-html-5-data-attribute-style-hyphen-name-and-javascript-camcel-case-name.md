@@ -1,12 +1,8 @@
----
 layout: post
-title: "converting between HTML 5 data-attribute style hyphen name and javascript camcel-case name"
-description: ""
-date: 2014-07-29 11:19
+title: converting between HTML 5 data-attribute style hyphen name and javascript camcel-case name
 comments: true
-categories: 
-category: javascript
-tags: 
+categories: javascript
+tags:
   - html
   - hyphen
   - name
@@ -14,11 +10,8 @@ tags:
   - camel-case
   - data attribute
   - javascript
-sharing: true
-footer: false
-published: true
+date: 2014-07-29 08:00:00
 ---
-
 I found a bug in [widget.coffee](http://bower.io/search/?q=widget.coffee) today. To fix the issue, I need the conversion between HTML 5 `data-attribute` name and javascript function name, e.g. conversion between `data-action-handler` and `actionHandler`.
 
 By taking jQuery implementation as reference, I come up 2 utility functions for the conversion:

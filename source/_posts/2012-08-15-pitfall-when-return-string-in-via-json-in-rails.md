@@ -1,14 +1,12 @@
----
 layout: post
-title: "pitfall when return string in via json in rails"
-description: ""
-date: 2012-08-15 18:17
+title: pitfall when return string in via json in rails
 comments: true
-categories: 
-category: rails
-tags: ['json', 'rails', 'pitfall']
-sharing: true
-footer: false
+categories: rails
+tags:
+  - json
+  - rails
+  - pitfall
+date: 2012-08-15 08:00:00
 ---
 Today we met a weird problem when return a string via json.
 

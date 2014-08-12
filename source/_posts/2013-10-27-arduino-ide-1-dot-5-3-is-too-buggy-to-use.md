@@ -1,12 +1,8 @@
----
 layout: post
-title: "Arduino IDE 1.5.3 is too buggy to use and work arounds"
-description: ""
-date: 2013-10-27 20:15
+title: Arduino IDE 1.5.3 is too buggy to use and work arounds
 comments: true
-categories: 
-category: arduino 
-tags: 
+categories: arduino
+tags:
   - arduino
   - IDE
   - buggy
@@ -16,11 +12,8 @@ tags:
   - error
   - String
   - nano
-sharing: true
-footer: false
-published: true
+date: 2013-10-27 08:00:00
 ---
-
 The Arduino IDE 1.5.3 introduced some new features, such as support latest board Yun, or introduces new libraries and samples. But I found it is too buggy to use. 
 
 ## 1. Compile code against Arduino Nano fails due to parameter `mcu` passed to `avrdude` is missing.

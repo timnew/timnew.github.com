@@ -1,12 +1,13 @@
----
 layout: post
-title: "Remote Desktop from Win to Mac via Chrome Remote Desktop"
-description: ""
-category: GeekToy
-tags: ["Chrome", "Remote Desktop", "Google"]
-languages: 
+title: Remote Desktop from Win to Mac via Chrome Remote Desktop
+tags:
+  - Chrome
+  - Remote Desktop
+  - Google
+categories: GeekToy
+comments: true
+date: 2011-10-13 08:00:00
 ---
-
 Google Chrome Remote Desktop Extension is really amazing!!!!!
 I try to install the extension on both Chrome on my iMac and the one on my laptop with Win 7.
 Then I try to connect the iMac from Win 7 via Chrome Remote Desktop!

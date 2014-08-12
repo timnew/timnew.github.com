@@ -1,12 +1,16 @@
----
 layout: post
-title: "Self Registration Pattern for Singleton View Models in WPF"
-description: ""
-category: WPF
-tags: ["WPF", "View Model", "Resource", "XAML", "Singleton", "Pattern"]
-languages: ["csharp", "xml"]
+title: Self Registration Pattern for Singleton View Models in WPF
+tags:
+  - WPF
+  - View Model
+  - Resource
+  - XAML
+  - Singleton
+  - Pattern
+categories: WPF
+comments: true
+date: 2011-04-27 08:00:00
 ---
-
 Where to store the Singleton View Model in WPF application, there are 2 common options:
 
 ### Store in Resource Dictionary.  

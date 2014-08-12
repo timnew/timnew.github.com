@@ -1,12 +1,8 @@
----
 layout: post
-title: "Manage configuration in Rails way on node.js by using inheritance"
-description: ""
-date: 2013-02-22 10:13
+title: Manage configuration in Rails way on node.js by using inheritance
 comments: true
 categories: node.js
-category: 
-tags: 
+tags:
   - express
   - node.js
   - configuration
@@ -15,10 +11,8 @@ tags:
   - environment
   - ruby
   - rails
-sharing: true
-footer: false
+date: 2013-02-22 08:00:00
 ---
-
 Application is usually required to run in different environments. To manage the differences between the environments, we usually introduce the concept of Environment Specific Configuration.  
 In Rails application, by default, Rails have provided 3 different environments, they are the well known, `development`, `test` and `production`.   
 And we can use the environment variable `RAILS_ENV` to tell Rails which environment to be loaded, if the `RAILS_ENV` is not provided, Rails will load the app in `development` env by default.

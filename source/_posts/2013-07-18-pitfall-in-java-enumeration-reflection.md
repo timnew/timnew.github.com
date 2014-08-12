@@ -1,21 +1,14 @@
----
 layout: post
-title: "Pitfall in isEnum method in Java"
-description: ""
-date: 2013-07-19 20:32
+title: Pitfall in isEnum method in Java
 comments: true
-categories: 
-category: Java 
-tags: 
+categories: Java
+tags:
   - Java
   - Reflection
   - Enumeration
   - isEnum()
-sharing: true
-footer: false
-published: true
+date: 2013-07-18 08:00:00
 ---
-
 I found a very interesting phenomenon in Java type reflection when building an Android app. 
 I'm trying to build a common mechanism to serialize Enum into integer when writing it into database. To make it more flexible so I fetch the value type dynamically by using reflection. So I have the following code to check whether the value to be written is an enumeration:
 

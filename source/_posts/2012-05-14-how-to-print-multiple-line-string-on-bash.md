@@ -1,16 +1,14 @@
----
 layout: post
-title: "How to print multiple line string on bash"
-description: ""
-date: 2012-05-14 10:32
+title: How to print multiple line string on bash
 comments: true
-categories: 
-category: "bash"
-tags: ["bash", "shell","output","multiple-line"]
-sharing: true
-footer: false
+categories: bash
+tags:
+  - bash
+  - shell
+  - output
+  - multiple-line
+date: 2012-05-14 08:00:00
 ---
-
 To display some pre-formatted text onto screen, we need the following 2 capabilities:
 
 ### Construct Multiple Text

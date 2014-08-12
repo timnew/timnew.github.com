@@ -1,16 +1,18 @@
----
 layout: post
-title: "Name trap in Rails"
-description: ""
-date: 2012-06-02 19:35
+title: Name trap in Rails
 comments: true
-categories: 
-category: "Rails"
-tags: ["ruby", "rails", "active model", "name", "convention", "error", "trap", "pitfall"]
-sharing: true
-footer: false
+categories: Rails
+tags:
+  - ruby
+  - rails
+  - active model
+  - name
+  - convention
+  - error
+  - trap
+  - pitfall
+date: 2012-06-02 08:00:00
 ---
-
 I'm a newbie to Rails, and my past few projects are all rails based, including MetaPaas, Recruiting On Rails and current SFP.
 I was amazed by the convenience of Rails, and also hurt by its "smartness".
 The power of Rails was described in quite a lot of posts, so I wanna to share some failure experiences.

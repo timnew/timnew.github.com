@@ -1,22 +1,15 @@
----
 layout: post
-title: "Start Acitivity in background on Android 4.4 KitKat"
-description: ""
-date: 2013-12-19 18:37
+title: Start Acitivity in background on Android 4.4 KitKat
 comments: true
-categories: 
-category: android
-tags: 
+categories: android
+tags:
   - android
   - activity
   - background
   - kitkat
   - moveTaskToBack
-sharing: true
-footer: false
-published: true
+date: 2013-12-19 08:00:00
 ---
-
 For some reason, Android 4.4 KitKat has changed the implementation while starting activity.
 
 In Android 4.3, `Activity` started from inactive `Activity` is also inactive.

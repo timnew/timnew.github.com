@@ -1,12 +1,8 @@
----
 layout: post
-title: "Asset path in Android Stuidio"
-description: ""
-date: 2013-12-13 23:07
+title: Asset path in Android Stuidio
 comments: true
-categories: 
-category: android
-tags: 
+categories: android
+tags:
   - android
   - assets
   - path
@@ -17,11 +13,8 @@ tags:
   - build
   - resource
   - folder
-sharing: true
-footer: false
-published: true
+date: 2013-12-13 08:00:00
 ---
-
 According to [Android guideline document](https://developer.android.com/tools/projects/index.html#ApplicationProjects), the assets folder is created automatically and is positioned under the root of the project folder.  
 
 So the assets folder should be located at `<project root>/assets`

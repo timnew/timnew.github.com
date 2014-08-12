@@ -1,12 +1,13 @@
----
 layout: post
-title: "TDD vs Natural Selection"
-description: ""
-category: Thinking
-tags: ["TDD", "Design", "Methodology"]
-languages:
+title: TDD vs Natural Selection
+tags:
+  - TDD
+  - Design
+  - Methodology
+categories: Thinking
+comments: true
+date: 2011-09-14 08:00:00
 ---
-
 After practiced TDD for almost a month, I guess I began to understand why TDD can possibly generate the best suitable design, although there is no one actually did the design work. It is interesting that if something is not intended to be done but actually has been done finally. It means that the design is actually done gradually and silently during the TDD process.
 I always wondering what actually happened leads to such a result. Then I guess I have found the answer from Darwin's theory. Think about the various lives on the planet, there is no one who designed them, but they are just so reasonable and harmony with the environment. 
 Why? Natural selection!

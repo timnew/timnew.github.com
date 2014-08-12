@@ -1,12 +1,8 @@
----
 layout: post
 title: "Upgrading DSL from CoffeeScript to JSON: Part.1. Migrator"
-description: ""
-date: 2014-05-11 20:02
 comments: true
-categories: 
-category: javascript
-tags: 
+categories: javascript
+tags:
   - dsl
   - upgrading
   - language
@@ -15,12 +11,9 @@ tags:
   - json
   - migration
   - schema
-  - update  
-sharing: true
-footer: false
-published: true
+  - update
+date: 2014-05-11 08:00:00
 ---
-
 I'm working on the Harvester-AdKiller version 2 recently. Version 2 dropped the idea "Code as Configuration", because the nature of Chrome Extension. Recompiling and reloading the extension every time when configuration changed is the pain in the ass for me as an user.
 
 For security reason, Chrome Extension disabled all the Javascript runtime evaluation features, such as `eval` or `new Function('code')`. So that it become almost impossible to edit code as data, and later applied it on the fly.

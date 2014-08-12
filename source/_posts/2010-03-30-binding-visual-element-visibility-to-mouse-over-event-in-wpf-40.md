@@ -1,11 +1,16 @@
----
 layout: post
-title: "Binding Visual Element Visibility to Mouse Over Event in WPF 4.0"
-description: ""
-category: "WPF"
-tags: ["WPF", "Event", "XAML", "UI", "Binding", "Data Binding"]
+title: Binding Visual Element Visibility to Mouse Over Event in WPF 4.0
+tags:
+  - WPF
+  - Event
+  - XAML
+  - UI
+  - Binding
+  - Data Binding
+categories: WPF
+comments: true
+date: 2010-03-30 08:00:00
 ---
-
 I'm working on an user interface demo application in WPF.
 I have a group of expander on the ui, and I want the expander show some descriptive text besides its caption while the mouse over it.
 I used a TextBlock element to display the descriptive text, which is a child element in the control's visual tree.

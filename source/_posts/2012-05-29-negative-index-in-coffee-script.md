@@ -1,16 +1,12 @@
----
 layout: post
-title: "Negative Index in Coffee-Script"
-description: ""
-date: 2012-05-29 15:43
+title: Negative Index in Coffee-Script
 comments: true
-categories: 
-category: "coffee-script"
-tags: ["coffee-script", "negative index"]
-sharing: true
-footer: false
+categories: coffee-script
+tags:
+  - coffee-script
+  - negative index
+date: 2012-05-29 08:00:00
 ---
-
 Coffee Script borrowed quite a lot syntax patterns from both Ruby and Python, especially from Ruby.
 So people, like me, usually tends to write coffee-script in ruby way. 
 

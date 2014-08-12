@@ -1,21 +1,14 @@
----
 layout: post
-title: "App crash issue when inflating ViewPager"
-description: ""
-date: 2014-04-22 22:32
+title: App crash issue when inflating ViewPager
 comments: true
-categories: 
-category: android
-tags: 
+categories: android
+tags:
   - android
   - view pager
   - crash
-  - inflator  
-sharing: true
-footer: false
-published: true
+  - inflator
+date: 2014-04-22 08:00:00
 ---
-
 I wrote a very simple layout file with a `ViewPager`, but the app crashes when inflating it.
 
 {% codeblock Layout file lang:xml %}

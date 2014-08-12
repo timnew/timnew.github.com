@@ -1,12 +1,14 @@
----
 layout: post
-title: "HTML codes to put special characters on your Web page"
-description: ""
-category: CSharp
-tags: ["Encoding", "Html", "Escape", 'Unicode']
-languages: ["csharp"]
+title: HTML codes to put special characters on your Web page
+tags:
+  - Encoding
+  - Html
+  - Escape
+  - Unicode
+categories: CSharp
+comments: true
+date: 2012-02-04 08:00:00
 ---
-
 尝试了一下用 LinqPad 把各种诡异的字母转成 Html 编码～结果发现不是左右字符都能转过去～
 .net 内置的工具并不能完美的处理所有的Html编码～
 

@@ -1,16 +1,17 @@
----
 layout: post
-title: "A pitfall in jQuery form serialization"
-description: ""
-date: 2012-06-21 19:43
+title: A pitfall in jQuery form serialization
 comments: true
-categories: 
-category: javascript
-tags: ["pitfall", "javascript", "jquery", "form", "serialization", "id", "name"]
-sharing: true
-footer: false
+categories: javascript
+tags:
+  - pitfall
+  - javascript
+  - jquery
+  - form
+  - serialization
+  - id
+  - name
+date: 2012-06-21 08:00:00
 ---
-
 Today, I was so surprised that I got an empty string when I call the serialize method on a jQuery wrapped form. 
 The html is written in Haml:
 

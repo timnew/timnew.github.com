@@ -1,12 +1,8 @@
----
 layout: post
 title: "Adjust files encoding in Finder context menu [GB1312 to UTF-8 with 1-click]"
-description: ""
-date: 2013-10-27 04:51
 comments: true
-categories: 
-category: osx
-tags: 
+categories: osx
+tags:
   - transcode
   - encoding
   - utf8
@@ -15,11 +11,8 @@ tags:
   - GBK
   - subtitle
   - lyrics
-sharing: true
-footer: false
-published: true
+date: 2013-10-27 08:00:00
 ---
-
 One of the most annoying thing of Mac is that encoding, espeically you're living in a non-Mac world.
 
 Mac uses UTF-8 as the default encoding for text files. But Windows uses local encoding, so it changes according to your OS language.  For Chinese users, Windows uses GB2312 as the default encoding.

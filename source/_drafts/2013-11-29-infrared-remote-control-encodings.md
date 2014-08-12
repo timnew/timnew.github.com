@@ -1,12 +1,8 @@
----
 layout: post
-title: "Infrared Remote Control Encodings"
-description: ""
-date: 2013-11-29 23:04
+title: Infrared Remote Control Encodings
 comments: true
-categories: 
-category: Infrared
-tags: 
+categories: Infrared
+tags:
   - Infrared
   - Encoding
   - Remote Control
@@ -14,11 +10,8 @@ tags:
   - IRremote
   - Samsung
   - Note 3
-sharing: true
-footer: false
-published: false
+date: 2013-11-29 08:00:00
 ---
-
 New Samsung Galaxy phone equips an Infrared(IR) blast LED, which could be used to build universal remote control. 
 But besides IR blast LED, it doesn't equipt any IR sensor. So I built my IR sensor with an Arduino board.
 

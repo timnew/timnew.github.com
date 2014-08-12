@@ -1,17 +1,11 @@
----
 layout: post
-title: "SQL DSL in Android development  - Part.1 Make Java understand SQL"
-description: ""
-date: 2013-07-19 21:52
+title: SQL DSL in Android development  - Part.1 Make Java understand SQL
 comments: true
-categories: 
-category: 
+categories:
+  - general
 tags: []
-sharing: true
-footer: false
-published: false
+date: 2013-07-19 08:00:00
 ---
-
 Android supports Sqlite database for application to manage big dataset. Due to the limitation of Java language, the API isn't as convenient as expected. Even with the help from`SQLiteQueryBuilder` and `DatabaseUtils`, it is still a nightmare to manage complex queries in used in application that heavily depends on database.
 
 Luckily, `SQLiteDatabse` provides the `rawQuery` API to enable developer to access the database with raw sql queries. For better maintanablility, Android application usually store the table names, column names as string constants in the code in practice. As a result, the query need to interpolate these constants between SQL keywords. Here is a sample of the code:

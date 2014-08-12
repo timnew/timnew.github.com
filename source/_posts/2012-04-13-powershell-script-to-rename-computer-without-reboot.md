@@ -1,16 +1,16 @@
----
 layout: post
-title: "Powershell Script to rename computer without reboot"
-description: ""
-date: 2012-04-13 11:46
+title: Powershell Script to rename computer without reboot
 comments: true
-categories: 
-category: Powershell
-tags: ["powershell", "computer name", "provision", "script", "reboot", "windows"]
-sharing: true
-footer: false
+categories: Powershell
+tags:
+  - powershell
+  - computer name
+  - provision
+  - script
+  - reboot
+  - windows
+date: 2012-04-13 08:00:00
 ---
-
 We found a computer name issue when building our private cloud environment on CloudStack over KVM. We found that KVM doesn't support to rename new created instance automatically. 
 As a result, all the instance booted from the same disk image have the exactly same computer name, same administrator password.
 

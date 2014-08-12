@@ -1,16 +1,11 @@
----
 layout: post
-title: "Handle dynamic argument in dynamic language"
-description: ""
-date: 2012-06-28 19:30
+title: Handle dynamic argument in dynamic language
 comments: true
-categories: 
-category: 
+categories:
+  - general
 tags: []
-sharing: true
-footer: false
+date: 2012-06-28 08:00:00
 ---
-
 In dynamic language, most language doesn't provide the function overload mechanism like static language does, which means you cannot define functions with same name but different arguments, and the language itself won't help you to dispatch the call according to the arguments.
 So you have to deal with the overload by yourself in dynamic languages.
 

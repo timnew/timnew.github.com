@@ -1,20 +1,14 @@
----
 layout: post
-title: "Node over Express - Configuration"
-description: ""
-date: 2013-04-25 21:01
+title: Node over Express - Configuration
 comments: true
-categories: 
-category: Node.js
-tags: 
+categories: Node.js
+tags:
   - node
   - express
   - node over express
   - configuration
-sharing: true
-footer: false
+date: 2013-04-25 08:00:00
 ---
-
 ## Preface
 
 I have been working on Node.js related projects for quite a while, and have built apps with node both for the clients or personal projects, such as [LiveHall](https://live-hall.herokuapp.com), [CiMonitor](https://github.com/timnew/CiMonitor), etc. I have promised some one to share my experience on node. Today I’ll begin to work on this. This will be the first blog of the series.

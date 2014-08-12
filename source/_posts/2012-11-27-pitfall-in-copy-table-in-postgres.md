@@ -1,16 +1,11 @@
----
 layout: post
-title: "Pitfall in copy table in Postgres"
-description: ""
-date: 2012-11-27 15:41
+title: Pitfall in copy table in Postgres
 comments: true
-categories: 
-category: postgres
-tags: [postgres sequence id]
-sharing: true
-footer: false
+categories: postgres
+tags:
+  - postgres sequence id
+date: 2012-11-27 08:00:00
 ---
-
 We countered a very wield runtime error today, after migrated some data from a legacy database.
 
 Because there is no change on the models, so we just create the table, and copied the data from the legacy database directly.

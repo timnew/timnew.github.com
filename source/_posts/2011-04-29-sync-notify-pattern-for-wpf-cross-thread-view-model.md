@@ -1,12 +1,18 @@
----
 layout: post
-title: "Sync Notify Pattern for WPF Cross Thread View Model"
-description: ""
-category: WPF
-tags: ["WPF", "Data Binding", "C#", "MVVM", "UI", "Multithread", "View Model", "Thread"]
-languages: ["csharp"]
+title: Sync Notify Pattern for WPF Cross Thread View Model
+tags:
+  - WPF
+  - Data Binding
+  - "C#"
+  - MVVM
+  - UI
+  - Multithread
+  - View Model
+  - Thread
+categories: WPF
+comments: true
+date: 2011-04-29 08:00:00
 ---
-
 WPF has a powerful data binding mechanism, by which it is easy to implement MVVM and MVC pattern for UI application.
 But thing gets not so beautiful once you introduced multi-thread into the app. Somehow, it means you have to manually call dispatcher method to synchronize the thread context, or else INotifyPropertyChanged contract causes cross thread violation, which is likely to drive UI component throw exception. But tons of calls to Dispatcher.Invoke or Dispatcher.BeginInvoke make you code ugly and hard to maintain. And it is boring to call dispatcher every time you try to write view model properties.
 

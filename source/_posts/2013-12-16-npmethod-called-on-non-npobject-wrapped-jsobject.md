@@ -1,12 +1,8 @@
----
 layout: post
-title: "NPMethod called on non-NPObject wrapped JSObject"
-description: ""
-date: 2013-12-16 19:18
+title: NPMethod called on non-NPObject wrapped JSObject
 comments: true
-categories: 
-category: javascript
-tags: 
+categories: javascript
+tags:
   - js
   - browser
   - binding
@@ -16,11 +12,8 @@ tags:
   - Android
   - WebView
   - javascript
-sharing: true
-footer: false
-published: true
+date: 2013-12-16 08:00:00
 ---
-
 I'm working on a "hybrid" android appilcation. In the app, part of the UI was written in HTML and hosted in a WebView. And I exposed several Java objects to JavaScript as `Java Script Interface`.
 
 {% codeblock Setup WebView lang:java %}  

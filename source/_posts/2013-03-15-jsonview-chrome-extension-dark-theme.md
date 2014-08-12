@@ -1,12 +1,8 @@
----
 layout: post
-title: "JSONView Chrome Extension Dark Theme"
-description: ""
-date: 2013-03-15 10:48
+title: JSONView Chrome Extension Dark Theme
 comments: true
-categories: 
-category: Theme
-tags: 
+categories: Theme
+tags:
   - JSONView
   - Chrome Extension
   - Theme
@@ -14,10 +10,8 @@ tags:
   - Style
   - Consolas
   - Dark
-sharing: true
-footer: false
+date: 2013-03-15 08:00:00
 ---
-
 [JSONView]( https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc) is a very popular JSON formatter for Chrome, which automatically prettifies the JSON content.
 
 JSONView provide a very sweety feature that allow user to customize the css used to format the JSON. And I love dark theme and the Consolas font so much, so I customized my dark own dark theme for JSONView.

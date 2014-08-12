@@ -1,16 +1,11 @@
----
 layout: post
-title: "Use Postgres Multiple Schema Database in Rails"
-description: ""
-date: 2012-07-17 21:59
+title: Use Postgres Multiple Schema Database in Rails
 comments: true
-categories: 
-category: rails
-tags: [rails postgres multischema schema database 'active record']
-sharing: true
-footer: false
+categories: rails
+tags:
+  - "rails postgres multischema schema database 'active record'"
+date: 2012-07-17 08:00:00
 ---
-
 Postgres provided a very interesting feature called "Schema" in addition to other "normal" database features, which provide a extra layer between database and tables. So with schema, you can have tables with same name in one database, if they are in different schemas.
 To me schema is not a good idea! I assume "table-space" or even "namespace" could be a better name. In fact, there are a number of people agree that schema is not a good name:
 {% blockquote Jerod Santo http://blog.jerodsanto.net/2011/07/building-multi-tenant-rails-apps-with-postgresql-schemas/ %}

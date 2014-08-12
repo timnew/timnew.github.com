@@ -1,16 +1,16 @@
----
 layout: post
-title: "Bash Profile on Mac OS X"
-description: ""
-date: 2012-04-26 01:02
+title: Bash Profile on Mac OS X
 comments: true
-categories: 
-category: Mac
-tags: ["Mac","Bash","Shell","Configuration","User Profile","Terminal"]
-sharing: true
-footer: false
+categories: Mac
+tags:
+  - Mac
+  - Bash
+  - Shell
+  - Configuration
+  - User Profile
+  - Terminal
+date: 2012-04-26 08:00:00
 ---
-
 In Linux and Unix world, there are 2 common used shell profiles: ~/.bashrc and ~/.bash_profile. These two profiles are usually used to initialize user bash environment, but there still are some slightly differences between them two.
 According to [bash manual](http://linux.die.net/man/1/bash), ".bashrc" is "interactive-shell startup file", and ".bash_profile" is "login-shell startup file".
 

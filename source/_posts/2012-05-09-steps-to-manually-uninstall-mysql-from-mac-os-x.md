@@ -1,16 +1,13 @@
----
 layout: post
-title: "Steps to manually uninstall mysql from Mac OS X"
-description: ""
-date: 2012-05-09 13:05
+title: Steps to manually uninstall mysql from Mac OS X
 comments: true
-categories: 
-category: MacOS
-tags: ["mysql","uninstall","trick"]
-sharing: true
-footer: false
+categories: MacOS
+tags:
+  - mysql
+  - uninstall
+  - trick
+date: 2012-05-09 08:00:00
 ---
-
 1. Execute the following commands in terminal
 	{% gist 2642022 %}
 2. Update hostConfig

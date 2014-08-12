@@ -1,21 +1,15 @@
----
 layout: post
-title: "Some tricky ways to calculate integer in javascript"
-description: ""
-date: 2013-02-24 22:09
+title: Some tricky ways to calculate integer in javascript
 comments: true
-categories: 
-category: javascript
-tags: 
+categories: javascript
+tags:
   - javascript
   - integer
   - bitwise
   - calculation
   - trick
-sharing: true
-footer: false
+date: 2013-02-24 08:00:00
 ---
-
 Javascript is famous for its lack of preciseness, so it always surprises and make joke with the developers by breaking the common sense or instinct.
 
 Javascript doesn't provide `integer` type, but in daily life, `integer` sometimes is necessary, then how can we convert a trim a float number into integer in Javascript?  

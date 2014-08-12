@@ -1,11 +1,14 @@
----
 layout: post
-title: "The problem introduced by making structure as a property"
-description: ""
-category: "WPF"
-tags: ["C#", "WPF", "XAML", ".net"]
+title: The problem introduced by making structure as a property
+tags:
+  - "C#"
+  - WPF
+  - XAML
+  - .net
+categories: WPF
+comments: true
+date: 2010-03-05 08:00:00
 ---
-
 I met a strange problem while I was evaluating the Xaml Services that introduced in .net 4.
 I created 2 types for Xaml Serialization Test:
 

@@ -1,12 +1,8 @@
----
 layout: post
-title: "Remove Bower from your build script"
-description: ""
-date: 2014-07-10 13:22
+title: Remove Bower from your build script
 comments: true
-categories: 
-category: javascript 
-tags: 
+categories: javascript
+tags:
   - bower
   - build
   - pipeline
@@ -14,11 +10,8 @@ tags:
   - environment
   - deployment
   - automation
-sharing: true
-footer: false
-published: true
+date: 2014-07-10 08:00:00
 ---
-
 ### The mysterious broken build
 
 This morning, our QA told us that `knockout`, a javascript library that we used in our web app is missing on staging environment. Then we checked the package she got from CI server, and the javascript library was indeed not included. But when we tried to generate the package on our local dev box, we found that `knockout` is included. 

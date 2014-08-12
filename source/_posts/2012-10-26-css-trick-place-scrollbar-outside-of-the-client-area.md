@@ -1,16 +1,15 @@
----
 layout: post
 title: "CSS trick: Place Scrollbar outside of the client area"
-description: ""
-date: 2012-10-26 21:35
 comments: true
-categories: 
-category: css
-tags: [css, margin, padding, scroll, overflow]
-sharing: true
-footer: false
+categories: css
+tags:
+  - css
+  - margin
+  - padding
+  - scroll
+  - overflow
+date: 2012-10-26 08:00:00
 ---
-
 Today, I found a interesting difference between padding and margin when I'm working on Metrics 2.0 Introduction page. There are several `VideoThumbnail` widget on the page, which contains a video snapshot and a paragraph text description.
 Here is the Html DOM of the widget, written in Haml:
 

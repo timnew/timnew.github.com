@@ -1,16 +1,16 @@
----
 layout: post
-title: "Ruby Class Inheritance"
-description: ""
-date: 2012-08-23 22:36
+title: Ruby Class Inheritance
 comments: true
-categories: 
-category: ruby
-tags: ["inheritance", "ruby", "class", "class methods", "inheritance hierarchy", "eigenclass" ]
-sharing: true
-footer: false
+categories: ruby
+tags:
+  - inheritance
+  - ruby
+  - class
+  - class methods
+  - inheritance hierarchy
+  - eigenclass
+date: 2012-08-23 08:00:00
 ---
-
 I just realize I have misunderstood the ruby "class methods" for quite a long time!
 
 Here is a piece of code:

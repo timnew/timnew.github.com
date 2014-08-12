@@ -1,12 +1,18 @@
----
 layout: post
-title: "A way to expose singleton object and its constructor in node.js"
-description: ""
-category: javascript
-tags: ["javascript", "node.js", "js hack", "js", "pattern", "singleton", "module", "exports"]
-languages: ["js"]
+title: A way to expose singleton object and its constructor in node.js
+tags:
+  - javascript
+  - node.js
+  - js hack
+  - js
+  - pattern
+  - singleton
+  - module
+  - exports
+categories: javascript
+comments: true
+date: 2012-03-21 08:00:00
 ---
-
 In [Node.js](nodejs.org) world, we usually encapsulate a service into a module, which means the module need to export the façade of the service. In most case the service could be a singleton, all apps use the same service.
 
 But in some rare cases, people might would like to create several instances of the service ,which means the module also need to also export the service constructor.

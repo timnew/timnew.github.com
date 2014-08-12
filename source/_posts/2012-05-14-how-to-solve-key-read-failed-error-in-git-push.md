@@ -1,16 +1,15 @@
----
 layout: post
-title: "How to solve key_read failed error in git push"
-description: ""
-date: 2012-05-14 10:47
+title: How to solve key_read failed error in git push
 comments: true
-categories: 
-category: "git"
-tags: ["git","ssh","error","github","solution"]
-sharing: true
-footer: false
+categories: git
+tags:
+  - git
+  - ssh
+  - error
+  - github
+  - solution
+date: 2012-05-14 08:00:00
 ---
-
 I assigned a dedicated ssh key pair for github repos.
 And I have associated the key pair with github correctly in `~/.ssh/config`.
 But each time when I try to access github repos via ssh, both read(such pull or fetch) or write(such as push), I will get a strange error:

@@ -1,16 +1,13 @@
----
 layout: post
-title: "Introduce Prototype Style OO inheritance in Ruby"
-description: ""
-date: 2012-08-26 22:20
+title: Introduce Prototype Style OO inheritance in Ruby
 comments: true
-categories: 
-category: ruby
-tags: ['ruby', 'object oriented', 'prototype']
-sharing: true
-footer: false
+categories: ruby
+tags:
+  - ruby
+  - object oriented
+  - prototype
+date: 2012-08-26 08:00:00
 ---
-
 Days ago, I post a blog about the ruby inheritance hierarchy. When discuss the topic with Yang Lin, he mentioned a crazy but interesting idea that introducing the prototype based OO into ruby.
 To introducing the prototype OO into ruby, Lin mentioned a possible approach is by using clone. But I'm not familiar with clone mechanism in ruby. So I tried another approach.
 Thanks to Ruby's super powerful meta-programming mechanism, so I can forward the unknown message to prototype by using method_missing. And I encapsulate the code in a module, so every instance extended that module will obtain such capability.

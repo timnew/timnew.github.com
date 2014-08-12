@@ -1,13 +1,13 @@
----
 layout: post
-title: I decided to turn to Octopress 
-tagline: "I'm disappointed about the code syntax highlighter in jekyll"
-description: ""
-category: Thinking
-tags: ["jekyll", "octopress", "highlight"]
-languages: 
+title: I decided to turn to Octopress
+tags:
+  - jekyll
+  - octopress
+  - highlight
+categories: Thinking
+comments: true
+date: 2012-04-08 08:00:00
 ---
-
 I have spent almost a week to fight against the code highlight system in jekyll, but finally failed.
 
 At very beginning, I tried the "legendary" "github flavored markdown", which supports use "```" to quote and highlight code. But soon, I failed.

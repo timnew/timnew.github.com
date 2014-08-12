@@ -1,12 +1,8 @@
----
 layout: post
-title: "JavaScript Prototype Chain Mutator"
-description: ""
-date: 2014-07-30 21:10
+title: JavaScript Prototype Chain Mutator
 comments: true
-categories: 
-category: javascript
-tags: 
+categories: javascript
+tags:
   - javascript
   - prototype
   - inheritance
@@ -19,11 +15,8 @@ tags:
   - ajax
   - npm
   - bower
-sharing: true
-footer: false
-published: true
+date: 2014-07-30 08:00:00
 ---
-
 In JavaScript world, JSON serialization is widely used. When fetching data from server via Ajax, the data is usually represented in JSON; or loading configuration/data from file in Node.js application, the configuration/data is usually in JSON format.
 
 JSON serialization is powerful and convenient, but there is limitation. For security and other reason, behavior and type information are forbidden in JSON. Functions members are removed when stringify a JavaScript object, also functions are not allowed in JSON.

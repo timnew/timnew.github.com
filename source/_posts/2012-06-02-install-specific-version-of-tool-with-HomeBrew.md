@@ -1,16 +1,17 @@
----
 layout: post
-title: "Install specific version of tool with Home Brew"
-description: ""
-date: 2012-06-02 20:15
+title: Install specific version of tool with Home Brew
 comments: true
-categories: 
-category: homebrew
-tags: ["homebrew","brew","version","repository","package","postgres", "postgresql"]
-sharing: true
-footer: false
+categories: homebrew
+tags:
+  - homebrew
+  - brew
+  - version
+  - repository
+  - package
+  - postgres
+  - postgresql
+date: 2012-06-02 08:00:00
 ---
-
 HomeBrew is a convenient package manager for Mac user. For some reason I prefer Home Brew to Mac Ports. 
 Brew has a younger package repository since it has shorter history comparing to MacPorts. Younger repository means less options. And sometime it is hard for you to install the old-fashioned tool with brew.
 

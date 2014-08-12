@@ -1,12 +1,17 @@
----
 layout: post
-title: "FluentAssertion is not compatible with xUnit.Extensions"
-description: ""
-category: CSharp
-tags: ["FluentAssertion", "Compatibility", "xUnit", "xUnit extension", "Should.Fluent", "ShouldIt", "Unit Test"]
-languages:
+title: FluentAssertion is not compatible with xUnit.Extensions
+tags:
+  - FluentAssertion
+  - Compatibility
+  - xUnit
+  - xUnit extension
+  - Should.Fluent
+  - ShouldIt
+  - Unit Test
+categories: CSharp
+comments: true
+date: 2011-09-14 08:00:00
 ---
-
 I met a weird problem that I found the Resharper Test Runner hangs when I introduced theory test case in my unit test. 
 After some spikes, I found the problem seems caused by the incompatibility between [FluentAssertion](http://fluentassertions.codeplex.com/) and [xUnit.Extension](http://xunit.codeplex.com/).
 It is wired, and there seems to be no quick fix.

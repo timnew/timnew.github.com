@@ -1,25 +1,18 @@
----
 layout: post
-title: 'Using RVMed Ruby in Mac Automator Workflow'
-description: ''
-date: 2013-10-27 02:22
+title: Using RVMed Ruby in Mac Automator Workflow
 comments: true
-categories:
-category: osx
+categories: osx
 tags:
-- ruby
-- RVM
-- automator
-- Mac
-- OSX
-- service
-- shell
-- finder
-sharing: true
-footer: false
-published: true
+  - ruby
+  - RVM
+  - automator
+  - Mac
+  - OSX
+  - service
+  - shell
+  - finder
+date: 2013-10-27 08:00:00
 ---
-
 **HINT** This content is obsleted on OSX 10.9 Mavericks
 
 ## Embed Ruby into Automator Workflow

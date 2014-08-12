@@ -1,20 +1,14 @@
----
 layout: post
-title: "Node over Express - Autoload"
-description: ""
-date: 2013-04-27 10:56
+title: Node over Express - Autoload
 comments: true
-categories: 
-category: Node.js
-tags: 
+categories: Node.js
+tags:
   - node
   - express
   - node over express
   - autoload
-sharing: true
-footer: true
+date: 2013-04-27 08:00:00
 ---
-
 ## Preface
 
 This is the 2nd post of the [Node over Express](/blog/tags/#node over express-ref) series (the previous one is [Configuration](/blog/2013/04/25/node-over-express-configuration/)). In this post, I'd like to discuss a famous pain point in Node.js.

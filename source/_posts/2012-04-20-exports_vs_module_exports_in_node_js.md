@@ -1,16 +1,15 @@
----
 layout: post
-title: "exports vs module.exports in node.js"
-description: ""
-date: 2012-04-20 14:48
+title: exports vs module.exports in node.js
 comments: true
-categories: 
-category: javascript
-tags: ["javascript", "node.js", "js", "module", "exports"]
-sharing: true
-footer: false
+categories: javascript
+tags:
+  - javascript
+  - node.js
+  - js
+  - module
+  - exports
+date: 2012-04-20 08:00:00
 ---
-
 I was confused about how require function works in node.js for a long time. I found when I require a module, sometimes I can get the object I want, but sometimes, I don't I just got an empty object, which give an [imagination](/blog/2012/03/21/a-way-to-expose-singleton-object-and-its-constructor-in-nodejs) that we cannot export the object by assigning it to exports, but it seems somehow we can export a function by assignment.
 
 Today, I re-read the [document](http://docs.nodejs.org/api/modules.html#modules_the_module_object) again, and I finally make clear that I misunderstood the "require" mechanism and how I did that. 

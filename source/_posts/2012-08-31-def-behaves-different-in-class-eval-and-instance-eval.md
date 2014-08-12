@@ -1,16 +1,16 @@
----
 layout: post
-title: Weird! "def" behaves different in class_eval and instance_eval
-description: ""
-date: 2012-08-31 13:27
+title: "Weird! \"def\" behaves different in class_eval and instance_eval"
 comments: true
-categories: 
-category: ruby
-tags: ['ruby', 'meta programming', 'class_eval', 'instance_eval', 'comparison', 'define method']
-sharing: true
-footer: false
+categories: ruby
+tags:
+  - ruby
+  - meta programming
+  - class_eval
+  - instance_eval
+  - comparison
+  - define method
+date: 2012-08-31 08:00:00
 ---
-
 I found the behavior of keyword `def` in ruby is really confusing! At least, really confusing to me!
 In most case, we use `def` in `class` context, then it defines a instance method on specific class.
 

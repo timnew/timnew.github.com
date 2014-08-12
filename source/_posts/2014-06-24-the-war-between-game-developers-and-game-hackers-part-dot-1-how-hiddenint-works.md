@@ -1,12 +1,8 @@
----
 layout: post
-title: "The battle between Game developers and Game Hackers - Part.1 How HiddenInt works"
-description: ""
-date: 2014-06-24 11:24
+title: The battle between Game developers and Game Hackers - Part.1 How HiddenInt works
 comments: true
-categories: 
-category: game hack
-tags: 
+categories: game hack
+tags:
   - Oxeye
   - Harvest
   - Massive Encounter
@@ -18,11 +14,8 @@ tags:
   - Bit Slicer
   - Memory Editing
   - Debugger
-sharing: true
-footer: false
-published: true
+date: 2014-06-24 08:00:00
 ---
-
 `Harvest: Massive Encounter` is a very unique strategic tower defense game published by [Oxeye Game Studio](http://www.oxeyegames.com/harvest-massive-encounter/). The game is amazing, but I won't focus on that. I will discuss something interesting I discovered when hacking the game.
 
 By hacking the game, I want to lock down the the number of Mineral that I have in the game. Mineral is the only key resource in the game, which is used to build or upgrade structures. Theoretically locking down a value is easy. Scan the memory for specific number for a few times to filter out the list of potential memory addresses. Then try them one by one. And finally figure out the proper address, then locked it down with the game hacking tool. Very standard approach, and supported by most of the game hacking tool.

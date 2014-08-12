@@ -1,11 +1,7 @@
----
 layout: post
-title: "Pitfall in matching line head and line end in regexp"
-description: ""
-date: 2013-04-10 11:15
+title: Pitfall in matching line head and line end in regexp
 comments: true
-categories: 
-category: regexp
+categories: regexp
 tags:
   - pitfall
   - regular expression
@@ -13,10 +9,8 @@ tags:
   - regexp
   - line head
   - line end
-sharing: true
-footer: false
+date: 2013-04-10 08:00:00
 ---
-
 I usually uses `\^\` and `\$\` to verify user input, e.g:  
 I uses following regexp to verify whether a user input is valid gmail email address:
 

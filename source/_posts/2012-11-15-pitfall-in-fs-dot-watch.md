@@ -1,14 +1,17 @@
----
 layout: post
 title: "Pitfall in fs.watch: fs.watch fails when switch from TextMate to RubyMine"
-description: ""
-date: 2012-11-15 15:19
 comments: true
-categories: 
-category: "node.js" 
-tags: ["node.js","fs.watch", "change", "FSWatcher", "watch", "javascript", "ruby mine", "editor"]
-sharing: true
-footer: false
+categories: node.js
+tags:
+  - node.js
+  - fs.watch
+  - change
+  - FSWatcher
+  - watch
+  - javascript
+  - ruby mine
+  - editor
+date: 2012-11-15 08:00:00
 ---
 I'm writing a cake script that helps me to build the growlStyle bundle.  
 And I wish to my script can watch the change of the source file, and rebuild when file changed.  

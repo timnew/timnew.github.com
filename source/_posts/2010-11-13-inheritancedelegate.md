@@ -1,13 +1,14 @@
----
 layout: post
-title: "一个关于Inheritance和Delegate的故事"
-description: ""
-category: Misc
-tags: ["Inheritance", "Delegate", "Cocoa", "History"]
-languages:
+title: 一个关于Inheritance和Delegate的故事
+tags:
+  - Inheritance
+  - Delegate
+  - Cocoa
+  - History
+categories: Misc
+comments: true
+date: 2010-11-13 08:00:00
 ---
-
-
 Cocoa Programming for Mac OS X 里看到这么一段话～挺有意思的～～～
 
 > Once upon a time, there was a company called Taligent, which was created by IBM and Apple to develop a set of tools and libraries like Cocoa. About the time Taligent reached the peak of its mindshare, I met one of its engineers at a trade show. I asked him to create a  simple application for me: A window would appear with a button, and when the button was clicked, the words "Hello, World!" would appear in a text field. The engineer created a project and started subclassing madly: subclassing the window and the button and the event handler. Then he started generating code: dozens of lines to get the button and the text field onto the window. After 45 minutes, I had to leave. The app still did not work. That day, I knew that the company was doomed. A couple of years later, Taligent quietly closed its doors forever.

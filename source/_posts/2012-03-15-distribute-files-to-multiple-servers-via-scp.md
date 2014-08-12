@@ -1,12 +1,14 @@
----
 layout: post
-title: "Distribute files to multiple servers via scp"
-description: ""
-category: bash
-tags: ["bash", "scp", "ssh", "server management"]
-languages: ["bash"]
+title: Distribute files to multiple servers via scp
+tags:
+  - bash
+  - scp
+  - ssh
+  - server management
+categories: bash
+comments: true
+date: 2012-03-15 08:00:00
 ---
-
 The most common task when operating the servers is to distribute a file to multiple servers.
 So I wrote a piece of shell script to solve this problem:
 

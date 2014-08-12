@@ -1,12 +1,8 @@
----
 layout: post
-title: "Is Android API document on ConsumerIrManager lying?"
-description: ""
-date: 2014-05-28 16:29
+title: Is Android API document on ConsumerIrManager lying?
 comments: true
-categories: 
-category: android
-tags: 
+categories: android
+tags:
   - android
   - infrared
   - api
@@ -15,11 +11,8 @@ tags:
   - lying
   - error
   - kit kat
-sharing: true
-footer: false
-published: true
+date: 2014-05-28 08:00:00
 ---
-
 Just found a shocking fact that Android API document on `ConsumerIrManger.transmit` method is wrong!
 
 KitKat has realised its own Infrared blaster API, which is incompatible with legacy Samsung private API. So I was working on [Android Infrared Library](https://github.com/timnew/AndroidInfrared) to make it adapted automatically on both Samsung private API and `Kit Kat`official API. 

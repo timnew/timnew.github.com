@@ -1,23 +1,16 @@
----
 layout: post
 title: "Upgrading DSL From CoffeeScript to JSON: Part.2. Redefine DSL behavior"
-description: ""
-date: 2014-05-11 20:44
 comments: true
-categories: 
-category: javascript
-tags: 
+categories: javascript
+tags:
   - dsl
   - upgrading
   - language
   - javascript
   - coffeescript
   - json
-sharing: true
-footer: false
-published: false
+date: 2014-05-11 08:00:00
 ---
-
 This is the second post in this series, [previous one](/blog/2014/05/11/upgrade-dsl-from-coffeescript-to-json-part-1-migrator) discussed the JSON schema migration mechanism.
 
 After finish JSON DSL implementation, the No.1 problem I need to handle is how to upgrading the configuration in CoffeeScript to JSON format.

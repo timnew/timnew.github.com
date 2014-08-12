@@ -1,16 +1,16 @@
----
 layout: post
-title: "How to launch Mac OS Terminal as Interactive Shell rather than Log-in Shell"
-description: ""
-date: 2012-05-04 11:19
+title: How to launch Mac OS Terminal as Interactive Shell rather than Log-in Shell
 comments: true
-categories: 
-category: 
-tags: ["Mac","Bash","Shell","Configuration","Terminal"]
-sharing: true
-footer: false
+categories:
+  - general
+tags:
+  - Mac
+  - Bash
+  - Shell
+  - Configuration
+  - Terminal
+date: 2012-05-04 08:00:00
 ---
-
 As described in [previous post](/blog/2012/04/26/bash-profile-on-mac-os-x/), Mac OS launch its terminal as Log-In shell rather than Interactive Shell, which is different to default behavior of Unix and Linux. As a result, Terminal will load "bash_profile" as its profile rather than the normal "bashrc".
 
 This unique behavior might cause some problem when you try to port CLI tool from Unix or Linux. 

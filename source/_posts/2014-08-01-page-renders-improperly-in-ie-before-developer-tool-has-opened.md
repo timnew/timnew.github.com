@@ -1,12 +1,8 @@
----
 layout: post
-title: "Page renders improperly in IE before developer tool has opened"
-description: ""
-date: 2014-08-01 14:28
+title: Page renders improperly in IE before developer tool has opened
 comments: true
-categories: 
-category: javascript
-tags: 
+categories: javascript
+tags:
   - javascript
   - IE
   - developer tool
@@ -14,11 +10,8 @@ tags:
   - console
   - undefined
   - polyfill
-sharing: true
-footer: false
-published: true
+date: 2014-08-01 08:00:00
 ---
-
 Today I found a super annoying issue about IE. Our website works perfectly in any browser except IE. The page isn't rendered properly in IE 9. Well, this is common, this is the nature of IE. The mysterious issue I found is that once you opened or ever opened the developer tool, open the page or refresh the page, the problem is gone magically!!!!
 
 As a conclusion, opening the developer tool changes the browser behavior!!!!! What a hell! So you know there is something wrong, but once you try to figure out the error message, you have to open developer tool. Once you open the developer tool, the bug is gone! **DEAD END!!!**

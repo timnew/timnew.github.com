@@ -1,12 +1,8 @@
----
 layout: post
-title: "Use Jade as client-side template engine"
-description: ""
-date: 2014-05-26 00:59
+title: Use Jade as client-side template engine
 comments: true
-categories: 
-category: jade
-tags: 
+categories: jade
+tags:
   - jade
   - html
   - front-end
@@ -15,11 +11,8 @@ tags:
   - grunt
   - build
   - client side
-sharing: true
-footer: false
-published: true
+date: 2014-05-26 08:00:00
 ---
-
 [Jade](http://jade-lang.com/) is a powerful JavaScript HTML template engine, which is concise and powerful. Due to its awesome syntax and powerful features, it almost become the default template engine for node.js web servers.
 
 Jade is well known as a server-side HTML template, but actually it can also be used as a client-side template engine, which is barely known by people! To have a better understanding of this issue, firstly we should how Jade engine works.

@@ -1,16 +1,16 @@
----
 layout: post
-title: "Dynamic Singleton Methods in Ruby"
-description: ""
-date: 2012-05-08 20:32
+title: Dynamic Singleton Methods in Ruby
 comments: true
-categories: 
-category: ruby
-tags: ["ruby","mixin","meta programming","singleton methods","mixin","module"]
-sharing: true
-footer: false
+categories: ruby
+tags:
+  - ruby
+  - mixin
+  - meta programming
+  - singleton methods
+  - mixin
+  - module
+date: 2012-05-08 08:00:00
 ---
-
 Today, I pair with Ma Wei to refactor a piece of pre-existed code. We try to eliminate some "static methods" (in fact, there is no real static method in ruby, I use this term to describe the methods that only depends on its parameters other than any instance variables). 
 
 The code is like this:

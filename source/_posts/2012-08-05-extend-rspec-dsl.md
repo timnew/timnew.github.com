@@ -1,16 +1,11 @@
----
 layout: post
-title: "Extend RSpec DSL"
-description: ""
-date: 2012-08-05 01:50
+title: Extend RSpec DSL
 comments: true
-categories: 
-category: rspec
-tags: [rspec dsl extend test spec]
-sharing: true
-footer: false
+categories: rspec
+tags:
+  - rspec dsl extend test spec
+date: 2012-08-05 08:00:00
 ---
-
 I'm working on a project that need some complicated html snippets for test, which cannot be easily generated with factory. So I put these snippets into fixture files.
 
 RSpec provides a very convenient DSL keyword `let`, which allow us to define something for test and cached it in the same test. And I want I could have some similar keyword for my html fixtures. To achieve this goal I decide to extend DSL.

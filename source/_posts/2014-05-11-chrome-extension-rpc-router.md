@@ -1,23 +1,16 @@
----
 layout: post
-title: "Chrome Extension RPC Router"
-description: ""
-date: 2014-05-11 01:48
+title: Chrome Extension RPC Router
 comments: true
-categories: 
-category: chrome 
-tags: 
+categories: chrome
+tags:
   - chrome
   - extension
   - messaging
   - RPC
   - router
   - routing
-sharing: true
-footer: false
-published: true
+date: 2014-05-11 08:00:00
 ---
-
 When developing chrome extension, communication between background script and content scripts is very typical use case. Chrome provides messaging APIs to achieve this goal. But this API has limitation that every message goes to the same listener.
 
 Background script in Chrome extension usually works as a function hub for the whole extension, so background scripts usually required to process different types of messages. Then the limit of Chrome messaging API become an issue we need to face.

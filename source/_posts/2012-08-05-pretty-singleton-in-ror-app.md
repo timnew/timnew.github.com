@@ -1,16 +1,11 @@
----
 layout: post
-title: "Pretty Singleton in RoR app"
-description: ""
-date: 2012-08-05 00:04
+title: Pretty Singleton in RoR app
 comments: true
-categories: 
-category: Patterns
-tags: [Ruby Rails RoR Singleton Pattern]
-sharing: true
-footer: false
+categories: Patterns
+tags:
+  - Ruby Rails RoR Singleton Pattern
+date: 2012-08-05 08:00:00
 ---
-
 Thanks to Ruby powerful meta programming capability and Rails `delegate` syntax, we can easily write graceful singleton class which makes the class works like a instance.
 
 In traditional language such as C#, usually we write singleton code like this:

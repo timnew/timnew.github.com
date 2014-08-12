@@ -1,12 +1,15 @@
----
 layout: post
-title: "Make javascript node.tmbundle works with TextMate under node.js 0.6.5"
-description: ""
-category: textmate
-tags: ["node.js", "bundle", "textmate", "javascript", 'tmbundle']
-languages:
+title: Make javascript node.tmbundle works with TextMate under node.js 0.6.5
+tags:
+  - node.js
+  - bundle
+  - textmate
+  - javascript
+  - tmbundle
+categories: textmate
+comments: true
+date: 2012-03-12 08:00:00
 ---
-
 I downloaded the [TextMate bundle for node.js](https://github.com/drnic/javascript-node.tmbundle).  
 But this bundle doesn't work properly.  
 When i clicked cmd+R to run javascript, it reports that it cannot get variable "TM_FILE" from undefined.  

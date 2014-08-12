@@ -1,13 +1,8 @@
----
 layout: post
-title: "SQL DSL in Android development  - Part.2 Injector to simplify batch injection"
-description: ""
-date: 2013-07-21 20:20
+title: SQL DSL in Android development  - Part.2 Injector to simplify batch injection
 comments: true
-categories: 
-category: 
+categories:
+  - general
 tags: []
-sharing: true
-footer: false
-published: false
+date: 2013-07-20 08:00:00
 ---

@@ -1,16 +1,14 @@
----
 layout: post
 title: "Ruby Class Inheritance II: Differences between inheritance and mixin"
-description: ""
-date: 2012-11-20 14:18
 comments: true
 categories: Ruby
-category: 
-tags: ["Ruby", "Class", "Inheritance", "Module"]
-sharing: true
-footer: false
+tags:
+  - Ruby
+  - Class
+  - Inheritance
+  - Module
+date: 2012-11-20 08:00:00
 ---
-
 Guys familiar with Rails are very likely used to the following code, and will not be surprised by it:
 
 {% codeblock ActiveRecord lang:ruby %}
