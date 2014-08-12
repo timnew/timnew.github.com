@@ -6,13 +6,13 @@
 title: TimNew's Lab
 subtitle: Digital Bigs in my thought
 description: timnew programming code software
-author: John Doe
+author: TimNew
 email: timnew.wti@gmail.com
 language: en-US
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://timnew.github.io
 root: /
 permalink: /blog/:year/:month/:day/:title/
 tag_dir: tags
@@ -82,7 +82,12 @@ disqus_shortname: timnew-github
 theme: landscape
 exclude_generator:
 
+emojis:
+  cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: github
+  repo: git@github.com:timnew/timnew.github.com.git
+  branch: master 

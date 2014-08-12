@@ -18,9 +18,9 @@ widgets:
 - recent_posts
 
 # Miscellaneous
-google_analytics:
+google_analytics: UA-30567867-1
 favicon: /favicon.png
-twitter:
-google_plus:
-fb_admins:
+twitter: timnew
+google_plus: 108780866821209046829
+fb_admins: 
 fb_app_id:
