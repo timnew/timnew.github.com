@@ -18,7 +18,7 @@ The first time I got pissed off by `Octopress` was by the end of 2012. Then I co
 
 To save effort, I began to customize `Octopress` by rewriting some code in `Octopress` and `Jekyll`, which started the long march of `Octopress` customization.
 
-I did a number of customization on `Octopress`, from erb template to Jekyll generateors, from `Rake` script to TextMate bundles.
+I did a number of customization on `Octopress`, from erb template to Jekyll generators, from `Rake` script to TextMate bundles.
 
 Before I switch to Sublime, I uses TextMate for quite long time. So I customized the `Rake` script and TextMate bundle, which enables me to invoke almost every rake command in TextMate with hotkey. I can even rename the blog post file name according to the title in front-matter without leaving TextMate. Besides the functionality, I also customized the templates and the widgets a lot to get better visual effects and reading experience.
 
