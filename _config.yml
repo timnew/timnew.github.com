@@ -82,6 +82,9 @@ disqus_shortname: timnew-github
 theme: landscape
 exclude_generator:
 
+plugins:
+  - hexo-tag-emojis
+
 emojis:
   cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
 
@@ -90,4 +93,4 @@ emojis:
 deploy:
   type: github
   repo: git@github.com:timnew/timnew.github.com.git
-  branch: master 
+  branch: master
