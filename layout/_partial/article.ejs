@@ -4,6 +4,13 @@
     <%- partial('post/category') %>
   </div>
   <div class="article-inner">
+    <% if (post.ribbon) { %>
+      <div class="ribbon-wrapper relative right">
+        <div class="ribbon <%- post.ribbon_style %>" <% if(post.ribbon_color != null) { %> style="background-color: <%- post.ribbon_color %>;" <% } %> >
+          <a href="#"><%= post.ribbon %></a>
+        </div>
+      </div>
+    <% } %>
     <%- partial('post/gallery') %>
     <% if (post.link || post.title){ %>
       <header class="article-header">
