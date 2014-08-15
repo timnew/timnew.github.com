@@ -5,10 +5,14 @@
   "dependencies": {
     "hexo-admin": "*",
     "hexo-broken-link-checker": "^1.0.3",
+    "hexo-generator-alias": "^0.1.0",
     "hexo-generator-atom-markdown-writer-meta": "*",
     "hexo-generator-feed": "*",
     "hexo-generator-sitemap": "*",
+    "hexo-renderer-coffeescript": "^0.1.0",
+    "hexo-renderer-dot": "^0.1.0",
     "hexo-renderer-ejs": "*",
+    "hexo-renderer-jade": "^0.1.0",
     "hexo-renderer-marked": "*",
     "hexo-renderer-stylus": "*",
     "hexo-tag-emojis": "*"
