@@ -82,15 +82,21 @@ disqus_shortname: timnew-github
 theme: landscape
 exclude_generator:
 
-plugins:
-  - hexo-tag-emojis
-
-emojis:
-  cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
-
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: github
   repo: git@github.com:timnew/timnew.github.com.git
   branch: master
+
+plugins:
+  - hexo-tag-emojis
+  - hexo-broken-link-checker
+
+emojis:
+  cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
+
+link_checker:
+  enabled: true
+  storage_dir: temp/link_checker
+  silent_logs: false

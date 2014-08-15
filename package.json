@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "hexo-admin": "*",
+    "hexo-broken-link-checker": "^1.0.3",
     "hexo-generator-atom-markdown-writer-meta": "*",
     "hexo-generator-feed": "*",
     "hexo-generator-sitemap": "*",
