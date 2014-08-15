@@ -13,7 +13,7 @@ tags:
   - finder
 date: 2013-10-27 08:00:00
 ---
-**HINT** This content is obsleted on OSX 10.9 Mavericks
+**HINT** This content is obsoleted on OSX 10.9 Mavericks
 
 ## Embed Ruby into Automator Workflow
 
@@ -21,7 +21,7 @@ Automator workflow has the ability to execute ruby code, but it is not that obvi
 
 To embed ruby code into workflow, you need to create a "Run Shell Script" action first, then choose "/usr/bin/ruby" as the shell. Then the script in the text box will be parsed and executed as ruby code.
 
-![Ruby In Automator](/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/ruby_in_automator.png)
+{% asset_img ruby_in_automator.png Ruby In Automator %}
 
 So, from now on, you know how to embed ruby into automator workflow.
 
@@ -31,7 +31,7 @@ By default, Automator will load system ruby at `/usr/bin/ruby`, which is ruby v1
 
 To use the RVMed ruby, I tried several approaches by hacking different configurations or files. And at last, I made it doing this:
 
-RVM provides a ruby executable file at `~/.rvm/bin/ruby`. On the other hand, `/usr/bin/ruby` is actually a symbol link that pointed to '/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby'. 
+RVM provides a ruby executable file at `~/.rvm/bin/ruby`. On the other hand, `/usr/bin/ruby` is actually a symbol link that pointed to '/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby'.
 
 So what we need to do is to replace the the symbol link with a new one pointed to `~/.rvm/bin/ruby`.
 

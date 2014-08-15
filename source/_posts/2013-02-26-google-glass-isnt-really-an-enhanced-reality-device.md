@@ -31,12 +31,12 @@ Here are 2 images that explain the idea:
 
 ** View when you look around **  
 The view around is clear, but the map is blur
-![View when you look around](optical-view.jpg "View when you look around")
+{% asset_img optical-view.jpg "View when you look around" %}
 
 ** View when you read Glass **  
 The map become clear, but the view around is blur
-![View when you read Glass](digital-view.jpg "View when you read Glass")
+{% asset_img digital-view.jpg "View when you read Glass" %}
 
 To solve this problem, it requires device to detect the focus point of human eye, then adjust the image accordingly in real time. But still now, we don't have mature technology that can detect the eye focus point and compact enough to built into a wearable device.
 
-But any way, I still believe that Google Glass is an exciting milestone of purchasing real Enhanced Reality technology in human history! It must evolve and incubate a lot of future technologies! 
+But any way, I still believe that Google Glass is an exciting milestone of purchasing real Enhanced Reality technology in human history! It must evolve and incubate a lot of future technologies!

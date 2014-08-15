@@ -13,39 +13,41 @@ date: 2014-06-20 08:00:00
 ---
 A few days ago I upgraded my Android Studio to version 0.6.1. And migrated my android project build system from Maven to Gradle. Then nightmare happened!
 
-![Android Studio Version](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/android_studio_version.png)
+{% asset_img android_studio_version.png Android Studio Version %}
 
 It looks there are some issue with Android Studio version 0.6.1, which cannot recognize the jar files in Android SDK 19 (4.4 Kit Kat). As a consequence that all the Android fundemantal classes are not recognized properly, which makes IDEA almost impossible to be used.
 
-![Classes Not Recognized](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/classes_not_recognized.png)
+{% asset_img classes_not_recognized.png Classes Not Recognized %}
 
 After spending days on googling and trying, I realize the issue is caused that Android Studio doesn't recognize the sdk 19 content properly.
 
 Here is the content of Android SDK 19 that Android Studio 0.6.1 identified:
 
-![SDK in Android Studio](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/sdk_in_android_studio.png)
+{% asset_img sdk_in_android_studio.png SDK in Android Studio %}
 
 As comparison, here is a list of proper content of Andrdoid SDK 19 with Google API:
 
-![SDK in IDEA](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/sdk_in_idea.png)
+{% asset_img sdk_in_idea.png SDK in IDEA %}
 
 Here is a list of proper content of Andrdoid SDK 19 retrived from Maven Repository:
 
-![Maven SDK](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/maven_sdk_in_idea.png)
+{% asset_img maven_sdk_in_idea.png Maven SDK %}
 
-In the list, you can easily figure out that the `android.jar` file is missing! It is the reason why the classes are not properly recognized! Even more if you compare the list against the JDK 1.6, you will find that most of the content are the same. 
+In the list, you can easily figure out that the `android.jar` file is missing! It is the reason why the classes are not properly recognized! Even more if you compare the list against the JDK 1.6, you will find that most of the content are the same.
 
-![JDK](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/jdk.png)
+{% asset_img jdk.png JDK %}
 
-Ideally, to fix this issue should be quite easy. Android Studio provides a `Project Settings` dialog allow developer to adjust the SDK configurations. 
+Ideally, to fix this issue should be quite easy. Android Studio provides a `Project Settings` dialog allow developer to adjust the SDK configurations.
 
 Project Settings Dialog:
-![Project Settings](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/project_settings.png)
+
+{% asset_img project_settings.png Project Settings %}
 
 But for Gradle projects, Android Studio displays a greately simplified project settings dialog instead of the original one, which doesn't allow developer to config the SDK in dialog any longer.
 
 Gradle Project Settings Dialog:
-![Project Settings](/blog/2014/06/20/android-studio-0-dot-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/gradle_project_settings.png)
+
+{% asset_img gradle_project_settings.png Project Settings  %}
 
 Still now, I figured out several potentisal workarounds to this issue, hope these helps:
 
@@ -57,4 +59,3 @@ Still now, I figured out several potentisal workarounds to this issue, hope thes
   Gradle is powerful, but there are too many environment issues when using with IDEs... Maven is relatively more stable.
 
 I haven't figure out a perfect solution to this issue, just hope the Google can fix the issue as soon as possible.
-

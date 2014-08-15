@@ -17,9 +17,9 @@ To add custom search query in different launch app is quite different, but shoul
 I'll take Alfred as example:
 
 1. Open Alfred Preference
-![Alfred](/blog/2014/05/26/create-shortcut-for-your-project-mingle-with-alfred/alfred.png "Alfred Preferences")
+{% asset_img alfred.png Alfred Preferences %}
 
 2. Register Mingle as custom search
-![Alfred](/blog/2014/05/26/create-shortcut-for-your-project-mingle-with-alfred/detail.png "Alfred Preferences")
+{% asset_img detail.png Alfred Preferences  %}
 
 The url for custom search can be get with the same approach described in [previous post](/blog/2014/05/09/create-shortcut-for-your-project-mingle-with-chrome-omnibox). Alfred uses `{query}` as placeholder, so you should replace the `%s` with `{query}` when coping the url from chrome to Alfred.

@@ -19,7 +19,7 @@ JSONView provide a very sweety feature that allow user to customize the css used
 Here is my theme css, and you can copy it to your JSONView theme editor to apply.  
 Also you can find code on gist: [https://gist.github.com/timnew/5167241](https://gist.github.com/timnew/5167241)
 
-![Theme Preview](preview.png "Theme Preview")
+{% asset_img preview.png "Theme Preview" %}
 
 {% codeblock Dark Theme for JSONView lang:css %}
 body {
@@ -81,7 +81,7 @@ a {
 
 .hovered {
   background-color: rgba(255, 255, 255, .3);  
-  
+
 }
 
 .collapser {

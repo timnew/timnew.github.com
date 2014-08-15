@@ -59,10 +59,10 @@ My theme is [seti-ui].
 ## Screenshots
 
 ### Without TreeView
-{% img /blog/2014/08/14/Atom-Editor-Background-Image/no_treeview.png Without Tree View %}
+{% asset_img no_treeview.png Without Tree View %}
 
 ## With TreeView
-{% img /blog/2014/08/14/Atom-Editor-Background-Image/treeview.png With Tree View %}
+{% asset_img treeview.png With Tree View %}
 
 
 

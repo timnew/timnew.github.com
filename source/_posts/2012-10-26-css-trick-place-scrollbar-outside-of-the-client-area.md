@@ -37,11 +37,11 @@ Since the description could be very short or very long, so I make the div that c
 
 The style looks fine, and here is how it looks:
 
-![Widget](widget.png "Wiget")
+{% asset_img widget.png "Wiget" %}
 
 But very soon, I found the widget with scrollbar is taller than the one without it, it is because padding on 2 elements next to each other will not be merged: **Red rect in following snapshot**
 
-![Padding](padding.png "Padding")
+{% asset_img padding.png "Padding" %}
 
 It is caused because padding will not merged together as margin does, To solve the issue, I changed the padding to margin in the stylesheet:
 
@@ -56,7 +56,7 @@ It is caused because padding will not merged together as margin does, To solve t
 
 But bottom margin is corrected, but I found the scrollbar begin to occupy the space of content, which is not good! **The center widget uses padding(Blue) and the right one uses margin(Red)**
 
-![Margin](margin.png "Margin")
+{% asset_img margin.png "Margin" %}
 
 And I remember if I uses padding, the scrollbar takes the space of right padding; but if I use margin, it takes the space of the content. So I update the stylesheet in this way:
 
@@ -69,6 +69,6 @@ And I remember if I uses padding, the scrollbar takes the space of right padding
 }
 {% endcodeblock %}
 
-![Padding Margin Mixing](padding_margin_mixing.png "Padding Margin Mixing")
+{% asset_img padding_margin_mixing.png "Padding Margin Mixing" %}
 
 I use padding on the right but uses margin on other side, so vertical scrollbar will take the right padding when necessary. It is a very interesting CSS trick, and it works fine under webkit based browser.
