@@ -23,6 +23,11 @@
   position: relative
   overflow: hidden
 
+filter()
+  -moz-filter arguments
+  -webkit-filter arguments
+  filter arguments
+
 #banner
   position: absolute
   top: 0
@@ -32,6 +37,7 @@
   background: url(banner-url) center #000
   background-size: cover
   z-index: -1
+  filter brightness(.8)
 
 #header-title
   text-align: center
@@ -40,7 +46,7 @@
   top: 50%
   left: 0
   margin-top: logo-size * -0.5
-  
+
 $logo-text
   text-decoration: none
   color: #fff
@@ -66,6 +72,12 @@ $logo-text
   float: left
   margin-left: -15px
 
+nav-link-shadow(color = black, highlight = tan)
+  transition: text-shadow 0.2s
+  text-shadow: 0 0 6px color
+  &:hover
+    text-shadow 0 0 6px highlight
+
 $nav-link
   float: left
   color: #fff
@@ -88,11 +100,15 @@ $nav-link
   padding: 20px 15px
   position: relative
   cursor: pointer
+  &:before
+    nav-link-shadow()
 
 .main-nav-link
   @extend $nav-link
+  nav-link-shadow()
   font-weight: 300
   letter-spacing: 1px
+
   @media mq-mobile
     display: none
 
