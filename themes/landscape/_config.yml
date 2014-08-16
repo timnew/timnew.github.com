@@ -2,7 +2,7 @@
 menu:
   Home: /
   Archives: /archives
-rss: /atom.xml
+rss: //feeds.feedburner.com/timnewtech
 
 # Content
 excerpt_link: Read More
@@ -22,5 +22,5 @@ google_analytics: UA-30567867-1
 favicon: /favicon.png
 twitter: timnew
 google_plus: 108780866821209046829
-fb_admins: 
+fb_admins:
 fb_app_id:
