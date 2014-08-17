@@ -16,6 +16,7 @@
     "hexo-renderer-marked": "^0.1.0",
     "hexo-renderer-stylus": "^0.1.0",
     "hexo-tag-asset-res": "^0.1.1",
+    "hexo-tag-codepen": "^0.1.0",
     "hexo-tag-emojis": "^1.1.1"
   }
 }
