@@ -1,19 +1,22 @@
 #header
   height: banner-height
   position: relative
-  border-bottom: 1px solid color-border
+  material-z-index: 1
+
   &:before, &:after
     content: ""
     position: absolute
     left: 0
     right: 0
-    height: 40px
+    height: 50px
   &:before
     top: 0
-    background: linear-gradient(rgba(0, 0, 0, 0.2), transparent)
+    background: linear-gradient(rgba(0, 0, 0, 0.3), transparent)
+    // background: linear-gradient(rgba(0, 0, 0, 0.3), transparent)
   &:after
     bottom: 0
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.2))
+    // background: linear-gradient(transparent, rgba(0, 0, 0, 0.3))
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.3))
 
 #header-outer
   height: 100%
@@ -37,7 +40,7 @@ filter()
   background: url(banner-url) center #000
   background-size: cover
   z-index: -1
-  filter brightness(.8)
+  filter brightness(95%)
 
 #header-title
   text-align: center
@@ -51,7 +54,7 @@ $logo-text
   text-decoration: none
   color: #fff
   font-weight: 300
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 5px black
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .9)
 
 #logo
   @extend $logo-text
