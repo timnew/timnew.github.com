@@ -88,6 +88,7 @@
   // Caption
   $('.article-entry').each(function(i){
     $(this).find('img').each(function(){
+      if ($(this).is('.nofancybox')) return; // Avoid to apply fansybox
       if ($(this).parent().hasClass('fancybox')) return;
 
       var alt = this.alt;
