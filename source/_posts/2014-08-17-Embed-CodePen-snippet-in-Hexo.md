@@ -13,10 +13,8 @@ tags:
   - plugin
   - codepen
   - embedded
-ribbon: Package
+ribbon: Package  
 date: 2014-08-17 12:49:50
-ribbon_style:
-ribbon_color:
 ---
 
 [CodePen] is a service that provide `Html`, `JavaScript` and `Css` live show-case. It is another clone of [Js Fiddle], but with cooler UI and support.
