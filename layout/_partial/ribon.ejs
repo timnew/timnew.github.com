@@ -1,0 +1,15 @@
+<% if (post.ribbon) { %>
+  <% if(typeof(post.ribbon) === 'string') {
+      post.ribbon = {
+        text: post.ribbon,
+        style: undefined,
+        color: undefined,
+        link: undefined
+      };
+  } %>
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon <%- post.ribbon.style %>" <% if(post.ribbon.color != null) { %> style="background-color: <%- post.ribbon.color %>;" <% } %> >
+      <a href="<%- post.ribbon.link == null ? '#' : post.ribbon.link %>"><%= post.ribbon.text %></a>
+    </div>
+  </div>
+<% } %>
