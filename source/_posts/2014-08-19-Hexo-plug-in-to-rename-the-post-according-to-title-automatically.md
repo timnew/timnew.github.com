@@ -12,6 +12,7 @@ tags:
   - title
 ribbon: Package
 date: 2014-08-19 01:17:28
+updated: 2014-09-19 11:00:22
 ---
 
 When writing blog with [Hexo], I uses `hexo new` command to create new post file. If the title of the post is provided, then the file is named according to the tile. This is super convinient, and I'm really loving it.
@@ -46,12 +47,14 @@ If you change the `new_post_name` in your `_config.yml`. You new post will follo
 Then [hexo-console-rename] is your live-savor! You just run
 
 ```shell
- $ hexo r source/**/*.md
+ $ hexo r -p ':title.md' source/**/*.md
 ```
 Then all the old files will be renamed under your new naming rule! Aesome!
 
 ### `date` in your post changed
 
 It isn't a common case, but if you have changed the `date` field in the `front-matter` of your post. And you have time-stamp in your file name. You can also use [hexo-console-rename] to rename the file for you.
+
+For more detail, check out the [hexo-console-rename] home page.
 
 [hexo-console-rename]: https://github.com/timnew/hexo-console-rename
