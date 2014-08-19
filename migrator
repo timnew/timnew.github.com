@@ -1,0 +1,117 @@
+#! /usr/bin/env ruby
+
+require 'CSV'
+require 'uri'
+require 'pry'
+require 'table_print'
+
+LOCAL_PATH_ROOT = File.join(__dir__, 'public')
+
+class Mapping
+  attr_accessor :url, :file_path, :type, :result
+
+  def initialize(url)
+    @url = url
+    migrate
+  end
+
+  def file_path
+    @file_path ||= Pathname.new(File.join(LOCAL_PATH_ROOT, url.path))
+  end
+
+  def file_name
+    file_path.basename
+  end
+
+  def container_folder
+    @container_folder ||= file_path.parent
+  end
+
+  def valid?
+    file_path.exist?
+  end
+
+  def parent_exists?
+    container_folder.exist?
+  end
+
+  def only_child?
+    parent_exists? and container_folder.children.length == 1
+  end
+
+  def auto_rename?
+     parent_exists? and only_child?
+  end
+
+  def auto_rename
+    container_folder.children.first
+  end
+
+  def auto_migrate_name
+    auto_migrate.basename
+  end
+
+  def need_normalize?
+    url.path =~ /\/\/|[A-Z]/
+  end
+
+  def alter_url
+    new_url = URI(url.to_s)
+    yield new_url
+    new_url
+  end
+
+  def normalized_url
+    alter_url do |new_url|
+      new_url.path =  URI.escape(url.path.gsub(/\/\//,'/').downcase)
+    end
+  end
+
+  def auto_rename_url
+    alter_url do |new_url|
+      new_url.path =  URI.escape(auto_rename.to_s[LOCAL_PATH_ROOT.length..-1])
+    end
+  end
+
+  def migrate
+    if valid?
+      if need_normalize?
+        @type = 'normalize'
+        @result = normalized_url
+      else
+        @type = 'original'
+        @result = url
+      end
+    elsif auto_rename?
+      @type = 'auto-rename'
+      @result = auto_rename_url
+    elsif parent_exists?
+      @type = 'recommend'
+      @result = container_folder.children.map do |f|
+        alter_url do |new_url|
+          new_url.path = URI.escape(f.to_s[LOCAL_PATH_ROOT.length..-1])
+        end
+      end.join('  |  ')
+    else
+      @type = 'manual'
+      @result = ''
+    end
+  end
+end
+
+data = CSV
+  .open('links.csv')
+  .map{|row| URI(row[0]) }
+  .select {|url| url.host != 'localhost' }
+  .map{|url| Mapping.new(url) }
+  .select{|m| m.type != 'original'}
+  # .select {|m| !m.valid? }
+  # .select {|m| !m.auto_migratable? }
+
+# tp data, :file_name, :valid?, :auto_migratable?, :parent_exists?, :only_child?
+
+CSV.open("output_file.csv", "wb") do |csv|
+  data.each do |mapping|
+    csv << [mapping.url, mapping.result, mapping.type]
+  end
+end
