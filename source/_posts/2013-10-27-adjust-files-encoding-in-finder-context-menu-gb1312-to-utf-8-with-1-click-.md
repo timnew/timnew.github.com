@@ -1,5 +1,5 @@
 layout: post
-title: "Adjust files encoding in Finder context menu [GB1312 to UTF-8 with 1-click]"
+title: 'Adjust files encoding in Finder context menu "GB1312 to UTF-8 with 1-click"'
 comments: true
 categories: osx
 tags:
