@@ -1,5 +1,5 @@
 layout: post
-title: Pitfall in Nokogiri XPath and Namepace
+title: Pitfall in Nokogiri XPath and Namespace
 comments: true
 categories: ruby
 tags:
@@ -10,7 +10,7 @@ tags:
   - pitfall
 date: 2012-10-25 08:00:00
 ---
-`Nokogiri` is a really popular Xml and Html library for Ruby. People loves `Nokogiri` is not just because it is powerful and fast, the most important is its flexible and convenient. 
+`Nokogiri` is a really popular Xml and Html library for Ruby. People loves `Nokogiri` is not just because it is powerful and fast, the most important is its flexible and convenient.
 `Nokogiri` works perfect in most aspects, but there is a big pitfall when handling the xml namespace!
 
 I met a super weird issue when processing xml returned by Google Data API, and the API returns the following xml document:
@@ -43,7 +43,7 @@ I instantiated a `Nokogiri::XML` DOM with the xml document, and then I try to qu
   entries = xml_dom.xpath '//entry'
 {% endcodeblock %}
 
-I'm expecting `entries` is an array with 4 elements, but actually it is empty array. After a few tries, I found the query yields empty array when I introduce the element name in the query. 
+I'm expecting `entries` is an array with 4 elements, but actually it is empty array. After a few tries, I found the query yields empty array when I introduce the element name in the query.
 
 {% codeblock Try Xpath Queries lang:ruby %}
   xml_dom.xpath '.' # returns document
@@ -52,7 +52,7 @@ I'm expecting `entries` is an array with 4 elements, but actually it is empty ar
   xml_dom.xpath '//entry' # returns empty array
   xml_dom.xpath '//media:group', 'media' => 'http://search.yahoo.com/mrss/' # returns 4 the media:group nodes
 {% endcodeblock %}
- 
+
 It is super weird.
 
 After half an hour fighting against the Nokogiri, I begin to realize that it must be related to the namespace.
@@ -72,4 +72,3 @@ And for some reason, the XPath query is namespace sensitive! It requires the **f
 So in a sentence: XPath in `Nokogiri` doesn't inherit the default namespace, so when query the DOM with default namespace, we need to explicitly specify the namespace in XPath query. It is really a hidden requirement and is very likely to be ignored by the developers!
 
 So if there is no naming collision issue, it is recommeded to avoid this kind of "silly" issues by removing the namespaces in the DOM. `Nokogiri::XML::Document` class provides `Nokogiri::XML::Document#remove_namespaces!` method to achieve this goal.
-

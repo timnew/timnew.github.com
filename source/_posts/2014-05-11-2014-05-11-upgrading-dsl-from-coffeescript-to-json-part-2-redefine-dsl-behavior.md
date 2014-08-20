@@ -11,6 +11,7 @@ tags:
   - json
 date: 2014-05-11 08:00:00
 ---
+
 This is the second post in this series, [previous one](/blog/2014/05/11/upgrade-dsl-from-coffeescript-to-json-part-1-migrator) discussed the JSON schema migration mechanism.
 
 After finish JSON DSL implementation, the No.1 problem I need to handle is how to upgrading the configuration in CoffeeScript to JSON format.
