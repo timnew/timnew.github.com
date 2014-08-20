@@ -1,117 +1,467 @@
-#! /usr/bin/env ruby
+#!/usr/bin/env ruby
+
+require 'rubygems'
 
 require 'CSV'
 require 'uri'
 require 'pry'
-require 'table_print'
+require 'terminal-table'
+require 'commander'
 
-LOCAL_PATH_ROOT = File.join(__dir__, 'public')
+class Rule
+  attr_reader :name, :auto_tag
 
-class Mapping
-  attr_accessor :url, :file_path, :type, :result
-
-  def initialize(url)
-    @url = url
-    migrate
+  def initialize(name, auto_tag = true, &block)
+    @name = name
+    @auto_tag = auto_tag
+    @match_blocks = []
+    instance_eval &block
   end
 
-  def file_path
-    @file_path ||= Pathname.new(File.join(LOCAL_PATH_ROOT, url.path))
+  def apply(mapping)
+    return false unless match?(mapping)
+    behave(mapping)
   end
 
-  def file_name
-    file_path.basename
+  def setup_match(&block)
+    @match_blocks << block
   end
 
-  def container_folder
-    @container_folder ||= file_path.parent
+  def match?(mapping)
+    @match_blocks.all? {|b| b.call(mapping) }
   end
 
-  def valid?
-    file_path.exist?
+  def setup_behavior(&block)
+    @fix_block = block
   end
 
-  def parent_exists?
-    container_folder.exist?
+  def behave(mapping)
+    mapping.tags << name if auto_tag
+    @fix_block.call(mapping)
   end
+end
 
-  def only_child?
-    parent_exists? and container_folder.children.length == 1
-  end
+class Migrator
+  include Commander::Methods
 
-  def auto_rename?
-     parent_exists? and only_child?
-  end
+  class << self
+    ROOT_PATH = File.join(__dir__, 'public')
+    ROOT = Pathname.new ROOT_PATH
+    POSTS_FOLDER = Pathname.new File.join(__dir__, 'source/_posts')
 
-  def auto_rename
-    container_folder.children.first
-  end
+    VERIFIER = Rule.new(:valid_checker, false) do
+      setup_match {|m| m.isnt?(:ignored) }
+      setup_behavior do |m|
+        local_file = Migrator.local_path m.new_path
 
-  def auto_migrate_name
-    auto_migrate.basename
-  end
+        if local_file.exist?
+          m.tags << :valid
+        else
+          m.tags << :invalid
+          m.output = false
+        end
+      end
+    end
 
-  def need_normalize?
-    url.path =~ /\/\/|[A-Z]/
-  end
+    FIX_CHECKER = Rule.new(:fix_checker, false) do
+      setup_match {|m| m.is?(:broken) }
+      setup_match {|m| m.isnt?(:fixed) }
+      setup_match {|m| Migrator.local_path(m.new_path).exist?}
+      setup_behavior do |m|
+        m.tags << :fixed
+        true
+      end
+    end
 
-  def alter_url
-    new_url = URI(url.to_s)
-    yield new_url
-    new_url
-  end
+    def root
+      ROOT
+    end
 
-  def normalized_url
-    alter_url do |new_url|
-      new_url.path =  URI.escape(url.path.gsub(/\/\//,'/').downcase)
+    def posts
+      POSTS_FOLDER.each_child(false)
+    end
+
+    def local_path(path)
+      Pathname.new File.join(ROOT_PATH, path)
+    end
+
+    def to_url(path)
+      path[ROOT_PATH.length..-1]
+    end
+
+    def name_components(path)
+      base_name = File.basename(path)
+      base_name.split('-')
+    end
+
+    def verifier
+      VERIFIER
+    end
+
+    def rules
+      return @rules unless @rules.nil?
+      @rules = []
+      @rules << Rule.new(:ignored) do
+        setup_match {|m| m.host == 'localhost' }
+        setup_behavior do |m|
+          m.output = false
+          true
+        end
+      end
+
+      @rules << Rule.new(:update_host) do
+        setup_match {|m| m.host != 'timnew.me' }
+        setup_behavior do |m|
+          m.output = true
+          false
+        end
+      end
+
+      @rules << Rule.new(:normalize_url) do
+        regex = /\/\//
+        setup_match {|m| m.path =~ regex }
+        setup_behavior do |m|
+          m.output = true
+          m.new_path = m.new_path.gsub regex, '/'
+          false
+        end
+      end
+
+      @rules << Rule.new(:broken) do
+        setup_match {|m| !m.new_local_path.exist? }
+        setup_behavior do |m|
+          m.output = false
+          false
+        end
+      end
+
+      @rules << Rule.new(:fix_root) do
+        setup_match {|m| m.is?(:broken)}
+        setup_match do|m|
+          !m.new_path.start_with?('/blog/')
+        end
+
+        setup_behavior do |m|
+          m.new_path = m.new_path.gsub(/^\/[^\/]+\//, '/blog/')
+          m.output = true
+          FIX_CHECKER.apply(m)
+        end
+      end
+
+      @rules << Rule.new(:time_stamp_url) do
+        setup_match {|m| m.is?(:broken)}
+        setup_match {|m| m.isnt?(:fixed)}
+
+        setup_match {|m| m.new_basename.match(/^\d\d\d\d-\d\d-\d\d-/) }
+
+        setup_behavior do |m|
+          m.new_path = m.new_path.sub(/\/\d\d\d\d-\d\d-\d\d-/, '/')
+          m.output = true
+          FIX_CHECKER.apply(m)
+        end
+      end
+
+      @rules << Rule.new(:time_stamp_path, false) do
+        setup_match {|m| m.is?(:broken)}
+        setup_match {|m| m.isnt?(:fixed)}
+        setup_behavior do |m|
+          pattern = "*-#{m.basename}.md"
+          local_file = Migrator.posts.find {|f| f.fnmatch? pattern }
+
+          if local_file.nil?
+            false
+          else
+            m.tags << name
+            timestamp_path= local_file.basename.to_s.match(/^(\d\d\d\d-\d\d-\d\d)/).to_s.gsub(/-/, '/')
+
+            m.output = true
+            m.new_path = File.join('/','public','timestamp_path',m.basename.to_s)
+            FIX_CHECKER.apply(m)
+          end
+        end
+      end
+
+      @rules << Rule.new(:auto_rename) do
+        setup_match {|m| m.is?(:broken)}
+        setup_match {|m| m.isnt?(:fixed)}
+
+        setup_match do|m|
+          parent = m.local_path.parent
+          parent.exist? and parent.children.length == 1
+        end
+
+        setup_behavior do |m|
+          m.new_path = Migrator.to_url m.local_path.parent.children.first.to_s
+          m.confident = false
+          m.output = true
+          FIX_CHECKER.apply(m)
+        end
+      end
+
+      @rules << Rule.new(:fuzzy_rename) do
+        setup_match {|m| m.tags.include?(:broken)}
+
+        setup_match do|m|
+          parent = m.local_path.parent
+          parent.exist?
+        end
+
+        setup_behavior do |m|
+          components = Migrator.name_components(m.new_path)
+
+          fuzzy_matched = m.local_path.parent
+                          .each_child
+                          .sort_by do |candidate|
+                            candidate_components = Migrator.name_components(candidate.to_s)
+                            result = components & candidate_components
+                            result.length
+                          end
+                          .reverse
+                          .first
+
+          m.new_path = Migrator.to_url fuzzy_matched.to_s
+
+          m.confident = false
+          m.output = true
+          FIX_CHECKER.apply(m)
+        end
+      end
+    end
+
+    def delegate_to_class(*names)
+      names.each do |name|
+        define_method name do |*args|
+          self.class.send name, *args
+        end
+      end
     end
   end
 
-  def auto_rename_url
-    alter_url do |new_url|
-      new_url.path =  URI.escape(auto_rename.to_s[LOCAL_PATH_ROOT.length..-1])
+  delegate_to_class :root, :local_path, :to_url, :rules, :verifier
+
+  attr_reader :mappings
+
+  def initialize(csv_file)
+    @mappings = CSV.open(csv_file)
+               .map{|row| Mapping.new(self, row[0])}
+  end
+
+  def migrate_mapping(mapping)
+    rules.find do |rule|
+      rule.apply(mapping)
     end
+    verifier.apply(mapping)
+  end
+
+  def table_print(data, title, *columns)
+    table = Terminal::Table.new do |t|
+      t.headings = columns
+      t.title = title
+      data.each do |mapping|
+        t.add_row columns.map{|c| mapping.send(c) }
+      end
+    end
+
+    puts table
+    puts
   end
 
   def migrate
-    if valid?
-      if need_normalize?
-        @type = 'normalize'
-        @result = normalized_url
-      else
-        @type = 'original'
-        @result = url
+     mappings.each do |mapping|
+      mapping.execute
+    end
+
+    self
+  end
+
+  def overview_report
+    table_print mappings, 'Overview', :basename, :host, :tags, :output?, :confident?
+    self
+  end
+
+  def unconfident_report
+    data = mappings.select {|m| !m.confident? }
+    table_print data, 'Unconfident', :url, :new_url
+    self
+  end
+
+  def excluded_report
+    data = mappings.select {|m| !m.output? }
+    table_print data, 'Excluded', :basename, :host, :tags
+    self
+  end
+
+  def invalid_report
+    data = mappings.select {|m| m.is?(:invalid) }
+    table_print data, 'Invalid', :url, :tags, :new_path
+    self
+  end
+
+  def write(type, filename, &filter)
+    puts "Write #{type} to file #{filename}"
+    CSV.open(filename, 'wb') do |csv|
+      data = mappings.select(&filter)
+      table_print data, "#{type} Entries", :basename, :tags
+      progress data do |mapping|
+        csv << [mapping.url.to_s, mapping.new_url.to_s]
       end
-    elsif auto_rename?
-      @type = 'auto-rename'
-      @result = auto_rename_url
-    elsif parent_exists?
-      @type = 'recommend'
-      @result = container_folder.children.map do |f|
-        alter_url do |new_url|
-          new_url.path = URI.escape(f.to_s[LOCAL_PATH_ROOT.length..-1])
+    end
+    puts
+  end
+
+  def write_confident(filename)
+    write('Confident', filename) do |m|
+      m.output? && m.confident?
+    end
+  end
+
+  def write_unconfident(filename)
+    write('Unconfident', filename) do |m|
+      m.output? && !m.confident?
+    end
+  end
+
+  def write_invalid(filename)
+    write('Invalid', filename) do |m|
+      m.is(:invalid)
+    end
+  end
+
+  def confirm_unconfidents
+    mappings.select{|m| m.output? and !m.confident? }.each do |m|
+      agreed = false
+      until agreed do
+        puts "Old: #{m.url}"
+        puts "New: #{m.new_url}"
+        agreed = agree('Okay to output?')
+
+        unless agreed
+          case choose("What to do?",:manual, :invalid, :cancel)
+          when :manual
+            m.new_url = ask('New Url:')
+          when :invalid
+            m.tags << :invalid
+            m.output = false
+            agreed = true
+          when :cancel
+            # do nothing
+          end
         end
-      end.join('  |  ')
-    else
-      @type = 'manual'
-      @result = ''
+      end
     end
   end
 end
 
-data = CSV
-  .open('links.csv')
-  .map{|row| URI(row[0]) }
-  .select {|url| url.host != 'localhost' }
-  .map{|url| Mapping.new(url) }
-  .select{|m| m.type != 'original'}
-  # .select {|m| !m.valid? }
-  # .select {|m| !m.auto_migratable? }
+class Mapping
+  attr_reader :migrator, :url, :host, :path, :local_path, :basename
 
-# tp data, :file_name, :valid?, :auto_migratable?, :parent_exists?, :only_child?
+  attr_accessor :new_url, :tags
 
-CSV.open("output_file.csv", "wb") do |csv|
-  data.each do |mapping|
-    csv << [mapping.url, mapping.result, mapping.type]
+  attr_accessor :output, :confident
+  alias_method :output?, :output
+  alias_method :confident?, :confident
+
+  def new_path
+    new_url.path
+  end
+
+  def new_path=(path)
+    @new_url = URI(url.to_s)
+    @new_url.path = URI.escape(path)
+    @new_url
+  end
+
+  def new_local_path
+    Migrator.local_path new_path
+  end
+
+  def new_basename
+    File.basename new_path
+  end
+
+  def initialize(migrator, url_text)
+    @migrator = migrator
+
+    @url = URI(url_text)
+    @host = url.host
+    @path = url.path
+    @local_path = Migrator.local_path path
+    @basename = File.basename path
+
+    @tags = []
+    @new_url = @url
+    @confident = true
+    @output = false
+  end
+
+  def isnt?(tag)
+    !tags.include?(tag)
+  end
+  alias_method :isnt, :isnt?
+
+  def is?(tag)
+    tags.include?(tag)
+  end
+  alias_method :is, :is?
+
+  def execute
+    migrator.migrate_mapping self
+    self
   end
 end
+
+require 'commander/import'
+
+program :version, '0.0.1'
+program :description, 'Disqus comments migrator for Hexo'
+
+command :migrate do |c|
+  c.syntax = 'migrator migrate [options]'
+  c.summary = 'Generate Disqus URL mapping CSV'
+  c.description = ''
+  c.example 'description', 'command example'
+  c.option '-i', '--input FILE', 'The csv generated by Disqus'
+  c.option '-o', '--output FILE', 'Name pattern for generated CSV'
+  c.option '-r', '--reports overview, unconfident, excluded, invalid', Array, 'Reports to be displayed'
+  c.option '-u', '--[no-]unconfidient', 'Do/Don\' generate unconfident migrations'
+  c.option '-c', '--[no-]confirm', 'Do/Don\'t confirm unconfident link one by one'
+  c.option '-b', '--[no-]invalid', 'Do/Don\' generate invalid migrations'
+  c.action do |args, options|
+    options.default input: 'links.csv',
+                    output: 'migration',
+                    overview: true,
+                    reports: %w(overview unconfident excluded invalid),
+                    unconfidient: true,
+                    verify: true,
+                    invalid: false
+
+    migrator = Migrator.new(options.input)
+
+    migrator.migrate
+
+    options.reports.each do |r|
+      case r.downcase[0].to_sym
+      when :o
+        migrator.overview_report
+      when :u
+        migrator.unconfident_report
+      when :e
+        migrator.excluded_report
+      when :i
+        migrator.invalid_report
+      else
+        log 'error', "Invalid report #{r}"
+      end
+    end
+
+    if options.verify
+      migrator.confirm_unconfidents
+    end
+
+    migrator.write_confident options.output + '.csv'
+    migrator.write_unconfident options.output + '.unconfident.csv' if options.unconfidient
+    migrator.write_invalid options.output + '.invalid.csv' if options.invalid
+  end
+end
+
+default_command :migrate
