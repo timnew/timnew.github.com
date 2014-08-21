@@ -45,31 +45,44 @@
   margin-bottom: 0.5em
   display: block
 
+nav-transition-time = .15s
+nav-transition-fuction = cubic-bezier(0.645, 0.045, 0.355, 1) // easeInOutCubic
+
 #page-nav
   @extend .material-card
+  material-z-index: 1
   clearfix()
   margin: block-margin auto
   text-align: center
   color: color-grey
   overflow: hidden
+
   a, span
     padding: 10px 20px
   a
     color: color-grey
     text-decoration: none
+    material-hover-z-index: 1
+    transition: background nav-transition-time nav-transition-fuction, color  nav-transition-time nav-transition-fuction
     &:hover
       background: color-grey
       color: #fff
+
   .prev
     float: left
+
   .next
     float: right
+
   .page-number
     display: inline-block
     @media mq-mobile
       display: none
+
   .current
-    color: color-default
-    font-weight: bold
+    background: darken(color-grey, 10%)
+    color: #fff
+    material-z-index: 2
+
   .space
     color: color-border
