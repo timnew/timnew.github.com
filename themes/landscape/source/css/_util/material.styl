@@ -12,7 +12,7 @@ bottom-shadows = 0 0 1px rgba(0, 0, 0, .1),
                  0 16px 28px 0 rgba(0, 0, 0, 0.22),
                  0 27px 24px 0 rgba(0, 0, 0, 0.2)
 
-$material-z-index(n)
+material-z-index(n)
   if n < 0
     box-shadow: top-shadows[0], top-shadows[0]
   else if n <= 5
@@ -20,14 +20,9 @@ $material-z-index(n)
   else
     box-shadow: top-shadows[5], bottom-shadows[5]
 
-material-z-index(n)
-  $material-z-index: n
-
-  &.active
-    $material-z-index: n + 1
-
-  &.emphasize
-    $material-z-index: n + 2
+material-hover-z-index(n)
+  &:hover
+    material-z-index: n
 
 .material
   transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)
@@ -41,3 +36,6 @@ material-z-index(n)
 for i in (0..5)
   .material-z-index-{i}
     material-z-index: i
+
+  .material-hover-z-index-{i}
+    material-hover-z-index: i
