@@ -18,6 +18,7 @@ else
     ol
       list-style: decimal
 
+
 .category-list-count
 .tag-list-count
 .archive-list-count
@@ -29,14 +30,35 @@ else
   &:after
     content: ")"
 
-.tagcloud
-  a
-    margin-right: 5px
 
-.recent-posts
-  li
-    @extend .material
-    material-hover-z-index: 0
-    padding: 2px 5px
-    a:hover
-      text-decoration: none
+$item
+  border-radius: 2px
+  material-hover-z-index: 1
+  padding: 2px 5px
+
+$li-item
+  @extend $item
+  a:hover
+    text-decoration: none
+
+$a-item
+  @extend $item
+
+  &:hover
+    text-decoration: none
+
+.tagcloud a
+  @extend $a-item
+  margin-right: 5px
+
+.recent-posts li
+  @extend $li-item
+
+.category-list li a
+  @extend $a-item
+
+.archive-list li
+  @extend $li-item
+
+.tag-list li
+  @extend $li-item
