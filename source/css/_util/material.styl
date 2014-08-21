@@ -20,18 +20,24 @@ material-z-index(n)
   else
     box-shadow: top-shadows[5], bottom-shadows[5]
 
+material-border-radius = 3px
+
 material-hover-z-index(n)
   &:hover
     material-z-index: n
 
 .material
   transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)
-  material-z-index: 0
+
+.material-round-border
+  border-radius: material-border-radius
 
 .material-card
   @extend .material
+  @extend .material-round-border
+  material-z-index: 0
   background: #fff
-  border-radius: 3px
+
 
 for i in (0..5)
   .material-z-index-{i}
