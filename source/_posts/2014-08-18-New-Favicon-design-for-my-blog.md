@@ -3,7 +3,7 @@ title: New Favicon design for my blog
 comments: true
 categories:
   - Design
-  - Graphic
+  - Visual
 tags:
   - icon
   - favico
@@ -11,7 +11,6 @@ tags:
   - blog
   - timnew
   - D
-ribbon: Design
 date: 2014-08-18 00:18:04
 update: 2013-08-18 01:34:20
 ---

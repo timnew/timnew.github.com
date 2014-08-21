@@ -1,7 +1,10 @@
 layout: post
 title: Space Pitfall in coffee-script
 comments: true
-categories: coffee-script
+categories:
+  - Programming
+  - JavaScript
+  - CoffeeScript
 tags:
   - pitfall
   - space
@@ -20,13 +23,13 @@ Read the following code:
 {% codeblock Show Message:Coffee lang:coffeescript %}
 show = message ->
 	console.log message
-	
+
 show "space pitfall"
 {% endcodeblock %}
 
 This is a quite simple script, but it failed to run. And if you might also feel confused about the error message: "message is not defined"
 
-What happened to the code? We indeed had declared the message as argument of function show. To reveal the answer, we should analyze the compiled javascript. 
+What happened to the code? We indeed had declared the message as argument of function show. To reveal the answer, we should analyze the compiled javascript.
 Here is the compiled code:
 
 {% codeblock Show Message:JS lang:js%}
@@ -44,12 +47,12 @@ Look the fun declaration, you will see it is not a function declaration as we wa
 The reason is that we omitted the parentheses around the argument and we add a new space between `message` and `->`. So the coffee-script compiler interpret message as a function call with a function as parameter.
 
 **Soltuion**
-To fix this problem, we can remove the space between `message` and `->` to enforce coffee-script compiler interpret them as a whole. 
+To fix this problem, we can remove the space between `message` and `->` to enforce coffee-script compiler interpret them as a whole.
 
 {% codeblock Show Message:Fix lang:coffeescript %}
 show = message->
 	console.log message
-	
+
 show "space pitfall"
 {% endcodeblock %}
 
@@ -68,7 +71,7 @@ lastHero = heros[heros -1]
 console.log lastHero
 {% endcodeblock %}
 
-This piece of code is also failed to run, and the error message is "property of object is not a function". 
+This piece of code is also failed to run, and the error message is "property of object is not a function".
 Quite wield right?
 Let's see what is behind the scene, here is the compiled code:
 
@@ -102,4 +105,4 @@ console.log lastHero
 
 Both solution is try to enforce the compiler divid the component in correct way.
 
-And unfortunately, there is no way to avoid this problem, the only thing you can do is always be aware the spaces in expression. 
+And unfortunately, there is no way to avoid this problem, the only thing you can do is always be aware the spaces in expression.

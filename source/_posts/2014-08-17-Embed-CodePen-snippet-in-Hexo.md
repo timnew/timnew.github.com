@@ -2,8 +2,7 @@ layout: post
 title: Embed CodePen snippet in Hexo
 comments: true
 categories:
-  - Package
-  - Node.js
+  - Package  
   - Hexo
 tags:
   - hexo
@@ -13,7 +12,6 @@ tags:
   - plugin
   - codepen
   - embedded
-ribbon: Package  
 date: 2014-08-17 12:49:50
 ---
 

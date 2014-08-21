@@ -7,7 +7,9 @@ tags:
   - bash
   - shell
   - script
-categories: textmate
+categories:
+  - Practice
+  - TextMate
 comments: true
 date: 2012-04-08 08:00:00
 ---

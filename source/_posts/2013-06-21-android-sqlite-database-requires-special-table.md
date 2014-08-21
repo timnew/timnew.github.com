@@ -1,7 +1,9 @@
 layout: post
 title: Android SQLite database requires special table
 comments: true
-categories: android
+categories:
+  - Programming
+  - Android
 tags:
   - android
   - sqlite

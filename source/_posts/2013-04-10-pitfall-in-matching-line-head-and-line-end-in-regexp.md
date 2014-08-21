@@ -1,7 +1,9 @@
 layout: post
 title: Pitfall in matching line head and line end in regexp
 comments: true
-categories: regexp
+categories:
+  - Programming
+  - Regular Expression
 tags:
   - pitfall
   - regular expression
@@ -30,5 +32,3 @@ So I might rush into pitfall when user try to fool me with following input:
 Since there is a `\n` in the string, so `$` won't really match to the end of the string but actually matched to the `\n`, then the whole string become a valid input, but actually it isn't!
 
 To avoid such issue, we should stick to `\A` and `\z`, which is literally means the **the beginning of the string** and **end of the string**!
-
-

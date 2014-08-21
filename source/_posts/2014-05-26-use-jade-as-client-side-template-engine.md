@@ -1,7 +1,9 @@
 layout: post
 title: Use Jade as client-side template engine
 comments: true
-categories: jade
+categories:
+  - Programming
+  - node.js
 tags:
   - jade
   - html
@@ -33,7 +35,7 @@ html(lang="en")
     title Title  
   body
     h1 Jade - node template engine
-    #container.col      
+    #container.col
       p You are amazing
       p.
         Jade is a terse and simple
@@ -53,7 +55,7 @@ function template(locals) {
 
 As you can see, the template is translated into a JavaScript function, which contains all the HTML data. In this case, since we didn't introduce any interpolation, so the HTML content has been fully generated.
 
-The case will become more complicated when interpolation, `each`, `if` statement is introduced. 
+The case will become more complicated when interpolation, `each`, `if` statement is introduced.
 
 {% codeblock Jade template with interpolation lang:jade %}
 doctype html
@@ -66,12 +68,12 @@ html(lang="en")
     ul
       each item in items
         li= item
-        
+
     if usingJade
       p You are amazing
     else
       p Get it!
-    
+
     p.
       Jade is a terse and simple
       templating language with a
@@ -184,7 +186,7 @@ So
 module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
-    
+
     jade:
       options:
         pretty: true
@@ -206,7 +208,7 @@ module.exports = (grunt) ->
         src: ['**/_*.jade']
         dest: 'build/'
         ext: '.js'
-    
+
   grunt.loadNpmTasks('grunt-contrib-jade')  
 
 {% endcodeblock %}

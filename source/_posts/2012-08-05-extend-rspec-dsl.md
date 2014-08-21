@@ -1,9 +1,16 @@
 layout: post
 title: Extend RSpec DSL
 comments: true
-categories: rspec
+categories:
+  - Programming
+  - Ruby
 tags:
-  - rspec dsl extend test spec
+  - rspec
+  - dsl
+  - extend
+  - test
+  - spec
+  - unit test
 date: 2012-08-05 08:00:00
 ---
 I'm working on a project that need some complicated html snippets for test, which cannot be easily generated with factory. So I put these snippets into fixture files.
@@ -32,7 +39,7 @@ Then we should tell rspec to load the DSL into test cases.
 {% codeblock Load DSL lang:rb %}
 RSpec.configure do |config|
 	# ...
-	config.extend HtmlPages	
+	config.extend HtmlPages
 	# ...
 end
 {% endcodeblock %}
@@ -40,5 +47,3 @@ end
 By telling `config` to extend the module, our DSL will be loaded as the class methods of `RSpec::Core::ExampleGroup`, where `let` is being defined.
 
 HINT: Rspec config has another way to extend DSL by calling `config.include`. Then the DSL methods will be injected into the test example group instance, then these methods can be used in the test cases. That's how runtime DSLs like FactoryGirl work.
-
- 

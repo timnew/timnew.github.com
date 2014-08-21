@@ -17,7 +17,6 @@ tags:
   - tile
   - icon
   - logo
-ribbon: Programming
 date: 2014-08-18 00:04:36
 ---
 

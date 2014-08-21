@@ -1,7 +1,9 @@
 layout: post
 title: "CSS trick: Place Scrollbar outside of the client area"
 comments: true
-categories: css
+categories:
+  - Programming
+  - Web
 tags:
   - css
   - margin

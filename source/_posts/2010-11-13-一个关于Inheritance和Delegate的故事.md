@@ -1,11 +1,12 @@
 layout: post
 title: 一个关于Inheritance和Delegate的故事
 tags:
-  - Inheritance
-  - Delegate
+  - inheritance
+  - delegate
   - Cocoa
-  - History
-categories: Misc
+  - history
+categories:
+  - Thinking
 comments: true
 date: 2010-11-13 08:00:00
 ---

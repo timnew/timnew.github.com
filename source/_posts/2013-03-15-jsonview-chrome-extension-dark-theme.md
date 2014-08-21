@@ -1,15 +1,18 @@
 layout: post
 title: JSONView Chrome Extension Dark Theme
 comments: true
-categories: Theme
+categories:
+  - Package
+  - Chrome Extension
 tags:
   - JSONView
-  - Chrome Extension
-  - Theme
-  - CSS
-  - Style
-  - Consolas
-  - Dark
+  - chrome
+  - extension
+  - theme
+  - css
+  - stylesheet  
+  - consolas
+  - dark
 date: 2013-03-15 08:00:00
 ---
 [JSONView]( https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc) is a very popular JSON formatter for Chrome, which automatically prettifies the JSON content.

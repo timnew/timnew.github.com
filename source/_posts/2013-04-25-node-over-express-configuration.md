@@ -1,7 +1,9 @@
 layout: post
 title: Node over Express - Configuration
 comments: true
-categories: Node.js
+categories:
+  - Programming
+  - node.js
 tags:
   - node
   - express
@@ -53,13 +55,13 @@ For the languages I mentioned above, except for Yaml, Xml and Json, doesn’t pr
 }
 {% endcodeblock %}
 
-The previous Json snippet is a typical example of web app configuration; it has a default section to provide the default values for all environments. Three sections for specific environments. To apply it corecctly to our app, we need to load and parse the Json file to get all data first, then load the values of the default section, then override the value with the values from specific environment.  In addition, we might wish to have the validation that yields error when the provided environment doesn’t exist. 
+The previous Json snippet is a typical example of web app configuration; it has a default section to provide the default values for all environments. Three sections for specific environments. To apply it corecctly to our app, we need to load and parse the Json file to get all data first, then load the values of the default section, then override the value with the values from specific environment.  In addition, we might wish to have the validation that yields error when the provided environment doesn’t exist.
 
 This solution looks simple and seems to work, but when you try to apply this approach to your app in real life, you need to watch out some pitfalls.
 
 ## Issue 1: Confidential Values
 
-In the real world, values in configuration sometimes could be sensitive and need to be kept confidential. It could contain the credential to access your database, Or it could contain the key to decrypt the cookies. It may also contain private certificate that identifies and authenticates the app to other services. In these scenarios, you need to protect your configuration in order to avoid big trouble! 
+In the real world, values in configuration sometimes could be sensitive and need to be kept confidential. It could contain the credential to access your database, Or it could contain the key to decrypt the cookies. It may also contain private certificate that identifies and authenticates the app to other services. In these scenarios, you need to protect your configuration in order to avoid big trouble!
 
 To solve the issue, you might think about adding new feature that enable you to to encrypt confidential values or to load it from a different safe source.  To achieve it, you might need to add another layer of DSL which add more complexities to your app and make your code harder to debug or to maintain.
 
@@ -67,11 +69,11 @@ To solve the issue, you might think about adding new feature that enable you to 
 
 A solution to first issue,  one could store the environment related but sensitive data in the environment variables. The solution is simple and works perfectly, so I highly recommend it. However, to do this means you need the capability to load the value not only from Json directly but also from the environment variables.
 
-Sometimes, such as deploying your app to Heroku/Nojitsu, might give rise that make the case trickier. After deployed the app to Heroku/Nojitsu, the default values are provided in Json directly, and some of which need to be overrode with the values from environment variables or you need to do it vice versa. These tricky requirements might blow your mind and your code away easily. It causes complicated DSL design and hundreds lines of implementation, but just to load your configuration properly. Obviously it is not a good idea. 
+Sometimes, such as deploying your app to Heroku/Nojitsu, might give rise that make the case trickier. After deployed the app to Heroku/Nojitsu, the default values are provided in Json directly, and some of which need to be overrode with the values from environment variables or you need to do it vice versa. These tricky requirements might blow your mind and your code away easily. It causes complicated DSL design and hundreds lines of implementation, but just to load your configuration properly. Obviously it is not a good idea.
 
 ## Issue 3: Complicated Inheritance Relationship
 
-Scared about above cases? No, then how about complicated inheritance relationship between environments? 
+Scared about above cases? No, then how about complicated inheritance relationship between environments?
 
 In some big and complicated web apps, there might be more than 3 basic environments, such as:
 

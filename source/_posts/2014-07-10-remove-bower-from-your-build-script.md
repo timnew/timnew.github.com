@@ -1,7 +1,9 @@
 layout: post
 title: Remove Bower from your build script
 comments: true
-categories: javascript
+categories:
+  - Programming
+  - node.js
 tags:
   - bower
   - build
@@ -14,7 +16,7 @@ date: 2014-07-10 08:00:00
 ---
 ### The mysterious broken build
 
-This morning, our QA told us that `knockout`, a javascript library that we used in our web app is missing on staging environment. Then we checked the package she got from CI server, and the javascript library was indeed not included. But when we tried to generate the package on our local dev box, we found that `knockout` is included. 
+This morning, our QA told us that `knockout`, a javascript library that we used in our web app is missing on staging environment. Then we checked the package she got from CI server, and the javascript library was indeed not included. But when we tried to generate the package on our local dev box, we found that `knockout` is included.
 
 It is a big surprise to us, because we share the exact same build scripts and environment between dev-boxes and CI agents and because we manage the front-end dependencies with `bower`. In our `gulp` script, we ask `bower` to install the dependencies every time to make sure they are up to date.
 
@@ -23,7 +25,7 @@ It is a big surprise to us, because we share the exact same build scripts and en
 
 After spending hours on diagnosing the CI agents, we finally figure out the reason, a tricky story:
 
-When the Knockout maintainer released the v3.1 bower package, they made a mistake in `bower.json` config file, which packaged the `spec` folder instead of the `dist` folder. So this package is actually broken, because the main javascript file `dist/knockout.js` , described in `bower.json` doesn't exist. 
+When the Knockout maintainer released the v3.1 bower package, they made a mistake in `bower.json` config file, which packaged the `spec` folder instead of the `dist` folder. So this package is actually broken, because the main javascript file `dist/knockout.js` , described in `bower.json` doesn't exist.
 
 Later, the engineers realized they made a mistake, and they fixed the issue by releasing a new package. Maybe they think they haven't changed any script logic, so **they release the new package under the same version number**, which is the criminal who broke our builds.
 

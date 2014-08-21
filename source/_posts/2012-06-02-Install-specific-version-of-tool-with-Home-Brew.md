@@ -1,7 +1,9 @@
 layout: post
-title: Install specific version of tool with Home Brew
+title: Install specific version of tool with HomeBrew
 comments: true
-categories: homebrew
+categories:
+  - Practice
+  - Mac
 tags:
   - homebrew
   - brew
@@ -12,7 +14,7 @@ tags:
   - postgresql
 date: 2012-06-02 08:00:00
 ---
-HomeBrew is a convenient package manager for Mac user. For some reason I prefer Home Brew to Mac Ports. 
+HomeBrew is a convenient package manager for Mac user. For some reason I prefer Home Brew to Mac Ports.
 Brew has a younger package repository since it has shorter history comparing to MacPorts. Younger repository means less options. And sometime it is hard for you to install the old-fashioned tool with brew.
 
 Brew uses git to manage its formula repository, so you can list with git.
@@ -61,7 +63,7 @@ If we cannot find the specific version that we want (Such as Postgres 8.3.11). d
 Some of the old-fashioned tool which is not included in brew's master repo might be provided in version repository.
 
 Begin from Brew 0.9 provide the multiple repository support, user can use `brew tap` command to register alternative repositories besides the master repo. There are quite a some interesting alternative repos, such as versions and games.
-These official alternative repos can be found on [github](https://github.com/homebrew) 
+These official alternative repos can be found on [github](https://github.com/homebrew)
 
 The formulas in alternative repositories cannot be used directly, but luckily the official ones are included in the search result.
 

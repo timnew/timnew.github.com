@@ -1,7 +1,9 @@
 layout: post
 title: Create shortcut for your project Mingle with Chrome OmniBox
 comments: true
-categories: chrome
+categories:
+  - Practice
+  - Chrome
 tags:
   - mingle
   - chrome

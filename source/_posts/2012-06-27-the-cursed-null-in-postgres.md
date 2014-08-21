@@ -1,7 +1,9 @@
 layout: post
 title: "The \"Cursed\" NULL in postgres"
 comments: true
-categories: postgres
+categories:
+  - Programming
+  - PostgresSql
 tags:
   - postgres
   - postgresql
@@ -30,7 +32,7 @@ If you think this experiment is not convincing enough, then you can try this:
 
 {% codeblock CASE NULL lang:sql %}
 
-SELECT 
+SELECT
 	n,
 	CASE WHEN n = NULL THEN 'NULL' ELSE 'NOT NULL' END
 FROM unnest(ARRAY(NULL,1,2,3,4,5)) n
@@ -45,7 +47,7 @@ So if you replace the `n = NULL` with `n IS NULL` in previous 2 statements, you 
 
 {% codeblock SELECT NULL lang:sql %}
 
-SELECT 
+SELECT
 	n,
 	CASE WHEN n IS NULL THEN 'NULL' ELSE 'NOT NULL' END
 FROM unnest(ARRAY(NULL,1,2,3,4,5)) n
@@ -90,7 +92,7 @@ FROM
 		LEFT OUTTER JOIN Periods ON (Periods.id = Orders.period_id)
 		LEFT OUTTER JOIN Profiles ON (Profiles.id = Orders.profile_id)
 GROUP BY
-	Periods.period, 
+	Periods.period,
 	Profiles.rating
 ORDER BY
 	Periods.period,
@@ -111,7 +113,7 @@ FROM
 		LEFT OUTTER JOIN Periods ON (Periods.id = Orders.period_id)
 		LEFT OUTTER JOIN Profiles ON (Profiles.id = Orders.profile_id)
 GROUP BY
-	Periods.period, 
+	Periods.period,
 	Profiles.rating
 ORDER BY
 	Periods.period,
@@ -121,7 +123,7 @@ ORDER BY
 
 ## COALESCE
 
-The solution works fine. But in personal perspective, I don't like it, because it repeat the statement and is not concise. But luckily, the value we should deal with the the special value `NULL` and postgres has provided a group of functions to deal with `NULL`. 
+The solution works fine. But in personal perspective, I don't like it, because it repeat the statement and is not concise. But luckily, the value we should deal with the the special value `NULL` and postgres has provided a group of functions to deal with `NULL`.
 
 What we want is the function `COALESCE`, which accept a group of value as arguments, and returns the first not null value.
 So we can simplify our statement with this super function:
@@ -137,7 +139,7 @@ FROM
 		LEFT OUTTER JOIN Periods ON (Periods.id = Orders.period_id)
 		LEFT OUTTER JOIN Profiles ON (Profiles.id = Orders.profile_id)
 GROUP BY
-	Periods.period, 
+	Periods.period,
 	Profiles.rating
 ORDER BY
 	Periods.period,
@@ -151,5 +153,5 @@ Besides `COALESCE` function, there is another function called `NULLIF`, which mi
 According to postgres document, the function might behave in a totally opposite way than you expected.
 
 {% blockquote postgres http://www.postgresql.org/docs/9.2/static/functions-conditional.html#FUNCTIONS-NULLIF[Postgres 9.2 Doc] %}
-The NULLIF function returns a null value if value1 equals value2; otherwise it returns value1. This can be used to perform the inverse operation of the COALESCE	
+The NULLIF function returns a null value if value1 equals value2; otherwise it returns value1. This can be used to perform the inverse operation of the COALESCE
 {% endblockquote %}

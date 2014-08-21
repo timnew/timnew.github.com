@@ -1,7 +1,9 @@
 layout: post
 title: Reuse Android built-in Bluetooth Device Picker
 comments: true
-categories: android
+categories:
+  - Programming
+  - Android
 tags:
   - android
   - bluetooth

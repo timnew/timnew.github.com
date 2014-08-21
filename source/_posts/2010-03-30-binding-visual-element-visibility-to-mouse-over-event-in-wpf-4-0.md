@@ -2,12 +2,13 @@ layout: post
 title: Binding Visual Element Visibility to Mouse Over Event in WPF 4.0
 tags:
   - WPF
-  - Event
+  - event
   - XAML
   - UI
-  - Binding
-  - Data Binding
-categories: WPF
+  - binding  
+categories:
+  - Programming
+  - WPF
 comments: true
 date: 2010-03-30 08:00:00
 ---
@@ -38,14 +39,14 @@ Then we need BooleanToVisibilityConverter to convert the bool type value to Visi
                     <TextBlock Name="HeaderDescription"
                                Margin="10,0,0,0"
                                Text="{Binding Description}"
-                               Foreground="Green" 
+                               Foreground="Green"
                                Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}, Path=IsMouseOver, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </Expander.Header>
 
 
-            <ListBox 
-                DataContext="{Binding Properties}" 
+            <ListBox
+                DataContext="{Binding Properties}"
                 ItemsSource="{Binding}"
                 IsSynchronizedWithCurrentItem="True"/>
         </Expander>

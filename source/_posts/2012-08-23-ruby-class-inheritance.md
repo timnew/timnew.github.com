@@ -1,7 +1,9 @@
 layout: post
 title: Ruby Class Inheritance
 comments: true
-categories: ruby
+categories:
+  - Programming
+  - Ruby
 tags:
   - inheritance
   - ruby

@@ -1,7 +1,9 @@
 layout: post
 title: Chrome Extension RPC Router
 comments: true
-categories: chrome
+categories:
+  - Programming
+  - Chrome
 tags:
   - chrome
   - extension
@@ -22,14 +24,14 @@ There are several approaches to resolve the limitation. Since API allow multiple
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
   if(message.type != 'reloadData')
     return;
-  
+
   // reload data logic here
 });
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
   if(message.type != 'updateBrowerAction')
     return;
-  
+
   // update browser action logic here
 });
 

@@ -1,7 +1,9 @@
 layout: post
 title: "Pitfall in fs.watch: fs.watch fails when switch from TextMate to RubyMine"
 comments: true
-categories: node.js
+categories:
+  - Programming
+  - node.js
 tags:
   - node.js
   - fs.watch
@@ -58,7 +60,7 @@ This workflow ensures that the content is fully written or not written. So in a 
 
 And on the other hand, according to Node.js document of `fs.watch`, node uses `kqueue` on Mac to implement this behavior.  
 And according to `kqueue` document, it uses `file descriptor` as identifier, and `file descriptor` is bound to the file itself rather than its path. So when the file is renamed, we will keep to track the file with new name. That's why we lost the status of the file after the first 'rename' event.  
-And in our case, we actually wish to identify the file by file path rather than by 'file descriptor'. 
+And in our case, we actually wish to identify the file by file path rather than by 'file descriptor'.
 
 To solve this issue, we have 2 potential solutions:
 
@@ -105,9 +107,3 @@ So you need to compare the mtime of the `fstat`, file is changed when mtime chan
 * Response time
 ** `fs.watch` uses `event`, which captures the "change" almost in realtime.
 ** `fs.watchFile` uses 'polling', which might differed for a period of time. By default, the maximum could be 5s.
-
- 
-
-
-
-

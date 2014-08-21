@@ -2,7 +2,9 @@ layout: post
 title: Migrate Blog to Hexo
 comments: true
 date: 2014-08-12 22:59:14
-categories: blog
+categories:
+  - Practice
+  - Hexo
 tags:
   - blog
   - hexo

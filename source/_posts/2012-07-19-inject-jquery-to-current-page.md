@@ -1,9 +1,11 @@
 layout: post
 title: Inject jQuery to current page
 comments: true
-categories: browser
+categories:
+  - Practice
+  - Web
 tags:
-  - jquery
+  - jQuery
   - browser
   - javascript
   - bookmark

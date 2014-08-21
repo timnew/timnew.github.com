@@ -1,7 +1,9 @@
 layout: post
 title: Atom Editor
 comments: true
-categories: atom
+categories:
+  - Practice
+  - Atom
 tags:
   - atom
   - editor

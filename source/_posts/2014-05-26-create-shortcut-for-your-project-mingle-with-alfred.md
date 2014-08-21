@@ -1,7 +1,9 @@
 layout: post
 title: Create shortcut for your project Mingle with Alfred
 comments: true
-categories: alfred
+categories:
+  - Practice
+  - Mac
 tags:
   - mingle
   - Alfred

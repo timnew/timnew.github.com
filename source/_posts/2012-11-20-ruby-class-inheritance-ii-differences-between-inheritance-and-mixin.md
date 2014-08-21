@@ -1,7 +1,9 @@
 layout: post
 title: "Ruby Class Inheritance II: Differences between inheritance and mixin"
 comments: true
-categories: Ruby
+categories:
+  - Programming
+  - Ruby
 tags:
   - Ruby
   - Class
@@ -26,12 +28,12 @@ In this piece of code, we can figure out that the class `User` inherited the met
 If you write the following code, it should works fine:
 
 {% codeblock Simple Class lang:ruby %}
-class Base 
+class Base
   def self.foo
     bar_result = new.bar
     "foo #{bar_result}"
   end
-  
+
   def bar
     'bar'
   end
@@ -56,7 +58,7 @@ module Base
     bar_result = new.bar
     "foo #{bar_result}"
   end
-  
+
   def bar
     'bar'
   end
@@ -92,13 +94,13 @@ module Base
       "foo #{bar_result}"
     end
   end
-  
+
   def bar
     'bar'
   end
-  
-  private 
-  
+
+  private
+
   def self.included(mod)
     mode.extend ClassMethods
   end
@@ -111,4 +113,3 @@ end
 Dervied.new.bar.should == 'bar' # Passed
 Dervied.foo.should == 'foo bar' # Passed
 {% endcodeblock %}
-

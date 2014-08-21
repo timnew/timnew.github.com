@@ -3,7 +3,7 @@ title: Trick to use CoffeeScript in Hexo
 comments: true
 categories:
   - Programming
-  - Hexo
+  - node.js
 tags:
   - hexo
   - plug-in
@@ -11,7 +11,6 @@ tags:
   - coffee
   - hack
   - trick
-ribbon: Programming
 date: 2014-08-18 18:19:44
 ---
 

@@ -1,7 +1,9 @@
 layout: post
 title: Pitfall in node crypto and base64 encoding
 comments: true
-categories: node.js
+categories:
+  - Programming
+  - node.js
 tags:
   - node.js
   - pitfall
@@ -33,17 +35,17 @@ NzksODAsODEsODIsODMsODQsODUsODYsODcsODgsODksOTAsOTEsOTIsOTMs
 OTQsOTUsOTYsOTcsOTgsOTksMTAw
 {% endcodeblock %}
 
-The `Base64#decode64` class ignores the `line break (\n)` when parsing the base64 encoded data, so the `line break` won't pollute the data. 
+The `Base64#decode64` class ignores the `line break (\n)` when parsing the base64 encoded data, so the `line break` won't pollute the data.
 
 ### Node.js
 
-Node.js take `Base64` as one of the 5 standard encodings (`ascii`, `utf8`, `base64`, `binary`, `hex`). Ideally the data or string can be transcoded between these 4 encodings without data loss. 
+Node.js take `Base64` as one of the 5 standard encodings (`ascii`, `utf8`, `base64`, `binary`, `hex`). Ideally the data or string can be transcoded between these 4 encodings without data loss.
 
 The `Buffer` class is the simplest way to transcode the data:
 
 {% codeblock Base64 Encoder in Node.js lang:coffeescript %}
 
-Base64 = 
+Base64 =
   encode64: (text) ->
     new Buffer(text, 'utf8').toString('base64')
 
@@ -78,12 +80,12 @@ crypto = require('crypto')
 
 parse = (data, algorithm, key, iv) ->
   decipher = crypto.createDecipheriv(algorithm, key, iv)
-  
+
   decrypted = decipher.update(data, 'base64', 'utf8') # Set input encoding to 'base64' to ask API to base64 decode the input before decryption
   decrypted += dechiper.final('utf8')
-  
+
   JSON.parse(decrypted)
-  
+
 {% endcodeblock %}
 
 {% codeblock Manually Base64 Decoding lang:coffeescript%}
@@ -92,12 +94,12 @@ crypto = require('crypto')
 
 parse = (data, algorithm, key, iv) ->
   decipher = crypto.createDecipheriv(algorithm, key, iv)
-  
+
   binary = new Buffer(data,'base64') # Manually Base64 Decode
-  
+
   decrypted = decipher.update(binary, 'binary', 'utf8') # Set input encoding to 'binary'
   decrypted += dechiper.final('utf8')
-  
+
   JSON.parse(decrypted)
 
 {% endcodeblock %}

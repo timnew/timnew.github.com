@@ -1,7 +1,9 @@
 layout: post
 title: "Upgrading DSL From CoffeeScript to JSON: Part.2. Redefine DSL behavior"
 comments: true
-categories: javascript
+categories:
+  - Programming
+  - JavaScript
 tags:
   - dsl
   - upgrading
@@ -23,7 +25,7 @@ Since most of the change of DSL is happened on representation instead of structu
 Here is a snippet of V1 DSL
 
 {% codeblock Ver 1 DSL snippet lang:coffeescript %}
-AdKiller.run -> 
+AdKiller.run ->
 
   @host 'imagetwist.com', ->
     @clean('#myad', '#popupOverlay')
@@ -68,7 +70,7 @@ AdKiller.run ->
       @clean('#logo')
       @safeRevealImg('#container img[class]')
 
-{% endcodeblock %}   
+{% endcodeblock %}
 
 In version 1 implementation, `@host` defines the sites. And in the block of `@host` method, `@click`, `@clean`, `@revealImg` methods define the actions for the sites. The `@host` method instantiate new instance of `Cleaner`. The code block is invoked when cleaner is triggered, which does the actually cleaning.
 
@@ -129,7 +131,7 @@ AdKiller.run ->
   @host 'imagetwist.com', ->
     @clean('#myad', '#popupOverlay')
     @revealImg('.pic')
-  
+
   # ...
 {% endcodeblock %}
 

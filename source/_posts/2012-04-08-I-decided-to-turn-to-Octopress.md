@@ -4,7 +4,8 @@ tags:
   - jekyll
   - octopress
   - highlight
-categories: Thinking
+categories:
+  - Thinking
 comments: true
 date: 2012-04-08 08:00:00
 ---

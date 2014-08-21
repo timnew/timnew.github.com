@@ -1,7 +1,9 @@
 layout: post
 title: The battle between Game developers and Game Hackers - Part.1 How HiddenInt works
 comments: true
-categories: game hack
+categories:
+  - Cracking
+  - Game
 tags:
   - Oxeye
   - Harvest
@@ -27,7 +29,7 @@ Here is the psudo-code explains how the it works:
 {% codeblock HiddenInt Psudo implementation lang:csharp %}
 
 class HiddenInt {
-  
+
   private int mask;
   private int hashedValue;
   private Random maskGenerator;
@@ -64,11 +66,10 @@ class HiddenInt {
 
 So from the code, you can see, the plain value is never got stored in memory. Instead, it stored a "hashed" value, which is the plain value xor a random generated mask. And every time, when either the value being read or written, the mask changes. This kills the almost all kind of memory scanning features in all kind of game hacking tool! You cannot find the plain value in the memory, so you have to use "fuzzy scan", which detects the values changes instead of scanning specific value. Again, the data in memory keeps changing even when the value doesn't (I'll explain why it happens later), so "fuzzy scan" doesn't work either here!! That's a master kill!
 
-Besides of keeping mask changing, it also keeps reading the value out and writing it back, which kills most game editing tool "value frozen" feature! Unless you can ensure you freeze the `mask` and `hashed value` at the same time, or it breaks the value! Since the reading and writing happen in a very high frequency (Again I'll explain why it happens later), so you have to lock down the value at a specific point, or the locked value will be overwritten immediately. 
+Besides of keeping mask changing, it also keeps reading the value out and writing it back, which kills most game editing tool "value frozen" feature! Unless you can ensure you freeze the `mask` and `hashed value` at the same time, or it breaks the value! Since the reading and writing happen in a very high frequency (Again I'll explain why it happens later), so you have to lock down the value at a specific point, or the locked value will be overwritten immediately.
 
-Furthermore, since this value is the key game value, which is displayed on Game UI all the time, the `getValue()` is called every time when game UI renders! And usually game UI renders in at least 60fps. So the value is read 60 times per second, and the mask changes 60 times per second! (This is why the value keep changing in a high frequency!) 
+Furthermore, since this value is the key game value, which is displayed on Game UI all the time, the `getValue()` is called every time when game UI renders! And usually game UI renders in at least 60fps. So the value is read 60 times per second, and the mask changes 60 times per second! (This is why the value keep changing in a high frequency!)
 
 So this is the almost invincible way to keep key game state data safe from common game hacking tools!
 
 In the next post, I'll explain how to find out a bypass to this security mechanism!
-

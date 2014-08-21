@@ -1,7 +1,9 @@
 layout: post
 title: Some tricky ways to calculate integer in javascript
 comments: true
-categories: javascript
+categories:
+  - Programming
+  - JavaScript
 tags:
   - javascript
   - integer
@@ -13,7 +15,7 @@ date: 2013-02-24 08:00:00
 Javascript is famous for its lack of preciseness, so it always surprises and make joke with the developers by breaking the common sense or instinct.
 
 Javascript doesn't provide `integer` type, but in daily life, `integer` sometimes is necessary, then how can we convert a trim a float number into integer in Javascript?  
-Some very common answers might be `Math.floor`, `Math.round` or even `parseInt`. But besides calling Math functions, is there any other answer? 
+Some very common answers might be `Math.floor`, `Math.round` or even `parseInt`. But besides calling Math functions, is there any other answer?
 
 The answer is bitwise operations. Amazing? Yes. Because bitwise operations are usually only applied to integers, so Javascript will try to convert the `number` into `"integer"` internally when a bitwise operation is applied, even it is still represented in type of `number`
 
@@ -47,4 +49,3 @@ All approaches listed before are working, but with different performance. And ac
 7. `integer = parseInt(value);`
 
 NOTE: The test cases are running in Chrome 24.0.1312.57 on Mac OS X 10.8.2
-

@@ -1,7 +1,9 @@
 layout: post
 title: Atom Editor Background Image
 comments: true
-categories: atom
+categories:
+  - Practice
+  - Atom
 tags:
   - editor
   - atom

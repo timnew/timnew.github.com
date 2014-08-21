@@ -1,7 +1,9 @@
 layout: post
 title: Pitfall in copy table in Postgres
 comments: true
-categories: postgres
+categories:
+  - Programming
+  - PostgresSql
 tags:
   - postgres sequence id
 date: 2012-11-27 08:00:00
@@ -20,7 +22,7 @@ After some manually tests, we found we also got error when create entry with raw
 And the problem is caused because of the primary key, which is a auto-generated id.
 
 Postgres introduces the `Sequence` to generate the auto-increase index. Sequence remember the last index number it generated, and calculate the new index by +1.  
-During the data migration, we copy the data rows from another table to a new table. To keep the relationship between records, we also copied the primary key in the row. As a result, although we had inserted a number of records into the table, but the sequence binding to the primary key doesn't been updated. 
+During the data migration, we copy the data rows from another table to a new table. To keep the relationship between records, we also copied the primary key in the row. As a result, although we had inserted a number of records into the table, but the sequence binding to the primary key doesn't been updated.
 
 For example, we have inserted the following 3 entries:
 

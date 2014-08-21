@@ -1,24 +1,26 @@
 layout: post
-title: Mac OS X Case Insentive Filename Pitfall
+title: Mac OS X case-insensitive file system pitfall
 comments: true
-categories: Mac
+categories:
+  - Practice
+  - git  
 tags:
   - Mac
-  - OSX
-  - Case Insensitve
-  - File Name
-  - Pitfall
-  - Asset Pipeline
-  - Node.js
-  - Asset
-  - JavaScript
-  - Snockets
-  - Connect-Assets
+  - case insensitive
+  - file system
+  - file name
+  - pitfall
+  - asset pipeline
+  - node.js
+  - asset
+  - javascript
+  - snockets
+  - connect-assets
 date: 2013-04-18 08:00:00
 ---
 I was working on the YouTube video playback feature for [LiveHall](http://live-hall.herokuapp.com) last night, and have it works successfully on my local devbox, which is running Mac OS X. Then I deployed the code to Heroku, without any regression.
 
-But today morning, when I have the demonstrate the new features, I met server error! It says 1 of the 4 javascripts are missing, so the Jade template failed to render. 
+But today morning, when I have the demonstrate the new features, I met server error! It says 1 of the 4 javascripts are missing, so the Jade template failed to render.
 
 This is a very wield issue, then I try the same data on my local dev box once again, and it works perfect! But it does yield error on the production!   Then I tried to use heroku toolbelt to run ls command on the production, and I found the there are 4 coffee scripts there.  
 Then I tried to enforce heroku to redeploy the app by using `git push --force`, but the issue remains!  
@@ -39,7 +41,7 @@ This problem is more common when coding on Windows, but CI or production runs on
 
 But I found another more easier way to do it:
 
-Using `git mv` in terminal to rename the file, which will enforce git to track the file renaming action. 
+Using `git mv` in terminal to rename the file, which will enforce git to track the file renaming action.
 
 Or
 

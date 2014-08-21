@@ -2,14 +2,16 @@ layout: post
 title: Sync Notify Pattern for WPF Cross Thread View Model
 tags:
   - WPF
-  - Data Binding
+  - binding
   - "C#"
   - MVVM
   - UI
-  - Multithread
-  - View Model
-  - Thread
-categories: WPF
+  - multithread  
+  - view model
+  - thread
+categories:
+  - Programming
+  - WPF
 comments: true
 date: 2011-04-29 08:00:00
 ---
@@ -25,14 +27,14 @@ Typically, you might implement the `INotifyPropertyChanged` in following way:
 
 {% codeblock INofityPropertyChanged Implementation lang:csharp %}
         #region INotifyPropertyChanged Members
- 
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void Notify(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
- 
+
         #endregion
 {% endcodeblock %}
 
@@ -48,7 +50,7 @@ And you might implement the property of view model as following:
             {
                 if (viewModelPropertyBackField == value)
                     return;
- 
+
                 viewModelPropertyBackField = value;
                 Notify("ViewModelProperty");
             }
@@ -60,14 +62,14 @@ This implementation works perfect in single thread context , but fails in multi-
 
 {% codeblock SyncNotify lang:csharp %}
         #region Sync INotifyPropertyChanged Members
- 
+
         protected void SyncNotify(string propertyName, bool wait = false, Dispatcher dispatcher = null)
         {
             if (PropertyChanged == null)
                 return;
- 
+
             dispatcher = dispatcher ?? System.Windows.Threading.Dispatcher.CurrentDispatcher;
- 
+
             if (dispatcher.Thread == Thread.CurrentThread)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
@@ -84,7 +86,7 @@ This implementation works perfect in single thread context , but fails in multi-
                 }
             }
         }
- 
+
         #endregion
 {% endcodeblock %}
 
@@ -102,9 +104,9 @@ In such cases, you need the following implementation powered by extension method
             Contract.Requires<ArgumentNullException>(host != null);
             Contract.Requires<ArgumentException>(string.IsNullOrWhiteSpace(propertyName));
             Contract.Requires<ArgumentNullException>(eventRaiser != null);
- 
+
             dispatcher = dispatcher ?? System.Windows.Threading.Dispatcher.CurrentDispatcher;
- 
+
             if (dispatcher.Thread == Thread.CurrentThread)
             {
                 eventRaiser(new PropertyChangedEventArgs(propertyName));
@@ -121,15 +123,15 @@ In such cases, you need the following implementation powered by extension method
                 }
             }
         }
- 
+
         public static void SyncNotify(this INotifyPropertyChanged host, string propertyName, Action<string> eventRaiser, bool wait = false, Dispatcher dispatcher = null)
         {
             Contract.Requires<ArgumentNullException>(host != null);
             Contract.Requires<ArgumentException>(string.IsNullOrWhiteSpace(propertyName));
             Contract.Requires<ArgumentNullException>(eventRaiser != null);
- 
+
             dispatcher = dispatcher ?? System.Windows.Threading.Dispatcher.CurrentDispatcher;
- 
+
             if (dispatcher.Thread == Thread.CurrentThread)
             {
                 eventRaiser(propertyName);
@@ -146,15 +148,15 @@ In such cases, you need the following implementation powered by extension method
                 }
             }
         }
- 
+
         public static void SyncNotify(this INotifyPropertyChanged host, string propertyName, Action<object, PropertyChangedEventArgs> eventRaiser, bool wait = false, Dispatcher dispatcher = null)
         {
             Contract.Requires<ArgumentNullException>(host != null);
             Contract.Requires<ArgumentException>(string.IsNullOrWhiteSpace(propertyName));
             Contract.Requires<ArgumentNullException>(eventRaiser != null);
- 
+
             dispatcher = dispatcher ?? System.Windows.Threading.Dispatcher.CurrentDispatcher;
- 
+
             if (dispatcher.Thread == Thread.CurrentThread)
             {
                 eventRaiser(host, new PropertyChangedEventArgs(propertyName));
@@ -171,15 +173,15 @@ In such cases, you need the following implementation powered by extension method
                 }
             }
         }
- 
+
         public static void SyncNotify(this INotifyPropertyChanged host, string propertyName, Action<object, string> eventRaiser, bool wait = false, Dispatcher dispatcher = null)
         {
             Contract.Requires<ArgumentNullException>(host != null);
             Contract.Requires<ArgumentException>(string.IsNullOrWhiteSpace(propertyName));
             Contract.Requires<ArgumentNullException>(eventRaiser != null);
- 
+
             dispatcher = dispatcher ?? System.Windows.Threading.Dispatcher.CurrentDispatcher;
- 
+
             if (dispatcher.Thread == Thread.CurrentThread)
             {
                 eventRaiser(host, propertyName);

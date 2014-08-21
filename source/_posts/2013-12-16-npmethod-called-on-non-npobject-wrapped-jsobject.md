@@ -1,7 +1,9 @@
 layout: post
 title: NPMethod called on non-NPObject wrapped JSObject
 comments: true
-categories: javascript
+categories:
+  - Programming
+  - Android
 tags:
   - js
   - browser
@@ -26,13 +28,13 @@ The `irBlaster` object contains several methods, and js will invoke the specific
 {% codeblock Script that handles the button click in HTML lang:coffeescript %}  
   onIrButtonClicked: (e) =>
     $button = $(e.currentTarget)
-    type = $button.data('irType')    
-    
+    type = $button.data('irType')
+
     sendFunc = irBlaster[type]
 
     code = @parseCode($button.data('irCode'))
-    length = $button.data('irLength')      
-    
+    length = $button.data('irLength')
+
     sendFunc(length, code)
 {% endcodeblock %}
 
@@ -46,16 +48,16 @@ After several try, I found the following code works fine, but original one doesn
 {% codeblock Code works lang:coffeescript %}
   onIrButtonClicked: (e) =>
     $button = $(e.currentTarget)
-    type = $button.data('irType')    
-    
-    switch irBlaster[type] 
+    type = $button.data('irType')
+
+    switch irBlaster[type]
       when 'NEC'
 
         code = @parseCode($button.data('irCode'))
-        length = $button.data('irLength')      
-        
+        length = $button.data('irLength')
+
         irBlaster.NEC(length, code)
-      
+
       .
       .
       .
@@ -73,13 +75,13 @@ So the issue can be resolved as following code by invoking the method in a "refl
 {% codeblock Invoking native binding object with context provided in HTML lang:coffeescript %}
   onIrButtonClicked: (e) =>
     $button = $(e.currentTarget)
-    type = $button.data('irType')    
-    
+    type = $button.data('irType')
+
     sendFunc = irBlaster[type]
 
     code = @parseCode($button.data('irCode'))
-    length = $button.data('irLength')      
-    
+    length = $button.data('irLength')
+
     sendFunc.call(irBlaster, length, code)
 {% endcodeblock %}
 

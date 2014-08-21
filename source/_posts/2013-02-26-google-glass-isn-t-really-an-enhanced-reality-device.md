@@ -1,13 +1,14 @@
 layout: post
 title: "Google Glass isn't really an enhanced reality device"
 comments: true
-categories: Google Glass
+categories:
+  - Thinking
 tags:
-  - Google
-  - Glass
-  - Enhanced Reality
-  - Projection
-  - Focus
+  - google
+  - glass
+  - enhanced reality
+  - projection
+  - focus
 date: 2013-02-26 08:00:00
 ---
 Just watched [a demo of Google Glass](http://youtu.be/V6Tsrg_EQMw), which provides a close view of the experience of using Google Glass in daily life.

@@ -1,11 +1,13 @@
 layout: post
 title: HTML codes to put special characters on your Web page
 tags:
-  - Encoding
-  - Html
-  - Escape
-  - Unicode
-categories: CSharp
+  - encoding
+  - html
+  - escape
+  - unicode
+categories:
+  - Programming
+  - C#
 comments: true
 date: 2012-02-04 08:00:00
 ---
@@ -27,7 +29,7 @@ date: 2012-02-04 08:00:00
 `(304 items)`
 
 <table>
-	<tr><th>Key</th><th>Value</th></tr> 
+	<tr><th>Key</th><th>Value</th></tr>
 	<tr><td>A</td><td>A</td></tr>
 	<tr><td>a</td><td>a</td></tr>
 	<tr><td>À</td><td>&amp;#192;</td></tr>

@@ -1,7 +1,9 @@
 layout: post
 title: "Weird! \"def\" behaves different in class_eval and instance_eval"
 comments: true
-categories: ruby
+categories:
+  - Programming
+  - Ruby
 tags:
   - ruby
   - meta programming
@@ -62,7 +64,7 @@ $context.should == Foo
 
 Here we can found that method foo goes into the `Foo` class itself, rather than `Foo`'s instance! But the $context is still `Foo` class!
 
-So in a word, calling `def foo` in `instance_eval` block is equivalent to calling 'def self.foo' in `class_eval` block, even though the context of both block are the class itself. 
+So in a word, calling `def foo` in `instance_eval` block is equivalent to calling 'def self.foo' in `class_eval` block, even though the context of both block are the class itself.
 So we can figure out that keyword `def` works different than method `define_method` and `define_singleton_method`, since it doesn't depend on self, but the two methods does!
 
 To me it is kind of hard to understand. and confusing. And I think it is not a good design!
@@ -77,7 +79,7 @@ definition_block = Proc.new do
   def foo
     :foo
   end
-  
+
   define_method :bar do
     :bar
   end

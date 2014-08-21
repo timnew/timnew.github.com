@@ -1,7 +1,9 @@
 layout: post
 title: Start Acitivity in background on Android 4.4 KitKat
 comments: true
-categories: android
+categories:
+  - Programming
+  - Android
 tags:
   - android
   - activity
@@ -61,7 +63,7 @@ public class BaseActivity extends FragmentActivity {
 Then when I start the start the `SplashActivity`, I'll put the `isPaused` value into the intent.
 
 {% codeblock Add flag when start activity lang:java %}
-    
+
 Intent intent = new Intent(activity, SplashActivity.class);
 
 boolean isStartingFromBackgroundActivity = activity.isPaused();
@@ -74,14 +76,14 @@ startActivity(intent);
 And check isPaused value in `onCreate` callback in `SplashAcitivity`, and push the `SplashAcitivty` to background if the value is true.
 
 {% codeblock Check flag when activity is created lang:java %}
-    
+
 @Override
 public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     if (isStartedFromBackgroundActivity())
         moveTaskToBack(true);
-    
+
 }
 
 private boolean isStartedFromBackgroundActivity() {

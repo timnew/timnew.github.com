@@ -6,7 +6,9 @@ tags:
   - cpu
   - disk
   - memory
-categories: Bash
+categories:
+  - Practice
+  - DevOps
 comments: true
 date: 2012-04-08 08:00:00
 ---

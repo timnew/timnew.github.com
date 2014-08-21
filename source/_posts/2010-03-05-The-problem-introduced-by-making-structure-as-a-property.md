@@ -1,11 +1,13 @@
 layout: post
 title: The problem introduced by making structure as a property
 tags:
-  - "C#"
+  - C#
   - WPF
   - XAML
   - .net
-categories: WPF
+categories:
+  - Programming
+  - WPF
 comments: true
 date: 2010-03-05 08:00:00
 ---
@@ -23,7 +25,7 @@ public class Foo
         MyProperty = RND.Next();
         Complex.Init(); // Complex is value type, which is automatically instantiated by default constructor.
     }
-    
+
     [Ambient]
     public int Value { get; private set; }
 
@@ -52,7 +54,7 @@ So I can create a test instance of Foo by calling Foo(int a), e.g:
 Foo foo = new Foo(1);
 {% endcodeblock %}
 
-But since Xaml doesn't support serialize fields, I cannot apply AmbientAttribute to field, so the compiling fails. So I changed the field Complex of Class Foo to a property:
+But since `Xaml` doesn't support serialize fields, I cannot apply AmbientAttribute to field, so the compilation fails. So I changed the field Complex of Class Foo to a property:
 
 {% codeblock Change Field to Property lang:csharp %}
 [Ambient]
@@ -68,7 +70,6 @@ I believe that the problem must be special behavior related to ValueType. So I o
 //Complex.Init();
 this.Complex.Temp = Guid.NewGuid();
 {% endcodeblock %}
-
 
 Compiles fails!  Visual Studio tells me "Cannot modify the return value of 'structTest.Foo.Complex' because it is not a variable"
 

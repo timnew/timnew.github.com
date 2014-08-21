@@ -1,13 +1,15 @@
 layout: post
 title: Plants vs Zombie Cheat Engine +3 Trainer
 tags:
-  - PVZ
+  - Plants vs Zomebie
+  - game
+  - cheat engine
+  - trainer
+  - cheat
+  - crack  
+categories:
+  - Cracking
   - Game
-  - Cheat Engine
-  - Trainer
-  - Cheat
-  - CHT
-categories: Game
 comments: true
 date: 2010-09-05 08:00:00
 ---
@@ -22,7 +24,7 @@ date: 2010-09-05 08:00:00
 //Collect Sunshine Cheat
 //==============================================
 [ENABLE]
-alloc(collectMoneyCheat,512) 
+alloc(collectMoneyCheat,512)
 label(collectMoneyReturn)
 label(collectMoneyOriginal)
 label(collectMoneyExit)
@@ -32,7 +34,7 @@ jmp collectMoneyCheat
 nop
 collectMoneyReturn:
 
-collectMoneyCheat: 
+collectMoneyCheat:
 cmp [eax+00005578],FFFF  // Overflow protection
 jge collectMoneyExit
 mov ecx, 8FF
@@ -55,7 +57,7 @@ add [eax+00005578],ecx
 //==============================================
 [ENABLE]
 
-alloc(consumeMoneyCheat,512) 
+alloc(consumeMoneyCheat,512)
 label(consumeMoneyReturn)
 label(consumeMoneyOriginal)
 label(consumeMoneyExit)
@@ -67,7 +69,7 @@ nop
 nop
 consumeMoneyReturn:
 
-consumeMoneyCheat: 
+consumeMoneyCheat:
 mov esi, FFFF //Show me the money ;)
 mov [edi+00005578],esi
 
@@ -104,7 +106,7 @@ coolDownReturn:
 
 coolDown:  
 //place your code here
-mov eax, [edi+28] 
+mov eax, [edi+28]
 mov [edi+24], eax
 
 coolDownOriginal:
@@ -115,7 +117,7 @@ coolDownExit:
 jmp coolDownReturn
 
 [DISABLE]
-dealloc(coolDown) 
+dealloc(coolDown)
 00491E4C:
 inc [edi+24]
 mov eax,[edi+24]

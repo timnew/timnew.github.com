@@ -1,7 +1,9 @@
 layout: post
 title: converting between HTML 5 data-attribute style hyphen name and javascript camcel-case name
 comments: true
-categories: javascript
+categories:
+  - Programming
+  - Web
 tags:
   - html
   - hyphen
@@ -18,7 +20,7 @@ By taking jQuery implementation as reference, I come up 2 utility functions for 
 
 {% codeblock NameConversion lang:coffeescript %}
 
-Utils = 
+Utils =
   hyphenToCamelCase: (hyphen) -> # Convert 'action-handler' to 'actionHandler'
     hyphen.replace /-([a-z])/g, (match) ->
       match[1].toUppercase()

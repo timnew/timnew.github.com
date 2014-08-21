@@ -1,7 +1,9 @@
 layout: post
 title: Pitfall in Nokogiri XPath and Namespace
 comments: true
-categories: ruby
+categories:
+  - Programming
+  - Ruby
 tags:
   - ruby
   - nokogiri

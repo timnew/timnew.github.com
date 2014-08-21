@@ -2,7 +2,7 @@ layout: post
 title: Hexo file name escape issue and solution
 comments: true
 categories:
-  - Pitfall
+  - Practice
   - Hexo
 tags:
   - hexo
@@ -12,7 +12,6 @@ tags:
   - escape
   - symbol
   - http
-ribbon: Pitfall
 date: 2014-08-20 02:49:13
 ---
 

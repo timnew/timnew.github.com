@@ -1,7 +1,9 @@
 layout: post
 title: Asset path in Android Stuidio
 comments: true
-categories: android
+categories:
+  - Programming
+  - Android
 tags:
   - android
   - assets
@@ -31,7 +33,7 @@ For the very traditional ADT build system, then the assets folder is located at 
 
 For new Gradle build system, it changed the project structure definition, which is slightly different to the ADT one.
 
-Gradle build system requires the assets folder is part of the "source code" so the asset folder should located at `<project root>/src/main/assets/`. 
+Gradle build system requires the assets folder is part of the "source code" so the asset folder should located at `<project root>/src/main/assets/`.
 
 For more detailed information, check out this [document](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure).
 
@@ -39,7 +41,7 @@ For more detailed information, check out this [document](http://tools.android.co
 
 In Android Studio (also apply to IntelliJ IDEA), things get a little bit more complicated. The assets path could be configured in project.
 
-Android Studio store this path in project file (*.iml), which is an xml file. In the project file, under the XPath `/module/component@name="FacetManager"/facet@type="android"/configuration`, there could be a `<option>` node with name `ASSETS_FOLDER_RELATIVE_PATH` to descript the path. 
+Android Studio store this path in project file (*.iml), which is an xml file. In the project file, under the XPath `/module/component@name="FacetManager"/facet@type="android"/configuration`, there could be a `<option>` node with name `ASSETS_FOLDER_RELATIVE_PATH` to descript the path.
 
 {% codeblock lang:xml %}
 	<option name="ASSETS_FOLDER_RELATIVE_PATH" value="/assets" />

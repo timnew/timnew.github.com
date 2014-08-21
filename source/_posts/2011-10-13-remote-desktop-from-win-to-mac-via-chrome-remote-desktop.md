@@ -1,10 +1,12 @@
 layout: post
 title: Remote Desktop from Win to Mac via Chrome Remote Desktop
 tags:
-  - Chrome
-  - Remote Desktop
-  - Google
-categories: GeekToy
+  - chrome
+  - remote desktop
+  - google
+  - remoting  
+categories:
+  - Geek Toy
 comments: true
 date: 2011-10-13 08:00:00
 ---

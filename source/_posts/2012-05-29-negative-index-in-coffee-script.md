@@ -1,14 +1,20 @@
 layout: post
 title: Negative Index in Coffee-Script
 comments: true
-categories: coffee-script
+categories:
+  - Programming
+  - JavaScript
+  - CoffeeScript
 tags:
-  - coffee-script
-  - negative index
+  - coffeescript
+  - array
+  - index
+  - slice
+  - negative
 date: 2012-05-29 08:00:00
 ---
 Coffee Script borrowed quite a lot syntax patterns from both Ruby and Python, especially from Ruby.
-So people, like me, usually tends to write coffee-script in ruby way. 
+So people, like me, usually tends to write coffee-script in ruby way.
 
 In ruby, we can retrieve the element in an array in reversed order by using a negative index, which means `array[-1]` returns the last element in the array. This grammar sugar is really convenient and powerful, so we can omit the code like this `array[array.length - 1]`.
 
@@ -39,7 +45,7 @@ array = [1..10]
 index = 1
 second = array[index]
 index = -index
-last = array[index] 
+last = array[index]
 {% endcodeblock %}
 
 In the previous code, because we use the variable as index, which cannot be verified in compile-time, which means we need to compile the array reference code as following:
@@ -53,5 +59,5 @@ index = -index;
 last = index >=0 ? array[index] : array[array.length + index];
 {% endcodeblock %}
 
-So every time we reference the array, we need to check whether the index is negative or not. This approach absolutely hurts the performance a lot, which in basically unacceptable. 
+So every time we reference the array, we need to check whether the index is negative or not. This approach absolutely hurts the performance a lot, which in basically unacceptable.
 So that's why coffee-script doesn't support the negative index.

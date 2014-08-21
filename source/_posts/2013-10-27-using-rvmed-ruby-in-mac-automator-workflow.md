@@ -1,7 +1,9 @@
 layout: post
 title: Using RVMed Ruby in Mac Automator Workflow
 comments: true
-categories: osx
+categories:
+  - Practice
+  - Mac
 tags:
   - ruby
   - RVM

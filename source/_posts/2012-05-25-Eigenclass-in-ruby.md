@@ -1,7 +1,9 @@
 layout: post
 title: Eigenclass in ruby
 comments: true
-categories: ruby
+categories:
+  - Programming
+  - Ruby
 tags:
   - ruby
   - meta programming
@@ -27,7 +29,7 @@ foo = Foo.new
 
 class << foo
 	# do something with the eigenclass of foo
-end 
+end
 
 {% endcodeblock %}
 
@@ -51,13 +53,13 @@ We can write this:
 {% codeblock Open eigenclass of the class lang:ruby %}
 
 class Foo
-	
+
 	class << self
 		# define class methods
 	end
-	
+
 	# define instance methods
-	
+
 end
 
 {% endcodeblock %}

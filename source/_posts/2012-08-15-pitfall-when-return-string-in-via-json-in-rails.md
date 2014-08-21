@@ -1,7 +1,9 @@
 layout: post
 title: pitfall when return string in via json in rails
 comments: true
-categories: rails
+categories:
+  - Programming
+  - Ruby
 tags:
   - json
   - rails
@@ -25,7 +27,7 @@ And here is our controller:
 
 def action
 	# do some complex logic
-	
+
 	render json: "success"
 end
 
@@ -43,7 +45,7 @@ So to fix the problem, we need to change our action code:
 
 def action
 	# do some complex logic
-	
+
 	render json: '"success"'
 end
 

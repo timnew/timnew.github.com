@@ -2,8 +2,12 @@ layout: post
 title: Handle dynamic argument in dynamic language
 comments: true
 categories:
-  - general
-tags: []
+  - Programming
+tags:
+  - dynamic
+  - programming
+  - static
+  - syntax sugar
 date: 2012-06-28 08:00:00
 ---
 In dynamic language, most language doesn't provide the function overload mechanism like static language does, which means you cannot define functions with same name but different arguments, and the language itself won't help you to dispatch the call according to the arguments.
@@ -11,7 +15,7 @@ So you have to deal with the overload by yourself in dynamic languages.
 
 In dynamic language, since you have to dispatch the call by yourself, so you can play some tricks during process the arguments. The most common trick is grammar sugar, which can help you simplify the code and increase the readability. And it is a very important feature when you're building DSL.
 
-Grammar sugar in argument means you can omit something unnecessary or unimportant parameters in specific context, then the function will try to infer and complete the parameters. For example, developer should be able to omit the password parameter if the system enable authentication mechanism. These kind of tricks are very common in dynamic language frameworks, such as jQuery.
+Syntax sugar in argument means you can omit something unnecessary or unimportant parameters in specific context, then the function will try to infer and complete the parameters. For example, developer should be able to omit the password parameter if the system enable authentication mechanism. These kind of tricks are very common in dynamic language frameworks, such as jQuery.
 
 Here is a list of some common grammar sugar cases:
 
@@ -20,13 +24,12 @@ Here is a list of some common grammar sugar cases:
 * Provide a single value rather than a complex hash, such as function jQuery ajax function `jQuery.ajax( settings )`, you can provide a url string, which is equivalent to provide a hash`{ url: <url string>}`
 * Pass a single element instead of a array of the element.
 
-After we analyze the cases, we will find that all the grammar sugar is to allow user to provide exactly same information but in different formats. Since all the data are same piece of information, so it should be possible to unify all the information into one format! Which means to support grammar sugar, the major problem is to unify the type of parameter.   
+After we analyze the cases, we will find that all the grammar sugar is to allow user to provide exactly same information but in different formats. Since all the data are same piece of information, so it should be possible to unify all the information into one format! Which means to support grammar sugar, the major problem is to unify the type of parameter.
 Besides unify the type, another important problem is to handle the null values, such as`null` and `undefined` in javascript, `nil` in ruby, etc.
 
 Here is a piece of ruby code that I parse the argument by unifying the parameter type:
 
 {% codeblock code lang:ruby %}
-
   def apply_to_items(options = nil)
     options = unify_type(options, Hash) { |items| {:only => items} }
     options[:only] = unify_type(options[:only], Array) { |item| item.nil? ? list_all_items : [item]  }
@@ -196,4 +199,3 @@ end
 {% endcodeblock %}
 
 The algorithm in previous code is language independent, so ideally, it could be reused in any language, such as java script or python.
-  

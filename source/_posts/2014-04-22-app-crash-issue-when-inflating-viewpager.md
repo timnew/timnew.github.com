@@ -1,7 +1,9 @@
 layout: post
 title: App crash issue when inflating ViewPager
 comments: true
-categories: android
+categories:
+  - Programming
+  - Android
 tags:
   - android
   - view pager
@@ -104,9 +106,9 @@ Here is the error message:
 
 {% endcodeblock%}
 
-According to the message, we can figure out that the issue is caused because Android cannot found the class `android.view.ViewPager`. 
+According to the message, we can figure out that the issue is caused because Android cannot found the class `android.view.ViewPager`.
 
-If we're careful enough, we can figure out that there is something wrong with the `ViewPager` fullname. Since `ViewPager` isn't a standard widget, so it is provided in Support Library instead in the core SDK. So it is not in the package of `android.view`, it is in the pacakge `android.support.v4.view`. 
+If we're careful enough, we can figure out that there is something wrong with the `ViewPager` fullname. Since `ViewPager` isn't a standard widget, so it is provided in Support Library instead in the core SDK. So it is not in the package of `android.view`, it is in the pacakge `android.support.v4.view`.
 
 To fix the issue, we should not reference the `ViewPager` with plain name but with the full name `android.support.v4.view.ViewPager`.
 

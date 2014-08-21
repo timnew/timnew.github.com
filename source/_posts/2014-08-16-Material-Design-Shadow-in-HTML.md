@@ -3,7 +3,7 @@ title: Material Design Shadow in HTML
 comments: true
 categories:  
   - Design
-  - Html
+  - Web
 tags:
   - Design
   - Material
@@ -15,7 +15,6 @@ tags:
   - box-shadow
 date: 2014-08-16 17:45:05
 update: 2014-08-16 18:24:30
-ribbon: Design
 ---
 
 Working on `Hexo` theme customization in past few days. And wish to borrow some concepts from Google's [Material Design].

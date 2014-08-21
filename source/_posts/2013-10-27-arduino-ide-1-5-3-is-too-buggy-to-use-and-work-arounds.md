@@ -1,7 +1,9 @@
 layout: post
 title: Arduino IDE 1.5.3 is too buggy to use and work arounds
 comments: true
-categories: arduino
+categories:
+  - Programming
+  - Arduino
 tags:
   - arduino
   - IDE
@@ -14,7 +16,7 @@ tags:
   - nano
 date: 2013-10-27 08:00:00
 ---
-The Arduino IDE 1.5.3 introduced some new features, such as support latest board Yun, or introduces new libraries and samples. But I found it is too buggy to use. 
+The Arduino IDE 1.5.3 introduced some new features, such as support latest board Yun, or introduces new libraries and samples. But I found it is too buggy to use.
 
 ## 1. Compile code against Arduino Nano fails due to parameter `mcu` passed to `avrdude` is missing.
 
@@ -30,6 +32,4 @@ Choose `Arduino Duemilanove and Diecimila` instead of `Arduino Nano`. Nano uses 
 The issue is caused because the API signature updated to `String(*, unsigned char)`, but constants are still declared as `int`.
 
 **Workaround:**  
-Add force cast `DEC`, `HEX`, `BIN` to `byte` instead of `int`. 
-
- 
+Add force cast `DEC`, `HEX`, `BIN` to `byte` instead of `int`.

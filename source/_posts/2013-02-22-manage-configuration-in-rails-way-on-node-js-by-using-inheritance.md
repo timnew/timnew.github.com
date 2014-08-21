@@ -1,7 +1,9 @@
 layout: post
 title: Manage configuration in Rails way on node.js by using inheritance
 comments: true
-categories: node.js
+categories:
+  - Programming
+  - node.js
 tags:
   - express
   - node.js
@@ -14,7 +16,7 @@ tags:
 date: 2013-02-22 08:00:00
 ---
 Application is usually required to run in different environments. To manage the differences between the environments, we usually introduce the concept of Environment Specific Configuration.  
-In Rails application, by default, Rails have provided 3 different environments, they are the well known, `development`, `test` and `production`.   
+In Rails application, by default, Rails have provided 3 different environments, they are the well known, `development`, `test` and `production`.
 And we can use the environment variable `RAILS_ENV` to tell Rails which environment to be loaded, if the `RAILS_ENV` is not provided, Rails will load the app in `development` env by default.
 
 This approach is very convenient, so we want to apply it to anywhere. But in node.js, Express doesn't provide any configuration management. So we need to built the feature by ourselves.
@@ -41,7 +43,7 @@ test:
 cucumber:
   <<: *defaults
   database: sample_app_cucumber
-  
+
 production:
   <<: *defaults
   database: sample_app_production
@@ -64,7 +66,7 @@ As an answer to these issues, I chose `coffee-script` instead of `JSON`.
 To do it, we need to solve 4 problems:
 
   1. Allow dev to declare default configuration.
-  2. Load specific configuration besides of default one. 
+  2. Load specific configuration besides of default one.
   3. Specific configuration can overrides the values in the default one.
   4. Code is concise, clean and reading-friendly.
 
@@ -81,16 +83,16 @@ config['common'] =
   encoding: "utf8"
   database: "sample_app_development"
   username: "root"
-  
+
 config['development'] = {}
-  
+
 config['test] =
   database: "sample_app_test"
-  
-config['cucumber'] = 
+
+config['cucumber'] =
   database: "sample_app_cucumber"
 
-config['production'] = 
+config['production'] =
   database: "sample_app_production"
   username: "sample_app"
   password: "secret_word"
@@ -119,19 +121,19 @@ config['common'] =
   encoding: "utf8"
   database: "sample_app_development"
   username: "root"
-  
+
 config['development'] = {}
 config['development'].__proto__ = config['common']
-  
+
 config['test] =
   __proto__: config['common']
   database: "sample_app_test"
-  
-config['cucumber'] = 
+
+config['cucumber'] =
   __proto__: config['test']
   database: "sample_app_cucumber"
 
-config['production'] = 
+config['production'] =
   __proto__: config['common']
   database: "sample_app_production"
   username: "sample_app"
@@ -156,12 +158,12 @@ class Config
   encoding: "utf8"
   database: "sample_app_development"
   username: "root"
-  
+
 class Config.development extends Config
-  
+
 class Config.test extends Config
   database: "sample_app_test"
-  
+
 class Config.cucumber extends Config
   database: "sample_app_cucumber"
 
@@ -192,7 +194,7 @@ class Common
   encoding: "utf8"
   database: "sample_app_development"
   username: "root"
-  
+
 module.exports = Common
 
 # config/envs/development.coffee
@@ -200,7 +202,7 @@ Common = require('./common')
 class Development extends Common
 
 module.exports = Development
-  
+
 # config/envs/test.coffee
 Common = require('./common')  
 class Test extends Common
@@ -209,10 +211,10 @@ class Test extends Common
 module.exports = Test
 
 # config/envs/cucumber.coffee
-Test = require('./common')    
+Test = require('./common')
 class Cucumber extends Test
   database: "sample_app_cucumber"
-  
+
 module.exports = Cucumber
 
 # config/envs/production.coffee
@@ -226,7 +228,3 @@ class Production extends Common
 module.exports = Production
 
 {% endcodeblock %}
-
-
-
-

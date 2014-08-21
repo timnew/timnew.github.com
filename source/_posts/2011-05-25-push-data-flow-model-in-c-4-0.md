@@ -3,13 +3,15 @@ title: "Push Data Flow Model in C# 4.0"
 tags:
   - "C#"
   - LINQ
-  - Push
+  - push
   - Rx
-  - Reactive Extension
-  - New Feature
-  - Data Flow
+  - reactive  
+  - library
+  - data flow  
   - FP
-categories: CSharp
+categories:
+  - Programming
+  - "C#"
 comments: true
 date: 2011-05-25 08:00:00
 ---

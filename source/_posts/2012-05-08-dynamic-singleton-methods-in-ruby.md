@@ -1,24 +1,25 @@
 layout: post
 title: Dynamic Singleton Methods in Ruby
 comments: true
-categories: ruby
+categories:
+  - Programming
+  - Ruby
 tags:
   - ruby
   - mixin
   - meta programming
-  - singleton methods
-  - mixin
+  - singleton method
   - module
 date: 2012-05-08 08:00:00
 ---
-Today, I pair with Ma Wei to refactor a piece of pre-existed code. We try to eliminate some "static methods" (in fact, there is no real static method in ruby, I use this term to describe the methods that only depends on its parameters other than any instance variables). 
+Today, I pair with Ma Wei to refactor a piece of pre-existed code. We try to eliminate some "static methods" (in fact, there is no real static method in ruby, I use this term to describe the methods that only depends on its parameters other than any instance variables).
 
 The code is like this:
 
 {% codeblock Recruiter.rb lang:ruby %}
 
 class Recruiter
-  
+
   def approve! candidates
     Candidate.transaction do
       candidates.each do |candidate|
@@ -42,24 +43,24 @@ class Recruiter
       end
     end
   end
-  
+
   # ...
   # Some other methods similar
-  
+
 end
 
 {% endcodeblock %}
 
 As you can see the class Recruiter is used as a host for the methods that manipulate the array of candidates, which is a strong bad smell . So we decide to move these methods to their context class.
 
-In Java or C#, the solution to this smell is quite obvious, which could be announced as "Standard Answers": 
+In Java or C#, the solution to this smell is quite obvious, which could be announced as "Standard Answers":
 0. Mark all methods static.
 1. Create a new class named CandiateCollection.
 2. Change the type of candidates to CandidateCollection.
-3. Mark all methods non-static, and move it to CandidateCollection class. 
+3. Mark all methods non-static, and move it to CandidateCollection class.
 If you use Resharper or IntelliJ enterprise version, then the tool can even do this for you.
 
-But in ruby world, or even in dynamic language world, we don't like to create so many classes, especially these "strong-typed collection". I wish I could inject these domain related methods to the array instance when necessary, which is known as "singleton methods" in ruby. 
+But in ruby world, or even in dynamic language world, we don't like to create so many classes, especially these "strong-typed collection". I wish I could inject these domain related methods to the array instance when necessary, which is known as "singleton methods" in ruby.
 To achieve this, I might need the code like this:
 
 {% codeblock Singleton Methods lang:ruby %}
@@ -67,15 +68,15 @@ To achieve this, I might need the code like this:
 def wrap_array array
 	def array.approve!
 		# ...
-	end 
-	
+	end
+
 	def array.reject!
 		# ...
 	end
-	
+
  	# ...
   	# Some other methods similar
-	
+
 	array
 end
 
@@ -96,19 +97,19 @@ The answer to the 1st question is easy, our solution is encapsulate these logics
 {% codeblock Module CandidateCollection lang:ruby %}
 
 module CandidateCollection
-  
-  def approve! 
+
+  def approve!
    # ...
   end
 
-  def reject! 
+  def reject!
    # ...
   end
 
-  def revoke! 
+  def revoke!
    # ...
   end
-	
+
   # ...
   # Some other methods similar
 
@@ -130,7 +131,7 @@ class Array
 	end
 	self
   end
-end 
+end
 {% endcodeblock %}
 
 In the code, we re-opened the class Array, and define a new method called `to_candidate_collection`, which is used to inject domain methods into a generic array.
@@ -163,8 +164,8 @@ end
 Candidate.scoped_by_id(candidate_ids).dynamic_inject(CandidateCollection).approve!
 {% endcodeblock %}
 
-<del>The code looks cool, but failed to run. 
-The reason is that we opened the meta class of the instance, which means we enter another level of context, so the parameter module is no longer visible. 
+<del>The code looks cool, but failed to run.
+The reason is that we opened the meta class of the instance, which means we enter another level of context, so the parameter module is no longer visible.
 To solve this problem, we need to flatten the context by using closure. So we modified the code as following:</del>
 
 {% codeblock dynamic_inject version 2 lang:ruby %}
@@ -183,7 +184,7 @@ end
 Then we call class_eval on meta class, which then mixed-in the module we want.</del>
 
 <del>Now the code is looked nice. We can dynamically inject any module into "Array" instance.
-Wait a minute, why only "Array"? We'd like to have this capability on any object! 
+Wait a minute, why only "Array"? We'd like to have this capability on any object!
 Ok, that's easy, let's move the method to Kernel module, which is mixed-in by Object class.</del>
 
 {% codeblock dynamic_inject version 3 lang:ruby %}
@@ -202,7 +203,7 @@ end
 
 **NOTICE:**
 <del>Have you noticed that we have a `self` expression at the end of the `dynamic_inject` method as return value.
-This statement is quite important! 
+This statement is quite important!
 Since we will get "undefined method error" when calling `Candidate.scoped_by_id(candidate_ids).dynamic_inject(CandidateCollection).approve!` if we missed this statement.
 We spent almost 1 hour to figure out this stupid mistake. It is really a stupid but expensive mistake!</del>
 

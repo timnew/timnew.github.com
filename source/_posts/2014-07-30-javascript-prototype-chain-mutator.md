@@ -1,7 +1,9 @@
 layout: post
 title: JavaScript Prototype Chain Mutator
 comments: true
-categories: javascript
+categories:
+  - Programming
+  - JavaScript
 tags:
   - javascript
   - prototype
@@ -21,7 +23,7 @@ In JavaScript world, JSON serialization is widely used. When fetching data from 
 
 JSON serialization is powerful and convenient, but there is limitation. For security and other reason, behavior and type information are forbidden in JSON. Functions members are removed when stringify a JavaScript object, also functions are not allowed in JSON.
 
-Comparing Yaml to Ruby, this limitation isn't that convenient when writing JavaScript application. For example, to consume the JSON data fetched via ajax from server, I really wish I can invoke some method on the deserialized model. 
+Comparing Yaml to Ruby, this limitation isn't that convenient when writing JavaScript application. For example, to consume the JSON data fetched via ajax from server, I really wish I can invoke some method on the deserialized model.
 
 Here is simple example:
 
@@ -31,7 +33,7 @@ class Rect
   constructor: (width, height) ->
     @width = width if width?
     @height = height if height?
-    
+
   area: ->
     @width * @height
 
@@ -55,7 +57,7 @@ class Rect
   constructor: (width, height) ->
     @width = width if width?
     @height = height if height?
-    
+
   area: ->
     @width * @height
 
@@ -63,8 +65,8 @@ $.get '/rect/latest', (rectJSON) ->
   rect = JSON.parse(rectJSON)
 
   mutate(rect, Rect)
-  
-  console.log rect.area() 
+
+  console.log rect.area()
 
 {% endcodeblock %}
 
@@ -72,9 +74,9 @@ The key to implement `mutate` function is to simulate `new` operator behavior, a
 
 When implementing the `mutator`, in IE, again, in the evil IE, the idea doesn't work. Before IE 11, JavaScript prototype chain for instance is not accessible. There is nothing equivalent to `object.__proto__` in IE 10 and prior. The most similar workaround is doing a hard-copy of all the members, but it still fails in type check and some dynamical usage.
 
-**Background** 
+**Background**
 
-> `object.__proto__` is a Mozilla "private" implementation until EcmaScript 6.    
+> `object.__proto__` is a Mozilla "private" implementation until EcmaScript 6.
 > It is interesting that most JavaScript support it except IE.  
 > Luckily, IE 11 introduced some features in EcmaScript 6, `object.__proto__` is one of them.
 

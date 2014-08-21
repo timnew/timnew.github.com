@@ -5,7 +5,9 @@ tags:
   - scp
   - ssh
   - server management
-categories: bash
+categories:
+  - Programming
+  - Shell
 comments: true
 date: 2012-03-15 08:00:00
 ---
@@ -32,11 +34,11 @@ else
 fi  
 exit 0
 {% endcodeblock %}
- 
+
 call the script `mscp <source file> <target dir>`, then the script will ask you the list of target servers. So you can type them one by one. If the remote user is different than you current user, you can also explicitly identify it by typeing user@server
- 
+
 Beside the previous scenario, there is a more common sceanrio, that you have got a server list stored in afile already. Then instead of type the servers line by line, you can pipe the file content to the script.
-e.g: 
+e.g:
 
 {% codeblock Read server list from file lang:bash %}
 cat server_list.txt > mscp src_files dest_path

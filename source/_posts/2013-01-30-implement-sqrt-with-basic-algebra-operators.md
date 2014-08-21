@@ -1,7 +1,9 @@
 layout: post
 title: Implement sqrt with basic algebra operators
 comments: true
-categories: algorithm
+categories:
+  - Programming
+  - Algorithm
 tags:
   - algorithm
   - facebook
@@ -56,8 +58,8 @@ def assert(expected, actual)
   end
 end
 
-def sqrt(n) 
-end 
+def sqrt(n)
+end
 
 # Start from the easiest case, the integer square root.
 assert 3, sqrt(9)
@@ -66,7 +68,7 @@ assert 3, sqrt(9)
 
 Run the code, if everything goes right, we will get a failed message as expected. Then we gonna introduce our first implementation to fix the failed test case:
 
-With the 2 additional assumptions in 1st test case, we can easily figure out a simple solution: Simply linear search the integers between the root between 1 and n. 
+With the 2 additional assumptions in 1st test case, we can easily figure out a simple solution: Simply linear search the integers between the root between 1 and n.
 
 {% codeblock 1st implementation lang:rb %}
 
@@ -80,11 +82,11 @@ def assert(expected, actual)
   end
 end
 
-def sqrt(n) 
+def sqrt(n)
   (1..n).each do |x|
     return x if x * x == n
   end
-end 
+end
 
 # Start from the easiest case, the integer square root.
 assert 3, sqrt(9)
@@ -107,12 +109,12 @@ def assert(expected, actual)
   end
 end
 
-def sqrt(n) 
+def sqrt(n)
   return 0 if n == 0
   (1..n).each do |x|
     return x if x * x == n
   end
-end 
+end
 
 # Start from the easiest case, the integer square root.
 assert 3, sqrt(9)
@@ -148,23 +150,23 @@ end
 
 def binary_search(goal, start, stop)
   mid = (stop - start) / 2 + start
-  
-  mid_square = mid * mid 
- 
+
+  mid_square = mid * mid
+
   if mid_square == goal
     return mid
   elsif mid_square > goal
     return binary_search(goal, start, mid)
   else
     return binary_search(goal, mid, stop)
-  end      
+  end
 end
 
-def sqrt(n) 
+def sqrt(n)
   return 0 if n == 0
 
   binary_search(n, 1, n)
-end 
+end
 
 # Start from the easiest case, the integer square root.
 assert 3, sqrt(9)
@@ -196,23 +198,23 @@ end
 
 def binary_search(goal, start, stop)
   mid = (stop - start) / 2 + start
-  
-  mid_square = mid * mid 
- 
+
+  mid_square = mid * mid
+
   if mid_square == goal
     return mid
   elsif mid_square > goal
     return binary_search(goal, start, mid)
   else
     return binary_search(goal, mid, stop)
-  end      
+  end
 end
 
-def sqrt(n) 
+def sqrt(n)
   return 0 if n == 0
 
   binary_search(n, 1, n)
-end 
+end
 
 # Start from the easiest case, the integer square root.
 assert 3, sqrt(9)
@@ -253,23 +255,23 @@ end
 
 def binary_search(goal, start, stop)
   mid = (stop - start) / 2 + start
-  
-  mid_square = mid * mid 
- 
+
+  mid_square = mid * mid
+
   if (mid_square - goal).abs < EPSILON
     return mid
   elsif mid_square > goal
     return binary_search(goal, start, mid)
   else
     return binary_search(goal, mid, stop)
-  end      
+  end
 end
 
-def sqrt(n) 
+def sqrt(n)
   return 0 if n == 0
 
   binary_search(n, 1, n)
-end 
+end
 
 # Start from the easiest case, the integer square root.
 assert 3, sqrt(9)
@@ -311,19 +313,19 @@ end
 
 def binary_search(goal, start, stop)
   mid = (stop - start) / 2 + start
-  
-  mid_square = mid * mid 
- 
+
+  mid_square = mid * mid
+
   if (mid_square - goal).abs < EPSILON
     return mid
   elsif mid_square > goal
     return binary_search(goal, start, mid)
   else
     return binary_search(goal, mid, stop)
-  end      
+  end
 end
 
-def sqrt(n) 
+def sqrt(n)
   return 0 if n == 0
 
   if n == 1
@@ -333,7 +335,7 @@ def sqrt(n)
   else
     return binary_search(n, n, 1)
   end
-end 
+end
 
 puts "Start from the easiest case, the integer square root."
 assert 3, sqrt(9)
@@ -384,27 +386,27 @@ end
 
 def binary_search(goal, start, stop, depth)
   mid = (stop - start) / 2 + start
-  
-  mid_square = mid * mid 
- 
+
+  mid_square = mid * mid
+
   if (mid_square - goal).abs < EPSILON
     return mid
   else
     return mid if depth >= DEPTH_LIMIT
-    
+
     if mid_square > goal
       return binary_search(goal, start, mid, depth + 1)
     else
       return binary_search(goal, mid, stop, depth + 1)
     end
-  end      
+  end
 end
 
-def sqrt(n) 
+def sqrt(n)
   return 0 if n == 0
 
   n = n.to_f
-  
+
   if n == 1
     return 1
   elsif n > 1
@@ -412,7 +414,7 @@ def sqrt(n)
   else
     return binary_search(n, n, 1, 0)
   end
-end 
+end
 
 puts "Start from the easiest case, the integer square root."
 assert 3, sqrt(9)

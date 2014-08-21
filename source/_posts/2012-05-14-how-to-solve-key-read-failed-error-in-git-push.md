@@ -1,7 +1,9 @@
 layout: post
 title: How to solve key_read failed error in git push
 comments: true
-categories: git
+categories:
+  - Practice
+  - git
 tags:
   - git
   - ssh

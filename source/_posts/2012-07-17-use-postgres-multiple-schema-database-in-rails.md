@@ -1,9 +1,16 @@
 layout: post
 title: Use Postgres Multiple Schema Database in Rails
 comments: true
-categories: rails
+categories:
+  - Programming
+  - Ruby
 tags:
-  - "rails postgres multischema schema database 'active record'"
+  - rails
+  - postgres
+  - multischema
+  - schema
+  - database
+  - active record
 date: 2012-07-17 08:00:00
 ---
 Postgres provided a very interesting feature called "Schema" in addition to other "normal" database features, which provide a extra layer between database and tables. So with schema, you can have tables with same name in one database, if they are in different schemas.
@@ -15,7 +22,7 @@ Anywho, the easiest way for me to describe PostgreSQL schemas (besides telling y
 {% endblockquote %}
 And you can find more [here](http://goo.gl/ghj4e)
 
-And there is a popular routine is to use the postgres schema for sub-domains. For example, you're a BSS provider, you rend your BBS apps to different organizations. To the organizations. they want to have its own BBS app instance running independently, the most important is that data should be stored into separated spaces, and could be accessed from its own domain name. But to you, for administration, you want they share the same backend management console. 
+And there is a popular routine is to use the postgres schema for sub-domains. For example, you're a BSS provider, you rend your BBS apps to different organizations. To the organizations. they want to have its own BBS app instance running independently, the most important is that data should be stored into separated spaces, and could be accessed from its own domain name. But to you, for administration, you want they share the same backend management console.
 In this case the best way to solve the problem is to store the data owned by different subsystem into different schemas. But store all the administration data into a single schema or even in public schema.
 The same guy Jerod has a [post](http://blog.jerodsanto.net/2011/07/building-multi-tenant-rails-apps-with-postgresql-schemas/) described how to build this kind of system in details. There are a bunch of posts described how to build the system like this, which could be found by [googling](http://goo.gl/HaByF) easily.
 And there is even a [ruby gem called apartment](https://github.com/bradrobertson/apartment) from Brad Robertson to support this kind of system
@@ -101,8 +108,8 @@ end
 
 {% endcodeblock %}
 
-The most interesting thing is if you search the reference to `@schema_search_path`, you will find it is only used as a local cache of current search_path in the adapter, and it is initialized with the value from the query `SHOW search_path;` if it is nil, and then keep the value as the cache! 
-This implementation is buggy and caused the problems described before! 
+The most interesting thing is if you search the reference to `@schema_search_path`, you will find it is only used as a local cache of current search_path in the adapter, and it is initialized with the value from the query `SHOW search_path;` if it is nil, and then keep the value as the cache!
+This implementation is buggy and caused the problems described before!
 
 If we use the SQL query to set the search path rather than calling `schema_search_path=`, we won't set the `@schema_search_path` at sametime, ideally this value will remain nil by default. Then transaction or other object in ActiveRecord call `schema_search_path` to get current search path. The first time, the variable `@@schema_search_path` is nil, and will be initialized by the value from query `SHOW search_path;` and then won't changed any more, since in the future this query won't be executed any longer.
 As a result, the schema will be switched successfully for the first time, but failed in the following.
@@ -130,7 +137,7 @@ Or you can use it in a DSL-like way:
 class SomeMigration < ActiveRecord::Migration
 include MultiSchema
 
-  def change 
+  def change
     with_in_schemas :except => :public do
       # Play around the data in one schema
     end

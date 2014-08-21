@@ -1,7 +1,9 @@
 layout: post
 title: A pitfall in jQuery form serialization
 comments: true
-categories: javascript
+categories:
+  - Programming
+  - Web
 tags:
   - pitfall
   - javascript
@@ -12,7 +14,7 @@ tags:
   - name
 date: 2012-06-21 08:00:00
 ---
-Today, I was so surprised that I got an empty string when I call the serialize method on a jQuery wrapped form. 
+Today, I was so surprised that I got an empty string when I call the serialize method on a jQuery wrapped form.
 The html is written in Haml:
 
 {% codeblock Html lang:haml %}
@@ -40,7 +42,7 @@ $ ->
 When I execute the script, I got 500 error. And the reason is that the option is empty.
 I believe this must be caused by a super silly mistake, so I try to call serialize methods on Twitter Bootstrap website, and I still got empty string!!!!
 
-After half an hour debugging, I just realize that I forgot to assign the name to all the input elements. And according to html specification, the browser uses the name of the elements to identify whom the value belongs to. 
+After half an hour debugging, I just realize that I forgot to assign the name to all the input elements. And according to html specification, the browser uses the name of the elements to identify whom the value belongs to.
 So when the name is omitted, the serailizeArray method in jQuery returns an empty array, as a result, the serialize method returns empty string.
 
 According to my experience, it is easy to identify this problem, if the html is in html-like format, such as erb. But it is really hard to identify this issue if the page is written in haml, because in haml, id is used much more often.
@@ -57,5 +59,3 @@ Here is the fixed haml code:
 		%select#end-date{ :name=>'end-date' }
 		%button#submit-option.btn.large-btn
 {% endcodeblock %}
-
-

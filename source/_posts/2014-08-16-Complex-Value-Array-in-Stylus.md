@@ -12,7 +12,7 @@ tags:
 date: 2014-08-16 23:32:38
 categories:
   - Programming
-  - Stylus
+  - Web
 ---
 
 [Stylus] is an awesome CSS pre-processor, which provides much more concise syntax and more powerful feature than its competitors, such as [LESS] or [SCSS].

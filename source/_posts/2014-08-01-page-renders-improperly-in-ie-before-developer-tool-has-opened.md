@@ -1,7 +1,9 @@
 layout: post
 title: Page renders improperly in IE before developer tool has opened
 comments: true
-categories: javascript
+categories:
+  - Programming
+  - Web
 tags:
   - javascript
   - IE
@@ -20,9 +22,9 @@ Because I cannot open developer tool, so I have to debug with `alert`. It is rea
 
 Since it is client-rich page, a lot of javascript is introduced. So I cannot go through the scripts line by line, instead I have to make an assumption to explain the phenomena spotted, then validate it with experiments, finally correct or extend the assumption according the validation result.
 
-During the process I invalidated a couple of assumptions, some of them are seems very close to the "right answer", such as "some script is loaded and executed before its dependencies, and developer tool load all the scripts first because it displays all the scripts". 
+During the process I invalidated a couple of assumptions, some of them are seems very close to the "right answer", such as "some script is loaded and executed before its dependencies, and developer tool load all the scripts first because it displays all the scripts".
 
-After spending a couple of hours on it, I put on eye on a line of code that is really out of my expectation: `console.warn`. 
+After spending a couple of hours on it, I put on eye on a line of code that is really out of my expectation: `console.warn`.
 
 {% codeblock Code breaks the page rendering lang:javascript %}
 
@@ -30,7 +32,7 @@ console.warn('__proto__ is not supported by current browser, fallback to hard-co
 
 {% endcodeblock %}
 
-I displays a warning message to console when a workaround is applied. But a tricky fact about IE 9 is that `console` isn't available until developer tool is opened ([MSDN reference here](http://msdn.microsoft.com/library/ie/bg182326(v=vs.85)))!!! 
+I displays a warning message to console when a workaround is applied. But a tricky fact about IE 9 is that `console` isn't available until developer tool is opened ([MSDN reference here](http://msdn.microsoft.com/library/ie/bg182326(v=vs.85)))!!!
 
 The fact that console is not available until developer tools is opened really blows my mind away! (Maybe it is because I have little experience work with IE). As a chrome user, I take console as the universal log system for javascript. But in IE, according to the [document](http://msdn.microsoft.com/library/ie/bg182326(v=vs.85)), the code should check the existence of console every time print a log.
 

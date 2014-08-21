@@ -1,12 +1,14 @@
 layout: post
 title: How to print multiple line string on bash
 comments: true
-categories: bash
+categories:
+  - Programming
+  - Shell
 tags:
   - bash
   - shell
   - output
-  - multiple-line
+  - multiline
 date: 2012-05-14 08:00:00
 ---
 To display some pre-formatted text onto screen, we need the following 2 capabilities:
@@ -35,5 +37,5 @@ EOF
 {% endcodeblock %}
 
 ### Print Multiple Text to Screen
-For some reason, `echo` command will eat all the line break in the text, so we should use printf instead of echo. 
+For some reason, `echo` command will eat all the line break in the text, so we should use printf instead of echo.
 And printf supports back-slash-escape, so we can use `\n` to print a new-line on screen.

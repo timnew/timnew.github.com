@@ -1,9 +1,13 @@
 layout: post
 title: Pretty Singleton in RoR app
 comments: true
-categories: Patterns
+categories:
+  - Programming
+  - Ruby
 tags:
-  - Ruby Rails RoR Singleton Pattern
+  - rails
+  - sigleton
+  - pattern
 date: 2012-08-05 08:00:00
 ---
 Thanks to Ruby powerful meta programming capability and Rails `delegate` syntax, we can easily write graceful singleton class which makes the class works like a instance.
@@ -11,14 +15,14 @@ Thanks to Ruby powerful meta programming capability and Rails `delegate` syntax,
 In traditional language such as C#, usually we write singleton code like this:
 
 {% codeblock Singleton in C# lang:c# %}
-class Foo 
+class Foo
 {
 	// Singleton Declaration
 	private static readonly Foo instance;
 	pubilc static Foo Instance
 	{
-		get 
-		{ 
+		get
+		{
 			if(instance == null)
 			{
 				instance = new Foo();
@@ -26,13 +30,13 @@ class Foo
 			return instance;
 		}
 	}
-	
+
 	// Define instance behaviors
 	// ...
 }
 {% endcodeblock %}
 
-The previous approach works fine but the code that uses `Foo` will be kind of ugly. Every time when we want to invoke the method `Bar` on `Foo`, we need to write `Foo.Instance.Bar()` rather than more graceful way `Foo.Bar()`. 
+The previous approach works fine but the code that uses `Foo` will be kind of ugly. Every time when we want to invoke the method `Bar` on `Foo`, we need to write `Foo.Instance.Bar()` rather than more graceful way `Foo.Bar()`.
 To solve this problem we need implement the class in this way:
 
 {% codeblock Class Delegation in C# lang:c# %}
@@ -41,25 +45,25 @@ class Foo
 {
 	// Singleton Declaration
 	// ...
-	
+
 	// Define instance behaviors
-	public void Bar() 
+	public void Bar()
 	{
 		// Bar behaviors
 		// ...
 	}
-	
+
 	public static void Bar()
 	{
 		Instance.Bar();
 	}
-	
+
 	public string Baz
 	{
 		get { /* Getter behavior */	}
 		set { /* Setter behavior */	}
 	}
-	
+
 	public static string Baz
 	{
 		get { return Instance.Baz;	}
@@ -75,12 +79,12 @@ If we write same code in ruby, things become much easier, great thanks to Ruby's
 
 {% codeblock Singleton in Ruby lang:ruby %}
 # foo.rb
-class Foo 
+class Foo
 	extend ActiveSupport::Autoload
 
 	autoload :Base
 	include Base
-	
+
 	autoload :ClassMethods
 	extend ClassMethods
 end
@@ -97,7 +101,7 @@ module Foo::ClassMethods
 	def instance
 		@instance ||= new
 	end
-	
+
 	delegate *Foo::Base.instance_methods, :to => :instance
 end
 {% endcodeblock %}
@@ -107,7 +111,7 @@ So in ruby solution we just use one statement `delegate *Foo::Base.instance_meth
 Besides this solution, there is also another kind of cheaper but working solution:
 {% codeblock Singleton in Ruby lang:ruby %}
 # foo.rb
-class Foo 
+class Foo
 
 	autoload :Base
 	include Base

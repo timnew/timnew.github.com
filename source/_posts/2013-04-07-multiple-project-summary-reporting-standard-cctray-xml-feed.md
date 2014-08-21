@@ -1,7 +1,9 @@
 layout: post
 title: Multiple Project Summary Reporting Standard - cctray xml feed
 comments: true
-categories: CI
+categories:
+  - Practice
+  - Continues Integration
 tags:
   - CI
   - continues integration
@@ -15,7 +17,6 @@ tags:
   - feed
   - standard
   - report
-  - cruise control
 date: 2013-04-07 08:00:00
 ---
 CCTray.xml is an RSS-like CI server build status xml feed, which is originally developed for CruiseControl.net.  
@@ -238,5 +239,3 @@ Clients that consume this XML should not rely on any optional attribute being pr
 </xs:schema>
 
 {% endcodeblock %}
-
-

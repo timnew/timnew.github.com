@@ -14,7 +14,6 @@ tags:
   - clean
   - asset
   - folder
-ribbon: Package
 date: 2014-08-19 15:57:18
 ---
 

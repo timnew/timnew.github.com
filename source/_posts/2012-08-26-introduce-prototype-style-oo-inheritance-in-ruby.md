@@ -1,7 +1,9 @@
 layout: post
 title: Introduce Prototype Style OO inheritance in Ruby
 comments: true
-categories: ruby
+categories:
+  - Programming
+  - Ruby
 tags:
   - ruby
   - object oriented

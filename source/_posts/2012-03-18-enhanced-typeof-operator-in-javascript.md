@@ -8,7 +8,9 @@ tags:
   - typeof
   - type
   - js
-categories: javascript
+categories:
+  - Programming
+  - JavaScript
 comments: true
 date: 2012-03-18 08:00:00
 ---
@@ -112,4 +114,3 @@ var SomeClass = function SomeClass() {
 	this.someProperty = 'some value';
 }
 {% endcodeblock %}
-

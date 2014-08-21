@@ -1,7 +1,9 @@
 layout: post
 title: ZShell cannot invoke parameterized Rake Task
 comments: true
-categories: zsh
+categories:
+  - Practice
+  - Shell
 tags:
   - zsh
   - rake

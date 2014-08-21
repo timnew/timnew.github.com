@@ -2,9 +2,10 @@ layout: post
 title: "TDD vs Natural Selection : Part II"
 tags:
   - TDD
-  - Design
-  - Methodology
-categories: Thinking
+  - design
+  - methodology
+categories:
+  - Thinking
 comments: true
 date: 2011-09-16 08:00:00
 ---
@@ -16,4 +17,3 @@ In some simple project, you might find the situation is just acceptable, but in 
 So in my opinion, TDD doesn't mean no design at all. When you practicing TDD, you must focus on the detailed code. At this time if you can easily got lost without the guide from a clear, more general, high level vision. It just works like the architecture design or general solution to specific type of problem.
 
 Such design can save you tons of time wasted on times of retries.
-

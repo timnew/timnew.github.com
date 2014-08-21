@@ -1,7 +1,9 @@
 layout: post
 title: Node over Express - Autoload
 comments: true
-categories: Node.js
+categories:
+  - Programming
+  - node.js
 tags:
   - node
   - express
@@ -15,7 +17,7 @@ This is the 2nd post of the [Node over Express](/blog/tags/#node over express-re
 
 ## Pain Point
 
-There is well known Lisp joke: 
+There is well known Lisp joke:
 
 {% blockquote %}
 A top hacker successfully stole the last 100 lines of a top secret program from the Pentagon. Because the program is written in Lisp, so the stolen code is just close brackets.
@@ -23,7 +25,7 @@ A top hacker successfully stole the last 100 lines of a top secret program from 
 
 It is a joke that there are too many brackets in Lisp. In Node.js there is a similar issue that there are too many `require`. Open any node.js file, usually one could find several lines of `require`.
 
-Due to the node's sandbox model, the developer has to require resources time and time again in every files. It is not so exciting to write or read lines of meaningless `require`. And the worst, it could be a nightmare once a developer wishes to replace some library with another. 
+Due to the node's sandbox model, the developer has to require resources time and time again in every files. It is not so exciting to write or read lines of meaningless `require`. And the worst, it could be a nightmare once a developer wishes to replace some library with another.
 
 ## Rails Approaches
 
@@ -47,7 +49,7 @@ So to avoid "require-hell" in Node.js, I prefers autoload mechanism. But because
 
 ### Node.js Module System
 
-There are a number of similarities between Node.js and ruby; things in node.js usually have the equivalences in ruby. For example, `package` in node is similar to the `gem` in Ruby, `npm` equals to `Gem` and `Bundler`, `package.json` takes the responsibility of `Gemfile` and `Gemfile.lock`. The similarity enables porting autoload from ruby to node. 
+There are a number of similarities between Node.js and ruby; things in node.js usually have the equivalences in ruby. For example, `package` in node is similar to the `gem` in Ruby, `npm` equals to `Gem` and `Bundler`, `package.json` takes the responsibility of `Gemfile` and `Gemfile.lock`. The similarity enables porting autoload from ruby to node.
 
 In some aspect, there are similarities between Node.js and Ruby, but there are also significant differences between them in some other aspects. One of the major differences is the type system and module sandbox in Node.js, which works in a quite different way to Ruby type system.
 
@@ -73,7 +75,7 @@ With the help of `global`, we find a way to share types across files naturally.
 
 Rails' autoload mechanism loads the classes lazily. It only loads the class when it is used for first time. It is a neat feature, and Rails achieve it by tracking the exception of "Uninitialized Constant". To implement similar feature in Node.js, tracking exception is hardly feasible, so I choose a different approach, I use Property.
 
-Property (Attribute in Ruby) enables method (function) being invoked as the field of an object is accessed. Property is a common feature among OO languages, but is a "new" feature to JavaScript. Property is a feature declared in [ECMAScript 5 standard](http://www.ecma-international.org/publications/standards/Ecma-262.htm), which enables the developers to declare property on object by using the API [Object.defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty). With the property, we're able to hook the callback on the type variables, and require the types when the type is accessed. So the module won't be required until it is used. On the other hand, node.js `require` function has built in the cache mechanism; it won't load the file twice, instead it return the value from its cache. 
+Property (Attribute in Ruby) enables method (function) being invoked as the field of an object is accessed. Property is a common feature among OO languages, but is a "new" feature to JavaScript. Property is a feature declared in [ECMAScript 5 standard](http://www.ecma-international.org/publications/standards/Ecma-262.htm), which enables the developers to declare property on object by using the API [Object.defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty). With the property, we're able to hook the callback on the type variables, and require the types when the type is accessed. So the module won't be required until it is used. On the other hand, node.js `require` function has built in the cache mechanism; it won't load the file twice, instead it return the value from its cache.
 
 With property, we make the autoload lazy!
 

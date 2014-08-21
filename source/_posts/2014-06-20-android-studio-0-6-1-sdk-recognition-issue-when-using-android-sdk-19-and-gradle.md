@@ -1,7 +1,9 @@
 layout: post
 title: Android Studio 0.6.1 SDK recognition issue when using Android SDK 19 and Gradle
 comments: true
-categories: android
+categories:
+  - Programming
+  - Android
 tags:
   - android
   - android studio
