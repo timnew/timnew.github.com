@@ -1,8 +1,8 @@
 # Header
 menu:
   Home: /
-  Archives: /archives
-rss: //feeds.feedburner.com/timnewtech
+  Archives: /archives/
+rss: //feeds.feedburner.com/timnewtech/
 
 # Content
 excerpt_link: Read More
