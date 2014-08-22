@@ -1,10 +1,22 @@
+@font-face
+  font-family: FontAwesome
+  font-style: normal
+  font-weight: normal
+  src: url(font-icon-path + ".eot?v=#" + font-icon-version)
+  src: url(font-icon-path + ".eot?#iefix&v=#" + font-icon-version) format("embedded-opentype"),
+       url(font-icon-path + ".woff?v=#" + font-icon-version) format("woff"),
+       url(font-icon-path + ".ttf?v=#" + font-icon-version) format("truetype"),
+       url(font-icon-path + ".svg#fontawesomeregular?v=#" + font-icon-version) format("svg")
+
 fa-icon(icon)
   &:before
     content: icon
     font-family: font-icon
     padding-right: 8px
+    vertical-align: baseline
 
 fa-bookmark = "\f02e"
 fa-list-alt = "\f022"
 fa-calendar = "\f073"
 fa-tag = "\f02b"
+fa-paragraph = "\f1dd"
