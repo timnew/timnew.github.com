@@ -18,5 +18,9 @@
     "hexo-tag-asset-res": "^0.1.1",
     "hexo-tag-codepen": "^0.1.2",
     "hexo-tag-emojis": "^1.1.2"
+  },
+  "devDependencies": {
+    "lodash": "^2.4.1",
+    "moment": "^2.8.1"
   }
 }
