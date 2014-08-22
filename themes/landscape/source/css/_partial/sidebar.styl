@@ -14,7 +14,7 @@ else
     ul, ol
       margin: 0 20px
     ul
-      list-style: disc
+      list-style: none
     ol
       list-style: decimal
 
@@ -30,7 +30,6 @@ else
   &:after
     content: ")"
 
-
 $item
   border-radius: 2px
   material-hover-z-index: 1
@@ -43,7 +42,8 @@ $li-item
 
 $a-item
   @extend $item
-
+  &:before
+    color: color-grey
   &:hover
     text-decoration: none
 
@@ -53,12 +53,16 @@ $a-item
 
 .recent-posts li
   @extend $li-item
+  fa-icon: fa-bookmark
 
 .category-list li a
   @extend $a-item
+  fa-icon: fa-list-alt
 
 .archive-list li
   @extend $li-item
+  fa-icon: fa-calendar
 
 .tag-list li
   @extend $li-item
+  fa-icon: fa-tag
