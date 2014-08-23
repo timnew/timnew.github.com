@@ -100,3 +100,25 @@ link_checker:
   enabled: true
   storage_dir: temp/link_checker
   silent_logs: false
+
+# color-0 #333
+# color-1 #A00
+# color-2 #A30
+# color-3 #A60
+# color-4 #A80
+# color-5 #AA0
+# color-6 #3A0
+# color-7 #0A3
+# color-8 #0A8
+# color-9 #06A
+# color-A #01A
+# color-B #40A
+# color-C #A0A
+category_ribbon:
+  Cracking:     "#A00"
+  Design:       "#A60"
+  Geek Toy:     "#A0A"
+  Package:      "#AA0"
+  Practice:     "#0A3"
+  Programming:  "#40A"
+  Thinking:     "#06A"
