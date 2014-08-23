@@ -21,10 +21,7 @@ $line-indicator
 
     transition: background .5s
 
-hueOffset(color, offset)
-  hsla(hue(color) + offset, saturation(color),lightness(color), alpha(color))
-
-line-indicator(color, hoverColor = hueOffset(color, -25deg))
+line-indicator(color, hoverColor)
   @extend $line-indicator
 
   &:after
