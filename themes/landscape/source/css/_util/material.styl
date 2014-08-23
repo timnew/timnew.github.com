@@ -12,13 +12,21 @@ bottom-shadows = 0 0 1px rgba(0, 0, 0, .1),
                  0 16px 28px 0 rgba(0, 0, 0, 0.22),
                  0 27px 24px 0 rgba(0, 0, 0, 0.2)
 
+text-top-shadows = none,
+                   0 2px 10px rgba(0, 0, 0, 0.05),
+                   0 4px 15px rgba(0, 0, 0, 0.12)
+
+text-bottom-shadows = none,
+                      0 2px 5px rgba(0, 0, 0, 0.12),
+                      0 6px 12px rgba(0, 0, 0, 0.20)
+
 material-z-index(n)
   if n < 0
-    box-shadow: top-shadows[0], top-shadows[0]
-  else if n <= 5
-    box-shadow: top-shadows[n], bottom-shadows[n]
+    material-z-index(0)
+  else if n > 5
+    material-z-index(5)
   else
-    box-shadow: top-shadows[5], bottom-shadows[5]
+    box-shadow: top-shadows[n], bottom-shadows[n]
 
 material-border-radius = 3px
 
@@ -27,6 +35,20 @@ material-hover-z-index(n)
   &:hover
     transition-delay: .2s
     material-z-index: n
+
+material-text-z-index(n)
+  if n < 0
+    material-text-z-index(0)
+  else if n > 2
+    material-text-z-index(2)
+  else
+    text-shadow: text-top-shadows[n], text-bottom-shadows[n]
+
+material-text-hover-z-index(n, hover-color)
+  transition: text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+  &:hover
+    color: hover-color
+    material-text-z-index(n)
 
 .material-transition
   transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)
@@ -38,7 +60,6 @@ material-hover-z-index(n)
   @extend .material-round-border
   material-z-index: 0
   background: #fff
-
 
 for i in (0..5)
   .material-z-index-{i}

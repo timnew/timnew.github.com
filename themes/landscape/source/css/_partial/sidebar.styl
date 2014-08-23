@@ -31,24 +31,29 @@ else
     content: ")"
 
 $item
-  border-radius: 2px
-  material-hover-z-index: 1
-  padding: 2px 5px
+  material-text-z-index: 1
+  material-text-hover-z-index: 2, lighten(color-link, 30%)
 
 $li-item
   @extend $item
+  material-text-hover-z-index: 2, lighten(color-link, 30%)
   a:hover
-    text-decoration: none
+      text-decoration: none
 
 $a-item
   @extend $item
+  material-text-hover-z-index: 2, lighten(color-link, 30%)
   &:before
     color: color-grey
+
   &:hover
     text-decoration: none
+    &:before
+      color: lighten(color-link, 30%)
 
 .tagcloud a
-  @extend $a-item    
+  @extend $a-item
+  margin: 2px 5px
   display: inline-block
 
 .recent-posts li
