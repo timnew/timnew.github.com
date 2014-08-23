@@ -12,10 +12,8 @@
   &:before
     top: 0
     background: linear-gradient(rgba(0, 0, 0, 0.3), transparent)
-    // background: linear-gradient(rgba(0, 0, 0, 0.3), transparent)
   &:after
     bottom: 0
-    // background: linear-gradient(transparent, rgba(0, 0, 0, 0.3))
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.3))
 
 #header-outer
@@ -40,7 +38,7 @@ filter()
   background: url(banner-url) center #000
   background-size: cover
   z-index: -1
-  filter brightness(95%)
+  filter brightness(80%)
 
 #header-title
   text-align: center
@@ -182,3 +180,15 @@ $nav-link
   cursor: pointer
   &:hover, &:focus
     color: #777
+
+#splash-nav
+  text-align: center
+  position: absolute
+  bottom: 30px
+  left: 0
+  color: white
+  opacity: 0
+  
+  &:before, &:after
+    padding: 0 8px
+    fa-icon-content: fa-arrow-down

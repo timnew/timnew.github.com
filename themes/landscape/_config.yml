@@ -1,6 +1,6 @@
 # Header
 menu:
-  Home: /
+  Home: "/#main"
   Archives: /archives/
 rss: //feeds.feedburner.com/timnewtech/
 

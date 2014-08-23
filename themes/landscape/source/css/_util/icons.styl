@@ -8,15 +8,20 @@
        url(font-icon-path + ".ttf?v=#" + font-icon-version) format("truetype"),
        url(font-icon-path + ".svg#fontawesomeregular?v=#" + font-icon-version) format("svg")
 
+fa-icon-content(icon)
+  content: icon
+  font-family: font-icon
+
+  vertical-align: baseline
+
 fa-icon(icon)
   &:before
-    content: icon
-    font-family: font-icon
     padding-right: 8px
-    vertical-align: baseline
+    fa-icon-content(icon)
 
 fa-bookmark = "\f02e"
 fa-list-alt = "\f022"
 fa-calendar = "\f073"
 fa-tag = "\f02b"
 fa-paragraph = "\f1dd"
+fa-arrow-down = "\f063"
