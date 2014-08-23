@@ -103,8 +103,8 @@
     });
   });
 
-  if ($.fancybox){
-    $('.fancybox').fancybox();
+  if ($.fn.fluidbox){
+    $('.fancybox').fluidbox();
   }
 
   // Mobile nav
