@@ -4,6 +4,9 @@
 	// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
 	var keys = [32, 37, 38, 39, 40], wheelIter = 0;
 
+	var	iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
+	var thresHold = iOS ? 10 : 0;
+
 	function preventDefault(e) {
 		e = e || window.event;
 		if (e.preventDefault)
@@ -39,10 +42,10 @@
 
 	var docElem = window.document.documentElement,
 		scrollVal,
-		isRevealed,
 		noscroll,
 		isAnimating,
-		container = $( '#container' )
+		container = $( '#container' ),
+		isRevealed = 	!container.hasClass('splash'),
 		scrollHint = container.find('#splash-scroll-hint');
 
 	function scrollY() {
@@ -52,7 +55,7 @@
 	function scrollPage() {
 		scrollVal = scrollY();
 
-		if( noscroll) {
+		if( noscroll ) {
 			if( scrollVal < 0 ) return false;
 			// keep it that way
 			window.scrollTo( 0, 0 );
@@ -76,7 +79,8 @@
 	}
 
 	function toggle( reveal ) {
-		isAnimating = true;
+		if(isAnimating)
+			return;
 
 		if( reveal ) {
 			container.removeClass( 'splash' );
@@ -98,20 +102,25 @@
 		}, 1200 );
 	}
 
-	// refreshing the page...
-	var pageScroll = scrollY();
-	noscroll = pageScroll === 0;
+	if(!isRevealed) {
+		// refreshing the page...
+		var pageScroll = scrollY();
+		noscroll = pageScroll === 0;
 
-	disable_scroll();
+		disable_scroll();
 
-	if( pageScroll ) {
-		isRevealed = true;
-		container.addClass( 'notrans' );
-		container.removeClass( 'splash' );
+		if( pageScroll ) {
+			isRevealed = true;
+			container.addClass( 'notrans' );
+			container.removeClass( 'splash' );
+		}
 	}
 
 	window.addEventListener( 'scroll', scrollPage );
 	scrollHint.click( function() {
+		if(isAnimating)
+			return;
+
 		toggle(container.hasClass('splash'))
 	});
 })();
