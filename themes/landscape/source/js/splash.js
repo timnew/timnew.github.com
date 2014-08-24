@@ -42,7 +42,8 @@
 		isRevealed,
 		noscroll,
 		isAnimating,
-		container = $( '#container' );
+		container = $( '#container' )
+		scrollHint = container.find('#splash-scroll-hint');
 
 	function scrollY() {
 		return window.pageYOffset || docElem.scrollTop;
@@ -110,4 +111,7 @@
 	}
 
 	window.addEventListener( 'scroll', scrollPage );
+	scrollHint.click( function() {
+		toggle(container.hasClass('splash'))
+	});
 })();
