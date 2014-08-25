@@ -82,6 +82,8 @@
 		if(isAnimating)
 			return;
 
+		isAnimating = true;
+
 		if( reveal ) {
 			container.removeClass( 'splash' );
 		}
