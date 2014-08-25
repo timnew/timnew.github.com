@@ -160,8 +160,8 @@
   font-size: 0.85em
   line-height: line-height
   border-top: 1px solid color-border
-  padding-top: line-height
-  margin: 0 article-padding article-padding
+  // padding-top: line-height
+  padding: line-height article-padding article-padding article-padding
   a
     color: color-grey
     text-decoration: none
@@ -248,7 +248,7 @@
   position: absolute
   display: none
   background: #fff
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2)
+  material-z-index: 2  
   border-radius: 3px
   margin-left: -145px
   overflow: hidden
@@ -264,10 +264,11 @@
   padding: 0 15px
   color: color-default
   outline: none
-  border: 1px solid color-border
+  border: 0
   border-radius: 3px 3px 0 0
   height: 36px
   line-height: 36px
+  box-shadow: bottom-shadows[1]
 
 .article-share-links
   clearfix()
@@ -281,13 +282,18 @@ $article-share-link
   position: relative
   color: #999
   text-shadow: 0 1px #fff
+  transition: background .5s, text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), color .3s .5s
+
   &:before
     font-size: 20px
     font-family: font-icon
     absolute-center(@font-size)
     text-align: center
+
   &:hover
     color: #fff
+    material-text-z-index: 2
+    transition: background .5s, text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1) .3s, color .3s
 
 .article-share-twitter
   @extend $article-share-link
@@ -295,7 +301,6 @@ $article-share-link
     content: "\f099"
   &:hover
     background: color-twitter
-    text-shadow: 0 1px darken(color-twitter, 20%)
 
 .article-share-facebook
   @extend $article-share-link
@@ -303,7 +308,6 @@ $article-share-link
     content: "\f09a"
   &:hover
     background: color-facebook
-    text-shadow: 0 1px darken(color-facebook, 20%)
 
 .article-share-pinterest
   @extend $article-share-link
@@ -311,7 +315,6 @@ $article-share-link
     content: "\f0d2"
   &:hover
     background: color-pinterest
-    text-shadow: 0 1px darken(color-pinterest, 20%)
 
 .article-share-google
   @extend $article-share-link
@@ -319,7 +322,6 @@ $article-share-link
     content: "\f0d5"
   &:hover
     background: color-google
-    text-shadow: 0 1px darken(color-google, 20%)
 
 .article-gallery
   background: #000
