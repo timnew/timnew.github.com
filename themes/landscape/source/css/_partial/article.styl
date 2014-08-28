@@ -246,15 +246,20 @@
 
 .article-share-box
   position: absolute
-  display: none
+  visibility: collapse
+  opacity: 0
   background: #fff
-  material-z-index: 2  
+  material-z-index: 2
   border-radius: 3px
   margin-left: -145px
   overflow: hidden
   z-index: 1
+  transform: matrix(.8, 0, 0, .8, 20, -20)
+  transition: opacity .5s, visibility .5s, transform .5s;
   &.on
-    display: block
+    visibility: visible
+    transform: matrix(1, 0, 0, 1, 0, 0)
+    opacity: 1
 
 .article-share-input
   width: 100%
