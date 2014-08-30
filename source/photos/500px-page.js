@@ -13,7 +13,7 @@
 
     function Photo500px(element) {
       this.restoreExif = __bind(this.restoreExif, this);
-      this.inverseExif = __bind(this.inverseExif, this);
+      this.showExif = __bind(this.showExif, this);
       this.toggleExif = __bind(this.toggleExif, this);
       Photo500px.__super__.constructor.apply(this, arguments);
     }
@@ -24,7 +24,7 @@
     };
 
     Photo500px.prototype.enhancePage = function() {
-      return this.exifButton.click(this.toggleExif).hover(this.inverseExif, this.restoreExif);
+      return this.exifButton.click(this.toggleExif).hover(this.showExif, this.restoreExif);
     };
 
     Photo500px.prototype.initialize = function() {
@@ -34,11 +34,11 @@
 
     Photo500px.prototype.toggleExif = function() {
       this.exifButton.toggleClass('on');
-      return this.exifPanel.toggleClass('on', this.exifButton.is('.on'));
+      return this.restoreExif();
     };
 
-    Photo500px.prototype.inverseExif = function() {
-      return this.exifPanel.toggleClass('on', !this.exifButton.is('.on'));
+    Photo500px.prototype.showExif = function() {
+      return this.exifPanel.toggleClass('on', true);
     };
 
     Photo500px.prototype.restoreExif = function() {

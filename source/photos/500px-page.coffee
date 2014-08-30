@@ -11,18 +11,18 @@ class @Photo500px extends Widget
 
   enhancePage: ->
     @exifButton.click(@toggleExif)
-               .hover(@inverseExif, @restoreExif)
+               .hover(@showExif, @restoreExif)
 
   initialize: ->
-    @takenAt = new Date(@taken_at).toLocaleDateString()        
+    @takenAt = new Date(@taken_at).toLocaleDateString()
     @element.find('.fluidbox').fluidbox()
 
   toggleExif: =>
     @exifButton.toggleClass('on')
-    @exifPanel.toggleClass('on', @exifButton.is('.on'))
+    @restoreExif()
 
-  inverseExif: =>
-    @exifPanel.toggleClass('on', not @exifButton.is('.on'))
+  showExif: =>
+    @exifPanel.toggleClass('on', true)
 
   restoreExif: =>
     @exifPanel.toggleClass('on', @exifButton.is('.on'))
