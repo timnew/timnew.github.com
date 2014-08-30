@@ -1,0 +1,35 @@
+script(src="/photos/500px-api.js" type="text/javascript")
+script(src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js" type="text/javascript")
+script(src="//code.jquery.com/jquery-2.1.1.min.js")
+script(src="/photos/widget.min.js" type="text/javascript")
+script(src="/photos/knockout-extension.min.js" type="text/javascript")
+script(src="/photos/500px-page.js" type="text/javascript")
+
+ul.gallery(data-widget="Gallery500px" data-bind="foreach: photos")
+  li(data-bind="widget: Photo500px")
+    .exif
+      dl
+        dt Camera
+        dd(data-bind="text: camera")
+        dt Focal Length
+        dd
+          span.focal-length(data-bind="text: focal_length")
+
+        dt Shutter Speed
+        dd
+          span.shutter-speed(data-bind="text: shutter_speed")
+        dt Aperture
+        dd
+          span.aperture(data-bind="text: aperture")
+        dt ISO
+        dd(data-bind="text: iso")
+        //- dt Category
+        //- dd(data-bind="text: category")
+        dt Taken
+        dd.taken-at(data-bind="text: takenAt")
+    a.fluidbox(data-bind="attr: { title: name, href: images[1].url }")
+      img(data-bind="attr: { src: images[0].url, alt: name }", class="nofancybox")
+
+    span.caption
+      span(data-bind="text: name")
+      .exif-button

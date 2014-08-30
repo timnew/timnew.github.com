@@ -13,7 +13,6 @@
     "hexo-generator-feed": "^0.2.0",
     "hexo-generator-sitemap": "^0.2.0",
     "hexo-helper-simple-tagcloud": "^0.1.1",
-    "hexo-renderer-coffeescript": "^0.1.0",
     "hexo-renderer-dot": "^0.1.0",
     "hexo-renderer-ejs": "^0.1.0",
     "hexo-renderer-jade": "^0.1.0",

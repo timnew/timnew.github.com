@@ -1,0 +1,80 @@
+ul.gallery
+  display: block
+  padding-top: 20px
+  list-style: none
+  text-align: center
+
+  & > li
+    @extend .material-card
+    display: inline-block
+    material-z-index: 1
+    material-hover-z-index: 2
+    margin: 35px
+    padding: 10px
+
+    .caption
+      color: #666
+      font-size: 1.2em
+
+  .exif-button
+    display: inline-block
+    float: right
+    width: 22px
+    height: 22px
+    border-radius: 11px
+    font-size: small
+    fa-icon: fa-info
+
+    &:before
+      padding-right: 0
+      vertical-align: middle
+
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+
+    color: #666
+    &:hover
+      background: rgba(255, 194, 50, 0.1)
+
+    &:active
+      background: rgba(255, 194, 50, 0.6)
+
+    &.on
+      color: #6CF
+
+  .exif
+    background: rgba(255, 255, 255, .7)
+    width: 280px
+    height: 280px
+    position: absolute
+    z-index: 1000
+    visibility: collapse
+    opacity: 0
+
+    transition: visibility .3s ease-in-out, opacity .3s ease-in-out
+
+    &.on
+      visibility: visible
+      opacity: 1
+
+    dl
+      width: 100%
+
+      dt, dd
+        display: inline-block
+        float: left
+        width: 40%
+      dt
+        text-align: right
+      dd
+        padding-left: 10px
+        text-align: left
+
+      .focal-length:after
+        content: "mm"
+
+      .shutter-speed:after
+        content: "s"
+
+      .aperture:before
+        content: "f/"
+      
