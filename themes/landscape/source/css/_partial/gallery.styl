@@ -11,10 +11,23 @@ ul.gallery
     material-hover-z-index: 2
     margin: 35px
     padding: 10px
+    position: relative
 
-    .caption
-      color: #666
-      font-size: 1.2em
+    .title-wrap
+      width: 280px
+      margin-top: 10px
+      display: inline-block
+
+      .title
+        color: #666
+        font-size: 1.2em
+        text-decoration: none
+        max-width: 255px
+        text-overflow: ellipsis
+        overflow: hidden
+        white-space: nowrap
+        display: inline-block
+        vertical-align: middle
 
   .exif-button
     display: inline-block
@@ -77,4 +90,43 @@ ul.gallery
 
       .aperture:before
         content: "f/"
-      
+
+      .multi-span
+        > span
+          margin: 0 5px
+
+      .rating
+        fa-icon: fa-bolt
+
+      .highest-rating
+        fa-icon: fa-trophy
+
+      .views
+        fa-icon: fa-eye
+
+      .likes
+        fa-icon: fa-thumbs-o-up
+
+      .faves
+        fa-icon: fa-heart
+
+  .score
+    position: absolute
+    bottom: 43px
+    right: 10px
+    color: white
+    font-family: 'Helvetica Neue', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-size: 30px
+    font-weight: 300
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%)
+    padding: 10px 10px
+    width: 260px
+    text-align: right
+
+    transition: visibility .3s ease-in-out, opacity .3s ease-in-out
+    opacity: 0
+    visibility: collapse
+
+    &.on
+      opacity: 1
+      visibility: visible

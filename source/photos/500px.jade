@@ -9,8 +9,12 @@ ul.gallery(data-widget="Gallery500px" data-bind="foreach: photos")
   li(data-bind="widget: Photo500px")
     .exif
       dl
+        dt Name
+        dd(data-bind="text: name")
+
         dt Camera
         dd(data-bind="text: camera")
+
         dt Focal Length
         dd
           span.focal-length(data-bind="text: focal_length")
@@ -18,18 +22,39 @@ ul.gallery(data-widget="Gallery500px" data-bind="foreach: photos")
         dt Shutter Speed
         dd
           span.shutter-speed(data-bind="text: shutter_speed")
+
         dt Aperture
         dd
           span.aperture(data-bind="text: aperture")
+
         dt ISO
         dd(data-bind="text: iso")
-        //- dt Category
-        //- dd(data-bind="text: category")
+
+        dt Category
+        dd(data-bind="text: categoryText")
+
         dt Taken
         dd.taken-at(data-bind="text: takenAt")
-    a.fluidbox(data-bind="attr: { title: name, href: images[1].url }")
+
+        dt Rating
+        dd.multi-span
+          span.rating(data-bind="text: rating")
+          span.highest-rating(data-bind="text: highest_rating")
+
+        dt Statistics
+        dd.multi-span
+          span.views(data-bind="text: times_viewed")
+          span.likes(data-bind="text: positive_votes_count")
+          span.faves(data-bind="text: favorites_count")
+
+    .score
+      span(data-bind="text: rating")
+      | &nbsp;/&nbsp;
+      span(data-bind="text: highest_rating")
+
+    a(data-bind="attr: { href: fullUrl }", target="_blank", title="View photo on 500px")
       img(data-bind="attr: { src: images[0].url, alt: name }", class="nofancybox")
 
-    span.caption
-      span(data-bind="text: name")
+    .title-wrap
+      a.title(data-bind="text: name, attr: { href: fullUrl }", target="_blank", title="View photo on 500px")
       .exif-button
