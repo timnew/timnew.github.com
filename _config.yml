@@ -89,10 +89,6 @@ deploy:
   repo: git@github.com:timnew/timnew.github.com.git
   branch: master
 
-plugins:
-  - hexo-tag-emojis
-  - hexo-broken-link-checker
-
 emojis:
   cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
 
