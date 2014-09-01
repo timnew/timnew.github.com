@@ -99,6 +99,8 @@
     __extends(Gallery500px, _super);
 
     function Gallery500px(element) {
+      this.hashChanged = __bind(this.hashChanged, this);
+      this.parseHash = __bind(this.parseHash, this);
       Gallery500px.__super__.constructor.apply(this, arguments);
       this.totalPages = ko.observable(0);
       this.currentPage = ko.observable(0);
@@ -106,18 +108,41 @@
     }
 
     Gallery500px.prototype.bindDom = function() {
-      return this.applyBindings();
+      this.applyBindings();
+      return $(window).on('hashchange', this.hashChanged);
+    };
+
+    Gallery500px.prototype.parseHash = function() {
+      var item, items, k, result, v, _i, _len, _ref;
+      result = {};
+      items = location.hash.slice(1).split('&');
+      for (_i = 0, _len = items.length; _i < _len; _i++) {
+        item = items[_i];
+        _ref = item.split('='), k = _ref[0], v = _ref[1];
+        if ((k != null) && (v != null)) {
+          result[k.toLowerCase()] = v;
+        }
+      }
+      return result;
+    };
+
+    Gallery500px.prototype.hashChanged = function() {
+      var hash;
+      hash = this.parseHash();
+      if (hash.username != null) {
+        return this.reload(hash.username);
+      }
     };
 
     Gallery500px.prototype.initialize = function() {
-      return this.reload();
+      return this.reload('timnew');
     };
 
-    Gallery500px.prototype.reload = function() {
+    Gallery500px.prototype.reload = function(username) {
       var _this = this;
       return _500px.api('/photos', {
         feature: 'user',
-        username: 'timnew',
+        username: username,
         image_size: [3],
         page: 1,
         rpp: 100

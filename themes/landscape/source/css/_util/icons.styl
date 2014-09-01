@@ -19,6 +19,15 @@ fa-icon(icon)
     padding-right: 8px
     fa-icon-content(icon)
 
+@keyframes fa-spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(359deg)
+
+.fa-spin
+  animation: fa-spin 2s infinite linear
+
 fa-bookmark = "\f02e"
 fa-list-alt = "\f022"
 fa-calendar = "\f073"
@@ -32,3 +41,4 @@ fa-heart = "\f004"
 fa-eye = "\f06e"
 fa-bolt = "\f0e7"
 fa-trophy = "\f091"
+fa-gear = "\f013"

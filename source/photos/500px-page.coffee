@@ -68,7 +68,6 @@ class @Photo500px extends Widget
   hideScore: =>
     @scorePanel.removeClass('on')
 
-
 class @Gallery500px extends Widget
   constructor: (element) ->
     super
@@ -78,12 +77,29 @@ class @Gallery500px extends Widget
 
   bindDom: ->
     @applyBindings()
+    $(window).on('hashchange', @hashChanged)
+
+  parseHash: =>
+    result = {}
+
+    items = location.hash[1..-1].split('&')
+
+    for item in items
+      [k,v] = item.split('=')
+      if k? and v?
+        result[k.toLowerCase()] = v
+
+    result
+
+  hashChanged: =>
+    hash = @parseHash()
+    @reload(hash.username) if hash.username?
 
   initialize: ->
-    @reload()
+    @reload('timnew')
 
-  reload: ->
-    _500px.api '/photos', { feature: 'user', username:'timnew', image_size: [3], page: 1, rpp: 100 } , (response) =>
+  reload: (username) ->
+    _500px.api '/photos', { feature: 'user', username: username, image_size: [3], page: 1, rpp: 100 } , (response) =>
       return if response.error
 
       data = response.data

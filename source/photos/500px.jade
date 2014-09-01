@@ -5,56 +5,58 @@ script(src="/photos/widget.min.js" type="text/javascript")
 script(src="/photos/knockout-extension.min.js" type="text/javascript")
 script(src="/photos/500px-page.js" type="text/javascript")
 
-ul.gallery(data-widget="Gallery500px" data-bind="foreach: photos")
-  li(data-bind="widget: Photo500px")
-    .exif
-      dl
-        dt Name
-        dd(data-bind="text: name")
+div(data-widget="Gallery500px")
+  //- .loading-indicator
+  ul.gallery( data-bind="foreach: photos")
+    li(data-bind="widget: Photo500px")
+      .exif
+        dl
+          dt Name
+          dd(data-bind="text: name")
 
-        dt Camera
-        dd(data-bind="text: camera")
+          dt Camera
+          dd(data-bind="text: camera")
 
-        dt Focal Length
-        dd
-          span.focal-length(data-bind="text: focal_length")
+          dt Focal Length
+          dd
+            span.focal-length(data-bind="text: focal_length")
 
-        dt Shutter Speed
-        dd
-          span.shutter-speed(data-bind="text: shutter_speed")
+          dt Shutter Speed
+          dd
+            span.shutter-speed(data-bind="text: shutter_speed")
 
-        dt Aperture
-        dd
-          span.aperture(data-bind="text: aperture")
+          dt Aperture
+          dd
+            span.aperture(data-bind="text: aperture")
 
-        dt ISO
-        dd(data-bind="text: iso")
+          dt ISO
+          dd(data-bind="text: iso")
 
-        dt Category
-        dd(data-bind="text: categoryText")
+          dt Category
+          dd(data-bind="text: categoryText")
 
-        dt Taken
-        dd.taken-at(data-bind="text: takenAt")
+          dt Taken
+          dd.taken-at(data-bind="text: takenAt")
 
-        dt Rating
-        dd.multi-span
-          span.rating(data-bind="text: rating")
-          span.highest-rating(data-bind="text: highest_rating")
+          dt Rating
+          dd.multi-span
+            span.rating(data-bind="text: rating")
+            span.highest-rating(data-bind="text: highest_rating")
 
-        dt Statistics
-        dd.multi-span
-          span.views(data-bind="text: times_viewed")
-          span.likes(data-bind="text: positive_votes_count")
-          span.faves(data-bind="text: favorites_count")
+          dt Statistics
+          dd.multi-span
+            span.views(data-bind="text: times_viewed")
+            span.likes(data-bind="text: positive_votes_count")
+            span.faves(data-bind="text: favorites_count")
 
-    .score
-      span(data-bind="text: rating")
-      | &nbsp;/&nbsp;
-      span(data-bind="text: highest_rating")
+      .score
+        span(data-bind="text: rating")
+        | &nbsp;/&nbsp;
+        span(data-bind="text: highest_rating")
 
-    a(data-bind="attr: { href: fullUrl }", target="_blank", title="View photo on 500px")
-      img(data-bind="attr: { src: images[0].url, alt: name }", class="nofancybox")
+      a(data-bind="attr: { href: fullUrl }", target="_blank", title="View photo on 500px")
+        img(data-bind="attr: { src: images[0].url, alt: name }", class="nofancybox")
 
-    .title-wrap
-      a.title(data-bind="text: name, attr: { href: fullUrl }", target="_blank", title="View photo on 500px")
-      .exif-button
+      .title-wrap
+        a.title(data-bind="text: name, attr: { href: fullUrl }", target="_blank", title="View photo on 500px")
+        .exif-button
