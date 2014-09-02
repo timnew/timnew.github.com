@@ -19,7 +19,9 @@ widgets:
 - tag
 
 # Miscellaneous
-google_analytics: UA-30567867-1
+google_analytics:
+  id: UA-30567867-1
+  display_features: true
 favicon: true
 twitter: timnew
 google_plus: 108780866821209046829
