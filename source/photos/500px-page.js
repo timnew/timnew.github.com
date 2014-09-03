@@ -33,11 +33,11 @@
     17: "Sport",
     6: "Still Life",
     21: "Street",
-    26: "Transportation New!",
+    26: "Transportation",
     13: "Travel",
     22: "Underwater",
-    27: "Urban Exploration New!",
-    25: "Wedding New!"
+    27: "Urban Exploration",
+    25: "Wedding"
   };
 
   this.Photo500px = (function(_super) {

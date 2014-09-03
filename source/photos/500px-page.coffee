@@ -25,11 +25,11 @@ CategoryTexts =
   17: "Sport"
   6 : "Still Life"
   21: "Street"
-  26: "Transportation New!"
+  26: "Transportation"
   13: "Travel"
   22: "Underwater"
-  27: "Urban Exploration New!"
-  25: "Wedding New!"
+  27: "Urban Exploration"
+  25: "Wedding"
 
 class @Photo500px extends Widget
   constructor: (element) ->
