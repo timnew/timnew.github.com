@@ -18,7 +18,6 @@ else
     ol
       list-style: decimal
 
-
 .category-list-count
 .tag-list-count
 .archive-list-count
@@ -71,3 +70,66 @@ $a-item
 .tag-list li
   @extend $li-item
   fa-icon: fa-tag
+
+.self-intro
+  img
+    display: block
+    margin: auto
+
+  ul.description
+    margin-left: 10px
+    li span
+      margin-left: 1ex
+      font-weight: bold
+
+  ul.social-links
+    text-align: center
+    margin-top: 10px
+
+    li
+      display: inline-block
+
+      > a
+        cursor: pointer
+        display: inline-block
+        text-decoration: none
+        font-size: 2em
+        padding: 8px
+        border-radius: 3px
+        margin: 5px
+
+        material-z-index: 1
+        &:before
+          material-text-z-index: 1
+
+        transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)
+
+        &:before
+          transition: text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+
+        &:hover
+          transition-delay: .2s
+          material-z-index: 2
+
+          &:before
+            transition-delay: .2s
+            material-text-z-index: 2
+
+        &:active
+          transition-delay: 0
+          material-z-index: 1
+
+    .linked-in
+      fa-icon: fa-linkedin, 0
+      color: white
+      background: color-linkedin
+
+    .twitter
+      fa-icon: fa-twitter, 0
+      color: white
+      background: color-twitter
+
+    .github
+      fa-icon: fa-github-alt, 0
+      color: black
+      background: color-github

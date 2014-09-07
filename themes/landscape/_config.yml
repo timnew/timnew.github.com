@@ -12,6 +12,7 @@ fancybox: true
 # Sidebar
 sidebar: right
 widgets:
+- self_intro
 - recent_posts
 - category
 - archive
