@@ -97,6 +97,15 @@ link_checker:
   storage_dir: temp/link_checker
   silent_logs: false
 
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
+
 # color-0 #333
 # color-1 #A00
 # color-2 #A30
