@@ -2,7 +2,7 @@
 <html>
 <%- partial('_partial/head') %>
 <body>
-  <div id="container" <% if(is_home()) {%> class="splash" <% } %> >
+  <div id="container">
     <div id="wrap">
       <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
       <div class="outer">
