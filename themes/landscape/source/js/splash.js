@@ -1,11 +1,14 @@
 (function() {
+	if(jQuery.browser.mobile) // disable splash on mobile device
+		return;
+
 	// disable/enable scroll (mousewheel and keys) from http://stackoverflow.com/a/4770179
 	// left: 37, up: 38, right: 39, down: 40,
 	// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
 	var keys = [32, 37, 38, 39, 40], wheelIter = 0;
 
 	var	iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
-	var thresHold = iOS ? 10 : 0;
+	var thresHold = iOS ? 10 : 0; // TODO verify whether iOS issue is caused by this line
 
 	function preventDefault(e) {
 		e = e || window.event;
