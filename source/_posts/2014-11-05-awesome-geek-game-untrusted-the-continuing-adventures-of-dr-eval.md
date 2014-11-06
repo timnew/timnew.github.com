@@ -1,6 +1,7 @@
 layout: post
 title: Awesome geek game Untrusted - the Continuing Adventures of Dr. Eval
 date: 2014-11-05 22:21:40
+updated: 2014-11-06 15:05:00
 categories:
   - Game
   - Programming Game
@@ -28,6 +29,10 @@ In the game, to clear a level, you need to move your `avatar` to the exit. And j
 The game isn't that hard if you have some coding experience and is familiar with javascript concepts. And learn from the passed level is very important, since you might find either useful hints or even code to solve your current problem.
 
 **NOTE** Besides the puzzle and the code, the music of each level is also great! 8Bit music in different style! Really awesome!
+## Hints and Walkthrough
+
+Insterested? Click here to play the game: [Untrusted]
+
 ## Hints and Walkthrough
 
 I attached my hints and solutions below, is case if you run into trouble.
