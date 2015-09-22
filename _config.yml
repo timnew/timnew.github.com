@@ -9,21 +9,24 @@ description: timnew programming code software
 author: TimNew
 email: timnew.wti@gmail.com
 language: en-US
+timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://timnew.me
 root: /
 permalink: blog/:year/:month/:day/:title/
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
-code_dir: downloads/code
 permalink_defaults:
 
 # Directory
 source_dir: source
 public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
@@ -34,9 +37,11 @@ filename_case: 1
 render_drafts: false
 post_asset_folder: true
 relative_link: false
+future: true
 highlight:
   enable: true
   line_number: true
+  auto_detect: true
   tab_replace:
 
 # Category & Tag
@@ -65,8 +70,8 @@ logger_format: dev
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: MMM D YYYY
-time_format: H:mm:ss
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -77,10 +82,9 @@ pagination_dir: blog
 disqus_shortname: timnew-github
 
 # Extensions
-## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
-## Themes: https://github.com/hexojs/hexo/wiki/Themes
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
 theme: landscape
-exclude_generator:
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

@@ -14,7 +14,7 @@ else
     ul, ol
       margin: 0 20px
     ul
-      list-style: none
+      list-style: disc
     ol
       list-style: decimal
 
@@ -29,107 +29,7 @@ else
   &:after
     content: ")"
 
-$item
-  material-text-z-index: 1
-  material-text-hover-z-index: 2, lighten(color-link, 30%)
-
-$li-item
-  @extend $item
-  material-text-hover-z-index: 2, lighten(color-link, 30%)
-  a:hover
-      text-decoration: none
-
-$a-item
-  @extend $item
-  material-text-hover-z-index: 2, lighten(color-link, 30%)
-  &:before
-    color: color-grey
-
-  &:hover
-    text-decoration: none
-    &:before
-      color: lighten(color-link, 30%)
-
-.tagcloud a
-  @extend $a-item
-  margin: 2px 5px
-  display: inline-block
-
-.recent-posts li
-  @extend $li-item
-  fa-icon: fa-bookmark
-
-.category-list li a
-  @extend $a-item
-  fa-icon: fa-list-alt
-
-.archive-list li
-  @extend $li-item
-  fa-icon: fa-calendar
-
-.tag-list li
-  @extend $li-item
-  fa-icon: fa-tag
-
-.self-intro
-  img
-    display: block
-    margin: auto
-
-  ul.description
-    margin-left: 10px
-    li span
-      margin-left: 1ex
-      font-weight: bold
-
-  ul.social-links
-    text-align: center
-    margin-top: 10px
-
-    li
-      display: inline-block
-
-      > a
-        cursor: pointer
-        display: inline-block
-        text-decoration: none
-        font-size: 2em
-        padding: 8px
-        border-radius: 3px
-        margin: 5px
-
-        material-z-index: 1
-        &:before
-          material-text-z-index: 1
-
-        transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)
-
-        &:before
-          transition: text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1)
-
-        &:hover
-          transition-delay: .2s
-          material-z-index: 2
-
-          &:before
-            transition-delay: .2s
-            material-text-z-index: 2
-
-        &:active
-          transition-delay: 0
-          material-z-index: 1
-
-    .linked-in
-      fa-icon: fa-linkedin, 0
-      color: white
-      background: color-linkedin
-
-    .twitter
-      fa-icon: fa-twitter, 0
-      color: white
-      background: color-twitter
-
-    .github
-      fa-icon: fa-github-alt, 0
-      color: black
-      background: color-github
+.tagcloud
+  a
+    margin-right: 5px
+    display: inline-block

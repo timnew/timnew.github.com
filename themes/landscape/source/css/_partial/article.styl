@@ -1,16 +1,9 @@
-@import 'emoji'
-@import 'blockquote'
-
 .article
   margin: block-margin 0
 
 .article-inner
-  position: relative;
   @extend $block
-  material-z-index: 1
-  material-hover-z-index: 2
-  // Set overflow to visible for fix issue in fluidbox
-  // overflow: hidden
+  overflow: hidden
 
 .article-meta
   clearfix()
@@ -39,11 +32,11 @@
   text-decoration: none
   font-size: 2em
   font-weight: bold
+  color: color-default
   line-height: line-height-title
-
-  color: color-link
-  material-text-z-index: 1
-  material-text-hover-z-index: 2, lighten(color-link, 10%)
+  transition: color 0.2s
+  a&:hover
+    color: color-link
 
 .article-entry
   @extend $base-style
@@ -58,20 +51,6 @@
   h1, h2, h3, h4, h5, h6
     line-height: line-height-title
     margin: line-height-title 0
-
-  h1
-  	line-indicator: #3366FF, #1AB2E6
-  h2
-  	line-indicator: #2B7DFF, #29C2D6
-  h3
-  	line-indicator: #2494FF, #38D1C7
-  h4
-  	line-indicator: #1CABFF, #47E0B8
-  h5
-  	line-indicator: #14C2FF, #57F0A8
-  h6
-  	line-indicator: #0DD9FF, #66FF99
-
   a
     color: color-link
     text-decoration: none
@@ -98,19 +77,19 @@
   td
     border-bottom: 1px solid color-border
     padding: 10px 0
-  // blockquote
-  //   font-family: font-serif
-  //   font-size: 1.4em
-  //   margin: line-height 20px
-  //   text-align: center
-  //   footer
-  //     font-size: font-size
-  //     margin: line-height 0
-  //     font-family: font-sans
-  //     cite
-  //       &:before
-  //         content: "—"
-  //         padding: 0 0.5em
+  blockquote
+    font-family: font-serif
+    font-size: 1.4em
+    margin: line-height 20px
+    text-align: center
+    footer
+      font-size: font-size
+      margin: line-height 0
+      font-family: font-sans
+      cite
+        &:before
+          content: "—"
+          padding: 0 0.5em
   .pullquote
     text-align: left
     width: 45%
@@ -162,8 +141,8 @@
   font-size: 0.85em
   line-height: line-height
   border-top: 1px solid color-border
-  // padding-top: line-height
-  padding: line-height article-padding article-padding article-padding
+  padding-top: line-height
+  margin: 0 article-padding article-padding
   a
     color: color-grey
     text-decoration: none
@@ -248,20 +227,15 @@
 
 .article-share-box
   position: absolute
-  visibility: collapse
-  opacity: 0
+  display: none
   background: #fff
-  material-z-index: 2
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2)
   border-radius: 3px
   margin-left: -145px
   overflow: hidden
   z-index: 1
-  transform: matrix(.8, 0, 0, .8, 20, -20)
-  transition: opacity .5s, visibility .5s, transform .5s;
   &.on
-    visibility: visible
-    transform: matrix(1, 0, 0, 1, 0, 0)
-    opacity: 1
+    display: block
 
 .article-share-input
   width: 100%
@@ -271,11 +245,10 @@
   padding: 0 15px
   color: color-default
   outline: none
-  border: 0
+  border: 1px solid color-border
   border-radius: 3px 3px 0 0
   height: 36px
   line-height: 36px
-  box-shadow: bottom-shadows[1]
 
 .article-share-links
   clearfix()
@@ -289,46 +262,45 @@ $article-share-link
   position: relative
   color: #999
   text-shadow: 0 1px #fff
-  transition: background .5s, text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), color .3s .5s
-
   &:before
     font-size: 20px
     font-family: font-icon
     absolute-center(@font-size)
     text-align: center
-
   &:hover
     color: #fff
-    material-text-z-index: 2
-    transition: background .5s, text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1) .3s, color .3s
 
 .article-share-twitter
   @extend $article-share-link
   &:before
-    content: fa-twitter
+    content: "\f099"
   &:hover
     background: color-twitter
+    text-shadow: 0 1px darken(color-twitter, 20%)
 
 .article-share-facebook
   @extend $article-share-link
   &:before
-    content: fa-facebook
+    content: "\f09a"
   &:hover
     background: color-facebook
+    text-shadow: 0 1px darken(color-facebook, 20%)
 
 .article-share-pinterest
   @extend $article-share-link
   &:before
-    content: fa-pinterest
+    content: "\f0d2"
   &:hover
     background: color-pinterest
+    text-shadow: 0 1px darken(color-pinterest, 20%)
 
 .article-share-google
   @extend $article-share-link
   &:before
-    content: fa-google-plus
+    content: "\f0d5"
   &:hover
     background: color-google
+    text-shadow: 0 1px darken(color-google, 20%)
 
 .article-gallery
   background: #000

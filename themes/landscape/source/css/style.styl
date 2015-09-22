@@ -2,9 +2,6 @@
 @import "_variables"
 @import "_util/mixin"
 @import "_util/grid"
-@import "_util/material"
-@import "_util/icons"
-@import "_util/indicator"
 
 global-reset()
 
@@ -15,11 +12,21 @@ input, button
     border: 0
     padding: 0
 
+@font-face
+  font-family: FontAwesome
+  font-style: normal
+  font-weight: normal
+  src: url(font-icon-path + ".eot?v=#" + font-icon-version)
+  src: url(font-icon-path + ".eot?#iefix&v=#" + font-icon-version) format("embedded-opentype"),
+       url(font-icon-path + ".woff?v=#" + font-icon-version) format("woff"),
+       url(font-icon-path + ".ttf?v=#" + font-icon-version) format("truetype"),
+       url(font-icon-path + ".svg#fontawesomeregular?v=#" + font-icon-version) format("svg")
+
 html, body, #container
   height: 100%
 
 body
-  background: texture-background color-background
+  background: color-background
   font: font-size font-sans
   -webkit-text-size-adjust: 100%
 
@@ -55,7 +62,7 @@ body
   left: 0
   transition: 0.2s ease-out
   z-index: 1
-  background: texture-background color-background
+  background: color-background
   .mobile-nav-on &
     left: mobile-nav-width
 
@@ -65,8 +72,9 @@ if sidebar and sidebar isnt bottom
       column(main-column)
 
 if sidebar is left
-  #main
-    float: right
+  @media mq-normal
+    #main
+      float: right
 
 @import "_extend"
 @import "_partial/header"
@@ -76,11 +84,6 @@ if sidebar is left
 @import "_partial/footer"
 @import "_partial/highlight"
 @import "_partial/mobile"
-@import "_partial/ribbon"
-@import "_partial/source_code_pro_font"
-@import "_partial/fancybox"
-@import "_partial/splash"
-@import "_partial/gallery"
 
 if sidebar
   @import "_partial/sidebar"

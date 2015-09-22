@@ -8,19 +8,17 @@
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//go.disqus.com/<% if (page.comments){ %>embed.js<% } else { %>count.js<% } %>';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
 <% } %>
 
-<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="//detectmobilebrowsers.com/download/jquery"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
 <% if (theme.fancybox){ %>
-  <%- css('//cdnjs.cloudflare.com/ajax/libs/fluidbox/1.3.3/jquery.fluidbox.css') %>
-  <%- js('//cdnjs.cloudflare.com/ajax/libs/fluidbox/1.3.3/jquery.fluidbox.min.js') %>
+  <%- css('fancybox/jquery.fancybox') %>
+  <%- js('fancybox/jquery.fancybox.pack') %>
 <% } %>
 
-<%- js('scrollspy/scrollspy.js') %>
 <%- js('js/script') %>
-<%- js('js/splash') %>
