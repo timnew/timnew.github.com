@@ -57,21 +57,21 @@ But we mentioned in the introduction of `EventBus` that `EventBus` is design to 
 4. It should be declared as a nested static class of publisher.
 
 **NOTICE**  
-If you thought a Event is "Broadcase Event", but later you found it has only one recipient, then you might need to consider refact it into a `Command` or a `Request`.
+If you thought a Event is "Broadcast Event", but later you found it has only one recipient, then you might need to consider refact it into a `Command` or a `Request`.
 
 ### Command
 
 `Command` is a special kind of event that has the ability to update specific object or specific type of objects. In most cases, `Command` should have only one recipient. In some special cases, it might has a group of recipients with exactly same type.
 
-Percisely, the latter case is a variant of `Command` pattern, `Batch Command`, which works as same as `Command` but have multiple recipients so it can update multiple instances in a batch.
+Precisely, the latter case is a variant of `Command` pattern, `Batch Command`, which works as same as `Command` but have multiple recipients so it can update multiple instances in a batch.
 
 `Command` should be a immutable object that able to update specific object, so:
 1. It should have 1 `execute` method with 1 parameter, which represents the target that the command updates.
-2. When invoking execute method shouldn't change its own status, so it does exactly samething when applying it to multiple targets.
+2. When invoking execute method shouldn't change its own status, so it does exactly same thing when applying it to multiple targets.
 3. It behavior should be stable across time, so its behavior won't change when it is apply asynchronously.
 4. The object that `execute` method accepts is not necessarily to be the recipient. It could be the object that recipient holds or it has access to.
 5. It should be declared as nested static class of the recipient.
-6. If recipient accepts multiple events, these events are recommended to drived from the same base class. So The recipient could subscribe to the base class, rather than every command.
+6. If recipient accepts multiple events, these events are recommended to derived from the same base class. So The recipient could subscribe to the base class, rather than every command.
 
 **NOTICE**  
 `Command` can be seen as recipient's special method that can be invoked without known recipient instance. So its behavior should fully contained in the class. The subscribing method on recipient should contain one line of code to invoke `execute` method on command.
