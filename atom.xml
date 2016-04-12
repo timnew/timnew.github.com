@@ -3,25 +3,25 @@
   <title>ThoughtWorkshop</title>
   <subtitle>Digital Bigs in my thought</subtitle>
   <link href="/atom.xml" rel="self"/>
-
+  <link href="https://pubsubhubbub.superfeedr.com/" rel="hub"/>
   <link href="http://timnew.me/"/>
   <updated>2016-04-12T14:58:03.000Z</updated>
   <id>http://timnew.me/</id>
-
+  
   <author>
     <name>TimNew</name>
     <email>timnew.wti@gmail.com</email>
   </author>
-
+  
   <generator uri="http://hexo.io/">Hexo</generator>
-
+  
   <entry>
     <title>A clean way to test rejected promise</title>
     <link href="http://timnew.me/blog/2015/08/14/a-clean-way-to-test-rejected-promise/"/>
     <id>http://timnew.me/blog/2015/08/14/a-clean-way-to-test-rejected-promise/</id>
     <published>2015-08-14T08:08:53.000Z</published>
     <updated>2016-04-12T14:58:03.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;To test the the exception in a rejected promise could be a little bit painful.&lt;/p&gt;
 &lt;p&gt;And &lt;a href=&quot;https://mochajs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Mocha&lt;/a&gt; is Promise-friendly, which means it fails the test if exception is not caught.&lt;/p&gt;
 &lt;p&gt;So as a result, here is a simple code example to explain how it is being done:&lt;/p&gt;
@@ -32,36 +32,36 @@
 &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;it(&lt;span class=&quot;string&quot;&gt;&#39;should throw session-expired exception&#39;&lt;/span&gt;, () =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; expect(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Session().generateId().bindUserFromRedis())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           .to.evetually.rejected&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              .and.that.have.property(&lt;span class=&quot;string&quot;&gt;&#39;errorName&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;session-expired&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;Update 2:&lt;/strong&gt; With async, it can be converted into normal test&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;it(&lt;span class=&quot;string&quot;&gt;&#39;should throw session-expired exception&#39;&lt;/span&gt;, () =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; expect(&lt;span class=&quot;keyword&quot;&gt;async&lt;/span&gt; () =&amp;gt; &lt;span class=&quot;keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Session().generateId().bindUserFromRedis())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          .to.throw&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;             .and.that.have.property(&lt;span class=&quot;string&quot;&gt;&#39;errorName&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;session-expired&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;To test the the exception in a rejected promise could be a little bit painful.&lt;/p&gt;
-&lt;p&gt;And &lt;a href=&quot;https://mochajs.org/&quot; target=&quot;_blank&quot;
-
+&lt;p&gt;And &lt;a href=&quot;https://mochajs.org/&quot; target=&quot;_blank&quot; 
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="JavaScript" scheme="http://timnew.me/categories/programming/javascript/"/>
-
-
+    
+    
       <category term="JavaScript" scheme="http://timnew.me/tags/javascript/"/>
-
+    
       <category term="Promise" scheme="http://timnew.me/tags/promise/"/>
-
+    
       <category term="Test" scheme="http://timnew.me/tags/test/"/>
-
+    
       <category term="Mocha" scheme="http://timnew.me/tags/mocha/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Typical EventBus Design Patterns</title>
     <link href="http://timnew.me/blog/2014/12/06/typical-eventbus-design-patterns/"/>
     <id>http://timnew.me/blog/2014/12/06/typical-eventbus-design-patterns/</id>
     <published>2014-12-06T08:37:41.000Z</published>
     <updated>2016-01-31T16:21:00.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;code&gt;EventBus&lt;/code&gt; is an special &lt;a href=&quot;`Pub &amp;amp; Sub`&quot;&gt;Publish &amp;amp; Subscribe Pattern&lt;/a&gt; implementation. &lt;code&gt;EventBus&lt;/code&gt; enable message to be delivered between components without requiring the components to register itself to others.&lt;/p&gt;
 &lt;p&gt;Comparing &lt;code&gt;EventBus&lt;/code&gt; to other &lt;code&gt;Pub &amp;amp; Sub&lt;/code&gt; implementations, &lt;code&gt;EventBus&lt;/code&gt; is:&lt;/p&gt;
 &lt;ol&gt;
@@ -111,43 +111,43 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;NOTICE&lt;/strong&gt;&lt;br&gt;&lt;code&gt;Request&lt;/code&gt; can be seen as a special method that publisher exposes to a specific recipient, so the specific recipient can invoke the method to provide data. For &lt;code&gt;Request&lt;/code&gt;, you might need to aware that that sometimes request might not found proper recipient to respond. If the responder is not guaranteed to exist, then the publish to watch out no-recipent warning from EventBus.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;code&gt;EventBus&lt;/code&gt; is an special &lt;a href=&quot;`Pub &amp;amp; Sub`&quot;&gt;Publish &amp;amp; Subscribe Pattern&lt;/a&gt; implementation. &lt;code&gt;EventBus&lt;/code&gt; e
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Design Patterns" scheme="http://timnew.me/categories/programming/design-patterns/"/>
-
-
+    
+    
       <category term="Android" scheme="http://timnew.me/tags/android/"/>
-
+    
       <category term="Design Pattern" scheme="http://timnew.me/tags/design-pattern/"/>
-
+    
       <category term="EventBus" scheme="http://timnew.me/tags/eventbus/"/>
-
+    
       <category term="Event" scheme="http://timnew.me/tags/event/"/>
-
+    
       <category term="Command" scheme="http://timnew.me/tags/command/"/>
-
+    
       <category term="Request" scheme="http://timnew.me/tags/request/"/>
-
+    
       <category term="Otto" scheme="http://timnew.me/tags/otto/"/>
-
+    
       <category term="Guava" scheme="http://timnew.me/tags/guava/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Understand Styles in Android - Part 1. What it is for and how to used it</title>
     <link href="http://timnew.me/blog/2014/11/09/understand-styles-in-android-part-1-what-it-is-for-and-how-to-used-it/"/>
     <id>http://timnew.me/blog/2014/11/09/understand-styles-in-android-part-1-what-it-is-for-and-how-to-used-it/</id>
     <published>2014-11-09T05:44:29.000Z</published>
     <updated>2014-11-14T10:26:19.000Z</updated>
-
+    
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/blog/2014/11/09/understand-styles-in-android-part-1-what-it-is-for-and-how-to-used-it/&quot;&gt;Part 1: What it is for and how to used it&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -166,38 +166,38 @@
 &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;resources&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;style&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;TextView.Customized&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:gravity&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;center&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:background&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;@drawable/category_indicator_background&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:paddingLeft&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;22dp&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:paddingRight&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;22dp&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:paddingTop&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;12dp&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:paddingBottom&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;12dp&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:textAppearance&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;@style/CategoryIndicator.Text&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:textSize&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;12sp&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android:maxLines&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;1&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;item&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;style&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;resources&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;Well, this is the basics about the &lt;code&gt;Style&lt;/code&gt;: why we need it and how it is used.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/blog/2014/11/09/understand-styles-in-android-part-1-what-it-is-for-and-how-to-used-it/&quot;&gt;Part 1: What it is for and how to
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Android" scheme="http://timnew.me/categories/programming/android/"/>
-
-
+    
+    
       <category term="xml" scheme="http://timnew.me/tags/xml/"/>
-
+    
       <category term="android" scheme="http://timnew.me/tags/android/"/>
-
+    
       <category term="style" scheme="http://timnew.me/tags/style/"/>
-
+    
       <category term="understanding" scheme="http://timnew.me/tags/understanding/"/>
-
+    
       <category term="view" scheme="http://timnew.me/tags/view/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Walkthrough: Untrusted - the Continuing Adventures of Dr. Eval</title>
     <link href="http://timnew.me/blog/2014/11/07/walkthrough-untrusted-the-continuing-adventures-of-dr-eval/"/>
     <id>http://timnew.me/blog/2014/11/07/walkthrough-untrusted-the-continuing-adventures-of-dr-eval/</id>
     <published>2014-11-07T15:38:08.000Z</published>
     <updated>2016-03-25T13:01:53.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;This post is Walkthrough to the game &lt;a href=&quot;http://alexnisnevich.github.io/untrusted/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Untrusted&lt;/a&gt;&lt;br&gt;The game introduction is available here: &lt;a href=&quot;/blog/2014/11/05/awesome-geek-game-untrusted-the-continuing-adventures-of-dr-eval/&quot;&gt;Awesome geek game Untrusted&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;Level-1-cellBlockA&quot;&gt;&lt;a href=&quot;#Level-1-cellBlockA&quot; class=&quot;headerlink&quot; title=&quot;Level 1: cellBlockA&quot;&gt;&lt;/a&gt;Level 1: cellBlockA&lt;/h3&gt;&lt;p&gt;Well, you are trapped in a box. And you need to move yourself to the exit (blue squre).&lt;/p&gt;
 &lt;ol&gt;
@@ -447,35 +447,35 @@ $(function(){
 
 
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;This post is Walkthrough to the game &lt;a href=&quot;http://alexnisnevich.github.io/untrusted/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Untrusted&lt;/a&gt;&lt;br&gt;
-
+    
     </summary>
-
+    
       <category term="Game" scheme="http://timnew.me/categories/game/"/>
-
+    
       <category term="Programming Game" scheme="http://timnew.me/categories/game/programming-game/"/>
-
-
+    
+    
       <category term="Programming Game" scheme="http://timnew.me/tags/programming-game/"/>
-
+    
       <category term="Untrusted" scheme="http://timnew.me/tags/untrusted/"/>
-
+    
       <category term="Javascript" scheme="http://timnew.me/tags/javascript/"/>
-
+    
       <category term="Walkthrough" scheme="http://timnew.me/tags/walkthrough/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Awesome geek game Untrusted - the Continuing Adventures of Dr. Eval</title>
     <link href="http://timnew.me/blog/2014/11/05/awesome-geek-game-untrusted-the-continuing-adventures-of-dr-eval/"/>
     <id>http://timnew.me/blog/2014/11/05/awesome-geek-game-untrusted-the-continuing-adventures-of-dr-eval/</id>
     <published>2014-11-05T14:21:40.000Z</published>
     <updated>2014-11-07T15:41:00.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;a href=&quot;http://alexnisnevich.github.io/untrusted/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Untrusted&lt;/a&gt; is an awesome game brought to us by &lt;a href=&quot;http://alex.nisnevich.com/portfolio/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Alex Nisnevich&lt;/a&gt; and &lt;a href=&quot;http://github.everydayimshuflin.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Greg Shuflin&lt;/a&gt;. &lt;code&gt;Untrusted&lt;/code&gt; is an unique puzzle game designed for geeks and developers. The reason I said it is designed for geeks and developer is because to solve the puzzles in the game, you need to know or even to write some &lt;code&gt;javascript&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Here is how the creators describe their baby:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;Untrusted —or— the Continuing Adventures of Dr. Eval is an exciting Meta-Javascript Adventure Game wherein you guide the dashing, steadfast Dr. Eval through a mysterious MACHINE CONTINUUM, wherein, using only his trusty computer and the TURING-COMPLETE power of Javascript, he must literally ALTER HIS REALITY in order to find his freedom! You must literally edit and re-execute the very Javascript running the game in your browser to save Dr. Eval from this dark and confusing reality!&lt;/p&gt;
@@ -489,35 +489,35 @@ $(function(){
 &lt;p&gt;I have extract the walkthrough into another post.&lt;/p&gt;
 &lt;p&gt;Here is the link to the walkthrough: &lt;a href=&quot;/blog/2014/11/07/walkthrough-untrusted-the-continuing-adventures-of-dr-eval/&quot;&gt;Walkthrough&lt;/a&gt;&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;a href=&quot;http://alexnisnevich.github.io/untrusted/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Untrusted&lt;/a&gt; is an awesome game brought to us by &lt;a h
-
+    
     </summary>
-
+    
       <category term="Game" scheme="http://timnew.me/categories/game/"/>
-
+    
       <category term="Programming Game" scheme="http://timnew.me/categories/game/programming-game/"/>
-
-
+    
+    
       <category term="Programming Game" scheme="http://timnew.me/tags/programming-game/"/>
-
+    
       <category term="Untrusted" scheme="http://timnew.me/tags/untrusted/"/>
-
+    
       <category term="Javascript" scheme="http://timnew.me/tags/javascript/"/>
-
+    
       <category term="Introduction" scheme="http://timnew.me/tags/introduction/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Perform Clicks in Android Robolectric Unit Test</title>
     <link href="http://timnew.me/blog/2014/10/27/perform-clicks-in-android-robolectric-unit-test/"/>
     <id>http://timnew.me/blog/2014/10/27/perform-clicks-in-android-robolectric-unit-test/</id>
     <published>2014-10-27T08:17:13.000Z</published>
     <updated>2014-10-27T09:47:34.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;Robolectric is an awesome library that makes UI unit test on Android a lot easier and faster. In UI test, one of the most basic thing is to simulate user interaction, such as clicking a button.&lt;/p&gt;
 &lt;h2 id=&quot;Click-on-individual-View&quot;&gt;&lt;a href=&quot;#Click-on-individual-View&quot; class=&quot;headerlink&quot; title=&quot;Click on individual View&quot;&gt;&lt;/a&gt;Click on individual View&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Click&lt;/code&gt; should be the most basic user interaction, besides invokeing the &lt;code&gt;View.performClick()&lt;/code&gt; method, Robolectric provides a more smarter version &lt;code&gt;Robolectric.clickOn(View)&lt;/code&gt;, which checks the view visibility and &lt;code&gt;enabled&lt;/code&gt; status before actually “click” the view. If a view is either not visible or disabled, the click action will not be performed. This mechanism is useful to avoid some silly cases in automated tests.&lt;/p&gt;
 &lt;h2 id=&quot;Long-Click-on-individual-View&quot;&gt;&lt;a href=&quot;#Long-Click-on-individual-View&quot; class=&quot;headerlink&quot; title=&quot;Long Click on individual View&quot;&gt;&lt;/a&gt;Long Click on individual View&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Long click&lt;/code&gt; is a more advanced &lt;code&gt;click&lt;/code&gt; action. To simulate a long click action, &lt;code&gt;View.performLongClick()&lt;/code&gt; can be invoked. But since Robolectric doesn’t provide any long click helper, make sure you do it by yourself, including checking whether view is &lt;code&gt;long-clickable&lt;/code&gt;, which usually will be set manually or more often, when &lt;code&gt;View.setOnLongClickListener&lt;/code&gt; is invoked; view is visible and enabled as what &lt;code&gt;click&lt;/code&gt; does. Although &lt;code&gt;Long click&lt;/code&gt; is avaible to use, but from my experience, long click on a individual view is rarely used in real UI design, instead &lt;code&gt;long click&lt;/code&gt; is usually performed on an item of list view or grid view. This is the trickest case that I’ll leave it to the last.&lt;/p&gt;
@@ -539,43 +539,43 @@ $(function(){
 &lt;p&gt;My main purpose of perform a click is to trigger the corresponding listener, so I tried to invoke the listener directly with some necessary pre-checks. This aporach will not triggers these UI effects, but I assume it can meet most test cases.&lt;/p&gt;
 &lt;h2 id=&quot;APPENDIX-UIActions-helper-class&quot;&gt;&lt;a href=&quot;#APPENDIX-UIActions-helper-class&quot; class=&quot;headerlink&quot; title=&quot;APPENDIX UIActions helper class&quot;&gt;&lt;/a&gt;APPENDIX UIActions helper class&lt;/h2&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; me.timnew.robolectric.utils;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.app.Activity;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.app.Fragment;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.view.View;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.widget.AbsListView;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.widget.ListAdapter;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.robolectric.Robolectric;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; android.view.HapticFeedbackConstants.LONG_PRESS;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; android.widget.AdapterView.OnItemLongClickListener;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;UiActions&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;clickOn&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(View view)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; Robolectric.clickOn(view);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;clickOn&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Activity activity, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; targetViewId)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; Robolectric.clickOn(activity.findViewById(targetViewId));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;clickOn&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(View parentView, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; targetViewId)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; Robolectric.clickOn(parentView.findViewById(targetViewId));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;clickOn&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Fragment fragment, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; targetViewId)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;//noinspection ConstantConditions&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; Robolectric.clickOn(fragment.getView().findViewById(targetViewId));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;pressBackButton&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Activity currentActivity)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (currentActivity.getFragmentManager().getBackStackEntryCount() &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            currentActivity.getFragmentManager().popBackStackImmediate();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            currentActivity.onBackPressed();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;clickItem&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(AbsListView listView, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; position)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ListAdapter adapter = listView.getAdapter();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        View itemView = adapter.getView(position, &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;, listView);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        listView.performItemClick(itemView, position, adapter.getItemId(position));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;longClickItem&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(AbsListView listView, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; position)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!listView.isLongClickable())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        OnItemLongClickListener listener = listView.getOnItemLongClickListener();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (listener == &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ListAdapter adapter = listView.getAdapter();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        View itemView = adapter.getView(position, &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;, listView);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        listener.onItemLongClick(listView, itemView, position, adapter.getItemId(position));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        listView.performHapticFeedback(LONG_PRESS);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 </content>
-
+    
     <summary type="html">
-
-      &lt;p&gt;Robolectric is an awesome library that makes UI unit test on Android a lot easier and faster. In UI test, one of the most basic thing is
-
+    
+      &lt;p&gt;Robolectric is an awesome library that makes UI unit test on Android a lot easier and faster. In UI test, one of the most basic thing is 
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Android" scheme="http://timnew.me/categories/programming/android/"/>
-
-
+    
+    
       <category term="unit test" scheme="http://timnew.me/tags/unit-test/"/>
-
+    
       <category term="android" scheme="http://timnew.me/tags/android/"/>
-
+    
       <category term="robolectric" scheme="http://timnew.me/tags/robolectric/"/>
-
+    
       <category term="list view" scheme="http://timnew.me/tags/list-view/"/>
-
+    
       <category term="long click" scheme="http://timnew.me/tags/long-click/"/>
-
+    
       <category term="item" scheme="http://timnew.me/tags/item/"/>
-
+    
       <category term="click" scheme="http://timnew.me/tags/click/"/>
-
+    
       <category term="ui action" scheme="http://timnew.me/tags/ui-action/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>2 Modules Android project with Robolectric, Gradle, Android Studio</title>
     <link href="http://timnew.me/blog/2014/09/30/2-modules-android-project-with-robolectric-gradle-android-studio/"/>
     <id>http://timnew.me/blog/2014/09/30/2-modules-android-project-with-robolectric-gradle-android-studio/</id>
     <published>2014-09-30T05:00:58.000Z</published>
     <updated>2014-09-30T06:50:11.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;Start a new Android project this week, so I started to setup the development environment. To be honest, it is not an easy experience to me.&lt;/p&gt;
 &lt;h2 id=&quot;Features&quot;&gt;&lt;a href=&quot;#Features&quot; class=&quot;headerlink&quot; title=&quot;Features&quot;&gt;&lt;/a&gt;Features&lt;/h2&gt;&lt;p&gt;Here are the features I got now:&lt;/p&gt;
 &lt;ul&gt;
@@ -632,43 +632,43 @@ $(function(){
 &lt;li&gt;&lt;a href=&quot;https://github.com/novoda/robolectric-plugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;robolectric-plugin&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;Start a new Android project this week, so I started to setup the development environment. To be honest, it is not an easy experience to m
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Android" scheme="http://timnew.me/categories/programming/android/"/>
-
-
+    
+    
       <category term="Android" scheme="http://timnew.me/tags/android/"/>
-
+    
       <category term="Project" scheme="http://timnew.me/tags/project/"/>
-
+    
       <category term="Boilerplate" scheme="http://timnew.me/tags/boilerplate/"/>
-
+    
       <category term="Robolectric" scheme="http://timnew.me/tags/robolectric/"/>
-
+    
       <category term="Gradle" scheme="http://timnew.me/tags/gradle/"/>
-
+    
       <category term="Android Studio" scheme="http://timnew.me/tags/android-studio/"/>
-
+    
       <category term="Unit Test" scheme="http://timnew.me/tags/unit-test/"/>
-
+    
       <category term="Structure" scheme="http://timnew.me/tags/structure/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Trello Confetti Effect</title>
     <link href="http://timnew.me/blog/2014/09/24/trello-confetti-effect/"/>
     <id>http://timnew.me/blog/2014/09/24/trello-confetti-effect/</id>
     <published>2014-09-24T05:13:33.000Z</published>
     <updated>2016-03-25T13:11:03.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://trello.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Trello&lt;/a&gt; just created a &lt;a href=&quot;https://trello.com/5m&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;page&lt;/a&gt; to celebrate their user number reaches 5 million. In their celebration page, they introduce an interesting effect, a number of blue squares rotating and falling from the sky.&lt;/p&gt;
 &lt;p&gt;By inspecting their source code, I extracted the effect implementation from the page.&lt;/p&gt;
 {% codepen timnew tlEBe 7928 result 500 %}
@@ -679,41 +679,41 @@ $(function(){
 &lt;/ul&gt;
 &lt;p&gt;The source code is extracted for study purpose, all code and credits belongs to Trello guys.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;a href=&quot;https://trello.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Trello&lt;/a&gt; just created a &lt;a href=&quot;https://trello.com/5m&quot; target=&quot;_blank&quot; rel
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
-
-
+    
+    
       <category term="effect" scheme="http://timnew.me/tags/effect/"/>
-
+    
       <category term="animation" scheme="http://timnew.me/tags/animation/"/>
-
+    
       <category term="trello" scheme="http://timnew.me/tags/trello/"/>
-
+    
       <category term="confetti" scheme="http://timnew.me/tags/confetti/"/>
-
+    
       <category term="canvas" scheme="http://timnew.me/tags/canvas/"/>
-
+    
       <category term="draw" scheme="http://timnew.me/tags/draw/"/>
-
+    
       <category term="particle" scheme="http://timnew.me/tags/particle/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Otto and Android Annotations Compatibility Issue Analysis</title>
     <link href="http://timnew.me/blog/2014/09/14/otto-and-android-annotations-compatibility-issue-analysis/"/>
     <id>http://timnew.me/blog/2014/09/14/otto-and-android-annotations-compatibility-issue-analysis/</id>
     <published>2014-09-14T08:14:22.000Z</published>
     <updated>2014-09-14T08:14:22.000Z</updated>
-
+    
     <content type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/square/otto&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Otto&lt;/a&gt; is a great Android event bus solution developed by &lt;a href=&quot;http://square.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SquareUp&lt;/a&gt; guys. These guys extract the event bus related classes from &lt;a href=&quot;https://code.google.com/p/guava-libraries/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google’s Guava&lt;/a&gt;, and optimized it for Android. Event Bus is a great solution to keep your code away from messy anonymous or internal classes only used for event handling! And Otto’s simplicity and performance makes it used to be the most popular event bus solution in Android development.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://androidannotations.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Annotations&lt;/a&gt;, as known as &lt;code&gt;AA&lt;/code&gt;, is another great library that makes Android developers’ lives a lot easier. Just annotating the code, AA helps developer handles the most boring or error-proning tasks for you, including binding widgets binding, asynchronous tasks, life time management, etc…&lt;/p&gt;
 &lt;h2 id=&quot;Issue&quot;&gt;&lt;a href=&quot;#Issue&quot; class=&quot;headerlink&quot; title=&quot;Issue&quot;&gt;&lt;/a&gt;Issue&lt;/h2&gt;&lt;p&gt;Otto and AA are the libraries focusing on different aspects. Theoretically speaking, there shouldn’t be any compatibility issue between them. But the reality Otto event is never delivered to AA annotated classes. By inspecting the code with step by step debugging, I found the root cause of the issue is Otto failed to located &lt;code&gt;@Produce&lt;/code&gt; and &lt;code&gt;@Subscribe&lt;/code&gt; annotated methods in AA generated code.&lt;/p&gt;
@@ -824,93 +824,93 @@ $(function(){
 &lt;/tbody&gt;
 &lt;/table&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/sq
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Android" scheme="http://timnew.me/categories/programming/android/"/>
-
-
+    
+    
       <category term="event" scheme="http://timnew.me/tags/event/"/>
-
+    
       <category term="google" scheme="http://timnew.me/tags/google/"/>
-
+    
       <category term="programming" scheme="http://timnew.me/tags/programming/"/>
-
+    
       <category term="android" scheme="http://timnew.me/tags/android/"/>
-
+    
       <category term="otto" scheme="http://timnew.me/tags/otto/"/>
-
+    
       <category term="squareUp" scheme="http://timnew.me/tags/squareup/"/>
-
+    
       <category term="greenbot" scheme="http://timnew.me/tags/greenbot/"/>
-
+    
       <category term="event bus" scheme="http://timnew.me/tags/event-bus/"/>
-
+    
       <category term="pub &amp; sub" scheme="http://timnew.me/tags/pub-sub/"/>
-
+    
       <category term="android annotations" scheme="http://timnew.me/tags/android-annotations/"/>
-
+    
       <category term="guava" scheme="http://timnew.me/tags/guava/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>An interesting share box hover effect</title>
     <link href="http://timnew.me/blog/2014/08/26/an-interesting-share-box-hover-effect/"/>
     <id>http://timnew.me/blog/2014/08/26/an-interesting-share-box-hover-effect/</id>
     <published>2014-08-25T16:13:54.000Z</published>
     <updated>2016-03-25T13:10:45.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;Today I spent some time on customizing the share-box used in this blog.&lt;/p&gt;
 &lt;p&gt;Here is the effect&lt;/p&gt;
 {% codepen timnew AweKi 7928 result 257 %}
 &lt;p&gt;The cover effect for the social network icons are simulate the icon is floating from the background by animating the shadow. In the implementation, I used some shadow described in &lt;a href=&quot;http://timnew.me/blog/2014/08/16/material-design-shadow-in-html/&quot;&gt;Material Design Shadow in HTML&lt;/a&gt;. For the texts, I use the &lt;code&gt;text-shadow&lt;/code&gt; effect that used on the same text shadow used on tht title of the article.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;Today I spent some time on customizing the share-box used in this blog.&lt;/p&gt;
 &lt;p&gt;Here is the effect&lt;/p&gt;
 {% codepen timnew AweKi 7928 result
-
+    
     </summary>
-
+    
       <category term="Design" scheme="http://timnew.me/categories/design/"/>
-
+    
       <category term="Web" scheme="http://timnew.me/categories/design/web/"/>
-
-
+    
+    
       <category term="design" scheme="http://timnew.me/tags/design/"/>
-
+    
       <category term="css" scheme="http://timnew.me/tags/css/"/>
-
+    
       <category term="web" scheme="http://timnew.me/tags/web/"/>
-
+    
       <category term="sharebox" scheme="http://timnew.me/tags/sharebox/"/>
-
+    
       <category term="transition" scheme="http://timnew.me/tags/transition/"/>
-
+    
       <category term="hover" scheme="http://timnew.me/tags/hover/"/>
-
+    
       <category term="effect" scheme="http://timnew.me/tags/effect/"/>
-
+    
       <category term="animation" scheme="http://timnew.me/tags/animation/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Hexo file name escape issue and solution</title>
     <link href="http://timnew.me/blog/2014/08/20/hexo-file-name-escape-issue-and-solution/"/>
     <id>http://timnew.me/blog/2014/08/20/hexo-file-name-escape-issue-and-solution/</id>
     <published>2014-08-19T18:49:13.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;I’m working on reorganize posts today, and found some filename issue with &lt;code&gt;Hexo&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;Speical-symbols-are-not-escaped-properly&quot;&gt;&lt;a href=&quot;#Speical-symbols-are-not-escaped-properly&quot; class=&quot;headerlink&quot; title=&quot;Speical symbols are not escaped properly&quot;&gt;&lt;/a&gt;Speical symbols are not escaped properly&lt;/h2&gt;&lt;p&gt;Just found this issue today.&lt;/p&gt;
 &lt;p&gt;To ensure filename generate from title is legal as either file name or url path, &lt;code&gt;Hexo&lt;/code&gt; uses &lt;a href=&quot;https://github.com/hexojs/hexo/blob/master/lib/util/escape.js#L22&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo.util.escape.filename&lt;/a&gt; to escape the illegal symbols. &lt;code&gt;filename&lt;/code&gt; does escape some symbols, but it doesn’t cover all illegal symbols, such as &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;=&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;, etc. If these symbols are not escaped properly, which generates illegal url link. As a result, your post will never be acessible.&lt;/p&gt;
@@ -925,42 +925,42 @@ $(function(){
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git rm -rf *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git ci -m &amp;quot;Clean all file&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ hexo clean&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ hexo d -g&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;To force clean the repo once enforce git to treat 2 files with same name but different casing as different ones. So the name casing issue can be fixed.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;I’m working on reorganize posts today, and found some filename issue with &lt;code&gt;Hexo&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;Speical-symbols-are-not-escaped-
-
+    
     </summary>
-
+    
       <category term="Practice" scheme="http://timnew.me/categories/practice/"/>
-
+    
       <category term="Hexo" scheme="http://timnew.me/categories/practice/hexo/"/>
-
-
+    
+    
       <category term="escape" scheme="http://timnew.me/tags/escape/"/>
-
+    
       <category term="name" scheme="http://timnew.me/tags/name/"/>
-
+    
       <category term="blog" scheme="http://timnew.me/tags/blog/"/>
-
+    
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
-
+    
       <category term="case" scheme="http://timnew.me/tags/case/"/>
-
+    
       <category term="symbol" scheme="http://timnew.me/tags/symbol/"/>
-
+    
       <category term="http" scheme="http://timnew.me/tags/http/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Use Hexo Asset Folder to manage resource used by post</title>
     <link href="http://timnew.me/blog/2014/08/19/use-hexo-asset-folder-to-manage-resource-used-by-post/"/>
     <id>http://timnew.me/blog/2014/08/19/use-hexo-asset-folder-to-manage-resource-used-by-post/</id>
     <published>2014-08-19T07:57:18.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;a href=&quot;http://hexo.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt; &lt;code&gt;asset folder&lt;/code&gt; is a folder that with the same name as you post file, the content in which will be copied to the folder where the rendered post html file located. It is a great way to keep the relationship between the post and its referenced resources. Personally, I prefers to put all the images or other downloadable files that referenced by the post into its &lt;code&gt;asset folder&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Although &lt;code&gt;asset folder&lt;/code&gt; is a great idea, but in practice, there are some common pitfall might disappoint you badly.&lt;/p&gt;
 &lt;h2 id=&quot;Relative-Path-Pitfall&quot;&gt;&lt;a href=&quot;#Relative-Path-Pitfall&quot; class=&quot;headerlink&quot; title=&quot;Relative Path Pitfall&quot;&gt;&lt;/a&gt;Relative Path Pitfall&lt;/h2&gt;&lt;p&gt;The idea of &lt;code&gt;asset folder&lt;/code&gt; is actually based on an assumption, that the asset resources will be placed under the same folder with the html. The html can reference these files with relative path.&lt;/p&gt;
@@ -982,45 +982,45 @@ $(function(){
 &lt;p&gt;To help you on this issue, you might need &lt;a href=&quot;https://github.com/timnew/hexo-console-rename&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-console-rename&lt;/a&gt;. The plugin helps you to rename the asset folder along with post. And it also helps you on migration once you updated your &lt;code&gt;new_post_name&lt;/code&gt; pattern.&lt;/p&gt;
 &lt;p&gt;So this is the common pitfalls in using &lt;code&gt;asset folder&lt;/code&gt; in &lt;code&gt;Hexo&lt;/code&gt;, and the plug-ins that help you to mitigate the pain.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;a href=&quot;http://hexo.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt; &lt;code&gt;asset folder&lt;/code&gt; is a folder that with the same name as you pos
-
+    
     </summary>
-
+    
       <category term="Package" scheme="http://timnew.me/categories/package/"/>
-
+    
       <category term="Hexo" scheme="http://timnew.me/categories/package/hexo/"/>
-
-
+    
+    
       <category term="resource" scheme="http://timnew.me/tags/resource/"/>
-
+    
       <category term="asset" scheme="http://timnew.me/tags/asset/"/>
-
+    
       <category term="folder" scheme="http://timnew.me/tags/folder/"/>
-
+    
       <category term="blog" scheme="http://timnew.me/tags/blog/"/>
-
+    
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
-
+    
       <category term="image" scheme="http://timnew.me/tags/image/"/>
-
+    
       <category term="plugin" scheme="http://timnew.me/tags/plugin/"/>
-
+    
       <category term="management" scheme="http://timnew.me/tags/management/"/>
-
+    
       <category term="clean" scheme="http://timnew.me/tags/clean/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Hexo plug-in to rename the post according to title automatically</title>
     <link href="http://timnew.me/blog/2014/08/19/hexo-plug-in-to-rename-the-post-according-to-title-automatically/"/>
     <id>http://timnew.me/blog/2014/08/19/hexo-plug-in-to-rename-the-post-according-to-title-automatically/</id>
     <published>2014-08-18T17:17:28.000Z</published>
     <updated>2014-09-19T03:00:22.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;When writing blog with [Hexo], I uses &lt;code&gt;hexo new&lt;/code&gt; command to create new post file. If the title of the post is provided, then the file is named according to the tile. This is super convinient, and I’m really loving it.&lt;/p&gt;
 &lt;p&gt;But there is problem! If I changed my mind when during the writing, so I changed the title of the post. As a consequence, the post file name doesn’t match to the post title any longer.&lt;/p&gt;
 &lt;p&gt;In the past, I have to rename the post file manually. If there is asset folder, I also have to remember rename it accordingly. And I have to becareful to avoid introduce typo, or it either break the reference or cause other problems.&lt;/p&gt;
@@ -1039,37 +1039,37 @@ $(function(){
 &lt;h3 id=&quot;date-in-your-post-changed&quot;&gt;&lt;a href=&quot;#date-in-your-post-changed&quot; class=&quot;headerlink&quot; title=&quot;date in your post changed&quot;&gt;&lt;/a&gt;&lt;code&gt;date&lt;/code&gt; in your post changed&lt;/h3&gt;&lt;p&gt;It isn’t a common case, but if you have changed the &lt;code&gt;date&lt;/code&gt; field in the &lt;code&gt;front-matter&lt;/code&gt; of your post. And you have time-stamp in your file name. You can also use &lt;a href=&quot;https://github.com/timnew/hexo-console-rename&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-console-rename&lt;/a&gt; to rename the file for you.&lt;/p&gt;
 &lt;p&gt;For more detail, check out the &lt;a href=&quot;https://github.com/timnew/hexo-console-rename&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-console-rename&lt;/a&gt; home page.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;When writing blog with [Hexo], I uses &lt;code&gt;hexo new&lt;/code&gt; command to create new post file. If the title of the post is provided, then t
-
+    
     </summary>
-
+    
       <category term="Package" scheme="http://timnew.me/categories/package/"/>
-
+    
       <category term="Hexo" scheme="http://timnew.me/categories/package/hexo/"/>
-
-
+    
+    
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
-
+    
       <category term="plugin" scheme="http://timnew.me/tags/plugin/"/>
-
+    
       <category term="rename" scheme="http://timnew.me/tags/rename/"/>
-
+    
       <category term="post" scheme="http://timnew.me/tags/post/"/>
-
+    
       <category term="title" scheme="http://timnew.me/tags/title/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Trick to use CoffeeScript in Hexo</title>
     <link href="http://timnew.me/blog/2014/08/18/trick-to-use-coffeescript-in-hexo/"/>
     <id>http://timnew.me/blog/2014/08/18/trick-to-use-coffeescript-in-hexo/</id>
     <published>2014-08-18T10:19:44.000Z</published>
     <updated>2016-03-25T13:01:38.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt; has a &lt;code&gt;scripts&lt;/code&gt; folder, and the files under which are loaded by &lt;code&gt;Hexo&lt;/code&gt; when start. I usually uses this folder as the development folder for my plug-in scripts. And extract them into independent package after polished it into package-ready quality.&lt;/p&gt;
 &lt;p&gt;Usually, the files under scripts should be &lt;code&gt;javascripts&lt;/code&gt;. But as I’m a fan of &lt;a href=&quot;http://coffeescript.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Coffee Script&lt;/a&gt;, so I wish to use &lt;code&gt;coffee-script&lt;/code&gt; to write the plug-ins. For the formal package, I compile the &lt;code&gt;coffee scripts&lt;/code&gt; into &lt;code&gt;javascripts&lt;/code&gt; before release. But for development, I wish to use &lt;code&gt;coffee script&lt;/code&gt; directly.&lt;/p&gt;
 &lt;p&gt;In &lt;code&gt;node.js&lt;/code&gt;, it is possible to require &lt;code&gt;coffee-script&lt;/code&gt; directly, if you registered the &lt;code&gt;coffee-script&lt;/code&gt; runtime compiler:&lt;/p&gt;
@@ -1083,39 +1083,39 @@ $(function(){
 &lt;p&gt;With this feature, we can put our &lt;code&gt;coffee-script&lt;/code&gt; registration in a file with lower alphabetic-order name. Personally, I’d like called &lt;code&gt;___register_coffeescript.js&lt;/code&gt;, since &lt;code&gt;_&lt;/code&gt; is smaller than any letter or number.&lt;/p&gt;
 &lt;p&gt;⚠️&lt;strong&gt;WARNING&lt;/strong&gt;: &lt;a href=&quot;http://nodejs.org/api/fs.html#fs_fs_readdir_path_callback&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fs.readdir&lt;/a&gt; yielding sorted files is an undocumented behavior, which means it is not guaranteed either to work across platforms or not get changed in the future. So for, it works on Mac, and I expect it behaves similar on Linux. But not sure about Windows, since &lt;code&gt;fs&lt;/code&gt; uses a different native binding on Windows.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt; has a &lt;code&gt;scripts&lt;/code&gt; folder, and the files under which are loaded
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="node.js" scheme="http://timnew.me/categories/programming/node-js/"/>
-
-
+    
+    
       <category term="script" scheme="http://timnew.me/tags/script/"/>
-
+    
       <category term="trick" scheme="http://timnew.me/tags/trick/"/>
-
+    
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
-
+    
       <category term="plug-in" scheme="http://timnew.me/tags/plug-in/"/>
-
+    
       <category term="coffee" scheme="http://timnew.me/tags/coffee/"/>
-
+    
       <category term="hack" scheme="http://timnew.me/tags/hack/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>New Favicon design for my blog</title>
     <link href="http://timnew.me/blog/2014/08/18/new-favicon-design-for-my-blog/"/>
     <id>http://timnew.me/blog/2014/08/18/new-favicon-design-for-my-blog/</id>
     <published>2014-08-17T16:18:04.000Z</published>
     <updated>2016-03-25T13:04:24.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;To ㊗️ my wife passed driver license theory course, I created a new log for my blog 😝&lt;/p&gt;
 &lt;p&gt;Here is what I got:&lt;/p&gt;
 &lt;img src=&quot;/blog/2014/08/18/new-favicon-design-for-my-blog/logo.png&quot; alt=&quot;Logo for ThoughtWorkshop&quot; title=&quot;Logo for ThoughtWorkshop&quot;&gt;
@@ -1128,41 +1128,41 @@ $(function(){
 &lt;p&gt;The rainbow color is the hint of unrestrained idea and inspiration. In Chinese, it reads 天 🌌 马 🐎 行 ✈️ 空 🚀 不 🚫 靠 🎵 谱.&lt;/p&gt;
 &lt;p&gt;Well, this is it.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;To ㊗️ my wife passed driver license theory course, I created a new log for my blog 😝&lt;/p&gt;
 &lt;p&gt;Here is what I got:&lt;/p&gt;
 &lt;img src=&quot;/blog/2014
-
+    
     </summary>
-
+    
       <category term="Design" scheme="http://timnew.me/categories/design/"/>
-
+    
       <category term="Visual" scheme="http://timnew.me/categories/design/visual/"/>
-
-
+    
+    
       <category term="blog" scheme="http://timnew.me/tags/blog/"/>
-
+    
       <category term="icon" scheme="http://timnew.me/tags/icon/"/>
-
+    
       <category term="logo" scheme="http://timnew.me/tags/logo/"/>
-
+    
       <category term="favico" scheme="http://timnew.me/tags/favico/"/>
-
+    
       <category term="timnew" scheme="http://timnew.me/tags/timnew/"/>
-
+    
       <category term="D" scheme="http://timnew.me/tags/d/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Favicon is not as simple as you think</title>
     <link href="http://timnew.me/blog/2014/08/18/favicon-is-not-as-simple-as-you-think/"/>
     <id>http://timnew.me/blog/2014/08/18/favicon-is-not-as-simple-as-you-think/</id>
     <published>2014-08-17T16:04:36.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;code&gt;Favicon&lt;/code&gt; is the little icon that displayed on the title bar or tab bar when you browsing a web site. At very beginning, it is used to be the little icon displayed in favoriate bar when user add the website to favorites. Then later, it becomes the the standard way to specify custom icon for a website.&lt;/p&gt;
 &lt;p&gt;Most web site provides &lt;code&gt;favico&lt;/code&gt;, developer add one line description in the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;:&lt;/p&gt;
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;rel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;href&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;/favico.ico&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;image/x-icon&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -1198,51 +1198,51 @@ $(function(){
 &lt;p&gt;&lt;code&gt;Real Favicon Generator&lt;/code&gt; also comes with a &lt;a href=&quot;http://realfavicongenerator.net/favicon_checker&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;favicon checker&lt;/a&gt;, which check the favorite configuration for your website, and generates  &lt;a href=&quot;http://realfavicongenerator.net/favicon_checker?site=timnew.github.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;beautiful report&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;At last the &lt;a href=&quot;http://realfavicongenerator.net/faq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FAQ&lt;/a&gt; of the site also provides a good explanation of the issue described above in details. Hope it helps.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;code&gt;Favicon&lt;/code&gt; is the little icon that displayed on the title bar or tab bar when you browsing a web site. At very beginning, it is
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
-
-
+    
+    
       <category term="design" scheme="http://timnew.me/tags/design/"/>
-
+    
       <category term="html" scheme="http://timnew.me/tags/html/"/>
-
+    
       <category term="android" scheme="http://timnew.me/tags/android/"/>
-
+    
       <category term="deployment" scheme="http://timnew.me/tags/deployment/"/>
-
+    
       <category term="favicon" scheme="http://timnew.me/tags/favicon/"/>
-
+    
       <category term="web" scheme="http://timnew.me/tags/web/"/>
-
+    
       <category term="website" scheme="http://timnew.me/tags/website/"/>
-
+    
       <category term="iOS" scheme="http://timnew.me/tags/ios/"/>
-
+    
       <category term="windows 8" scheme="http://timnew.me/tags/windows-8/"/>
-
+    
       <category term="tile" scheme="http://timnew.me/tags/tile/"/>
-
+    
       <category term="icon" scheme="http://timnew.me/tags/icon/"/>
-
+    
       <category term="logo" scheme="http://timnew.me/tags/logo/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Embed CodePen snippet in Hexo</title>
     <link href="http://timnew.me/blog/2014/08/17/embed-codepen-snippet-in-hexo/"/>
     <id>http://timnew.me/blog/2014/08/17/embed-codepen-snippet-in-hexo/</id>
     <published>2014-08-17T04:49:50.000Z</published>
     <updated>2016-03-25T13:10:18.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;a href=&quot;http://codepen.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodePen&lt;/a&gt; is a service that provide &lt;code&gt;Html&lt;/code&gt;, &lt;code&gt;JavaScript&lt;/code&gt; and &lt;code&gt;Css&lt;/code&gt; live show-case. It is another clone of &lt;a href=&quot;http://jsfiddle.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Js Fiddle&lt;/a&gt;, but with cooler UI and support.&lt;/p&gt;
 &lt;p&gt;Both &lt;code&gt;CodePen&lt;/code&gt; and &lt;code&gt;Js Fiddle&lt;/code&gt; provides embedded widget that allow user to embedded their code into blog or articles.&lt;/p&gt;
 &lt;p&gt;Here is the example, code from &lt;code&gt;CodePen&lt;/code&gt;:&lt;/p&gt;
@@ -1255,41 +1255,41 @@ $(function(){
 &lt;p&gt;Now you can embedded &lt;code&gt;Pens&lt;/code&gt; from &lt;code&gt;CodePen&lt;/code&gt; in your &lt;code&gt;Hexo&lt;/code&gt; blog. Enjoy.&lt;/p&gt;
 &lt;p&gt;For detail, check out &lt;a href=&quot;https://github.com/timnew/hexo-tag-codepen&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-tag-codepen&lt;/a&gt; document.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;a href=&quot;http://codepen.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodePen&lt;/a&gt; is a service that provide &lt;code&gt;Html&lt;/code&gt;, &lt;code&gt;JavaScript&lt;/co
-
+    
     </summary>
-
+    
       <category term="Package" scheme="http://timnew.me/categories/package/"/>
-
+    
       <category term="Hexo" scheme="http://timnew.me/categories/package/hexo/"/>
-
-
+    
+    
       <category term="node.js" scheme="http://timnew.me/tags/node-js/"/>
-
+    
       <category term="blog" scheme="http://timnew.me/tags/blog/"/>
-
+    
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
-
+    
       <category term="tag" scheme="http://timnew.me/tags/tag/"/>
-
+    
       <category term="plugin" scheme="http://timnew.me/tags/plugin/"/>
-
+    
       <category term="codepen" scheme="http://timnew.me/tags/codepen/"/>
-
+    
       <category term="embedded" scheme="http://timnew.me/tags/embedded/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Complex Value Array in Stylus</title>
     <link href="http://timnew.me/blog/2014/08/16/complex-value-array-in-stylus/"/>
     <id>http://timnew.me/blog/2014/08/16/complex-value-array-in-stylus/</id>
     <published>2014-08-16T15:32:38.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;a href=&quot;http://learnboost.github.io/stylus/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stylus&lt;/a&gt; is an awesome CSS pre-processor, which provides much more concise syntax and more powerful feature than its competitors, such as &lt;a href=&quot;http://lesscss.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LESS&lt;/a&gt; or &lt;a href=&quot;http://sass-lang.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SCSS&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;But now, with more and more features added into &lt;code&gt;Stylus&lt;/code&gt;, it seems its syntax become over-weighted. Pitfall come up.&lt;/p&gt;
 &lt;p&gt;I wish to declare an array of values for &lt;code&gt;box-shadow&lt;/code&gt; property. And I can reference them with index:&lt;/p&gt;
@@ -1309,41 +1309,41 @@ $(function(){
 &lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;drop-shadows = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; rgba(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0.16&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;               &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;6px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; rgba(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0.19&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;               &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;17px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;50px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; rgba(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0.19&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;               &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;25px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;55px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; rgba(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0.21&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;               &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;40px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;77px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; rgba(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0.22&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;drop-shadow&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attribute&quot;&gt;box-shadow&lt;/span&gt; shadows[n]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;selector-tag&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; (&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;)  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .drop-shadow-&amp;#123;i&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    drop-shadow(i)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;So no brackets or parentesis needed.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;a href=&quot;http://learnboost.github.io/stylus/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stylus&lt;/a&gt; is an awesome CSS pre-processor, which provides m
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
-
-
+    
+    
       <category term="pitfall" scheme="http://timnew.me/tags/pitfall/"/>
-
+    
       <category term="hash" scheme="http://timnew.me/tags/hash/"/>
-
+    
       <category term="array" scheme="http://timnew.me/tags/array/"/>
-
+    
       <category term="css" scheme="http://timnew.me/tags/css/"/>
-
+    
       <category term="workaround" scheme="http://timnew.me/tags/workaround/"/>
-
+    
       <category term="stylus" scheme="http://timnew.me/tags/stylus/"/>
-
+    
       <category term="box-shadow" scheme="http://timnew.me/tags/box-shadow/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Material Design Shadow in HTML</title>
     <link href="http://timnew.me/blog/2014/08/16/material-design-shadow-in-html/"/>
     <id>http://timnew.me/blog/2014/08/16/material-design-shadow-in-html/</id>
     <published>2014-08-16T09:45:05.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;Working on &lt;code&gt;Hexo&lt;/code&gt; theme customization in past few days. And wish to borrow some concepts from Google’s &lt;a href=&quot;http://www.google.com/design/spec/material-design/introduction.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Material Design&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The concept that I’m interested most in &lt;code&gt;Material Design&lt;/code&gt; is the &lt;a href=&quot;http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dimensionality&lt;/a&gt;. It identify visual area on the page with &lt;code&gt;Shadow&lt;/code&gt;.&lt;br&gt;By defining multiple shadow configuration, it creates layers in a 2-D space! Simple and efficient. What a graceful solution!&lt;/p&gt;
 &lt;p&gt;By referencing the &lt;a href=&quot;http://www.google.com/design/spec/layout/layout-principles.html#dimensionality-%20Shadows-1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Shadow Definition&lt;/a&gt; in the spec, I recreate the effect with plain CSS.&lt;/p&gt;
@@ -1355,84 +1355,84 @@ $(function(){
 &lt;h3 id=&quot;Polymer-and-Angular-Js-official-implementations&quot;&gt;&lt;a href=&quot;#Polymer-and-Angular-Js-official-implementations&quot; class=&quot;headerlink&quot; title=&quot;Polymer and Angular-Js official implementations&quot;&gt;&lt;/a&gt;Polymer and Angular-Js official implementations&lt;/h3&gt;&lt;p&gt;Before recreate it, I also checked the &lt;a href=&quot;http://www.polymer-project.org/components/paper-elements/demo.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Polymer&lt;/a&gt; and &lt;a href=&quot;https://material.angularjs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Angular JS&lt;/a&gt;, and the result is disappointing. &lt;code&gt;Ploymer&lt;/code&gt; version has better quality than &lt;code&gt;Angular Js&lt;/code&gt; version, &lt;code&gt;Angular JS&lt;/code&gt; one is still very buggy.&lt;/p&gt;
 &lt;p&gt;Even they’re functioning, either &lt;code&gt;Polymer&lt;/code&gt; or &lt;code&gt;Angular-JS&lt;/code&gt; is too intrusive or too heavy for simple page to use, such as blog. If you don’t really need these transition animations, to implement these basic effects, CSS3 should be enough.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;Working on &lt;code&gt;Hexo&lt;/code&gt; theme customization in past few days. And wish to borrow some concepts from Google’s &lt;a href=&quot;http://www.goo
-
+    
     </summary>
-
+    
       <category term="Design" scheme="http://timnew.me/categories/design/"/>
-
+    
       <category term="Web" scheme="http://timnew.me/categories/design/web/"/>
-
-
+    
+    
       <category term="box-shadow" scheme="http://timnew.me/tags/box-shadow/"/>
-
+    
       <category term="Design" scheme="http://timnew.me/tags/design/"/>
-
+    
       <category term="Material" scheme="http://timnew.me/tags/material/"/>
-
+    
       <category term="Google" scheme="http://timnew.me/tags/google/"/>
-
+    
       <category term="Html" scheme="http://timnew.me/tags/html/"/>
-
+    
       <category term="CSS" scheme="http://timnew.me/tags/css/"/>
-
+    
       <category term="Shadow" scheme="http://timnew.me/tags/shadow/"/>
-
+    
       <category term="Visual" scheme="http://timnew.me/tags/visual/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Atom Editor Background Image</title>
     <link href="http://timnew.me/blog/2014/08/14/atom-editor-background-image/"/>
     <id>http://timnew.me/blog/2014/08/14/atom-editor-background-image/</id>
     <published>2014-08-14T15:41:31.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;Today spent some time to customize &lt;a href=&quot;https://atom.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Atom&lt;/a&gt; user stylesheet to display the background image for editor.&lt;br&gt;Background image is a feature that I expected so much in either &lt;code&gt;TextMate&lt;/code&gt; or &lt;code&gt;Sublime&lt;/code&gt;.&lt;br&gt;Now finally I have it in &lt;code&gt;Atom&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Finding the class for each html component is a little bit tricky&lt;br&gt;My theme is &lt;a href=&quot;https://github.com/jesseweed/seti-ui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;seti-ui&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;Stylesheet-to-display-background-image&quot;&gt;&lt;a href=&quot;#Stylesheet-to-display-background-image&quot; class=&quot;headerlink&quot; title=&quot;Stylesheet to display background image&quot;&gt;&lt;/a&gt;Stylesheet to display background image&lt;/h2&gt;&lt;figure class=&quot;highlight less&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//.react is needed to avoid impact on mini-editor&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-class&quot;&gt;.editor&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.react&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// Fix the color strip between gutter and the editing area.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;#0e1112&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;selector-class&quot;&gt;.scroll-view&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Align the Background Image with Editing Area&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;padding-left&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;margin-left&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// I put the background image under ~/.atom/images&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;: url(&lt;span class=&quot;string&quot;&gt;&#39;/Users/timnew/.atom/images/batou.jpg&#39;&lt;/span&gt;) no-repeat fixed;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Stretch the image&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// I tried to set it in with other background properties,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// but it doesn&#39;t work. Looks like a bug in Chrome.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;background-size&lt;/span&gt;: cover;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;selector-class&quot;&gt;.cursor-line&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Set cursor-line semi-transparent to make background visible.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Adjust the alpha value to fit your taste.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;: rgba(&lt;span class=&quot;number&quot;&gt;90&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;90&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;90&lt;/span&gt;,.&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;) &lt;span class=&quot;meta&quot;&gt;!important&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;selector-class&quot;&gt;.overlayer&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Set overlayer semi-transparent to make background visible.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Adjust the alpha value to fit your taste.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;background-color&lt;/span&gt;: rgba(&lt;span class=&quot;number&quot;&gt;21&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;23&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;24&lt;/span&gt;, .&lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;) &lt;span class=&quot;meta&quot;&gt;!important&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&quot;Screenshots&quot;&gt;&lt;a href=&quot;#Screenshots&quot; class=&quot;headerlink&quot; title=&quot;Screenshots&quot;&gt;&lt;/a&gt;Screenshots&lt;/h2&gt;&lt;h3 id=&quot;Without-TreeView&quot;&gt;&lt;a href=&quot;#Without-TreeView&quot; class=&quot;headerlink&quot; title=&quot;Without TreeView&quot;&gt;&lt;/a&gt;Without TreeView&lt;/h3&gt;&lt;img src=&quot;/blog/2014/08/14/atom-editor-background-image/no_treeview.png&quot; alt=&quot;Without Tree View&quot; title=&quot;Without Tree View&quot;&gt;
 &lt;h2 id=&quot;With-TreeView&quot;&gt;&lt;a href=&quot;#With-TreeView&quot; class=&quot;headerlink&quot; title=&quot;With TreeView&quot;&gt;&lt;/a&gt;With TreeView&lt;/h2&gt;&lt;img src=&quot;/blog/2014/08/14/atom-editor-background-image/treeview.png&quot; alt=&quot;With Tree View&quot; title=&quot;With Tree View&quot;&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;Today spent some time to customize &lt;a href=&quot;https://atom.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Atom&lt;/a&gt; user stylesheet to display the back
-
+    
     </summary>
-
+    
       <category term="Practice" scheme="http://timnew.me/categories/practice/"/>
-
+    
       <category term="Atom" scheme="http://timnew.me/categories/practice/atom/"/>
-
-
+    
+    
       <category term="css" scheme="http://timnew.me/tags/css/"/>
-
+    
       <category term="editor" scheme="http://timnew.me/tags/editor/"/>
-
+    
       <category term="stylesheet" scheme="http://timnew.me/tags/stylesheet/"/>
-
+    
       <category term="background" scheme="http://timnew.me/tags/background/"/>
-
+    
       <category term="atom" scheme="http://timnew.me/tags/atom/"/>
-
+    
       <category term="image" scheme="http://timnew.me/tags/image/"/>
-
+    
       <category term="less" scheme="http://timnew.me/tags/less/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Atom Editor</title>
     <link href="http://timnew.me/blog/2014/08/14/atom-editor/"/>
     <id>http://timnew.me/blog/2014/08/14/atom-editor/</id>
     <published>2014-08-14T11:00:01.000Z</published>
     <updated>2016-03-25T13:00:49.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://atom.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Atom&lt;/a&gt; is general purpose text editor brought to us by GitHub guys, which is empowered by the loved &lt;code&gt;Node.js&lt;/code&gt; and &lt;code&gt;Chrome&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Someone said &lt;code&gt;Atom&lt;/code&gt; is just another clone of &lt;a href=&quot;http://www.sublimetext.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sublime&lt;/a&gt;. Well, I don’t quite agree with the saying. I’d like to say &lt;code&gt;Atom&lt;/code&gt; learnt a lot from &lt;code&gt;Sublime&lt;/code&gt;.&lt;br&gt;And I’d like to explain why.&lt;/p&gt;
 &lt;p&gt;I think &lt;code&gt;Sublime&lt;/code&gt; itself is a great text editor, powerful to use, easy to learn, ready to be hacked, matured community, tons of plug-ins… almost unlimited possibilities…&lt;/p&gt;
@@ -1441,41 +1441,41 @@ $(function(){
 &lt;p&gt;Since &lt;code&gt;Atom&lt;/code&gt; is still in the eary stage, there are a number of flaws and issues in it. Besides these bugs, the biggest problem of &lt;code&gt;Atom&lt;/code&gt; is performance.&lt;br&gt;Loading a several MB text file or thousands pages document will kill the editor in no time. &lt;ins&gt;(&lt;code&gt;Atom&lt;/code&gt; blocks user to load file larger than &lt;code&gt;2MB&lt;/code&gt;.)&lt;/ins&gt;&lt;/p&gt;
 &lt;p&gt;But still, these issues won’t block me from loving it. As a &lt;code&gt;node.js&lt;/code&gt; and &lt;code&gt;Ruby&lt;/code&gt; developer, it is an awesome companion to my work. ❤️&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
-      &lt;p&gt;&lt;a href=&quot;https://atom.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Atom&lt;/a&gt; is general purpose text editor brought to us by GitHub guys, which is
-
+    
+      &lt;p&gt;&lt;a href=&quot;https://atom.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Atom&lt;/a&gt; is general purpose text editor brought to us by GitHub guys, which is 
+    
     </summary>
-
+    
       <category term="Practice" scheme="http://timnew.me/categories/practice/"/>
-
+    
       <category term="Atom" scheme="http://timnew.me/categories/practice/atom/"/>
-
-
+    
+    
       <category term="editor" scheme="http://timnew.me/tags/editor/"/>
-
+    
       <category term="atom" scheme="http://timnew.me/tags/atom/"/>
-
+    
       <category term="sublime" scheme="http://timnew.me/tags/sublime/"/>
-
+    
       <category term="brackets" scheme="http://timnew.me/tags/brackets/"/>
-
+    
       <category term="c9" scheme="http://timnew.me/tags/c9/"/>
-
+    
       <category term="cloud 9" scheme="http://timnew.me/tags/cloud-9/"/>
-
+    
       <category term="text" scheme="http://timnew.me/tags/text/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Migrate Blog to Hexo</title>
     <link href="http://timnew.me/blog/2014/08/12/migrate-blog-to-hexo/"/>
     <id>http://timnew.me/blog/2014/08/12/migrate-blog-to-hexo/</id>
     <published>2014-08-12T14:59:14.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;This post is a celebration for the migration from &lt;a href=&quot;http://octopress.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Octopress&lt;/a&gt; to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Octopress&lt;/code&gt; has done an excellent job on filling the gap between &lt;code&gt;jekyll&lt;/code&gt; and full function repo based blog engine. But because of the tech stack it is based on. It isn’t really a awesome framework to use.&lt;/p&gt;
 &lt;p&gt;The first time I got pissed off by &lt;code&gt;Octopress&lt;/code&gt; was by the end of 2012. Then I come up the idea to rewrite it in &lt;code&gt;Node.js&lt;/code&gt;. But I wasn’t able to make it happen, because I was held by the new project assignment, and didn’t have too many spare time on the blog engine.&lt;/p&gt;
@@ -1485,35 +1485,35 @@ $(function(){
 &lt;p&gt;I’ve benefited from these customization a lot. On the other hand, these deep customization blocks me from migrating to &lt;code&gt;Hexo&lt;/code&gt;, a better alternative. Even I have found &lt;code&gt;Hexo&lt;/code&gt; in the early 2013, and believe it is a better blog platform. But it is really costy for me to migrate the blogs away from the Octopress.&lt;/p&gt;
 &lt;p&gt;Luckily, after years development, a bunch of tools and libraries came up, which has minimized the gap between &lt;code&gt;Octopress&lt;/code&gt; and &lt;code&gt;Hexo&lt;/code&gt;.&lt;br&gt;After several days effort, finally retired the &lt;code&gt;Octoress&lt;/code&gt; engine, and completed the journey of moving from &lt;code&gt;Octopress&lt;/code&gt; to &lt;code&gt;Hexo&lt;/code&gt;.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;This post is a celebration for the migration from &lt;a href=&quot;http://octopress.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Octopress&lt;/a&gt; to &lt;a href
-
+    
     </summary>
-
+    
       <category term="Practice" scheme="http://timnew.me/categories/practice/"/>
-
+    
       <category term="Hexo" scheme="http://timnew.me/categories/practice/hexo/"/>
-
-
+    
+    
       <category term="octopress" scheme="http://timnew.me/tags/octopress/"/>
-
+    
       <category term="migration" scheme="http://timnew.me/tags/migration/"/>
-
+    
       <category term="blog" scheme="http://timnew.me/tags/blog/"/>
-
+    
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Page renders improperly in IE before developer tool has opened</title>
     <link href="http://timnew.me/blog/2014/08/01/page-renders-improperly-in-ie-before-developer-tool-has-opened/"/>
     <id>http://timnew.me/blog/2014/08/01/page-renders-improperly-in-ie-before-developer-tool-has-opened/</id>
     <published>2014-08-01T00:00:00.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;Today I found a super annoying issue about IE. Our website works perfectly in any browser except IE. The page isn’t rendered properly in IE 9. Well, this is common, this is the nature of IE. The mysterious issue I found is that once you opened or ever opened the developer tool, open the page or refresh the page, the problem is gone magically!!!!&lt;/p&gt;
 &lt;p&gt;As a conclusion, opening the developer tool changes the browser behavior!!!!! What a hell! So you know there is something wrong, but once you try to figure out the error message, you have to open developer tool. Once you open the developer tool, the bug is gone! &lt;strong&gt;DEAD END!!!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Because I cannot open developer tool, so I have to debug with &lt;code&gt;alert&lt;/code&gt;. It is really a horrible experience to me, and feels like inspecting nuclear reaction with a plain optical magnifier or fixing a high-tech spacecraft with stones and clubs.&lt;/p&gt;
@@ -1529,41 +1529,41 @@ $(function(){
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;figcaption&gt;&lt;span&gt;Pitfalls in console existence check&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;typeof&lt;/span&gt;(&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;) === &lt;span class=&quot;string&quot;&gt;&#39;undefined&#39;&lt;/span&gt;)&amp;#123; &lt;span class=&quot;comment&quot;&gt;// Break the script execution&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;Never got executed&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt; != &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;) &amp;#123; &lt;span class=&quot;comment&quot;&gt;// Break the script execution&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;Never got executed&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;) &amp;#123; &lt;span class=&quot;comment&quot;&gt;// Break the script execution&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;Never got executed&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;.console) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;this works!&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;To avoid &lt;code&gt;console&lt;/code&gt; issue, a ployfill could be very useful. Here is a great implementation available as &lt;code&gt;bower&lt;/code&gt; package: &lt;a href=&quot;https://github.com/paulmillr/console-polyfill&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;console-polyfill&lt;/a&gt;&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
-      &lt;p&gt;Today I found a super annoying issue about IE. Our website works perfectly in any browser except IE. The page isn’t rendered properly in
-
+    
+      &lt;p&gt;Today I found a super annoying issue about IE. Our website works perfectly in any browser except IE. The page isn’t rendered properly in 
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
-
-
+    
+    
       <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
-
+    
       <category term="pitfall" scheme="http://timnew.me/tags/pitfall/"/>
-
+    
       <category term="IE" scheme="http://timnew.me/tags/ie/"/>
-
+    
       <category term="developer tool" scheme="http://timnew.me/tags/developer-tool/"/>
-
+    
       <category term="console" scheme="http://timnew.me/tags/console/"/>
-
+    
       <category term="undefined" scheme="http://timnew.me/tags/undefined/"/>
-
+    
       <category term="polyfill" scheme="http://timnew.me/tags/polyfill/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>JavaScript Prototype Chain Mutator</title>
     <link href="http://timnew.me/blog/2014/07/30/javascript-prototype-chain-mutator/"/>
     <id>http://timnew.me/blog/2014/07/30/javascript-prototype-chain-mutator/</id>
     <published>2014-07-30T00:00:00.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;In JavaScript world, JSON serialization is widely used. When fetching data from server via Ajax, the data is usually represented in JSON; or loading configuration/data from file in Node.js application, the configuration/data is usually in JSON format.&lt;/p&gt;
 &lt;p&gt;JSON serialization is powerful and convenient, but there is limitation. For security and other reason, behavior and type information are forbidden in JSON. Functions members are removed when stringify a JavaScript object, also functions are not allowed in JSON.&lt;/p&gt;
 &lt;p&gt;Comparing Yaml to Ruby, this limitation isn’t that convenient when writing JavaScript application. For example, to consume the JSON data fetched via ajax from server, I really wish I can invoke some method on the deserialized model.&lt;/p&gt;
@@ -1581,92 +1581,92 @@ $(function(){
 &lt;p&gt;&lt;code&gt;object.__proto__&lt;/code&gt; is a Mozilla “private” implementation until EcmaScript 6.&lt;br&gt;It is interesting that most JavaScript support it except IE.&lt;br&gt;Luckily, IE 11 introduced some features in EcmaScript 6, &lt;code&gt;object.__proto__&lt;/code&gt; is one of them.&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;In JavaScript world, JSON serialization is widely used. When fetching data from server via Ajax, the data is usually represented in JSON;
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="JavaScript" scheme="http://timnew.me/categories/programming/javascript/"/>
-
-
+    
+    
       <category term="inheritance" scheme="http://timnew.me/tags/inheritance/"/>
-
+    
       <category term="node.js" scheme="http://timnew.me/tags/node-js/"/>
-
+    
       <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
-
+    
       <category term="browser" scheme="http://timnew.me/tags/browser/"/>
-
+    
       <category term="json" scheme="http://timnew.me/tags/json/"/>
-
+    
       <category term="class" scheme="http://timnew.me/tags/class/"/>
-
+    
       <category term="prototype" scheme="http://timnew.me/tags/prototype/"/>
-
+    
       <category term="bower" scheme="http://timnew.me/tags/bower/"/>
-
+    
       <category term="mutation" scheme="http://timnew.me/tags/mutation/"/>
-
+    
       <category term="mutator" scheme="http://timnew.me/tags/mutator/"/>
-
+    
       <category term="ajax" scheme="http://timnew.me/tags/ajax/"/>
-
+    
       <category term="npm" scheme="http://timnew.me/tags/npm/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>converting between HTML 5 data-attribute style hyphen name and javascript camcel-case name</title>
     <link href="http://timnew.me/blog/2014/07/29/converting-between-html-5-data-attribute-style-hyphen-name-and-javascript-camcel-case-name/"/>
     <id>http://timnew.me/blog/2014/07/29/converting-between-html-5-data-attribute-style-hyphen-name-and-javascript-camcel-case-name/</id>
     <published>2014-07-29T00:00:00.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;I found a bug in &lt;a href=&quot;http://bower.io/search/?q=widget.coffee&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;widget.coffee&lt;/a&gt; today. To fix the issue, I need the conversion between HTML 5 &lt;code&gt;data-attribute&lt;/code&gt; name and javascript function name, e.g. conversion between &lt;code&gt;data-action-handler&lt;/code&gt; and &lt;code&gt;actionHandler&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;By taking jQuery implementation as reference, I come up 2 utility functions for the conversion:&lt;/p&gt;
 &lt;figure class=&quot;highlight coffeescript&quot;&gt;&lt;figcaption&gt;&lt;span&gt;NameConversion&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Utils =&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  hyphenToCamelCase: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(hyphen)&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# Convert &#39;action-handler&#39; to &#39;actionHandler&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    hyphen.replace &lt;span class=&quot;regexp&quot;&gt;/-([a-z])/g&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(match)&lt;/span&gt; -&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      match[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;].toUppercase()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  camelCaseToHyphen: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(camelCase)&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# Convert &#39;actionHandler&#39; to &#39;action-handler&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    camelCase.replace(&lt;span class=&quot;regexp&quot;&gt;/[A-Z]/g&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;-$1&#39;&lt;/span&gt;).toLowerCase()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  attributeToCamelCase: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(attribute)&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# Convert &#39;data-action-handler&#39; or &#39;action-handler&#39; to &#39;actionHandler&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Utils.hyphenToCamelCase dataAttribute.replace(&lt;span class=&quot;regexp&quot;&gt;/^(data-)?(.*)/&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;$2&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  camelCaseToAttribute: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(camelCase)&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# Convert &#39;actionHanlder&#39; to &#39;data-action-handler&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;data-&#39;&lt;/span&gt; + Utils.camelCaseToHyphen(camelCase)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;Here is a more solid implementation based on previous one.&lt;/p&gt;
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;figcaption&gt;&lt;span&gt;a sloid javascript version&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; Utils = (&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;hyphenToCamelCase&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;hyphen&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; hyphen.replace(&lt;span class=&quot;regexp&quot;&gt;/-([a-z])/g&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;match&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; match[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;].toUppercase();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;camelCaseToHyphen&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;camelCase&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; camelCase.replace(&lt;span class=&quot;regexp&quot;&gt;/[A-Z]/g&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;-$1&#39;&lt;/span&gt;).toLowerCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;attributeToCamelCase&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;attribute&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; hyphenToCamelCase(dataAttribute.replace(&lt;span class=&quot;regexp&quot;&gt;/^(data-)?(.*)/&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;$2&#39;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;camelCaseToAttribute&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;camelCase&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;data-&#39;&lt;/span&gt; + camelCaseToHyphen(camelCase);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    hyphenToCamelCase: hyphenToCamelCase,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    camelCaseToHyphen: camelCaseToHyphen,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    attributeToCamelCase: attributeToCamelCase,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    camelCaseToAttribute: camelCaseToAttribute&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;I found a bug in &lt;a href=&quot;http://bower.io/search/?q=widget.coffee&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;widget.coffee&lt;/a&gt; today. To fix the iss
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
-
-
-      <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
-
+    
+    
       <category term="html" scheme="http://timnew.me/tags/html/"/>
-
+    
+      <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
+    
       <category term="name" scheme="http://timnew.me/tags/name/"/>
-
+    
       <category term="hyphen" scheme="http://timnew.me/tags/hyphen/"/>
-
+    
       <category term="conversion" scheme="http://timnew.me/tags/conversion/"/>
-
+    
       <category term="camel-case" scheme="http://timnew.me/tags/camel-case/"/>
-
+    
       <category term="data attribute" scheme="http://timnew.me/tags/data-attribute/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Remove Bower from your build script</title>
     <link href="http://timnew.me/blog/2014/07/10/remove-bower-from-your-build-script/"/>
     <id>http://timnew.me/blog/2014/07/10/remove-bower-from-your-build-script/</id>
     <published>2014-07-10T00:00:00.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;h3 id=&quot;The-mysterious-broken-build&quot;&gt;&lt;a href=&quot;#The-mysterious-broken-build&quot; class=&quot;headerlink&quot; title=&quot;The mysterious broken build&quot;&gt;&lt;/a&gt;The mysterious broken build&lt;/h3&gt;&lt;p&gt;This morning, our QA told us that &lt;code&gt;knockout&lt;/code&gt;, a javascript library that we used in our web app is missing on staging environment. Then we checked the package she got from CI server, and the javascript library was indeed not included. But when we tried to generate the package on our local dev box, we found that &lt;code&gt;knockout&lt;/code&gt; is included.&lt;/p&gt;
 &lt;p&gt;It is a big surprise to us, because we share the exact same build scripts and environment between dev-boxes and CI agents and because we manage the front-end dependencies with &lt;code&gt;bower&lt;/code&gt;. In our &lt;code&gt;gulp&lt;/code&gt; script, we ask &lt;code&gt;bower&lt;/code&gt; to install the dependencies every time to make sure they are up to date.&lt;/p&gt;
 &lt;h3 id=&quot;The-root-cause-of-the-broken-build&quot;&gt;&lt;a href=&quot;#The-root-cause-of-the-broken-build&quot; class=&quot;headerlink&quot; title=&quot;The root cause of the broken build&quot;&gt;&lt;/a&gt;The root cause of the broken build&lt;/h3&gt;&lt;p&gt;After spending hours on diagnosing the CI agents, we finally figure out the reason, a tricky story:&lt;/p&gt;
@@ -1687,41 +1687,41 @@ $(function(){
 &lt;h3 id=&quot;Some-thoughts-on-the-package-system&quot;&gt;&lt;a href=&quot;#Some-thoughts-on-the-package-system&quot; class=&quot;headerlink&quot; title=&quot;Some thoughts on the package system&quot;&gt;&lt;/a&gt;Some thoughts on the package system&lt;/h3&gt;&lt;p&gt;Bower components are maintained by the community, and there is no strict quality control to ensure the package is bug-free or being released in an appropriate way. So it could be safer if we can check them manually, and lock them down across environments.&lt;/p&gt;
 &lt;p&gt;This could be common issue for all kind of community managed package system. Not just Bower, it could be Maven, Ruby Gem, Node.js package, Python pip package, nuget package or even Docker containers!&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;h3 id=&quot;The-mysterious-broken-build&quot;&gt;&lt;a href=&quot;#The-mysterious-broken-build&quot; class=&quot;headerlink&quot; title=&quot;The mysterious broken build&quot;&gt;&lt;/a&gt;The m
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="node.js" scheme="http://timnew.me/categories/programming/node-js/"/>
-
-
+    
+    
       <category term="environment" scheme="http://timnew.me/tags/environment/"/>
-
+    
       <category term="continues integration" scheme="http://timnew.me/tags/continues-integration/"/>
-
+    
       <category term="build" scheme="http://timnew.me/tags/build/"/>
-
+    
       <category term="bower" scheme="http://timnew.me/tags/bower/"/>
-
+    
       <category term="pipeline" scheme="http://timnew.me/tags/pipeline/"/>
-
+    
       <category term="deployment" scheme="http://timnew.me/tags/deployment/"/>
-
+    
       <category term="automation" scheme="http://timnew.me/tags/automation/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>The battle between Game developers and Game Hackers - Part.1 How HiddenInt works</title>
     <link href="http://timnew.me/blog/2014/06/24/the-battle-between-game-developers-and-game-hackers-part-1-how-hiddenint-works/"/>
     <id>http://timnew.me/blog/2014/06/24/the-battle-between-game-developers-and-game-hackers-part-1-how-hiddenint-works/</id>
     <published>2014-06-24T00:00:00.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;&lt;code&gt;Harvest: Massive Encounter&lt;/code&gt; is a very unique strategic tower defense game published by &lt;a href=&quot;http://www.oxeyegames.com/harvest-massive-encounter/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Oxeye Game Studio&lt;/a&gt;. The game is amazing, but I won’t focus on that. I will discuss something interesting I discovered when hacking the game.&lt;/p&gt;
 &lt;p&gt;By hacking the game, I want to lock down the the number of Mineral that I have in the game. Mineral is the only key resource in the game, which is used to build or upgrade structures. Theoretically locking down a value is easy. Scan the memory for specific number for a few times to filter out the list of potential memory addresses. Then try them one by one. And finally figure out the proper address, then locked it down with the game hacking tool. Very standard approach, and supported by most of the game hacking tool.&lt;/p&gt;
 &lt;p&gt;But in Harvest, the story is quite different. By searching the mineral value, we can locate a specific address. But we can easily find that the value is only used for display instead of real game state data. In fact, Harvest uses a quite unique approach to protect its game status data! Oxeye guys call it the &lt;code&gt;Hidden Int&lt;/code&gt;.&lt;/p&gt;
@@ -1733,49 +1733,49 @@ $(function(){
 &lt;p&gt;So this is the almost invincible way to keep key game state data safe from common game hacking tools!&lt;/p&gt;
 &lt;p&gt;In the next post, I’ll explain how to find out a bypass to this security mechanism!&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;&lt;code&gt;Harvest: Massive Encounter&lt;/code&gt; is a very unique strategic tower defense game published by &lt;a href=&quot;http://www.oxeyegames.com/har
-
+    
     </summary>
-
+    
       <category term="Cracking" scheme="http://timnew.me/categories/cracking/"/>
-
+    
       <category term="Game" scheme="http://timnew.me/categories/cracking/game/"/>
-
-
+    
+    
       <category term="Oxeye" scheme="http://timnew.me/tags/oxeye/"/>
-
+    
       <category term="Harvest" scheme="http://timnew.me/tags/harvest/"/>
-
+    
       <category term="Massive Encounter" scheme="http://timnew.me/tags/massive-encounter/"/>
-
+    
       <category term="HiddenInt" scheme="http://timnew.me/tags/hiddenint/"/>
-
+    
       <category term="Game" scheme="http://timnew.me/tags/game/"/>
-
+    
       <category term="Crack" scheme="http://timnew.me/tags/crack/"/>
-
+    
       <category term="Cheat" scheme="http://timnew.me/tags/cheat/"/>
-
+    
       <category term="Cheat Engine" scheme="http://timnew.me/tags/cheat-engine/"/>
-
+    
       <category term="Bit Slicer" scheme="http://timnew.me/tags/bit-slicer/"/>
-
+    
       <category term="Memory Editing" scheme="http://timnew.me/tags/memory-editing/"/>
-
+    
       <category term="Debugger" scheme="http://timnew.me/tags/debugger/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Process.nextTick Implementation in Browser</title>
     <link href="http://timnew.me/blog/2014/06/23/process-nexttick-implementation-in-browser/"/>
     <id>http://timnew.me/blog/2014/06/23/process-nexttick-implementation-in-browser/</id>
     <published>2014-06-23T00:00:00.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;Recursion is a common trick that is often used in JavaScript programming. So infinite recursion will cause stack overflow errors.&lt;br&gt;Some languages resolves this issue by introduce automatically tail call optimization, but in JavaScript we need to take care it on our own.&lt;/p&gt;
 &lt;p&gt;To solve the issue, &lt;code&gt;Node.js&lt;/code&gt; has the utility functions &lt;code&gt;nextTick&lt;/code&gt; to ensure specific code is invoked after the current function returned.&lt;br&gt;In Browser there is no standard approach to solve this issue, so workarounds are needed.&lt;/p&gt;
 &lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/defunctzombie&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Roman Shtylman(@defunctzombie)&lt;/a&gt;, who created the &lt;code&gt;node-process&lt;/code&gt; for &lt;code&gt;Browserify&lt;/code&gt;, which simulate the &lt;code&gt;Node.js&lt;/code&gt; API in browser environment.&lt;br&gt;Here is his implementation:&lt;/p&gt;
@@ -1791,35 +1791,35 @@ $(function(){
 &lt;h3 id=&quot;window-postMessage&quot;&gt;&lt;a href=&quot;#window-postMessage&quot; class=&quot;headerlink&quot; title=&quot;window.postMessage&quot;&gt;&lt;/a&gt;window.postMessage&lt;/h3&gt;&lt;p&gt;&lt;code&gt;window.postMessage&lt;/code&gt; enable developer to access message queue in the browser. By adding some additional code, we can simulate nextTick behavior based on message queue. It works in most modern browser, except &lt;code&gt;IE 8&lt;/code&gt;. In &lt;code&gt;IE 8&lt;/code&gt;, the API is implemented in a  synchronous way, which introduce an extra level of stack-push, so it cannot be used to simulate &lt;code&gt;nextTick&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Overall, there is no perfect workaround to the &lt;code&gt;nextTick&lt;/code&gt; issue for now. All the solutions have different limitations, we can only hope that this issue can be resolved in the future ECMAScript standard.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;Recursion is a common trick that is often used in JavaScript programming. So infinite recursion will cause stack overflow errors.&lt;br&gt;Some
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
-
-
+    
+    
       <category term="node.js" scheme="http://timnew.me/tags/node-js/"/>
-
+    
       <category term="browser" scheme="http://timnew.me/tags/browser/"/>
-
+    
       <category term="nextTick" scheme="http://timnew.me/tags/nexttick/"/>
-
+    
       <category term="infinite recursion" scheme="http://timnew.me/tags/infinite-recursion/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Android Studio 0.6.1 SDK recognition issue when using Android SDK 19 and Gradle</title>
     <link href="http://timnew.me/blog/2014/06/20/android-studio-0-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/"/>
     <id>http://timnew.me/blog/2014/06/20/android-studio-0-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/</id>
     <published>2014-06-20T00:00:00.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;A few days ago I upgraded my Android Studio to version 0.6.1. And migrated my android project build system from Maven to Gradle. Then nightmare happened!&lt;/p&gt;
 &lt;img src=&quot;/blog/2014/06/20/android-studio-0-6-1-sdk-recognition-issue-when-using-android-sdk-19-and-gradle/android_studio_version.png&quot; alt=&quot;Android Studio Version&quot; title=&quot;Android Studio Version&quot;&gt;
 &lt;p&gt;It looks there are some issue with Android Studio version 0.6.1, which cannot recognize the jar files in Android SDK 19 (4.4 Kit Kat). As a consequence that all the Android fundemantal classes are not recognized properly, which makes IDEA almost impossible to be used.&lt;/p&gt;
@@ -1847,39 +1847,39 @@ $(function(){
 &lt;/ol&gt;
 &lt;p&gt;I haven’t figure out a perfect solution to this issue, just hope the Google can fix the issue as soon as possible.&lt;/p&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;A few days ago I upgraded my Android Studio to version 0.6.1. And migrated my android project build system from Maven to Gradle. Then nig
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Android" scheme="http://timnew.me/categories/programming/android/"/>
-
-
+    
+    
       <category term="android" scheme="http://timnew.me/tags/android/"/>
-
+    
       <category term="android studio" scheme="http://timnew.me/tags/android-studio/"/>
-
+    
       <category term="gradle" scheme="http://timnew.me/tags/gradle/"/>
-
+    
       <category term="sdk" scheme="http://timnew.me/tags/sdk/"/>
-
+    
       <category term="android.jar" scheme="http://timnew.me/tags/android-jar/"/>
-
+    
       <category term="jar" scheme="http://timnew.me/tags/jar/"/>
-
+    
   </entry>
-
+  
   <entry>
     <title>Is Android API document on ConsumerIrManager lying?</title>
     <link href="http://timnew.me/blog/2014/05/28/is-android-api-document-on-consumerirmanager-lying/"/>
     <id>http://timnew.me/blog/2014/05/28/is-android-api-document-on-consumerirmanager-lying/</id>
     <published>2014-05-28T00:00:00.000Z</published>
     <updated>2014-08-23T10:07:47.000Z</updated>
-
+    
     <content type="html">&lt;p&gt;Just found a shocking fact that Android API document on &lt;code&gt;ConsumerIrManger.transmit&lt;/code&gt; method is wrong!&lt;/p&gt;
 &lt;p&gt;KitKat has realised its own Infrared blaster API, which is incompatible with legacy Samsung private API. So I was working on &lt;a href=&quot;https://github.com/timnew/AndroidInfrared&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Infrared Library&lt;/a&gt; to make it adapted automatically on both Samsung private API and &lt;code&gt;Kit Kat&lt;/code&gt;official API.&lt;/p&gt;
 &lt;p&gt;After I finished the coding according the document, I found the app broke on my Galaxy Note 3 with &lt;code&gt;Kit Kat&lt;/code&gt;. It works perfect when running on &lt;code&gt;Jelly Bean&lt;/code&gt;.&lt;/p&gt;
@@ -1897,35 +1897,35 @@ $(function(){
 &lt;p&gt;So to fix the issue, you need some mathmatical work. Here is the conversion formula:&lt;/p&gt;
 &lt;figure class=&quot;highlight livecodeserver&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;n = t / T = t * f / &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;n: &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; cycles&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;t: &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; microseconds&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;T: &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; cycle &lt;span class=&quot;built_in&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; microseconds&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;f: &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; transmitting frequency &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; Hertz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 </content>
-
+    
     <summary type="html">
-
+    
       &lt;p&gt;Just found a shocking fact that Android API document on &lt;code&gt;ConsumerIrManger.transmit&lt;/code&gt; method is wrong!&lt;/p&gt;
 &lt;p&gt;KitKat has realise
-
+    
     </summary>
-
+    
       <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-
+    
       <category term="Android" scheme="http://timnew.me/categories/programming/android/"/>
-
-
+    
+    
       <category term="error" scheme="http://timnew.me/tags/error/"/>
-
+    
       <category term="android" scheme="http://timnew.me/tags/android/"/>
-
+    
       <category term="infrared" scheme="http://timnew.me/tags/infrared/"/>
-
+    
       <category term="api" scheme="http://timnew.me/tags/api/"/>
-
+    
       <category term="document" scheme="http://timnew.me/tags/document/"/>
-
+    
       <category term="Samsung" scheme="http://timnew.me/tags/samsung/"/>
-
+    
       <category term="lying" scheme="http://timnew.me/tags/lying/"/>
-
+    
       <category term="kit kat" scheme="http://timnew.me/tags/kit-kat/"/>
-
+    
   </entry>
-
+  
 </feed>

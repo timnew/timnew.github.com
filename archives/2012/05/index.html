@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/29/negative-index-in-coffee-script/" data-id="cimxjzmh2002govsij6obwgif" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/29/negative-index-in-coffee-script/" data-id="cimxl808z002fkhsiolf8ua2z" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/29/negative-index-in-coffee-script/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -195,134 +195,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/" data-id="cimxjzmh0002aovsig8xofs32" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/" data-id="cimxl808y002ckhsi77zfqnor" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigen/">eigen</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigenclass/">eigenclass</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meta-class/">meta class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meta-programming/">meta programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/singleton-class/">singleton class</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-how-to-solve-key-read-failed-error-in-git-push" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/" class="article-date">
-  <time datetime="2012-05-14T00:00:00.000Z" itemprop="datePublished">2012-05-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/practice/">Practice</a>►<a class="article-category-link" href="/categories/practice/git/">git</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-  
-  <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #0A3;"  >
-      <a href="http://timnew.me/categories/practice/">Practice</a>
-    </div>
-  </div>
-
-
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/">How to solve key_read failed error in git push</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I assigned a dedicated ssh key pair for github repos.<br>And I have associated the key pair with github correctly in <code>~/.ssh/config</code>.<br>But each time when I try to access github repos via ssh, both read(such pull or fetch) or write(such as push), I will get a strange error:</p>
-<pre><code>key_read: uudecode [some SSH key code]
-ssh-rsa [SSH key code]
-failed
-</code></pre><p>I tried a lot to fix the problem, and finally I solved the problem by delete the file <code>~/.ssh/known_hosts</code><br>I assume the problem might be caused that there is some invalid association cached in the file. So maybe you can solve the problem by removing the related entries instead of delete the whole file.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/" data-id="cimxjzmgz0028ovsib9bx18yn" class="article-share-link">Share</a>
-      
-        <a href="http://timnew.me/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solution/">solution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-how-to-print-multiple-line-string-on-bash" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/" class="article-date">
-  <time datetime="2012-05-14T00:00:00.000Z" itemprop="datePublished">2012-05-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/shell/">Shell</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-  
-  <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #40A;"  >
-      <a href="http://timnew.me/categories/programming/">Programming</a>
-    </div>
-  </div>
-
-
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/">How to print multiple line string on bash</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>To display some pre-formatted text onto screen, we need the following 2 capabilities:</p>
-<h3 id="Construct-Multiple-Text"><a href="#Construct-Multiple-Text" class="headerlink" title="Construct Multiple Text"></a>Construct Multiple Text</h3><p>There are 2 ways to construct multiple line strings:</p>
-<ul>
-<li><p>String literal</p>
-<figure class="highlight bash"><figcaption><span>String Literal</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">"</span><br><span class="line">First Line</span><br><span class="line">Second Line</span><br><span class="line">Third Line</span><br><span class="line">"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Use cat</p>
-<figure class="highlight bash"><figcaption><span>cat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">text = $( cat &lt;&lt; EOF</span><br><span class="line">First Line</span><br><span class="line">Second Line</span><br><span class="line">Third Line</span><br><span class="line">EOF</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="Print-Multiple-Text-to-Screen"><a href="#Print-Multiple-Text-to-Screen" class="headerlink" title="Print Multiple Text to Screen"></a>Print Multiple Text to Screen</h3><p>For some reason, <code>echo</code> command will eat all the line break in the text, so we should use printf instead of echo.<br>And printf supports back-slash-escape, so we can use <code>\n</code> to print a new-line on screen.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/" data-id="cimxjzmgr0025ovsia11hyhef" class="article-share-link">Share</a>
-      
-        <a href="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/multiline/">multiline</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/output/">output</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 
     </footer>
   </div>
@@ -390,12 +268,134 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/" data-id="cimxjzmgq0022ovsizaz6pivq" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/" data-id="cimxl808w0029khsi4nylsoq0" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/best-practice/">best-practice</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coffee-script/">coffee-script</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pitfall/">pitfall</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/space/">space</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-solve-key-read-failed-error-in-git-push" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/" class="article-date">
+  <time datetime="2012-05-14T00:00:00.000Z" itemprop="datePublished">2012-05-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/practice/">Practice</a>►<a class="article-category-link" href="/categories/practice/git/">git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+  
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon "  style="background-color: #0A3;"  >
+      <a href="http://timnew.me/categories/practice/">Practice</a>
+    </div>
+  </div>
+
+
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/">How to solve key_read failed error in git push</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I assigned a dedicated ssh key pair for github repos.<br>And I have associated the key pair with github correctly in <code>~/.ssh/config</code>.<br>But each time when I try to access github repos via ssh, both read(such pull or fetch) or write(such as push), I will get a strange error:</p>
+<pre><code>key_read: uudecode [some SSH key code]
+ssh-rsa [SSH key code]
+failed
+</code></pre><p>I tried a lot to fix the problem, and finally I solved the problem by delete the file <code>~/.ssh/known_hosts</code><br>I assume the problem might be caused that there is some invalid association cached in the file. So maybe you can solve the problem by removing the related entries instead of delete the whole file.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://timnew.me/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/" data-id="cimxl808v0026khsilotlwvxr" class="article-share-link">Share</a>
+      
+        <a href="http://timnew.me/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solution/">solution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-print-multiple-line-string-on-bash" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/" class="article-date">
+  <time datetime="2012-05-14T00:00:00.000Z" itemprop="datePublished">2012-05-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/shell/">Shell</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+  
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon "  style="background-color: #40A;"  >
+      <a href="http://timnew.me/categories/programming/">Programming</a>
+    </div>
+  </div>
+
+
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/">How to print multiple line string on bash</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>To display some pre-formatted text onto screen, we need the following 2 capabilities:</p>
+<h3 id="Construct-Multiple-Text"><a href="#Construct-Multiple-Text" class="headerlink" title="Construct Multiple Text"></a>Construct Multiple Text</h3><p>There are 2 ways to construct multiple line strings:</p>
+<ul>
+<li><p>String literal</p>
+<figure class="highlight bash"><figcaption><span>String Literal</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">"</span><br><span class="line">First Line</span><br><span class="line">Second Line</span><br><span class="line">Third Line</span><br><span class="line">"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use cat</p>
+<figure class="highlight bash"><figcaption><span>cat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">text = $( cat &lt;&lt; EOF</span><br><span class="line">First Line</span><br><span class="line">Second Line</span><br><span class="line">Third Line</span><br><span class="line">EOF</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Print-Multiple-Text-to-Screen"><a href="#Print-Multiple-Text-to-Screen" class="headerlink" title="Print Multiple Text to Screen"></a>Print Multiple Text to Screen</h3><p>For some reason, <code>echo</code> command will eat all the line break in the text, so we should use printf instead of echo.<br>And printf supports back-slash-escape, so we can use <code>\n</code> to print a new-line on screen.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/" data-id="cimxl808t0023khsife4p8we6" class="article-share-link">Share</a>
+      
+        <a href="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/multiline/">multiline</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/output/">output</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 
     </footer>
   </div>
@@ -452,7 +452,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/" data-id="cimxjzmgn001zovsi7mhtu91n" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/" data-id="cimxl808p0020khsi30htb3rt" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -545,7 +545,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/" data-id="cimxjzmgj001wovsit9qkpc7t" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/" data-id="cimxl808k001xkhsi2cs5h4bk" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -603,7 +603,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/" data-id="cimxjzmgh001rovsip6x2ty13" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/" data-id="cimxl808g001skhsi99xwo46g" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -897,11 +897,11 @@ failed
           </li>
         
           <li>
-            <a href="/blog/2013/01/30/implement-sqrt-with-basic-algebra-operators/">Implement sqrt with basic algebra operators</a>
+            <a href="/blog/2013/01/30/pitfall-in-node-crypto-and-base64-encoding/">Pitfall in node crypto and base64 encoding</a>
           </li>
         
           <li>
-            <a href="/blog/2013/01/30/pitfall-in-node-crypto-and-base64-encoding/">Pitfall in node crypto and base64 encoding</a>
+            <a href="/blog/2013/01/30/implement-sqrt-with-basic-algebra-operators/">Implement sqrt with basic algebra operators</a>
           </li>
         
           <li>
@@ -989,15 +989,15 @@ failed
           </li>
         
           <li>
+            <a href="/blog/2012/05/14/space-pitfall-in-coffee-script/">Space Pitfall in coffee-script</a>
+          </li>
+        
+          <li>
             <a href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/">How to solve key_read failed error in git push</a>
           </li>
         
           <li>
             <a href="/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/">How to print multiple line string on bash</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2012/05/14/space-pitfall-in-coffee-script/">Space Pitfall in coffee-script</a>
           </li>
         
           <li>
@@ -1021,15 +1021,15 @@ failed
           </li>
         
           <li>
-            <a href="/blog/2012/04/13/powershell-script-to-rename-computer-without-reboot/">Powershell Script to rename computer without reboot</a>
-          </li>
-        
-          <li>
             <a href="/blog/2012/04/13/powershell-script-to-serialize-and-deserialize-hash-object-to-and-from-ini-like-text/">Powershell script to serialize and deserialize hash-object to and from ini-like text</a>
           </li>
         
           <li>
-            <a href="/blog/2012/04/08/shell-script-to-fetch-cpu-memory-and-disk-info-in-linux/">Shell Script to fetch CPU, Memory and Disk Info in Linux</a>
+            <a href="/blog/2012/04/13/powershell-script-to-rename-computer-without-reboot/">Powershell Script to rename computer without reboot</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2012/04/08/textmate-command-to-create-new-post-for-jekyll/">TextMate command to create new post for jekyll</a>
           </li>
         
           <li>
@@ -1037,7 +1037,7 @@ failed
           </li>
         
           <li>
-            <a href="/blog/2012/04/08/textmate-command-to-create-new-post-for-jekyll/">TextMate command to create new post for jekyll</a>
+            <a href="/blog/2012/04/08/shell-script-to-fetch-cpu-memory-and-disk-info-in-linux/">Shell Script to fetch CPU, Memory and Disk Info in Linux</a>
           </li>
         
           <li>

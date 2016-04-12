@@ -79,14 +79,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-chrome-extension-rpc-router" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-upgrading-dsl-from-coffeescript-to-json-part-1-migrator" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/2014/05/11/chrome-extension-rpc-router/" class="article-date">
+    <a href="/blog/2014/05/11/upgrading-dsl-from-coffeescript-to-json-part-1-migrator/" class="article-date">
   <time datetime="2014-05-11T00:00:00.000Z" itemprop="datePublished">2014-05-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/chrome/">Chrome</a>
+    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/javascript/">JavaScript</a>
   </div>
 
   </div>
@@ -106,7 +106,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2014/05/11/chrome-extension-rpc-router/">Chrome Extension RPC Router</a>
+      <a class="article-title" href="/blog/2014/05/11/upgrading-dsl-from-coffeescript-to-json-part-1-migrator/">Upgrading DSL from CoffeeScript to JSON: Part.1. Migrator</a>
     </h1>
   
 
@@ -114,26 +114,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>When developing chrome extension, communication between background script and content scripts is very typical use case. Chrome provides messaging APIs to achieve this goal. But this API has limitation that every message goes to the same listener.</p>
-<p>Background script in Chrome extension usually works as a function hub for the whole extension, so background scripts usually required to process different types of messages. Then the limit of Chrome messaging API become an issue we need to face.</p>
-<p>There are several approaches to resolve the limitation. Since API allow multiple listener, a simple and cheap solution is Responsibility Chain; adding listener for each message type, and checking message type at beginning of the listener.</p>
-<figure class="highlight js"><figcaption><span>Responsbility Chain</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">chrome.runtime.onMessage.addListener(<span class="function"><span class="keyword">function</span>(<span class="params">message, sender, sendResponse</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(message.type != <span class="string">'reloadData'</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// reload data logic here</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">chrome.runtime.onMessage.addListener(<span class="function"><span class="keyword">function</span>(<span class="params">message, sender, sendResponse</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(message.type != <span class="string">'updateBrowerAction'</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// update browser action logic here</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>This approach works, but not that graceful. And there is potential performance issue when message types increases.</p>
-<p>So I come up a new more graceful solution: RPC Message Router</p>
-<figure class="highlight coffeescript"><figcaption><span>RCPRouter</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"></span><br><span class="line"><span class="title">extractResponseHandler</span> = <span class="params">(args)</span> -&gt;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span> <span class="keyword">if</span> args.length == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  last = args.pop()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">typeof</span> last == <span class="string">'function'</span></span><br><span class="line">    <span class="keyword">return</span> last</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    args.push last</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> @<span class="title">RPCRouter</span></span></span><br><span class="line">  constructor: <span class="function">-&gt;</span></span><br><span class="line">    chrome.runtime.onMessage.addListener @handleMassage</span><br><span class="line"></span><br><span class="line">  handleMassage: <span class="function"><span class="params">(message, sender, sendResponse)</span> =&gt;</span></span><br><span class="line">    &#123;method: methodName, args&#125; = message</span><br><span class="line">    method = <span class="keyword">this</span>[methodName]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unless</span> method?</span><br><span class="line">      <span class="built_in">console</span>.error <span class="string">"Unknown RPC method: %s"</span>, methodName</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    args.push sendResponse</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log <span class="string">"RPC Call: %s, args: %o"</span>, methodName, args</span><br><span class="line">    method.apply(<span class="keyword">this</span>, args)</span><br><span class="line"></span><br><span class="line">  callBackground: <span class="function"><span class="params">(method, args...)</span> -&gt;</span></span><br><span class="line">    responseHandler = extractResponseHandler(args)</span><br><span class="line">    <span class="built_in">console</span>.log <span class="string">"RPC Call to Background: %s, args: %o"</span>, method, args</span><br><span class="line">    chrome.runtime.sendMessage &#123;method, args&#125;, responseHandler</span><br><span class="line"></span><br><span class="line">  callTab: <span class="function"><span class="params">(tabId, method, args...)</span> -&gt;</span></span><br><span class="line">    responseHandler = extractResponseHandler(args)</span><br><span class="line">    <span class="built_in">console</span>.log <span class="string">"RPC Call to Tab \"%s\": %s, args: %o"</span>, tabId, method, args</span><br><span class="line">    chrome.tabs.sendMessage tabId, &#123;method, args&#125;, responseHandler</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>So this new RPCRouter wraps the chrome original messaging API and provides a more convenient way to invoke a remote method. To create a specific RPC Router for background page or content page is quite easy.</p>
-<figure class="highlight coffeescript"><figcaption><span>Responsbility Chain</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BackgroundRPCRouter</span> <span class="keyword">extends</span> <span class="title">RPCRouter</span></span></span><br><span class="line">  refreshData: <span class="function"><span class="params">(isForceUpdate, dataLoadedCallback)</span> -&gt;</span></span><br><span class="line">    <span class="comment"># reload data logic here</span></span><br><span class="line"></span><br><span class="line">    dataLoadedCallback(data)</span><br><span class="line"></span><br><span class="line">  updateBrowerAction: <span class="function"><span class="params">(icon, hintText)</span> -&gt;</span></span><br><span class="line">    <span class="comment"># update browser action logic here</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span> <span class="comment"># protection: avoid channel leak</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>HINT:</strong><br>Using messaging API in chrome here should be careful. Coffee script will return the last executed statement result as function result, which could be potentially truthy, such as non-zero number, object. The truthy return value will make the channel become a async channel, which won’t be closed until the <code>sendResponse</code> callback is invoked. But just as the handler <code>updateBrowserAction</code>, the handler doesn’t need a <code>sendResponse</code> callback, the issue will keep the channel alive forever. So do add <code>false</code> or <code>return false</code> at the end of the method unless you can ensure the function will never yield truthy value in last statement.</p>
+        <p>I’m working on the Harvester-AdKiller version 2 recently. Version 2 dropped the idea “Code as Configuration”, because the nature of Chrome Extension. Recompiling and reloading the extension every time when configuration changed is the pain in the ass for me as an user.</p>
+<p>For security reason, Chrome Extension disabled all the Javascript runtime evaluation features, such as <code>eval</code> or <code>new Function(&#39;code&#39;)</code>. So that it become almost impossible to edit code as data, and later applied it on the fly.</p>
+<p>Thanks to the version 1, the feature and DSL has almost fully settled, little updates needed in the near future. So I can use a less flexible language as the DSL instead of CoffeeScript.</p>
+<p>Finally I decided to replace CoffeeScript to JSON, which can be easily edited and applied on the fly.</p>
+<p>After introducing JSON DSL, to enable DSL upgrading in the future, an migration system become important and urgent. (Actually, this prediction is so solid. I have changed the JSON schema once today.) So I come up a new migration system:</p>
+<figure class="highlight coffeescript"><figcaption><span>Upgrader</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Upgrader</span></span></span><br><span class="line">  constructor: <span class="function">-&gt;</span></span><br><span class="line">    @execute()</span><br><span class="line"></span><br><span class="line">  execute: <span class="function">=&gt;</span></span><br><span class="line">    <span class="built_in">console</span>.log <span class="string">"[Upgrader] Current Version: <span class="subst">#&#123;Configuration.version&#125;</span>"</span></span><br><span class="line">    migrationName = <span class="string">"<span class="subst">#&#123;Configuration.version&#125;</span>"</span></span><br><span class="line">    migration = <span class="keyword">this</span>[migrationName]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unless</span> migration?</span><br><span class="line">      <span class="built_in">console</span>.log <span class="string">'[Upgrader] Latest version, no migration needed.'</span></span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log <span class="string">"[Upgrader] Migration needed..."</span></span><br><span class="line">    migration.call(<span class="keyword">this</span>, @execute)</span><br><span class="line"></span><br><span class="line">  <span class="string">'undefined'</span>: <span class="function"><span class="params">(done)</span> -&gt;</span></span><br><span class="line">    <span class="built_in">console</span>.log <span class="string">"[Upgrader] Load data from seed..."</span></span><br><span class="line">    Configuration.resetDataFromSeed(done)</span><br><span class="line"></span><br><span class="line">  <span class="string">'1.0'</span>: <span class="function"><span class="params">(done)</span> -&gt;</span></span><br><span class="line">    <span class="built_in">console</span>.log <span class="string">"[Upgrader] Migrating configuration schema from 1.0 to 1.1..."</span></span><br><span class="line">    <span class="comment"># Do the migration logic here</span></span><br><span class="line">    done()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>The <code>Upgrader</code> will be instantiate when extension started, after <code>Configuration</code> is initialized, which holds the DSL data for runtime usage.</p>
+<p>When the <code>execute</code> method is invoked, it check the current version, and check is there a upgrading method match to this version. If yes, it triggers the migration; otherwise it succeed the migration. Each time a migration process is completed, it re-trigger <code>execute</code> method for another round of check.</p>
+<p>Adding migration for a specific version of schema is quite simple. Just as method <code>1.0</code> does, declaring a method with the version number in the <code>Upgrader</code>.</p>
+<p><code>&#39;undefined&#39;</code> method is a special migration method, which is invoked there is no previous configuration found. So I initialize the configuration from seed data json file, which is generated from the version 1 DSL.</p>
+<p>The seed data generation is also an interesting topic. Please refer to <a href="/blog/2014/05/11/upgrading-dsl-from-coffeescript-to-json-part-dot-2-redefine-dsl-behavior">next post(Redfine DSL behavior)</a> of this series for details.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2014/05/11/chrome-extension-rpc-router/" data-id="cimxjzmip006hovsin1ixcixk" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2014/05/11/upgrading-dsl-from-coffeescript-to-json-part-1-migrator/" data-id="cimxl80az006lkhsiol9comjn" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2014/05/11/chrome-extension-rpc-router/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2014/05/11/upgrading-dsl-from-coffeescript-to-json-part-1-migrator/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rpc/">RPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extension/">extension</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/messaging/">messaging</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/router/">router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/routing/">routing</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coffeescript/">coffeescript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dsl/">dsl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/migration/">migration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schema/">schema</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/upgrading/">upgrading</a></li></ul>
 
     </footer>
   </div>
@@ -190,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2014/04/22/app-crash-issue-when-inflating-viewpager/" data-id="cimxjzmil006aovsic2p0iurx" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2014/04/22/app-crash-issue-when-inflating-viewpager/" data-id="cimxl80at006akhsibr54sm92" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2014/04/22/app-crash-issue-when-inflating-viewpager/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -257,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/12/19/start-acitivity-in-background-on-android-4-4-kitkat/" data-id="cimxjzmij0062ovsiw3ey3xnv" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/12/19/start-acitivity-in-background-on-android-4-4-kitkat/" data-id="cimxl80as0067khsie8seuszw" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2013/12/19/start-acitivity-in-background-on-android-4-4-kitkat/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -324,12 +325,77 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/12/16/npmethod-called-on-non-npobject-wrapped-jsobject/" data-id="cimxjzmii005zovsix62hxuwn" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/12/16/npmethod-called-on-non-npobject-wrapped-jsobject/" data-id="cimxl80aq0062khsivxlo6d1z" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2013/12/16/npmethod-called-on-non-npobject-wrapped-jsobject/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npmethod/">NPMethod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npobject/">NPObject</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webview/">WebView</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wrapper/">Wrapper</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binding/">binding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dynamically-inflates-ui-in-android-app" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2013/12/13/dynamically-inflates-ui-in-android-app/" class="article-date">
+  <time datetime="2013-12-13T00:00:00.000Z" itemprop="datePublished">2013-12-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+  
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon "  style="background-color: #40A;"  >
+      <a href="http://timnew.me/categories/programming/">Programming</a>
+    </div>
+  </div>
+
+
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2013/12/13/dynamically-inflates-ui-in-android-app/">Dynamically inflates UI in Android App</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There is a fascinating idea that inflates UI according to an android layout xml downloaded from server. According to the Android API, it looks quite feasible.</p>
+<p>One of <code>LayoutInflate.inflate</code> <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup)" target="_blank" rel="external">method overloads</a> accept Layout Xml as <code>XmlPullParser</code>.</p>
+<p>And <code>XmlPullParser</code> can wrap around an input stream, so as consequence, following code seems to be working:</p>
+<figure class="highlight java"><figcaption><span>Inflate view on the fly</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicView</span> <span class="keyword">extends</span> <span class="title">FrameLayout</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DynamicView</span><span class="params">(Context context, InputStream layoutData)</span> <span class="keyword">throws</span> XmlPullParserException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">        createView(context, layoutData);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createView</span><span class="params">(Context context, InputStream layoutData)</span> <span class="keyword">throws</span> XmlPullParserException </span>&#123;</span><br><span class="line">        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line"></span><br><span class="line">        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();</span><br><span class="line">        factory.setNamespaceAware(<span class="keyword">true</span>);</span><br><span class="line">        XmlPullParser parser = factory.newPullParser();</span><br><span class="line"></span><br><span class="line">        parser.setInput(layoutData, <span class="string">"UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">        inflater.inflate(parser, <span class="keyword">this</span>, <span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>The code looks great, compiling looks fine, but when the code excuted, an exception is thrown by the inflater.</p>
+<p>According to the LayoutInflater document, this approach won’t work(at least for now, it won’t).</p>
+<blockquote><p>For performance reasons, view inflation relies heavily on pre-processing of XML files that is done at build time. Therefore, it is not currently possible to use LayoutInflater with an XmlPullParser over a plain XML file at runtime.</p>
+<footer><strong>LayoutInflater Document</strong><cite><a href="http://developer.android.com/reference/android/view/LayoutInflater.html" target="_blank" rel="external">developer.android.com</a></cite></footer></blockquote>
+<p>Actually, Android compiler compiles the layout xml files into binary xml block, which has convert attributes into some special format. And in Android SDK, the <code>LayoutInflater</code> uses <code>XmlResourceParser</code> instead of plain <code>XmlPullParser</code>, which is created by <code>XmlBlock</code>.</p>
+<p><code>XmlBlock</code> is an internal class used in <code>Resources</code> to cache the binary xml document.</p>
+<p>And there is no way to create XmlResourceParser or other classes to inject custom behavior into this process. Personally assume that it is pretty much related to the Android Resource and Theming mechanism, there are quite a number cross references between resources. To make it works in a efficient way, Android Runtime did a lot work, such as cache and pre-processing. To override this behavior require quite a number of work and need to aware of potential performance issue. Since the inflating could happen quite often during navigation.</p>
+<p>As a not that fansy alternative, UI based on HTML hosted in WebView could be considered.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://timnew.me/blog/2013/12/13/dynamically-inflates-ui-in-android-app/" data-id="cimxl80ap005zkhsizz534e3i" class="article-share-link">Share</a>
+      
+        <a href="http://timnew.me/blog/2013/12/13/dynamically-inflates-ui-in-android-app/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dynamic/">dynamic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inflate/">inflate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout-inflater/">layout inflater</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/on-the-fly/">on the fly</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/runtime/">runtime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ui/">ui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xml/">xml</a></li></ul>
 
     </footer>
   </div>
@@ -397,77 +463,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/12/13/asset-path-in-android-stuidio/" data-id="cimxjzmih005uovsiv9e9dyll" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/12/13/asset-path-in-android-stuidio/" data-id="cimxl80ao005ukhsiafjdn26m" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2013/12/13/asset-path-in-android-stuidio/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android-studio/">android studio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/assets/">assets</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/build/">build</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/folder/">folder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/idea/">idea</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intellij/">intellij</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/path/">path</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/resource/">resource</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dynamically-inflates-ui-in-android-app" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2013/12/13/dynamically-inflates-ui-in-android-app/" class="article-date">
-  <time datetime="2013-12-13T00:00:00.000Z" itemprop="datePublished">2013-12-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-  
-  <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #40A;"  >
-      <a href="http://timnew.me/categories/programming/">Programming</a>
-    </div>
-  </div>
-
-
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2013/12/13/dynamically-inflates-ui-in-android-app/">Dynamically inflates UI in Android App</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>There is a fascinating idea that inflates UI according to an android layout xml downloaded from server. According to the Android API, it looks quite feasible.</p>
-<p>One of <code>LayoutInflate.inflate</code> <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup)" target="_blank" rel="external">method overloads</a> accept Layout Xml as <code>XmlPullParser</code>.</p>
-<p>And <code>XmlPullParser</code> can wrap around an input stream, so as consequence, following code seems to be working:</p>
-<figure class="highlight java"><figcaption><span>Inflate view on the fly</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicView</span> <span class="keyword">extends</span> <span class="title">FrameLayout</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DynamicView</span><span class="params">(Context context, InputStream layoutData)</span> <span class="keyword">throws</span> XmlPullParserException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">        createView(context, layoutData);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createView</span><span class="params">(Context context, InputStream layoutData)</span> <span class="keyword">throws</span> XmlPullParserException </span>&#123;</span><br><span class="line">        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line"></span><br><span class="line">        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();</span><br><span class="line">        factory.setNamespaceAware(<span class="keyword">true</span>);</span><br><span class="line">        XmlPullParser parser = factory.newPullParser();</span><br><span class="line"></span><br><span class="line">        parser.setInput(layoutData, <span class="string">"UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">        inflater.inflate(parser, <span class="keyword">this</span>, <span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>The code looks great, compiling looks fine, but when the code excuted, an exception is thrown by the inflater.</p>
-<p>According to the LayoutInflater document, this approach won’t work(at least for now, it won’t).</p>
-<blockquote><p>For performance reasons, view inflation relies heavily on pre-processing of XML files that is done at build time. Therefore, it is not currently possible to use LayoutInflater with an XmlPullParser over a plain XML file at runtime.</p>
-<footer><strong>LayoutInflater Document</strong><cite><a href="http://developer.android.com/reference/android/view/LayoutInflater.html" target="_blank" rel="external">developer.android.com</a></cite></footer></blockquote>
-<p>Actually, Android compiler compiles the layout xml files into binary xml block, which has convert attributes into some special format. And in Android SDK, the <code>LayoutInflater</code> uses <code>XmlResourceParser</code> instead of plain <code>XmlPullParser</code>, which is created by <code>XmlBlock</code>.</p>
-<p><code>XmlBlock</code> is an internal class used in <code>Resources</code> to cache the binary xml document.</p>
-<p>And there is no way to create XmlResourceParser or other classes to inject custom behavior into this process. Personally assume that it is pretty much related to the Android Resource and Theming mechanism, there are quite a number cross references between resources. To make it works in a efficient way, Android Runtime did a lot work, such as cache and pre-processing. To override this behavior require quite a number of work and need to aware of potential performance issue. Since the inflating could happen quite often during navigation.</p>
-<p>As a not that fansy alternative, UI based on HTML hosted in WebView could be considered.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/12/13/dynamically-inflates-ui-in-android-app/" data-id="cimxjzmik0067ovsifdm34oof" class="article-share-link">Share</a>
-      
-        <a href="http://timnew.me/blog/2013/12/13/dynamically-inflates-ui-in-android-app/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dynamic/">dynamic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inflate/">inflate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout-inflater/">layout inflater</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/on-the-fly/">on the fly</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/runtime/">runtime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ui/">ui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xml/">xml</a></li></ul>
 
     </footer>
   </div>
@@ -520,7 +521,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/12/11/reuse-android-built-in-bluetooth-device-picker/" data-id="cimxjzmig005rovsixu43ff9e" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/12/11/reuse-android-built-in-bluetooth-device-picker/" data-id="cimxl80an005rkhsiqbsyridx" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2013/12/11/reuse-android-built-in-bluetooth-device-picker/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -578,7 +579,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/" data-id="cimxjzmib005lovsidr27h7cl" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/" data-id="cimxl80ai005lkhsix8zafuwd" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -644,7 +645,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/07/18/pitfall-in-isenum-method-in-java/" data-id="cimxjzmi9005fovsivf6u233p" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/07/18/pitfall-in-isenum-method-in-java/" data-id="cimxl80ae005fkhsiejvp4fwy" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2013/07/18/pitfall-in-isenum-method-in-java/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -703,7 +704,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/" data-id="cimxjzmi7005dovsi63uxkeop" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/" data-id="cimxl80ac005dkhsia05mmgib" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1001,11 +1002,11 @@
           </li>
         
           <li>
-            <a href="/blog/2013/01/30/implement-sqrt-with-basic-algebra-operators/">Implement sqrt with basic algebra operators</a>
+            <a href="/blog/2013/01/30/pitfall-in-node-crypto-and-base64-encoding/">Pitfall in node crypto and base64 encoding</a>
           </li>
         
           <li>
-            <a href="/blog/2013/01/30/pitfall-in-node-crypto-and-base64-encoding/">Pitfall in node crypto and base64 encoding</a>
+            <a href="/blog/2013/01/30/implement-sqrt-with-basic-algebra-operators/">Implement sqrt with basic algebra operators</a>
           </li>
         
           <li>
@@ -1093,15 +1094,15 @@
           </li>
         
           <li>
+            <a href="/blog/2012/05/14/space-pitfall-in-coffee-script/">Space Pitfall in coffee-script</a>
+          </li>
+        
+          <li>
             <a href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/">How to solve key_read failed error in git push</a>
           </li>
         
           <li>
             <a href="/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/">How to print multiple line string on bash</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2012/05/14/space-pitfall-in-coffee-script/">Space Pitfall in coffee-script</a>
           </li>
         
           <li>
@@ -1125,15 +1126,15 @@
           </li>
         
           <li>
-            <a href="/blog/2012/04/13/powershell-script-to-rename-computer-without-reboot/">Powershell Script to rename computer without reboot</a>
-          </li>
-        
-          <li>
             <a href="/blog/2012/04/13/powershell-script-to-serialize-and-deserialize-hash-object-to-and-from-ini-like-text/">Powershell script to serialize and deserialize hash-object to and from ini-like text</a>
           </li>
         
           <li>
-            <a href="/blog/2012/04/08/shell-script-to-fetch-cpu-memory-and-disk-info-in-linux/">Shell Script to fetch CPU, Memory and Disk Info in Linux</a>
+            <a href="/blog/2012/04/13/powershell-script-to-rename-computer-without-reboot/">Powershell Script to rename computer without reboot</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2012/04/08/textmate-command-to-create-new-post-for-jekyll/">TextMate command to create new post for jekyll</a>
           </li>
         
           <li>
@@ -1141,7 +1142,7 @@
           </li>
         
           <li>
-            <a href="/blog/2012/04/08/textmate-command-to-create-new-post-for-jekyll/">TextMate command to create new post for jekyll</a>
+            <a href="/blog/2012/04/08/shell-script-to-fetch-cpu-memory-and-disk-info-in-linux/">Shell Script to fetch CPU, Memory and Disk Info in Linux</a>
           </li>
         
           <li>
