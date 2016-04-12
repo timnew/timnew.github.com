@@ -852,7 +852,7 @@ $(function(){
 
       <category term="event bus" scheme="http://timnew.me/tags/event-bus/"/>
 
-      <category term="pub &amd; sub" scheme="http://timnew.me/tags/pub-sub/"/>
+      <category term="pub &amp; sub" scheme="http://timnew.me/tags/pub-sub/"/>
 
       <category term="android annotations" scheme="http://timnew.me/tags/android-annotations/"/>
 
