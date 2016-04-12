@@ -89,17 +89,15 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: github
-  repo: git@github.com:timnew/timnew.github.com.git
-  branch: master
+  type: git
+  repo:
+    github: git@github.com:timnew/timnew.github.com.git,master
 
-emojis:
-  cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
-
-link_checker:
-  enabled: true
-  storage_dir: temp/link_checker
-  silent_logs: false
+feed:
+  type: atom
+  path: atom.xml
+  limit: 30
+  hub: https://pubsubhubbub.superfeedr.com/
 
 marked:
   gfm: true

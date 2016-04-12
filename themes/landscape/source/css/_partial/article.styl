@@ -1,3 +1,5 @@
+@import 'blockquote'
+
 .article
   margin: block-margin 0
 
@@ -247,15 +249,20 @@
 
 .article-share-box
   position: absolute
-  display: none
+  visibility: collapse
+  opacity: 0
   background: #fff
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2)
+  material-z-index: 2
   border-radius: 3px
   margin-left: -145px
   overflow: hidden
   z-index: 1
+  transform: matrix(.8, 0, 0, .8, 20, -20)
+  transition: opacity .5s, visibility .5s, transform .5s;
   &.on
-    display: block
+    visibility: visible
+    transform: matrix(1, 0, 0, 1, 0, 0)
+    opacity: 1
 
 .article-share-input
   width: 100%
@@ -265,10 +272,11 @@
   padding: 0 15px
   color: color-default
   outline: none
-  border: 1px solid color-border
+  border: 0
   border-radius: 3px 3px 0 0
   height: 36px
   line-height: 36px
+  box-shadow: bottom-shadows[1]
 
 .article-share-links
   clearfix()
@@ -282,45 +290,46 @@ $article-share-link
   position: relative
   color: #999
   text-shadow: 0 1px #fff
+  transition: background .5s, text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), color .3s .5s
+
   &:before
     font-size: 20px
     font-family: font-icon
     absolute-center(@font-size)
     text-align: center
+
   &:hover
     color: #fff
+    material-text-z-index: 2
+    transition: background .5s, text-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1) .3s, color .3s
 
 .article-share-twitter
   @extend $article-share-link
   &:before
-    content: "\f099"
+    content: fa-twitter
   &:hover
     background: color-twitter
-    text-shadow: 0 1px darken(color-twitter, 20%)
 
 .article-share-facebook
   @extend $article-share-link
   &:before
-    content: "\f09a"
+    content: fa-facebook
   &:hover
     background: color-facebook
-    text-shadow: 0 1px darken(color-facebook, 20%)
 
 .article-share-pinterest
   @extend $article-share-link
   &:before
-    content: "\f0d2"
+    content: fa-pinterest
   &:hover
     background: color-pinterest
-    text-shadow: 0 1px darken(color-pinterest, 20%)
 
 .article-share-google
   @extend $article-share-link
   &:before
-    content: "\f0d5"
+    content: fa-google-plus
   &:hover
     background: color-google
-    text-shadow: 0 1px darken(color-google, 20%)
 
 .article-gallery
   background: #000
@@ -342,36 +351,3 @@ $article-share-link
     display: block
     max-width: 100%
     margin: 0 auto
-/*
-$article-gallery-ctrl
-  position: absolute
-  top: 0
-  height: 100%
-  width: 60px
-  color: #fff
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3)
-  opacity: 0.3
-  transition: opacity 0.2s
-  cursor: pointer
-  &:hover
-    opacity: 0.8
-  &:before
-    font-size: 30px
-    font-family: font-icon
-    position: absolute
-    top: 50%
-    margin-top: @font-size * -0.5
-
-.article-gallery-prev
-  @extend $article-gallery-ctrl
-  left: 0
-  &:before
-    content: "\f053"
-    left: 15px
-
-.article-gallery-next
-  @extend $article-gallery-ctrl
-  right: 0
-  &:before
-    content: "\f054"
-    right: 15px*/
