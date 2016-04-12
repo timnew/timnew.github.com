@@ -429,17 +429,12 @@
 &lt;/ol&gt;
 &lt;script src=&quot;//code.jquery.com/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
-$(function(){
-  var $root = $(&#39;.article-entry&#39;);
+$(function(){var $root = $(&#39;.article-entry&#39;);
   $root.find(&#39;ol li&#39;).css(&#39;display&#39;, &#39;none&#39;);
-  $root.find(&#39;ol&#39;).each(function(){
-    var $ol = $(this);
-    $(&#39;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Hint me&lt;/a&gt;&lt;/li&gt;&#39;).click(function(e){
-      e.preventDefault();
+  $root.find(&#39;ol&#39;).each(function(){var $ol = $(this);
+    $(&#39;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Hint me&lt;/a&gt;&lt;/li&gt;&#39;).click(function(e){e.preventDefault();
       $ol.find(&#39;li:hidden:first&#39;).css(&#39;display&#39;, &#39;list-item&#39;)
-      if($ol.find(&#39;li:hidden&#39;).length === 0) {
-        $(this).remove();
-      }
+      if($ol.find(&#39;li:hidden&#39;).length === 0) {$(this).remove();}
     }).appendTo($ol);
   });
 });
@@ -1883,7 +1878,7 @@ $(function(){
     <content type="html">&lt;p&gt;Just found a shocking fact that Android API document on &lt;code&gt;ConsumerIrManger.transmit&lt;/code&gt; method is wrong!&lt;/p&gt;
 &lt;p&gt;KitKat has realised its own Infrared blaster API, which is incompatible with legacy Samsung private API. So I was working on &lt;a href=&quot;https://github.com/timnew/AndroidInfrared&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Infrared Library&lt;/a&gt; to make it adapted automatically on both Samsung private API and &lt;code&gt;Kit Kat&lt;/code&gt;official API.&lt;/p&gt;
 &lt;p&gt;After I finished the coding according the document, I found the app broke on my Galaxy Note 3 with &lt;code&gt;Kit Kat&lt;/code&gt;. It works perfect when running on &lt;code&gt;Jelly Bean&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;And I figured out an issue that it takes longer time to transmit the same seqeunce when I upgraded API. ( When IR blaster is working, the LED indicator on the phone turns blue. And I found the time of indicator turning blue is significant longer than before. ) And my &lt;a href=&quot;https://github.com/timnew/IRRecorder&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IRRecorder&lt;/a&gt; cannot recognize the sequence sent by my phone any longer.&lt;/p&gt;
+&lt;p&gt;And I figured out an issue that it takes longer time to transmit the same seqeunce when I upgraded API. (When IR blaster is working, the LED indicator on the phone turns blue. And I found the time of indicator turning blue is significant longer than before.) And my &lt;a href=&quot;https://github.com/timnew/IRRecorder&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IRRecorder&lt;/a&gt; cannot recognize the sequence sent by my phone any longer.&lt;/p&gt;
 &lt;p&gt;After spent several hours, I figured out the reason. The pattern was encoded in a wrong way. But I’m pretty sure that I strictly followed the API document.&lt;/p&gt;
 &lt;p&gt;So I get a conculusion that &lt;strong&gt;the &lt;code&gt;ConsumerIrManager&lt;/code&gt; implementation on Samsung Note 3 is different to what described in Android API document.&lt;/strong&gt; However I’m not sure the reason is that the Android document is lying or Samsung implemented the driver in a wrong way.&lt;/p&gt;
 &lt;p&gt;Here is the technical details of the issue and its solution:&lt;/p&gt;
