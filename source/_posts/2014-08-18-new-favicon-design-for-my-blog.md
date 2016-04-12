@@ -15,7 +15,7 @@ date: 2014-08-18 00:18:04
 update: 2013-08-18 01:34:20
 ---
 
-To {% emoji congratulations %} my wife passed driver license theory course, I created a new log for my blog {% emoji stuck_out_tongue_closed_eyes %}
+To ㊗️ my wife passed driver license theory course, I created a new log for my blog 😝
 
 Here is what I got:
 
@@ -37,7 +37,7 @@ It is an awesome font to create some mechanical feel design.
 
 {% asset_img gearbox.jpg Gear Box Logo %}
 
-The rainbow color is the hint of unrestrained idea and inspiration. In Chinese, it reads 天 {% emoji milky_way %} 马 {% emoji racehorse %} 行 {% emoji airplane %} 空 {% emoji rocket %} 不 {% emoji no_entry_sign %} 靠 {% emoji musical_score %} 谱.
+The rainbow color is the hint of unrestrained idea and inspiration. In Chinese, it reads 天 🌌 马 🐎 行 ✈️ 空 🚀 不 🚫 靠 🎵 谱.
 
 Well, this is it.
 

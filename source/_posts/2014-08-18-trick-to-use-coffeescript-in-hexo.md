@@ -53,7 +53,7 @@ Hexo uses [Script Loader] to load the scripts. In [Scripts Loader] use [hexo.uti
 
 With this feature, we can put our `coffee-script` registration in a file with lower alphabetic-order name. Personally, I'd like called `___register_coffeescript.js`, since `_` is smaller than any letter or number.
 
-{% emoji warning %}**WARNING**: [fs.readdir] yielding sorted files is an undocumented behavior, which means it is not guaranteed either to work across platforms or not get changed in the future. So for, it works on Mac, and I expect it behaves similar on Linux. But not sure about Windows, since `fs` uses a different native binding on Windows.
+⚠️**WARNING**: [fs.readdir] yielding sorted files is an undocumented behavior, which means it is not guaranteed either to work across platforms or not get changed in the future. So for, it works on Mac, and I expect it behaves similar on Linux. But not sure about Windows, since `fs` uses a different native binding on Windows.
 
 [Coffee Script]: http://coffeescript.org/
 [Hexo]: http://hexo.io/

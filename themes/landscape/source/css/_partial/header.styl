@@ -1,19 +1,22 @@
 #header
   height: banner-height
   position: relative
-  border-bottom: 1px solid color-border
+  material-z-index: 1
+
   &:before, &:after
     content: ""
     position: absolute
     left: 0
     right: 0
-    height: 40px
+    height: 50px
   &:before
     top: 0
-    background: linear-gradient(rgba(0, 0, 0, 0.2), transparent)
+    background: linear-gradient(rgba(0, 0, 0, 0.3), transparent)
+    // background: linear-gradient(rgba(0, 0, 0, 0.3), transparent)
   &:after
     bottom: 0
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.2))
+    // background: linear-gradient(transparent, rgba(0, 0, 0, 0.3))
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.3))
 
 #header-outer
   height: 100%
@@ -22,6 +25,11 @@
 #header-inner
   position: relative
   overflow: hidden
+
+filter()
+  -moz-filter arguments
+  -webkit-filter arguments
+  filter arguments
 
 #banner
   position: absolute
@@ -32,6 +40,7 @@
   background: url(banner-url) center #000
   background-size: cover
   z-index: -1
+  filter brightness(95%)
 
 #header-title
   text-align: center
@@ -45,7 +54,7 @@ $logo-text
   text-decoration: none
   color: #fff
   font-weight: 300
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3)
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .9)
 
 #logo
   @extend $logo-text
@@ -65,6 +74,12 @@ $logo-text
 #main-nav
   float: left
   margin-left: -15px
+
+nav-link-shadow(color = black, highlight = tan)
+  transition: text-shadow 0.2s
+  text-shadow: 0 0 6px color
+  &:hover
+    text-shadow 0 0 6px highlight
 
 $nav-link
   float: left
@@ -88,11 +103,15 @@ $nav-link
   padding: 20px 15px
   position: relative
   cursor: pointer
+  &:before
+    nav-link-shadow()
 
 .main-nav-link
   @extend $nav-link
+  nav-link-shadow()
   font-weight: 300
   letter-spacing: 1px
+
   @media mq-mobile
     display: none
 
@@ -118,9 +137,9 @@ $nav-link
 #search-form-wrap
   position: absolute
   top: 15px
-  width: 150px
+  width: 300px
   height: 30px
-  right: -150px
+  right: -300px
   opacity: 0
   transition: 0.2s ease-out
   &.on

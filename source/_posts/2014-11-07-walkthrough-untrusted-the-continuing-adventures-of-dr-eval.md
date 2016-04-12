@@ -222,7 +222,7 @@ Actually when I play this level for 1st time, I passed without dohing any code w
 
 ### Level 18: superDrEvalBros
 
-Great honor to `Super Bro.Mario` {% emoji trophy %}
+Great honor to `Super Bro.Mario` 🏆
 
 1. `Jump` is kind of misleading word.
 2. "Bridge" should be a better solution.

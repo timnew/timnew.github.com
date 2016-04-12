@@ -30,7 +30,7 @@ Along with [Brackets], [C9], `Atom` is the important candidates of next-gen edit
 Since `Atom` is still in the eary stage, there are a number of flaws and issues in it. Besides these bugs, the biggest problem of `Atom` is performance.
 Loading a several MB text file or thousands pages document will kill the editor in no time. <ins>(`Atom` blocks user to load file larger than `2MB`.)</ins>
 
-But still, these issues won't block me from loving it. As a `node.js` and `Ruby` developer, it is an awesome companion to my work. {% emoji heart %}
+But still, these issues won't block me from loving it. As a `node.js` and `Ruby` developer, it is an awesome companion to my work. ❤️
 
 [Atom]: https://atom.io/
 [Sublime]: http://www.sublimetext.com/

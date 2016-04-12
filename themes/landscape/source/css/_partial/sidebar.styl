@@ -14,7 +14,7 @@ else
     ul, ol
       margin: 0 20px
     ul
-      list-style: disc
+      list-style: none
     ol
       list-style: decimal
 
@@ -29,7 +29,39 @@ else
   &:after
     content: ")"
 
-.tagcloud
-  a
-    margin-right: 5px
-    display: inline-block
+$item
+  border-radius: 2px
+  material-hover-z-index: 1
+  padding: 2px 5px
+
+$li-item
+  @extend $item
+  a:hover
+    text-decoration: none
+
+$a-item
+  @extend $item
+  &:before
+    color: color-grey
+  &:hover
+    text-decoration: none
+
+.tagcloud a
+  @extend $a-item    
+  display: inline-block
+
+.recent-posts li
+  @extend $li-item
+  fa-icon: fa-bookmark
+
+.category-list li a
+  @extend $a-item
+  fa-icon: fa-list-alt
+
+.archive-list li
+  @extend $li-item
+  fa-icon: fa-calendar
+
+.tag-list li
+  @extend $li-item
+  fa-icon: fa-tag

@@ -1,7 +1,7 @@
 .widget-wrap
   margin-bottom: block-margin !important
   @media mq-normal
-    column(sidebar-column)
+    column(main-column)
 
 .widget-title
   color: #ccc
@@ -13,3 +13,15 @@
 
 .widget
   color: color-grey
+  ul, ol
+    li
+      display: inline-block
+      zoom:1
+      *display:inline
+      padding-right: .75em
+/* Having problems getting balanced white space between items
+    li:before
+      content: " | "
+    li:first-child:before
+      content: none
+ */
