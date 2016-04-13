@@ -15,10 +15,9 @@ sidebar: right
 widgets:
 - self_intro
 - recent_posts
+- tagcloud
 - category
 - archive
-- tagcloud
-- tag
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
@@ -28,7 +27,8 @@ index_widgets:
 
 # widget behavior
 archive_type: 'monthly'
-show_count: false
+recent_posts: 5
+show_count: 30
 
 # Miscellaneous
 google_analytics:
