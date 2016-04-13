@@ -33,7 +33,7 @@ But for `CodePen`, there is not such thing.
 So I created [hexo-tag-codepen], its provides similar syntax as built-in 'Js Fiddle' plug in:
 
 ```
-{% raw %}{% codepen userId|anonymous|anon slugHash theme [defaultTab [height [width]]] %}{%endraw%}
+{% codepen userId|anonymous|anon slugHash theme [defaultTab [height [width]]] %}
 ```
 
 Now you can embedded `Pens` from `CodePen` in your `Hexo` blog. Enjoy.

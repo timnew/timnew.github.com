@@ -16,6 +16,7 @@ widgets:
 - self_intro
 - recent_posts
 - tagcloud
+- tag
 - category
 - archive
 
@@ -26,9 +27,21 @@ index_widgets:
 # - archive
 
 # widget behavior
-archive_type: 'monthly'
+
 recent_posts: 5
-show_count: 30
+
+archives:
+  archive_type: 'monthly'
+  show_count: true
+  
+categories:
+  show_count: true
+tags:
+  show_count: true
+  amount: 30
+
+tagcloud:
+  amount: 30
 
 # Miscellaneous
 google_analytics:
