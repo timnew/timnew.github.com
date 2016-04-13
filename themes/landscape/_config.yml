@@ -16,7 +16,7 @@ widgets:
 - self_intro
 - recent_posts
 - tagcloud
-- tag
+# - tag
 - category
 - archive
 
@@ -33,7 +33,7 @@ recent_posts: 5
 archives:
   archive_type: 'monthly'
   show_count: true
-  
+
 categories:
   show_count: true
 tags:
