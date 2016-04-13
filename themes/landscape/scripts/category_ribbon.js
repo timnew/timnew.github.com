@@ -3,6 +3,10 @@ var hexoUtil = require('hexo-util')
 var colorRegex = /^\s*(?:\#[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]|\#[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]|rgba?\(.*\)|hsla?\(.*\))\s*$/;
 
 function categoryRibbonFilter(data) {
+  if (data.categories == null || data.categories.length === 0) {
+    return data;
+  }
+
   if (data.ribbon == null) {
     data.ribbon = {};
   }
@@ -10,9 +14,6 @@ function categoryRibbonFilter(data) {
     data.ribbon = {
       text: data.ribbon
     };
-  }
-  if (data.categories.length === 0) {
-    return data;
   }
 
   var ribbon = data.ribbon;
