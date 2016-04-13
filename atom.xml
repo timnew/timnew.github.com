@@ -662,11 +662,11 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     <link href="http://timnew.me/blog/2014/09/24/trello-confetti-effect/"/>
     <id>http://timnew.me/blog/2014/09/24/trello-confetti-effect/</id>
     <published>2014-09-24T05:13:33.000Z</published>
-    <updated>2016-03-25T13:11:03.000Z</updated>
+    <updated>2016-04-13T16:29:32.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://trello.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Trello&lt;/a&gt; just created a &lt;a href=&quot;https://trello.com/5m&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;page&lt;/a&gt; to celebrate their user number reaches 5 million. In their celebration page, they introduce an interesting effect, a number of blue squares rotating and falling from the sky.&lt;/p&gt;
 &lt;p&gt;By inspecting their source code, I extracted the effect implementation from the page.&lt;/p&gt;
-{% codepen timnew tlEBe 7928 result 500 %}
+&lt;iframe id=&quot;cp_embed_tlEBe&quot; src=&quot;//codepen.io/timnew/embed/tlEBe?height=500&amp;theme-id=7928&amp;slug-hash=tlEBe&amp;default-tab=result&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; height=&quot;500&quot; allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; class=&quot;cp_embed_iframe&quot; style=&quot;width: 100%; overflow: hidden;&quot;&gt;&lt;/iframe&gt;
 &lt;p&gt;As you can see, the effect is implemented with Canvas animation. Trello guys created a light weight particle system.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;ConfettiMachine&lt;/code&gt; is the particle system controller, which takes the responsibility to create new particles and call &lt;code&gt;draw&lt;/code&gt; method on them one by one.&lt;/li&gt;
@@ -860,11 +860,11 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     <link href="http://timnew.me/blog/2014/08/26/an-interesting-share-box-hover-effect/"/>
     <id>http://timnew.me/blog/2014/08/26/an-interesting-share-box-hover-effect/</id>
     <published>2014-08-25T16:13:54.000Z</published>
-    <updated>2016-03-25T13:10:45.000Z</updated>
+    <updated>2016-04-13T16:29:40.000Z</updated>
     
     <content type="html">&lt;p&gt;Today I spent some time on customizing the share-box used in this blog.&lt;/p&gt;
 &lt;p&gt;Here is the effect&lt;/p&gt;
-{% codepen timnew AweKi 7928 result 257 %}
+&lt;iframe id=&quot;cp_embed_AweKi&quot; src=&quot;//codepen.io/timnew/embed/AweKi?height=257&amp;theme-id=7928&amp;slug-hash=AweKi&amp;default-tab=result&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; height=&quot;257&quot; allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; class=&quot;cp_embed_iframe&quot; style=&quot;width: 100%; overflow: hidden;&quot;&gt;&lt;/iframe&gt;
 &lt;p&gt;The cover effect for the social network icons are simulate the icon is floating from the background by animating the shadow. In the implementation, I used some shadow described in &lt;a href=&quot;http://timnew.me/blog/2014/08/16/material-design-shadow-in-html/&quot;&gt;Material Design Shadow in HTML&lt;/a&gt;. For the texts, I use the &lt;code&gt;text-shadow&lt;/code&gt; effect that used on the same text shadow used on tht title of the article.&lt;/p&gt;
 </content>
     
@@ -872,7 +872,7 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       &lt;p&gt;Today I spent some time on customizing the share-box used in this blog.&lt;/p&gt;
 &lt;p&gt;Here is the effect&lt;/p&gt;
-{% codepen timnew AweKi 7928 result
+&lt;iframe id=&quot;cp_embed_AweKi&quot; src=&quot;//
     
     </summary>
     
@@ -993,6 +993,8 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="asset" scheme="http://timnew.me/tags/asset/"/>
     
+      <category term="folder" scheme="http://timnew.me/tags/folder/"/>
+    
       <category term="blog" scheme="http://timnew.me/tags/blog/"/>
     
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
@@ -1004,8 +1006,6 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="management" scheme="http://timnew.me/tags/management/"/>
     
       <category term="clean" scheme="http://timnew.me/tags/clean/"/>
-    
-      <category term="folder" scheme="http://timnew.me/tags/folder/"/>
     
   </entry>
   
@@ -1141,9 +1141,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="icon" scheme="http://timnew.me/tags/icon/"/>
     
-      <category term="favico" scheme="http://timnew.me/tags/favico/"/>
-    
       <category term="logo" scheme="http://timnew.me/tags/logo/"/>
+    
+      <category term="favico" scheme="http://timnew.me/tags/favico/"/>
     
       <category term="timnew" scheme="http://timnew.me/tags/timnew/"/>
     
@@ -1213,13 +1213,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="deployment" scheme="http://timnew.me/tags/deployment/"/>
     
-      <category term="web" scheme="http://timnew.me/tags/web/"/>
-    
-      <category term="icon" scheme="http://timnew.me/tags/icon/"/>
-    
-      <category term="logo" scheme="http://timnew.me/tags/logo/"/>
-    
       <category term="favicon" scheme="http://timnew.me/tags/favicon/"/>
+    
+      <category term="web" scheme="http://timnew.me/tags/web/"/>
     
       <category term="website" scheme="http://timnew.me/tags/website/"/>
     
@@ -1229,6 +1225,10 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="tile" scheme="http://timnew.me/tags/tile/"/>
     
+      <category term="icon" scheme="http://timnew.me/tags/icon/"/>
+    
+      <category term="logo" scheme="http://timnew.me/tags/logo/"/>
+    
   </entry>
   
   <entry>
@@ -1236,17 +1236,17 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     <link href="http://timnew.me/blog/2014/08/17/embed-codepen-snippet-in-hexo/"/>
     <id>http://timnew.me/blog/2014/08/17/embed-codepen-snippet-in-hexo/</id>
     <published>2014-08-17T04:49:50.000Z</published>
-    <updated>2016-03-25T13:10:18.000Z</updated>
+    <updated>2016-04-13T16:30:31.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;http://codepen.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodePen&lt;/a&gt; is a service that provide &lt;code&gt;Html&lt;/code&gt;, &lt;code&gt;JavaScript&lt;/code&gt; and &lt;code&gt;Css&lt;/code&gt; live show-case. It is another clone of &lt;a href=&quot;http://jsfiddle.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Js Fiddle&lt;/a&gt;, but with cooler UI and support.&lt;/p&gt;
 &lt;p&gt;Both &lt;code&gt;CodePen&lt;/code&gt; and &lt;code&gt;Js Fiddle&lt;/code&gt; provides embedded widget that allow user to embedded their code into blog or articles.&lt;/p&gt;
 &lt;p&gt;Here is the example, code from &lt;code&gt;CodePen&lt;/code&gt;:&lt;/p&gt;
-{% codepen timnew cGEqB 7928 result 257 %}
+&lt;iframe id=&quot;cp_embed_cGEqB&quot; src=&quot;//codepen.io/timnew/embed/cGEqB?height=257&amp;theme-id=7928&amp;slug-hash=cGEqB&amp;default-tab=result&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; height=&quot;257&quot; allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; class=&quot;cp_embed_iframe&quot; style=&quot;width: 100%; overflow: hidden;&quot;&gt;&lt;/iframe&gt;
 &lt;p&gt;This is from &lt;code&gt;Js Fiddle&lt;/code&gt;:&lt;/p&gt;
 &lt;iframe scrolling=&quot;no&quot; width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/timnew/r3j6a92c/4/embedded/result,css,html,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;&lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt; has built-in the &lt;a href=&quot;http://hexo.io/docs/tag-plugins.html#jsFiddle&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Js Fiddle Plug-in&lt;/a&gt; to allow writer to embed code from &lt;code&gt;Js Fiddle&lt;/code&gt;, which is probably ported from &lt;code&gt;Octopress&lt;/code&gt;.&lt;br&gt;But for &lt;code&gt;CodePen&lt;/code&gt;, there is not such thing.&lt;/p&gt;
 &lt;p&gt;So I created &lt;a href=&quot;https://github.com/timnew/hexo-tag-codepen&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-tag-codepen&lt;/a&gt;, its provides similar syntax as built-in ‘Js Fiddle’ plug in:&lt;/p&gt;
-&lt;figure class=&quot;highlight django&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;xml&quot;&gt;&lt;/span&gt;&lt;span class=&quot;template-tag&quot;&gt;&amp;#123;% &lt;span class=&quot;name&quot;&gt;raw&lt;/span&gt; %&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;/span&gt;&lt;span class=&quot;template-tag&quot;&gt;&amp;#123;% &lt;span class=&quot;name&quot;&gt;codepen&lt;/span&gt; userId|anonymous|anon slugHash theme [defaultTab [height [width]]] %&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;/span&gt;&lt;span class=&quot;template-tag&quot;&gt;&amp;#123;%&lt;span class=&quot;name&quot;&gt;endraw&lt;/span&gt;%&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight clojure&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;% codepen userId|anonymous|anon slugHash theme [defaultTab [height [width]]] %&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;Now you can embedded &lt;code&gt;Pens&lt;/code&gt; from &lt;code&gt;CodePen&lt;/code&gt; in your &lt;code&gt;Hexo&lt;/code&gt; blog. Enjoy.&lt;/p&gt;
 &lt;p&gt;For detail, check out &lt;a href=&quot;https://github.com/timnew/hexo-tag-codepen&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-tag-codepen&lt;/a&gt; document.&lt;/p&gt;
 </content>
@@ -1326,9 +1326,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="workaround" scheme="http://timnew.me/tags/workaround/"/>
     
-      <category term="box-shadow" scheme="http://timnew.me/tags/box-shadow/"/>
-    
       <category term="stylus" scheme="http://timnew.me/tags/stylus/"/>
+    
+      <category term="box-shadow" scheme="http://timnew.me/tags/box-shadow/"/>
     
   </entry>
   
@@ -1362,6 +1362,8 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="Web" scheme="http://timnew.me/categories/design/web/"/>
     
     
+      <category term="box-shadow" scheme="http://timnew.me/tags/box-shadow/"/>
+    
       <category term="Design" scheme="http://timnew.me/tags/design/"/>
     
       <category term="Material" scheme="http://timnew.me/tags/material/"/>
@@ -1375,8 +1377,6 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="Shadow" scheme="http://timnew.me/tags/shadow/"/>
     
       <category term="Visual" scheme="http://timnew.me/tags/visual/"/>
-    
-      <category term="box-shadow" scheme="http://timnew.me/tags/box-shadow/"/>
     
   </entry>
   
@@ -1639,9 +1639,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
     
     
-      <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
-    
       <category term="html" scheme="http://timnew.me/tags/html/"/>
+    
+      <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
     
       <category term="name" scheme="http://timnew.me/tags/name/"/>
     
@@ -1698,9 +1698,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="continues integration" scheme="http://timnew.me/tags/continues-integration/"/>
     
-      <category term="bower" scheme="http://timnew.me/tags/bower/"/>
-    
       <category term="build" scheme="http://timnew.me/tags/build/"/>
+    
+      <category term="bower" scheme="http://timnew.me/tags/bower/"/>
     
       <category term="pipeline" scheme="http://timnew.me/tags/pipeline/"/>
     
@@ -1858,9 +1858,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="android studio" scheme="http://timnew.me/tags/android-studio/"/>
     
-      <category term="sdk" scheme="http://timnew.me/tags/sdk/"/>
-    
       <category term="gradle" scheme="http://timnew.me/tags/gradle/"/>
+    
+      <category term="sdk" scheme="http://timnew.me/tags/sdk/"/>
     
       <category term="android.jar" scheme="http://timnew.me/tags/android-jar/"/>
     

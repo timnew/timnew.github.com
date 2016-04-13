@@ -1876,6 +1876,9 @@ pre .javascript .function {
   margin-left: 15px;
   list-style: disc;
 }
+.widget-wrap > a {
+  text-decoration: none;
+}
 .widget {
   line-height: 1.6em;
   word-wrap: break-word;
