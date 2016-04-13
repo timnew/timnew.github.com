@@ -20,6 +20,7 @@ body:after {
 #comments,
 #page-nav a,
 .fancybox img,
+ul.gallery > li,
 .widget,
 .tagcloud a,
 .recent-posts li,
@@ -38,6 +39,7 @@ body:after {
 .archive-article-inner,
 #page-nav,
 .fancybox img,
+ul.gallery > li,
 .widget {
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -47,6 +49,7 @@ body:after {
 #comments,
 .archive-article-inner,
 #page-nav,
+ul.gallery > li,
 .widget {
   -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.1), 0 0 1px rgba(0,0,0,0.1);
   box-shadow: 0 0 1px rgba(0,0,0,0.1), 0 0 1px rgba(0,0,0,0.1);
@@ -131,7 +134,8 @@ body:after {
   src: url("fonts/fontawesome-webfont.eot?v=#4.0.3");
   src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
 }
-.fa-spin {
+.fa-spin,
+.loading-indicator {
   -webkit-animation: fa-spin 2s infinite linear;
   -moz-animation: fa-spin 2s infinite linear;
   -ms-animation: fa-spin 2s infinite linear;
@@ -1839,6 +1843,186 @@ pre .javascript .function {
   -webkit-box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16), 0 2px 5px 0 rgba(0,0,0,0.26);
   -moz-box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16), 0 2px 5px 0 rgba(0,0,0,0.26);
   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16), 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+.loading-indicator:before {
+  padding-right: 8px;
+  content: "\f013";
+  font-family: FontAwesome;
+  vertical-align: baseline;
+}
+ul.gallery {
+  display: block;
+  padding-top: 20px;
+  list-style: none;
+  text-align: center;
+}
+ul.gallery > li {
+  display: inline-block;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16), 0 2px 5px 0 rgba(0,0,0,0.26);
+  -moz-box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16), 0 2px 5px 0 rgba(0,0,0,0.26);
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16), 0 2px 5px 0 rgba(0,0,0,0.26);
+  margin: 35px;
+  padding: 10px;
+  position: relative;
+}
+ul.gallery > li:hover {
+  -webkit-transition-delay: 0.2s;
+  -moz-transition-delay: 0.2s;
+  -ms-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+  -webkit-box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19), 0 8px 17px 0 rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19), 0 8px 17px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19), 0 8px 17px 0 rgba(0,0,0,0.2);
+}
+ul.gallery > li .title-wrap {
+  width: 280px;
+  margin-top: 10px;
+  display: inline-block;
+}
+ul.gallery > li .title-wrap .title {
+  color: #666;
+  font-size: 1.2em;
+  text-decoration: none;
+  max-width: 255px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+ul.gallery .exif-button {
+  display: inline-block;
+  float: right;
+  width: 22px;
+  height: 22px;
+  -webkit-border-radius: 11px;
+  border-radius: 11px;
+  font-size: small;
+  -webkit-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #666;
+}
+ul.gallery .exif-button:before {
+  padding-right: 8px;
+  content: "\f129";
+  font-family: FontAwesome;
+  vertical-align: baseline;
+}
+ul.gallery .exif-button:before {
+  padding-right: 0;
+  vertical-align: middle;
+}
+ul.gallery .exif-button:hover {
+  background: rgba(255,194,50,0.1);
+}
+ul.gallery .exif-button:active {
+  background: rgba(255,194,50,0.6);
+}
+ul.gallery .exif-button.on {
+  color: #6cf;
+}
+ul.gallery .exif {
+  background: rgba(255,255,255,0.7);
+  width: 280px;
+  height: 280px;
+  position: absolute;
+  z-index: 1000;
+  visibility: collapse;
+  opacity: 0;
+  -webkit-transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  -moz-transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  -ms-transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+ul.gallery .exif.on {
+  visibility: visible;
+  opacity: 1;
+}
+ul.gallery .exif dl {
+  width: 100%;
+}
+ul.gallery .exif dl dt,
+ul.gallery .exif dl dd {
+  display: inline-block;
+  float: left;
+  width: 40%;
+}
+ul.gallery .exif dl dt {
+  text-align: right;
+}
+ul.gallery .exif dl dd {
+  padding-left: 10px;
+  text-align: left;
+}
+ul.gallery .exif dl .focal-length:after {
+  content: "mm";
+}
+ul.gallery .exif dl .shutter-speed:after {
+  content: "s";
+}
+ul.gallery .exif dl .aperture:before {
+  content: "f/";
+}
+ul.gallery .exif dl .multi-span > span {
+  margin: 0 5px;
+}
+ul.gallery .exif dl .rating:before {
+  padding-right: 8px;
+  content: "\f0e7";
+  font-family: FontAwesome;
+  vertical-align: baseline;
+}
+ul.gallery .exif dl .highest-rating:before {
+  padding-right: 8px;
+  content: "\f091";
+  font-family: FontAwesome;
+  vertical-align: baseline;
+}
+ul.gallery .exif dl .views:before {
+  padding-right: 8px;
+  content: "\f06e";
+  font-family: FontAwesome;
+  vertical-align: baseline;
+}
+ul.gallery .exif dl .likes:before {
+  padding-right: 8px;
+  content: "\f087";
+  font-family: FontAwesome;
+  vertical-align: baseline;
+}
+ul.gallery .exif dl .faves:before {
+  padding-right: 8px;
+  content: "\f004";
+  font-family: FontAwesome;
+  vertical-align: baseline;
+}
+ul.gallery .score {
+  position: absolute;
+  bottom: 43px;
+  right: 10px;
+  color: #fff;
+  font-family: 'Helvetica Neue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  padding: 10px 10px;
+  width: 260px;
+  text-align: right;
+  -webkit-transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  -moz-transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  -ms-transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: collapse;
+}
+ul.gallery .score.on {
+  opacity: 1;
+  visibility: visible;
 }
 @media screen and (min-width: 768px) {
   #sidebar {

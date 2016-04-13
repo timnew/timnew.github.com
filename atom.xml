@@ -686,10 +686,6 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
     
     
-      <category term="effect" scheme="http://timnew.me/tags/effect/"/>
-    
-      <category term="animation" scheme="http://timnew.me/tags/animation/"/>
-    
       <category term="trello" scheme="http://timnew.me/tags/trello/"/>
     
       <category term="confetti" scheme="http://timnew.me/tags/confetti/"/>
@@ -697,6 +693,10 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="canvas" scheme="http://timnew.me/tags/canvas/"/>
     
       <category term="draw" scheme="http://timnew.me/tags/draw/"/>
+    
+      <category term="animation" scheme="http://timnew.me/tags/animation/"/>
+    
+      <category term="effect" scheme="http://timnew.me/tags/effect/"/>
     
       <category term="particle" scheme="http://timnew.me/tags/particle/"/>
     
@@ -887,15 +887,15 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="web" scheme="http://timnew.me/tags/web/"/>
     
+      <category term="animation" scheme="http://timnew.me/tags/animation/"/>
+    
+      <category term="effect" scheme="http://timnew.me/tags/effect/"/>
+    
       <category term="sharebox" scheme="http://timnew.me/tags/sharebox/"/>
     
       <category term="transition" scheme="http://timnew.me/tags/transition/"/>
     
       <category term="hover" scheme="http://timnew.me/tags/hover/"/>
-    
-      <category term="effect" scheme="http://timnew.me/tags/effect/"/>
-    
-      <category term="animation" scheme="http://timnew.me/tags/animation/"/>
     
   </entry>
   
@@ -999,9 +999,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
     
-      <category term="image" scheme="http://timnew.me/tags/image/"/>
-    
       <category term="plugin" scheme="http://timnew.me/tags/plugin/"/>
+    
+      <category term="image" scheme="http://timnew.me/tags/image/"/>
     
       <category term="management" scheme="http://timnew.me/tags/management/"/>
     
@@ -1405,9 +1405,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="Atom" scheme="http://timnew.me/categories/practice/atom/"/>
     
     
-      <category term="css" scheme="http://timnew.me/tags/css/"/>
-    
       <category term="editor" scheme="http://timnew.me/tags/editor/"/>
+    
+      <category term="css" scheme="http://timnew.me/tags/css/"/>
     
       <category term="stylesheet" scheme="http://timnew.me/tags/stylesheet/"/>
     
@@ -1590,15 +1590,15 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="inheritance" scheme="http://timnew.me/tags/inheritance/"/>
     
-      <category term="node.js" scheme="http://timnew.me/tags/node-js/"/>
-    
       <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
+    
+      <category term="node.js" scheme="http://timnew.me/tags/node-js/"/>
     
       <category term="browser" scheme="http://timnew.me/tags/browser/"/>
     
-      <category term="json" scheme="http://timnew.me/tags/json/"/>
-    
       <category term="class" scheme="http://timnew.me/tags/class/"/>
+    
+      <category term="json" scheme="http://timnew.me/tags/json/"/>
     
       <category term="prototype" scheme="http://timnew.me/tags/prototype/"/>
     

@@ -96,14 +96,14 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-using-rvmed-ruby-in-mac-automator-workflow" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" class="article-date">
+    <a href="/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/" class="article-date">
   <time datetime="2013-10-27T00:00:00.000Z" itemprop="datePublished">2013-10-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/practice/">Practice</a>►<a class="article-category-link" href="/categories/practice/mac/">Mac</a>
+    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/arduino/">Arduino</a>
   </div>
 
   </div>
@@ -111,8 +111,8 @@ ga('send', 'pageview');
     
   
   <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #0A3;"  >
-      <a href="http://timnew.me/categories/practice/">Practice</a>
+    <div class="ribbon "  style="background-color: #40A;"  >
+      <a href="http://timnew.me/categories/programming/">Programming</a>
     </div>
   </div>
 
@@ -123,7 +123,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/">Using RVMed Ruby in Mac Automator Workflow</a>
+      <a class="article-title" href="/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/">Arduino IDE 1.5.3 is too buggy to use and work arounds</a>
     </h1>
   
 
@@ -131,31 +131,21 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>HINT</strong> This content is obsoleted on OSX 10.9 Mavericks</p>
-<h2 id="Embed-Ruby-into-Automator-Workflow"><a href="#Embed-Ruby-into-Automator-Workflow" class="headerlink" title="Embed Ruby into Automator Workflow"></a>Embed Ruby into Automator Workflow</h2><p>Automator workflow has the ability to execute ruby code, but it is not that obvious if you doesn’t know it.</p>
-<p>To embed ruby code into workflow, you need to create a “Run Shell Script” action first, then choose “/usr/bin/ruby” as the shell. Then the script in the text box will be parsed and executed as ruby code.</p>
-<img src="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/ruby_in_automator.png" alt="Ruby In Automator" title="Ruby In Automator">
-<p>So, from now on, you know how to embed ruby into automator workflow.</p>
-<h2 id="Use-RVM-ruby-instead-of-System-Ruby"><a href="#Use-RVM-ruby-instead-of-System-Ruby" class="headerlink" title="Use RVM ruby instead of System Ruby"></a>Use RVM ruby instead of System Ruby</h2><p>By default, Automator will load system ruby at <code>/usr/bin/ruby</code>, which is ruby v1.8.7 without bundler support. For most ruby developers, they must have installed some kind of ruby version manager, such as <code>RVM</code> or <code>rbenv</code>. As to me, I uses <code>RVM</code>. So I wish I could use RVMed versions of Ruby rather than the system ruby, could be ruby 1.9.3 or even ruby 2.0 with bundler support.</p>
-<p>To use the RVMed ruby, I tried several approaches by hacking different configurations or files. And at last, I made it doing this:</p>
-<p>RVM provides a ruby executable file at <code>~/.rvm/bin/ruby</code>. On the other hand, <code>/usr/bin/ruby</code> is actually a symbol link that pointed to ‘/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby’.</p>
-<p>So what we need to do is to replace the the symbol link with a new one pointed to <code>~/.rvm/bin/ruby</code>.</p>
-<figure class="highlight bash"><figcaption><span>Replace system ruby with RVMed ruby</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo mv /usr/bin/ruby /usr/bin/system_ruby</span><br><span class="line">sudo ln <span class="_">-s</span> /Users/timnew/.rvm/bin/ruby /usr/bin/ruby</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>(You might need to replace the <code>/Users/timnew/.rvm/bin/ruby</code> with the path to your ruby executable file)</p>
-<p>After doing this, done, you have the RVMed ruby in your Automator Workflow.</p>
-<p>You can try to excute the following code in Workflow to verify it:</p>
-<figure class="highlight ruby"><figcaption><span>Test Ruby Version</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puts RUBY_VERSION</span><br></pre></td></tr></table></figure>
-<p>If you do it correct, then you should see ‘1.9.3’ or any other version of ruby you have configured.</p>
+        <p>The Arduino IDE 1.5.3 introduced some new features, such as support latest board Yun, or introduces new libraries and samples. But I found it is too buggy to use.</p>
+<h2 id="1-Compile-code-against-Arduino-Nano-fails-due-to-parameter-mcu-passed-to-avrdude-is-missing"><a href="#1-Compile-code-against-Arduino-Nano-fails-due-to-parameter-mcu-passed-to-avrdude-is-missing" class="headerlink" title="1. Compile code against Arduino Nano fails due to parameter mcu passed to avrdude is missing."></a>1. Compile code against Arduino Nano fails due to parameter <code>mcu</code> passed to <code>avrdude</code> is missing.</h2><p><strong>Reason:</strong><br>The issue seems caused because the new IDE merged the menu items for Nano board. But for some reason, the configuration haven’t been updated accordingly.</p>
+<p><strong>Workaround:</strong><br>Choose <code>Arduino Duemilanove and Diecimila</code> instead of <code>Arduino Nano</code>. Nano uses same chip as Duemilanove(ATmega328) and Diecimila(ATmega168), but uses a different PCB design. So the binary should be compatible.</p>
+<h2 id="2-Compile-String-100-DEC-throws-ambiguous-matching-error"><a href="#2-Compile-String-100-DEC-throws-ambiguous-matching-error" class="headerlink" title="2. Compile String(100, DEC) throws ambiguous matching error"></a>2. Compile <code>String(100, DEC)</code> throws <code>ambiguous matching</code> error</h2><p><strong>Reason:</strong><br>The issue is caused because the API signature updated to <code>String(*, unsigned char)</code>, but constants are still declared as <code>int</code>.</p>
+<p><strong>Workaround:</strong><br>Add force cast <code>DEC</code>, <code>HEX</code>, <code>BIN</code> to <code>byte</code> instead of <code>int</code>.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" data-id="cimz2njj7005nvksigoo4ghxn" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/" data-id="cimz4udsb005mnwsijgec1jmk" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/osx/">OSX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">RVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automator/">automator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/finder/">finder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/service/">service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ide/">IDE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">String</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arduino/">arduino</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/buggy/">buggy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nano/">nano</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solution/">solution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/workaround/">workaround</a></li></ul>
 
     </footer>
   </div>
@@ -225,7 +215,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/" data-id="cimz2njj2005hvksiyt1kbhys" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/" data-id="cimz4uds5005gnwsig55407ck" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -239,14 +229,14 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-using-rvmed-ruby-in-mac-automator-workflow" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/" class="article-date">
+    <a href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" class="article-date">
   <time datetime="2013-10-27T00:00:00.000Z" itemprop="datePublished">2013-10-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/arduino/">Arduino</a>
+    <a class="article-category-link" href="/categories/practice/">Practice</a>►<a class="article-category-link" href="/categories/practice/mac/">Mac</a>
   </div>
 
   </div>
@@ -254,8 +244,8 @@ ga('send', 'pageview');
     
   
   <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #40A;"  >
-      <a href="http://timnew.me/categories/programming/">Programming</a>
+    <div class="ribbon "  style="background-color: #0A3;"  >
+      <a href="http://timnew.me/categories/practice/">Practice</a>
     </div>
   </div>
 
@@ -266,7 +256,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/">Arduino IDE 1.5.3 is too buggy to use and work arounds</a>
+      <a class="article-title" href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/">Using RVMed Ruby in Mac Automator Workflow</a>
     </h1>
   
 
@@ -274,21 +264,31 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The Arduino IDE 1.5.3 introduced some new features, such as support latest board Yun, or introduces new libraries and samples. But I found it is too buggy to use.</p>
-<h2 id="1-Compile-code-against-Arduino-Nano-fails-due-to-parameter-mcu-passed-to-avrdude-is-missing"><a href="#1-Compile-code-against-Arduino-Nano-fails-due-to-parameter-mcu-passed-to-avrdude-is-missing" class="headerlink" title="1. Compile code against Arduino Nano fails due to parameter mcu passed to avrdude is missing."></a>1. Compile code against Arduino Nano fails due to parameter <code>mcu</code> passed to <code>avrdude</code> is missing.</h2><p><strong>Reason:</strong><br>The issue seems caused because the new IDE merged the menu items for Nano board. But for some reason, the configuration haven’t been updated accordingly.</p>
-<p><strong>Workaround:</strong><br>Choose <code>Arduino Duemilanove and Diecimila</code> instead of <code>Arduino Nano</code>. Nano uses same chip as Duemilanove(ATmega328) and Diecimila(ATmega168), but uses a different PCB design. So the binary should be compatible.</p>
-<h2 id="2-Compile-String-100-DEC-throws-ambiguous-matching-error"><a href="#2-Compile-String-100-DEC-throws-ambiguous-matching-error" class="headerlink" title="2. Compile String(100, DEC) throws ambiguous matching error"></a>2. Compile <code>String(100, DEC)</code> throws <code>ambiguous matching</code> error</h2><p><strong>Reason:</strong><br>The issue is caused because the API signature updated to <code>String(*, unsigned char)</code>, but constants are still declared as <code>int</code>.</p>
-<p><strong>Workaround:</strong><br>Add force cast <code>DEC</code>, <code>HEX</code>, <code>BIN</code> to <code>byte</code> instead of <code>int</code>.</p>
+        <p><strong>HINT</strong> This content is obsoleted on OSX 10.9 Mavericks</p>
+<h2 id="Embed-Ruby-into-Automator-Workflow"><a href="#Embed-Ruby-into-Automator-Workflow" class="headerlink" title="Embed Ruby into Automator Workflow"></a>Embed Ruby into Automator Workflow</h2><p>Automator workflow has the ability to execute ruby code, but it is not that obvious if you doesn’t know it.</p>
+<p>To embed ruby code into workflow, you need to create a “Run Shell Script” action first, then choose “/usr/bin/ruby” as the shell. Then the script in the text box will be parsed and executed as ruby code.</p>
+<img src="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/ruby_in_automator.png" alt="Ruby In Automator" title="Ruby In Automator">
+<p>So, from now on, you know how to embed ruby into automator workflow.</p>
+<h2 id="Use-RVM-ruby-instead-of-System-Ruby"><a href="#Use-RVM-ruby-instead-of-System-Ruby" class="headerlink" title="Use RVM ruby instead of System Ruby"></a>Use RVM ruby instead of System Ruby</h2><p>By default, Automator will load system ruby at <code>/usr/bin/ruby</code>, which is ruby v1.8.7 without bundler support. For most ruby developers, they must have installed some kind of ruby version manager, such as <code>RVM</code> or <code>rbenv</code>. As to me, I uses <code>RVM</code>. So I wish I could use RVMed versions of Ruby rather than the system ruby, could be ruby 1.9.3 or even ruby 2.0 with bundler support.</p>
+<p>To use the RVMed ruby, I tried several approaches by hacking different configurations or files. And at last, I made it doing this:</p>
+<p>RVM provides a ruby executable file at <code>~/.rvm/bin/ruby</code>. On the other hand, <code>/usr/bin/ruby</code> is actually a symbol link that pointed to ‘/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby’.</p>
+<p>So what we need to do is to replace the the symbol link with a new one pointed to <code>~/.rvm/bin/ruby</code>.</p>
+<figure class="highlight bash"><figcaption><span>Replace system ruby with RVMed ruby</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo mv /usr/bin/ruby /usr/bin/system_ruby</span><br><span class="line">sudo ln <span class="_">-s</span> /Users/timnew/.rvm/bin/ruby /usr/bin/ruby</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>(You might need to replace the <code>/Users/timnew/.rvm/bin/ruby</code> with the path to your ruby executable file)</p>
+<p>After doing this, done, you have the RVMed ruby in your Automator Workflow.</p>
+<p>You can try to excute the following code in Workflow to verify it:</p>
+<figure class="highlight ruby"><figcaption><span>Test Ruby Version</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puts RUBY_VERSION</span><br></pre></td></tr></table></figure>
+<p>If you do it correct, then you should see ‘1.9.3’ or any other version of ruby you have configured.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/" data-id="cimz2njj4005lvksiunf9seu3" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" data-id="cimz4udsc005pnwsihvvorntl" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ide/">IDE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">String</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arduino/">arduino</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/buggy/">buggy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nano/">nano</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solution/">solution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/workaround/">workaround</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/osx/">OSX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">RVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automator/">automator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/finder/">finder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/service/">service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 
     </footer>
   </div>
@@ -346,18 +346,6 @@ ga('send', 'pageview');
     </a>
     <div class="widget tagcloud">
       <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/alfred/" style="font-size: 10px;">Alfred</a> <a href="/tags/android/" style="font-size: 20px;">Android</a> <a href="/tags/android-studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/automation/" style="font-size: 10px;">Automation</a> <a href="/tags/bit-slicer/" style="font-size: 10px;">Bit Slicer</a> <a href="/tags/boilerplate/" style="font-size: 10px;">Boilerplate</a> <a href="/tags/c/" style="font-size: 20px;">C#</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/css/" style="font-size: 10px;">CSS</a> <a href="/tags/cheat/" style="font-size: 10px;">Cheat</a> <a href="/tags/cheat-engine/" style="font-size: 10px;">Cheat Engine</a> <a href="/tags/class/" style="font-size: 10px;">Class</a> <a href="/tags/cocoa/" style="font-size: 10px;">Cocoa</a> <a href="/tags/command/" style="font-size: 10px;">Command</a> <a href="/tags/continues-delivery/" style="font-size: 10px;">Continues Delivery</a> <a href="/tags/continues-integration/" style="font-size: 10px;">Continues Integration</a> <a href="/tags/crack/" style="font-size: 10px;">Crack</a> <a href="/tags/d/" style="font-size: 10px;">D</a> <a href="/tags/debugger/" style="font-size: 10px;">Debugger</a> <a href="/tags/deploy/" style="font-size: 10px;">Deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">Deployment</a> <a href="/tags/design/" style="font-size: 10px;">Design</a> <a href="/tags/design-pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/event/" style="font-size: 10px;">Event</a> <a href="/tags/eventbus/" style="font-size: 10px;">EventBus</a> <a href="/tags/fp/" style="font-size: 10px;">FP</a> <a href="/tags/fswatcher/" style="font-size: 10px;">FSWatcher</a> <a href="/tags/gb2312/" style="font-size: 10px;">GB2312</a> <a href="/tags/gbk/" style="font-size: 10px;">GBK</a>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <a href="/tags">
-      <h3 class="widget-title">Tags</h3>
-    </a>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/">.net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alfred/">Alfred</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">Android</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-studio/">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automation/">Automation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bit-slicer/">Bit Slicer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boilerplate/">Boilerplate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">C#</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">CI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheat/">Cheat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheat-engine/">Cheat Engine</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">Class</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocoa/">Cocoa</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command/">Command</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/continues-delivery/">Continues Delivery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/continues-integration/">Continues Integration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crack/">Crack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/d/">D</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugger/">Debugger</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deploy/">Deploy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/">Deployment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-pattern/">Design Pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/event/">Event</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventbus/">EventBus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fp/">FP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fswatcher/">FSWatcher</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gb2312/">GB2312</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gbk/">GBK</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

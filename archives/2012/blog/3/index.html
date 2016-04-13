@@ -147,12 +147,70 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/" data-id="cimz2njgx002cvksitwxwc4m8" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/" data-id="cimz4udpz002dnwsihxgbonww" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigen/">eigen</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigenclass/">eigenclass</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meta-class/">meta class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meta-programming/">meta programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/singleton-class/">singleton class</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-solve-key-read-failed-error-in-git-push" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/" class="article-date">
+  <time datetime="2012-05-14T00:00:00.000Z" itemprop="datePublished">2012-05-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/practice/">Practice</a>►<a class="article-category-link" href="/categories/practice/git/">git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+  
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon "  style="background-color: #0A3;"  >
+      <a href="http://timnew.me/categories/practice/">Practice</a>
+    </div>
+  </div>
+
+
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/">How to solve key_read failed error in git push</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I assigned a dedicated ssh key pair for github repos.<br>And I have associated the key pair with github correctly in <code>~/.ssh/config</code>.<br>But each time when I try to access github repos via ssh, both read(such pull or fetch) or write(such as push), I will get a strange error:</p>
+<pre><code>key_read: uudecode [some SSH key code]
+ssh-rsa [SSH key code]
+failed
+</code></pre><p>I tried a lot to fix the problem, and finally I solved the problem by delete the file <code>~/.ssh/known_hosts</code><br>I assume the problem might be caused that there is some invalid association cached in the file. So maybe you can solve the problem by removing the related entries instead of delete the whole file.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://timnew.me/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/" data-id="cimz4udpw0027nwsi2zrl403p" class="article-share-link">Share</a>
+      
+        <a href="http://timnew.me/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solution/">solution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
 
     </footer>
   </div>
@@ -220,70 +278,12 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/" data-id="cimz2njgv0029vksi3yukc1gy" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/" data-id="cimz4udpy002anwsipxb27uwj" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/best-practice/">best-practice</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coffee-script/">coffee-script</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pitfall/">pitfall</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/space/">space</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-how-to-solve-key-read-failed-error-in-git-push" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/" class="article-date">
-  <time datetime="2012-05-14T00:00:00.000Z" itemprop="datePublished">2012-05-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/practice/">Practice</a>►<a class="article-category-link" href="/categories/practice/git/">git</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-  
-  <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #0A3;"  >
-      <a href="http://timnew.me/categories/practice/">Practice</a>
-    </div>
-  </div>
-
-
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/">How to solve key_read failed error in git push</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I assigned a dedicated ssh key pair for github repos.<br>And I have associated the key pair with github correctly in <code>~/.ssh/config</code>.<br>But each time when I try to access github repos via ssh, both read(such pull or fetch) or write(such as push), I will get a strange error:</p>
-<pre><code>key_read: uudecode [some SSH key code]
-ssh-rsa [SSH key code]
-failed
-</code></pre><p>I tried a lot to fix the problem, and finally I solved the problem by delete the file <code>~/.ssh/known_hosts</code><br>I assume the problem might be caused that there is some invalid association cached in the file. So maybe you can solve the problem by removing the related entries instead of delete the whole file.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/" data-id="cimz2njgt0026vksi31hb9dfe" class="article-share-link">Share</a>
-      
-        <a href="http://timnew.me/blog/2012/05/14/how-to-solve-key-read-failed-error-in-git-push/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solution/">solution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
 
     </footer>
   </div>
@@ -342,7 +342,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/" data-id="cimz2njgr0023vksi9ys3b3yd" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/" data-id="cimz4udpj001unwsin6ruds31" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -404,7 +404,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/" data-id="cimz2njgo0020vksi8ju3oink" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/" data-id="cimz4udpr0021nwsilgn413sl" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -497,7 +497,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/" data-id="cimz2njgk001xvksippf9d7m5" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/" data-id="cimz4udpu0024nwsilffzffww" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -555,7 +555,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/" data-id="cimz2njgh001svksi1td5f1eh" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/" data-id="cimz4udpo001znwsi682bc05l" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -613,7 +613,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/04/26/bash-profile-on-mac-os-x/" data-id="cimz2njgf001pvksiclmyzefh" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/04/26/bash-profile-on-mac-os-x/" data-id="cimz4udpg001rnwsi3jzpk7xc" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/04/26/bash-profile-on-mac-os-x/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -690,7 +690,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/04/20/exports-vs-module-exports-in-node-js/" data-id="cimz2njgc001kvksiptfeekb9" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/04/20/exports-vs-module-exports-in-node-js/" data-id="cimz4udpd001mnwsifpziyvfj" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/04/20/exports-vs-module-exports-in-node-js/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -747,7 +747,7 @@ failed
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/04/13/powershell-script-to-serialize-and-deserialize-hash-object-to-and-from-ini-like-text/" data-id="cimz2njgb001hvksi5qt11qzm" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/04/13/powershell-script-to-serialize-and-deserialize-hash-object-to-and-from-ini-like-text/" data-id="cimz4udpb001jnwsiq4u62vz1" class="article-share-link">Share</a>
       
         <a href="http://timnew.me/blog/2012/04/13/powershell-script-to-serialize-and-deserialize-hash-object-to-and-from-ini-like-text/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -814,18 +814,6 @@ failed
     </a>
     <div class="widget tagcloud">
       <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/alfred/" style="font-size: 10px;">Alfred</a> <a href="/tags/android/" style="font-size: 20px;">Android</a> <a href="/tags/android-studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/automation/" style="font-size: 10px;">Automation</a> <a href="/tags/bit-slicer/" style="font-size: 10px;">Bit Slicer</a> <a href="/tags/boilerplate/" style="font-size: 10px;">Boilerplate</a> <a href="/tags/c/" style="font-size: 20px;">C#</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/css/" style="font-size: 10px;">CSS</a> <a href="/tags/cheat/" style="font-size: 10px;">Cheat</a> <a href="/tags/cheat-engine/" style="font-size: 10px;">Cheat Engine</a> <a href="/tags/class/" style="font-size: 10px;">Class</a> <a href="/tags/cocoa/" style="font-size: 10px;">Cocoa</a> <a href="/tags/command/" style="font-size: 10px;">Command</a> <a href="/tags/continues-delivery/" style="font-size: 10px;">Continues Delivery</a> <a href="/tags/continues-integration/" style="font-size: 10px;">Continues Integration</a> <a href="/tags/crack/" style="font-size: 10px;">Crack</a> <a href="/tags/d/" style="font-size: 10px;">D</a> <a href="/tags/debugger/" style="font-size: 10px;">Debugger</a> <a href="/tags/deploy/" style="font-size: 10px;">Deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">Deployment</a> <a href="/tags/design/" style="font-size: 10px;">Design</a> <a href="/tags/design-pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/event/" style="font-size: 10px;">Event</a> <a href="/tags/eventbus/" style="font-size: 10px;">EventBus</a> <a href="/tags/fp/" style="font-size: 10px;">FP</a> <a href="/tags/fswatcher/" style="font-size: 10px;">FSWatcher</a> <a href="/tags/gb2312/" style="font-size: 10px;">GB2312</a> <a href="/tags/gbk/" style="font-size: 10px;">GBK</a>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <a href="/tags">
-      <h3 class="widget-title">Tags</h3>
-    </a>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/">.net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alfred/">Alfred</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">Android</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-studio/">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automation/">Automation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bit-slicer/">Bit Slicer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boilerplate/">Boilerplate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">C#</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">CI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheat/">Cheat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheat-engine/">Cheat Engine</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">Class</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocoa/">Cocoa</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command/">Command</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/continues-delivery/">Continues Delivery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/continues-integration/">Continues Integration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crack/">Crack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/d/">D</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugger/">Debugger</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deploy/">Deploy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/">Deployment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-pattern/">Design Pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/event/">Event</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventbus/">EventBus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fp/">FP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fswatcher/">FSWatcher</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gb2312/">GB2312</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gbk/">GBK</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
