@@ -1488,9 +1488,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="Atom" scheme="http://timnew.me/categories/practice/atom/"/>
     
     
-      <category term="editor" scheme="http://timnew.me/tags/editor/"/>
-    
       <category term="css" scheme="http://timnew.me/tags/css/"/>
+    
+      <category term="editor" scheme="http://timnew.me/tags/editor/"/>
     
       <category term="stylesheet" scheme="http://timnew.me/tags/stylesheet/"/>
     
