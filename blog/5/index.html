@@ -83,9 +83,9 @@ ga('send', 'pageview');
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://timnew.me"></form>
@@ -95,6 +95,71 @@ ga('send', 'pageview');
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-dynamically-inflates-ui-in-android-app" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2013/12/13/dynamically-inflates-ui-in-android-app/" class="article-date">
+  <time datetime="2013-12-13T00:00:00.000Z" itemprop="datePublished">2013-12-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+  
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon "  style="background-color: #40A;"  >
+      <a href="http://timnew.me/categories/programming/">Programming</a>
+    </div>
+  </div>
+
+
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2013/12/13/dynamically-inflates-ui-in-android-app/">Dynamically inflates UI in Android App</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There is a fascinating idea that inflates UI according to an android layout xml downloaded from server. According to the Android API, it looks quite feasible.</p>
+<p>One of <code>LayoutInflate.inflate</code> <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup)" target="_blank" rel="external">method overloads</a> accept Layout Xml as <code>XmlPullParser</code>.</p>
+<p>And <code>XmlPullParser</code> can wrap around an input stream, so as consequence, following code seems to be working:</p>
+<figure class="highlight java"><figcaption><span>Inflate view on the fly</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicView</span> <span class="keyword">extends</span> <span class="title">FrameLayout</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DynamicView</span><span class="params">(Context context, InputStream layoutData)</span> <span class="keyword">throws</span> XmlPullParserException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">        createView(context, layoutData);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createView</span><span class="params">(Context context, InputStream layoutData)</span> <span class="keyword">throws</span> XmlPullParserException </span>&#123;</span><br><span class="line">        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line"></span><br><span class="line">        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();</span><br><span class="line">        factory.setNamespaceAware(<span class="keyword">true</span>);</span><br><span class="line">        XmlPullParser parser = factory.newPullParser();</span><br><span class="line"></span><br><span class="line">        parser.setInput(layoutData, <span class="string">"UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">        inflater.inflate(parser, <span class="keyword">this</span>, <span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>The code looks great, compiling looks fine, but when the code excuted, an exception is thrown by the inflater.</p>
+<p>According to the LayoutInflater document, this approach won’t work(at least for now, it won’t).</p>
+<blockquote><p>For performance reasons, view inflation relies heavily on pre-processing of XML files that is done at build time. Therefore, it is not currently possible to use LayoutInflater with an XmlPullParser over a plain XML file at runtime.</p>
+<footer><strong>LayoutInflater Document</strong><cite><a href="http://developer.android.com/reference/android/view/LayoutInflater.html" target="_blank" rel="external">developer.android.com</a></cite></footer></blockquote>
+<p>Actually, Android compiler compiles the layout xml files into binary xml block, which has convert attributes into some special format. And in Android SDK, the <code>LayoutInflater</code> uses <code>XmlResourceParser</code> instead of plain <code>XmlPullParser</code>, which is created by <code>XmlBlock</code>.</p>
+<p><code>XmlBlock</code> is an internal class used in <code>Resources</code> to cache the binary xml document.</p>
+<p>And there is no way to create XmlResourceParser or other classes to inject custom behavior into this process. Personally assume that it is pretty much related to the Android Resource and Theming mechanism, there are quite a number cross references between resources. To make it works in a efficient way, Android Runtime did a lot work, such as cache and pre-processing. To override this behavior require quite a number of work and need to aware of potential performance issue. Since the inflating could happen quite often during navigation.</p>
+<p>As a not that fansy alternative, UI based on HTML hosted in WebView could be considered.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://timnew.me/blog/2013/12/13/dynamically-inflates-ui-in-android-app/" data-id="cinedk73q0062chsi31mj6pj1" class="article-share-link">Partager</a>
+      
+        <a href="http://timnew.me/blog/2013/12/13/dynamically-inflates-ui-in-android-app/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dynamic/">dynamic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inflate/">inflate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout-inflater/">layout inflater</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/on-the-fly/">on the fly</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/runtime/">runtime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ui/">ui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xml/">xml</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-asset-path-in-android-stuidio" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -155,9 +220,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/12/13/asset-path-in-android-stuidio/" data-id="cimz4udsj005vnwsiibn0xmwb" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/12/13/asset-path-in-android-stuidio/" data-id="cinedk73o005zchsih5lc04nc" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/12/13/asset-path-in-android-stuidio/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/12/13/asset-path-in-android-stuidio/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android-studio/">android studio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/assets/">assets</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/build/">build</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/folder/">folder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/idea/">idea</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intellij/">intellij</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/path/">path</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/resource/">resource</a></li></ul>
@@ -213,9 +278,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/12/11/reuse-android-built-in-bluetooth-device-picker/" data-id="cimz4udsi005snwsib5189z71" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/12/11/reuse-android-built-in-bluetooth-device-picker/" data-id="cinedk73l005uchsiuhmhaxbj" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/12/11/reuse-android-built-in-bluetooth-device-picker/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/12/11/reuse-android-built-in-bluetooth-device-picker/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/activity/">activity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bluetooth/">bluetooth</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/built-in/">built-in</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/device/">device</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/picker/">picker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reuse/">reuse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/system/">system</a></li></ul>
@@ -271,9 +336,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/" data-id="cimz4udsb005mnwsijgec1jmk" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/" data-id="cinedk73h005nchsi9esjdg6u" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/10/27/arduino-ide-1-5-3-is-too-buggy-to-use-and-work-arounds/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ide/">IDE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">String</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arduino/">arduino</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/buggy/">buggy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nano/">nano</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solution/">solution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/workaround/">workaround</a></li></ul>
@@ -346,9 +411,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/" data-id="cimz4uds5005gnwsig55407ck" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/" data-id="cinedk73e005lchsio1dicfew" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gb2312/">GB2312</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gbk/">GBK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encoding/">encoding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lyrics/">lyrics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/messy-code/">messy code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/subtitle/">subtitle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/transcode/">transcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utf8/">utf8</a></li></ul>
@@ -414,9 +479,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" data-id="cimz4udsc005pnwsihvvorntl" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" data-id="cinedk73j005rchsif5aay0jf" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/osx/">OSX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">RVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automator/">automator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/finder/">finder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/service/">service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
@@ -480,9 +545,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/07/18/pitfall-in-isenum-method-in-java/" data-id="cimz4uds0005anwsi3yc84xna" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/07/18/pitfall-in-isenum-method-in-java/" data-id="cinedk73a005echsi5ruinwvx" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/07/18/pitfall-in-isenum-method-in-java/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/07/18/pitfall-in-isenum-method-in-java/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enumeration/">enumeration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/isenum/">isEnum()</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reflection/">reflection</a></li></ul>
@@ -539,9 +604,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/" data-id="cimz4udrx0058nwsizbvbbto0" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/" data-id="cinedk7350056chsi542elpuy" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android-metadata/">android_metadata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crash/">crash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite/">sqlite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/table/">table</a></li></ul>
@@ -596,9 +661,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/06/20/script-to-manage-tw-t-e/" data-id="cimz4udrv0053nwsit396c1h8" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/06/20/script-to-manage-tw-t-e/" data-id="cinedk732004ychsi36ia3ta4" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/06/20/script-to-manage-tw-t-e/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/06/20/script-to-manage-tw-t-e/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/expense/">expense</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/injection/">injection</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time-sheet/">time sheet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utility/">utility</a></li></ul>
@@ -689,119 +754,12 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/04/27/node-over-express-autoload/" data-id="cimz4udrs004vnwsirwvbs7vk" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/04/27/node-over-express-autoload/" data-id="cinedk73c005hchsitu9w4y1r" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/04/27/node-over-express-autoload/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/04/27/node-over-express-autoload/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/autoload/">autoload</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-over-express/">node over express</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-node-over-express-configuration" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2013/04/25/node-over-express-configuration/" class="article-date">
-  <time datetime="2013-04-25T00:00:00.000Z" itemprop="datePublished">2013-04-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/node-js/">node.js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-  
-  <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #40A;"  >
-      <a href="http://timnew.me/categories/programming/">Programming</a>
-    </div>
-  </div>
-
-
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2013/04/25/node-over-express-configuration/">Node over Express - Configuration</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>I have been working on Node.js related projects for quite a while, and have built apps with node both for the clients or personal projects, such as <a href="https://live-hall.herokuapp.com" target="_blank" rel="external">LiveHall</a>, <a href="https://github.com/timnew/CiMonitor" target="_blank" rel="external">CiMonitor</a>, etc. I have promised some one to share my experience on node. Today I’ll begin to work on this. This will be the first blog of the series.</p>
-<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>In this blog, I would like to talk about the configuration in node, which is common problem we need to solve in apps.</p>
-<p>Problems related to configuration aren’t new, and there have been a dozens of mature solutions, but for Node.js apps, there is still something worth to be discussed.</p>
-<p>Perhaps configuration could be treated as a kind of special data. Usually developers prefer to use data language to describe their configurations. Here are some examples:</p>
-<ul>
-<li>.net and Java developer usually uses Xml to describe their configuration</li>
-<li>Ruby developer prefers Yaml as the configuration language</li>
-<li>JavaScript developer tend to use Json</li>
-</ul>
-<p>Data languages are convenient, because developers can easily build DSL on it, then they describe the configuration with the DSL. But is the data language the best option available? Is it really suitable to be used in all scnearios?</p>
-<p>Before we answer the questions, I would like to say something about the problem we’re facing. There is one common requirement to all kinds of configuration solutions, which is default values and overriding.</p>
-<p>For example, as a Web app default, we use port 80; but in development environment, we prefer to use a port number over 1024, 3000 is a popular choice. That means we need to provide 80 as the default value of the port, but we wish to override the value with 3000 in the development environment.</p>
-<p>For the languages I mentioned above, except for Yaml, Xml and Json, doesn’t provide native support of inheritance and overriding. It means we need to implement the mechanism by our own. Take Json as example, we might write the configuration in this way:</p>
-<figure class="highlight json"><figcaption><span>Sample Json configuration</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"default"</span>: &#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">80</span>,</span><br><span class="line">    <span class="attr">"serveAssets"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"development"</span>: &#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">3000</span>,</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"mongodb://localhost/development"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"test"</span>: &#123;</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"mongodb://localhost/test"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"production"</span>: &#123;</span><br><span class="line">    <span class="attr">"serveAssets"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"mongodb://ds0123456.mongolab.com:43487/my_sample_app"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The previous Json snippet is a typical example of web app configuration; it has a default section to provide the default values for all environments. Three sections for specific environments. To apply it corecctly to our app, we need to load and parse the Json file to get all data first, then load the values of the default section, then override the value with the values from specific environment.  In addition, we might wish to have the validation that yields error when the provided environment doesn’t exist.</p>
-<p>This solution looks simple and seems to work, but when you try to apply this approach to your app in real life, you need to watch out some pitfalls.</p>
-<h2 id="Issue-1-Confidential-Values"><a href="#Issue-1-Confidential-Values" class="headerlink" title="Issue 1: Confidential Values"></a>Issue 1: Confidential Values</h2><p>In the real world, values in configuration sometimes could be sensitive and need to be kept confidential. It could contain the credential to access your database, Or it could contain the key to decrypt the cookies. It may also contain private certificate that identifies and authenticates the app to other services. In these scenarios, you need to protect your configuration in order to avoid big trouble!</p>
-<p>To solve the issue, you might think about adding new feature that enable you to to encrypt confidential values or to load it from a different safe source.  To achieve it, you might need to add another layer of DSL which add more complexities to your app and make your code harder to debug or to maintain.</p>
-<h2 id="Issue-2-Dynamic-Data"><a href="#Issue-2-Dynamic-Data" class="headerlink" title="Issue 2: Dynamic Data"></a>Issue 2: Dynamic Data</h2><p>A solution to first issue,  one could store the environment related but sensitive data in the environment variables. The solution is simple and works perfectly, so I highly recommend it. However, to do this means you need the capability to load the value not only from Json directly but also from the environment variables.</p>
-<p>Sometimes, such as deploying your app to Heroku/Nojitsu, might give rise that make the case trickier. After deployed the app to Heroku/Nojitsu, the default values are provided in Json directly, and some of which need to be overrode with the values from environment variables or you need to do it vice versa. These tricky requirements might blow your mind and your code away easily. It causes complicated DSL design and hundreds lines of implementation, but just to load your configuration properly. Obviously it is not a good idea.</p>
-<h2 id="Issue-3-Complicated-Inheritance-Relationship"><a href="#Issue-3-Complicated-Inheritance-Relationship" class="headerlink" title="Issue 3: Complicated Inheritance Relationship"></a>Issue 3: Complicated Inheritance Relationship</h2><p>Scared about above cases? No, then how about complicated inheritance relationship between environments?</p>
-<p>In some big and complicated web apps, there might be more than 3 basic environments, such as:</p>
-<ul>
-<li>Development: for developers to develop the app locally</li>
-<li>Test: for developers to run unit or function test locally, such as mocha tests</li>
-<li>Regression: for developers or QAs to run regression tests, such as cucumber tests</li>
-<li>Integration: for QAs or Ops to test the integration with other apps</li>
-<li>Staging: for ops and QAs to test the app in production like environment before it really goes live</li>
-<li>Production: the environment serves your real users</li>
-<li>…</li>
-</ul>
-<p>When try to write configurations for these environments, one might find there are only a few differences between environments. To make life easier,  to avoid the redundancy, introducing the inheritance between configurations might be a good idea.</p>
-<p>As the consequence, the whole configuration becomes environments with complex inheritance relationship. And to support this kind of configuration inheritance,  a more complex DSL and hundreds lines of codes are needed.</p>
-<h2 id="Some-Comments"><a href="#Some-Comments" class="headerlink" title="Some Comments"></a>Some Comments</h2><p>My assumption above seems to be a little too complex.  From some people, it might be the “WORST CASE SCENERIO” and hard to come by. But according to my experience, it is very common when building real web app with node. So if to solve it isn’t too hard, it could be better to consider it seriously and solve it gracefully.</p>
-<p>Ruby developer might think they’re lucky because Yaml supports inheritance natively. But confidential data and dynamic data still troubles.  </p>
-<h2 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h2><p>After learnt a number of painful lessons, I figured out a simple but working solution: Configuration as Code - describe the configuration with the same language that the business logic is described!</p>
-<p>Configuration as code isn’t a new concept, but it is extremely handy when you use it in node applications! Let me explain why and how it works:</p>
-<p>To protect the confidential configuration values, one should store them with environment variables, which are only accessible in the specific server.<br>Then one can load these values from the environment variables as dynamically values.</p>
-<p>To do it in a data language such as Xml, Json or Yaml could be hard, but it will become as easy as taking a candy from a baby if it is done in the programming language that application applied/used, such as ruby or javascript.</p>
-<p>To the configuration inheritance, OO languages have already provided very handy inheritance mechanism. Why do we need to invent one? Why not just use it? To the value overriding, OO programming tells us that it is called polymorphism. The only difference here from the typical scenario is that we override the values instead of the behaviors. But it isn’t an issue, because the value could be the result of the behavior, right?</p>
-<p>Now I assume that everyone got a pretty good idea of what I am saying. If that is the case, then the below code should be able to be understood quite clearly,  which is a standard Node.js file written in <code>coffee script</code>:</p>
-<figure class="highlight coffeescript"><figcaption><span>Configuration as Code Example</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">process.env.NODE_ENV = process.env.NODE_ENV?.toLowerCase() ? <span class="string">'development'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span></span></span><br><span class="line">  port: <span class="number">80</span></span><br><span class="line">  cookieSecret: <span class="string">'!J@IOH$!BFBEI#KLjfelajf792fjdksi23989HKHD&amp;&amp;#^@'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span>.<span class="title">development</span> <span class="keyword">extends</span> <span class="title">Config</span></span></span><br><span class="line">  port: <span class="number">3009</span></span><br><span class="line">  redis:</span><br><span class="line">    uri: <span class="string">'redis://localhost:6379'</span></span><br><span class="line">  mongo:</span><br><span class="line">    uri: <span class="string">'mongodb://localhost'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span>.<span class="title">test</span> <span class="keyword">extends</span> <span class="title">Config</span>.<span class="title">development</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span>.<span class="title">heroku</span> <span class="keyword">extends</span> <span class="title">Config</span></span></span><br><span class="line">  cookieSecret: process.env.COOKIE_SECRET</span><br><span class="line">  redis:</span><br><span class="line">    uri: process.env.REDISCLOUD_URL</span><br><span class="line">  mongo:</span><br><span class="line">    uri: process.env.MONGOLAB_URI</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">new</span> Config[process.env.NODE_ENV]()</span><br></pre></td></tr></table></figure>
-<p>See, with the approach, one can describe the configuration easily and clearly in a few lines of code, but with built-in loading dynamical values capability and configuration inheritance and overriding capability.</p>
-<p>In fact, with my suggestions, it might work better than expected! Here are the additional free benefits:</p>
-<ol>
-<li>Only one configuration is needed when  the app deployed to the cloud. Because all the host specific configurations are usually provided via the environment variables in Paas.</li>
-<li>Have some simple and straightforward logic in the configuration, which could be very useful, especially if there is some naming convention in the configuration. But complicated or tricky logic should be strictly avoided, because it is hurts the readability and maintainability.</li>
-<li>Easy to write tests for configurations, to ensure the values are properly set. It could be very handy when there are complicated inheritance relationships between configurations, or have some simple logic in your configuration.</li>
-<li>Avoid to instantiate and execute the code that isn’t related to the current environment, which could be helpful to avoid overhead to instantiate unused expensive resources or to avoid errors caused because of incompatibility between environments.</li>
-<li>Get runtime error when the configuration for the environment doesn’t exist.</li>
-</ol>
-<hr>
-
-<p>Besides of the content, I want to say thank you to my English teacher Marina Sarg, who helped me on this series of blog a lot. Without her, there won’t be this series of blogs. Marina, thank you very much.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/04/25/node-over-express-configuration/" data-id="cimz4udru0050nwsinze8m61i" class="article-share-link">Share</a>
-      
-        <a href="http://timnew.me/blog/2013/04/25/node-over-express-configuration/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/configuration/">configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-over-express/">node over express</a></li></ul>
 
     </footer>
   </div>
@@ -825,10 +783,14 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/posts">
-      <h3 class="widget-title">Recent Posts</h3>
+      <h3 class="widget-title">Articles récents</h3>
     </a>
     <div class="widget recent-posts">
       <ul>
+        
+          <li>
+            <a href="/blog/2016/04/23/collection-filtering-algorithm-with-bit-operation-part-1/">Collection Filtering Algorithm with Bit Operation - Part.1</a>
+          </li>
         
           <li>
             <a href="/blog/2015/08/14/a-clean-way-to-test-rejected-promise/">A clean way to test rejected promise</a>
@@ -846,10 +808,6 @@ ga('send', 'pageview');
             <a href="/blog/2014/11/07/walkthrough-untrusted-the-continuing-adventures-of-dr-eval/">Walkthrough: Untrusted - the Continuing Adventures of Dr. Eval</a>
           </li>
         
-          <li>
-            <a href="/blog/2014/11/05/awesome-geek-game-untrusted-the-continuing-adventures-of-dr-eval/">Awesome geek game Untrusted - the Continuing Adventures of Dr. Eval</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -859,10 +817,10 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/tags">
-      <h3 class="widget-title">Tag Cloud</h3>
+      <h3 class="widget-title">Nuage de mot-clés</h3>
     </a>
     <div class="widget tagcloud">
-      <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/alfred/" style="font-size: 10px;">Alfred</a> <a href="/tags/android/" style="font-size: 20px;">Android</a> <a href="/tags/android-studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/automation/" style="font-size: 10px;">Automation</a> <a href="/tags/bit-slicer/" style="font-size: 10px;">Bit Slicer</a> <a href="/tags/boilerplate/" style="font-size: 10px;">Boilerplate</a> <a href="/tags/c/" style="font-size: 20px;">C#</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/css/" style="font-size: 10px;">CSS</a> <a href="/tags/cheat/" style="font-size: 10px;">Cheat</a> <a href="/tags/cheat-engine/" style="font-size: 10px;">Cheat Engine</a> <a href="/tags/class/" style="font-size: 10px;">Class</a> <a href="/tags/cocoa/" style="font-size: 10px;">Cocoa</a> <a href="/tags/command/" style="font-size: 10px;">Command</a> <a href="/tags/continues-delivery/" style="font-size: 10px;">Continues Delivery</a> <a href="/tags/continues-integration/" style="font-size: 10px;">Continues Integration</a> <a href="/tags/crack/" style="font-size: 10px;">Crack</a> <a href="/tags/d/" style="font-size: 10px;">D</a> <a href="/tags/debugger/" style="font-size: 10px;">Debugger</a> <a href="/tags/deploy/" style="font-size: 10px;">Deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">Deployment</a> <a href="/tags/design/" style="font-size: 10px;">Design</a> <a href="/tags/design-pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/event/" style="font-size: 10px;">Event</a> <a href="/tags/eventbus/" style="font-size: 10px;">EventBus</a> <a href="/tags/fp/" style="font-size: 10px;">FP</a> <a href="/tags/fswatcher/" style="font-size: 10px;">FSWatcher</a> <a href="/tags/gb2312/" style="font-size: 10px;">GB2312</a> <a href="/tags/gbk/" style="font-size: 10px;">GBK</a>
+      <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/alfred/" style="font-size: 10px;">Alfred</a> <a href="/tags/algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/android/" style="font-size: 20px;">Android</a> <a href="/tags/android-studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/automation/" style="font-size: 10px;">Automation</a> <a href="/tags/binary/" style="font-size: 10px;">Binary</a> <a href="/tags/bit-operation/" style="font-size: 10px;">Bit Operation</a> <a href="/tags/bit-slicer/" style="font-size: 10px;">Bit Slicer</a> <a href="/tags/bloom-filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/boilerplate/" style="font-size: 10px;">Boilerplate</a> <a href="/tags/c/" style="font-size: 20px;">C#</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/css/" style="font-size: 10px;">CSS</a> <a href="/tags/cheat/" style="font-size: 10px;">Cheat</a> <a href="/tags/cheat-engine/" style="font-size: 10px;">Cheat Engine</a> <a href="/tags/class/" style="font-size: 10px;">Class</a> <a href="/tags/cocoa/" style="font-size: 10px;">Cocoa</a> <a href="/tags/collection/" style="font-size: 10px;">Collection</a> <a href="/tags/command/" style="font-size: 10px;">Command</a> <a href="/tags/continues-delivery/" style="font-size: 10px;">Continues Delivery</a> <a href="/tags/continues-integration/" style="font-size: 10px;">Continues Integration</a> <a href="/tags/crack/" style="font-size: 10px;">Crack</a> <a href="/tags/d/" style="font-size: 10px;">D</a> <a href="/tags/debugger/" style="font-size: 10px;">Debugger</a> <a href="/tags/deploy/" style="font-size: 10px;">Deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">Deployment</a> <a href="/tags/design/" style="font-size: 10px;">Design</a> <a href="/tags/design-pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/event/" style="font-size: 10px;">Event</a>
     </div>
   </div>
 
@@ -871,10 +829,10 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/categories">
-      <h3 class="widget-title">Categories</h3>
+      <h3 class="widget-title">Catégories</h3>
     </a>
     <div class="widget category-list">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/">Cracking</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/game/">Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/">Design</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design/visual/">Visual</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/web/">Web</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/game/">Game</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/game/programming-game/">Programming Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/geek-toy/">Geek Toy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/">Package</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/package/chrome-extension/">Chrome Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/hexo/">Hexo</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/">Practice</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/practice/atom/">Atom</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/continues-integration/">Continues Integration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/devops/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/mac/">Mac</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/textmate/">TextMate</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/web/">Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/git/">git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">Programming</a><span class="category-list-count">72</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/android/">Android</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/arduino/">Arduino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/c/">C#</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/design-patterns/">Design Patterns</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">JavaScript</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/coffeescript/">CoffeeScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/postgressql/">PostgresSql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/powershell/">PowerShell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/regular-expression/">Regular Expression</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/ruby/">Ruby</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/shell/">Shell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/wpf/">WPF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/web/">Web</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/node-js/">node.js</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/thinking/">Thinking</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/">Cracking</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/game/">Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/">Design</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design/visual/">Visual</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/web/">Web</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/game/">Game</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/game/programming-game/">Programming Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/geek-toy/">Geek Toy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/">Package</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/package/chrome-extension/">Chrome Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/hexo/">Hexo</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/">Practice</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/practice/atom/">Atom</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/continues-integration/">Continues Integration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/devops/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/mac/">Mac</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/textmate/">TextMate</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/web/">Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/git/">git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">Programming</a><span class="category-list-count">73</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/android/">Android</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/arduino/">Arduino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/c/">C#</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/design-patterns/">Design Patterns</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">JavaScript</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/coffeescript/">CoffeeScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/postgressql/">PostgresSql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/powershell/">PowerShell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/regular-expression/">Regular Expression</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/ruby/">Ruby</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/shell/">Shell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/wpf/">WPF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/web/">Web</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/node-js/">node.js</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/thinking/">Thinking</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -886,7 +844,7 @@ ga('send', 'pageview');
       <h3 class="widget-title">Archives</h3>
     </a>
     <div class="widget archive-list">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -900,7 +858,7 @@ ga('send', 'pageview');
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 TimNew<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

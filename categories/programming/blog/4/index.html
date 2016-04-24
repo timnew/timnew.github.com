@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Programming | ThoughtWorkshop</title>
+  <title>Catégorie: Programming | ThoughtWorkshop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="timnew programming code software">
 <meta property="og:type" content="website">
@@ -83,9 +83,9 @@ ga('send', 'pageview');
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://timnew.me"></form>
@@ -95,6 +95,65 @@ ga('send', 'pageview');
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-android-sqlite-database-requires-special-table" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2013/06/21/android-sqlite-database-requires-special-table/" class="article-date">
+  <time datetime="2013-06-21T00:00:00.000Z" itemprop="datePublished">2013-06-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+  
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon "  style="background-color: #40A;"  >
+      <a href="http://timnew.me/categories/programming/">Programming</a>
+    </div>
+  </div>
+
+
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2013/06/21/android-sqlite-database-requires-special-table/">Android SQLite database requires special table</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’m working on an Android application recently. During the development, our new app inherited a legacy SQLite database that created by a WinCE application.</p>
+<p>Android announce that it supports the SQLite database, so we don’t worry about that too much. But when we try to open the legacy database with  <code>SQLiteDatabase.openDatabase</code>, it throws exception on our face!</p>
+<p>After debugging, we found to open SQLite database with <code>SQLiteDatabase</code> class requires the database to have a special table called <code>android_metadata</code>, which contains the locale information. And <code>SQLiteDatabase</code> yields exception when the table cannot be found.</p>
+<p>The table will be created automatically when <code>SQLiteDatabase</code> creates the database, but if the app need to open the database not created by android, some patch is needed.</p>
+<p>Here is the script to patch the database:</p>
+<figure class="highlight sql"><figcaption><span>Patch Database</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> android_metadata (locale <span class="built_in">TEXT</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> android_metadata <span class="keyword">VALUES</span>(<span class="string">'en-US'</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/" data-id="cinedk7350056chsi542elpuy" class="article-share-link">Partager</a>
+      
+        <a href="http://timnew.me/blog/2013/06/21/android-sqlite-database-requires-special-table/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android-metadata/">android_metadata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crash/">crash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite/">sqlite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/table/">table</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-script-to-manage-tw-t-e" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -139,9 +198,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/06/20/script-to-manage-tw-t-e/" data-id="cimz4udrv0053nwsit396c1h8" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/06/20/script-to-manage-tw-t-e/" data-id="cinedk732004ychsi36ia3ta4" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/06/20/script-to-manage-tw-t-e/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/06/20/script-to-manage-tw-t-e/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/expense/">expense</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/injection/">injection</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time-sheet/">time sheet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utility/">utility</a></li></ul>
@@ -232,9 +291,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/04/27/node-over-express-autoload/" data-id="cimz4udrs004vnwsirwvbs7vk" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/04/27/node-over-express-autoload/" data-id="cinedk73c005hchsitu9w4y1r" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/04/27/node-over-express-autoload/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/04/27/node-over-express-autoload/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/autoload/">autoload</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-over-express/">node over express</a></li></ul>
@@ -339,9 +398,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/04/25/node-over-express-configuration/" data-id="cimz4udru0050nwsinze8m61i" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/04/25/node-over-express-configuration/" data-id="cinedk738005achsisiit4gn6" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/04/25/node-over-express-configuration/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/04/25/node-over-express-configuration/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/configuration/">configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-over-express/">node over express</a></li></ul>
@@ -397,9 +456,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/04/10/pitfall-in-matching-line-head-and-line-end-in-regexp/" data-id="cimz4udrn004onwsivnm6bdww" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/04/10/pitfall-in-matching-line-head-and-line-end-in-regexp/" data-id="cinedk731004vchsiuzkcqeqa" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/04/10/pitfall-in-matching-line-head-and-line-end-in-regexp/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/04/10/pitfall-in-matching-line-head-and-line-end-in-regexp/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/line-end/">line end</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/line-head/">line head</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pitfall/">pitfall</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/regex/">regex</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/regexp/">regexp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/regular-expression/">regular expression</a></li></ul>
@@ -467,9 +526,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/02/24/some-tricky-ways-to-calculate-integer-in-javascript/" data-id="cimz4udra0047nwsijpmdh52p" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/02/24/some-tricky-ways-to-calculate-integer-in-javascript/" data-id="cinedk72s004jchsibflk3aam" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/02/24/some-tricky-ways-to-calculate-integer-in-javascript/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/02/24/some-tricky-ways-to-calculate-integer-in-javascript/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bitwise/">bitwise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/calculation/">calculation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/integer/">integer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/trick/">trick</a></li></ul>
@@ -552,9 +611,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/02/22/manage-configuration-in-rails-way-on-node-js-by-using-inheritance/" data-id="cimz4udr80043nwsiz0ymjvwi" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/02/22/manage-configuration-in-rails-way-on-node-js-by-using-inheritance/" data-id="cinedk72q004fchsiiwexxsih" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/02/22/manage-configuration-in-rails-way-on-node-js-by-using-inheritance/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/02/22/manage-configuration-in-rails-way-on-node-js-by-using-inheritance/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/configuration/">configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/environment/">environment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inheritance/">inheritance</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scheme/">scheme</a></li></ul>
@@ -626,9 +685,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/01/30/pitfall-in-node-crypto-and-base64-encoding/" data-id="cimz4udr4003znwsie2v2dfvq" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/01/30/pitfall-in-node-crypto-and-base64-encoding/" data-id="cinedk72o004dchsitfbp6fek" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/01/30/pitfall-in-node-crypto-and-base64-encoding/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/01/30/pitfall-in-node-crypto-and-base64-encoding/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/base64/">base64</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/buffer/">buffer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crypto/">crypto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/decipher/">decipher</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encoding/">encoding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pitfall/">pitfall</a></li></ul>
@@ -710,9 +769,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/01/30/implement-sqrt-with-basic-algebra-operators/" data-id="cimz4udr1003vnwsiael7hh27" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2013/01/30/implement-sqrt-with-basic-algebra-operators/" data-id="cinedk72m004achsizip6e7do" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2013/01/30/implement-sqrt-with-basic-algebra-operators/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2013/01/30/implement-sqrt-with-basic-algebra-operators/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binary-search/">binary search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/facebook/">facebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqrt/">sqrt</a></li></ul>
@@ -781,78 +840,12 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/11/27/pitfall-in-copy-table-in-postgres/" data-id="cimz4uds3005enwsiriebcz6v" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/11/27/pitfall-in-copy-table-in-postgres/" data-id="cinedk72l0048chsipia86j88" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/11/27/pitfall-in-copy-table-in-postgres/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/11/27/pitfall-in-copy-table-in-postgres/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgres-sequence-id/">postgres sequence id</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ruby-class-inheritance-ii-differences-between-inheritance-and-mixin" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2012/11/20/ruby-class-inheritance-ii-differences-between-inheritance-and-mixin/" class="article-date">
-  <time datetime="2012-11-20T00:00:00.000Z" itemprop="datePublished">2012-11-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/ruby/">Ruby</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-  
-  <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #40A;"  >
-      <a href="http://timnew.me/categories/programming/">Programming</a>
-    </div>
-  </div>
-
-
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2012/11/20/ruby-class-inheritance-ii-differences-between-inheritance-and-mixin/">Ruby Class Inheritance II: Differences between inheritance and mixin</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Guys familiar with Rails are very likely used to the following code, and will not be surprised by it:</p>
-<figure class="highlight ruby"><figcaption><span>ActiveRecord</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ActiveRecord::Base</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">first_user = User.find(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>But actually the code is not as simple as it looks like, especially for the ones from Java or C# world.<br>In this piece of code, we can figure out that the class <code>User</code> inherited the method <code>find</code> from its parent class <code>ActiveRecord::Base</code>(If you are doubt or interested in how it works, you can check this post <a href="/blog/2012/08/23/ruby-class-inheritance/">Ruby Class Inheritance</a>).</p>
-<p>If you write the following code, it should works fine:</p>
-<figure class="highlight ruby"><figcaption><span>Simple Class</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">foo</span></span></span><br><span class="line">    bar_result = new.bar</span><br><span class="line">    <span class="string">"foo <span class="subst">#&#123;bar_result&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">bar</span></span></span><br><span class="line">    <span class="string">'bar'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> &lt; Base</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Base.new.bar.should == <span class="string">'bar'</span></span><br><span class="line">Derived.new.bar.should == <span class="string">'bar'</span></span><br><span class="line"></span><br><span class="line">Base.foo.should == <span class="string">"foo bar"</span></span><br><span class="line">Derived.foo.should == <span class="string">"foo bar"</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>In Ruby’s world, most of the time you can replace a inheritance with a module mixin. So we try to refactor the code as following:</p>
-<figure class="highlight ruby"><figcaption><span>Exract to Module</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Base</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">foo</span></span></span><br><span class="line">    bar_result = new.bar</span><br><span class="line">    <span class="string">"foo <span class="subst">#&#123;bar_result&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">bar</span></span></span><br><span class="line">    <span class="string">'bar'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>  </span></span><br><span class="line">  <span class="keyword">include</span> Base</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>If we run the tests again, the 2nd test will fail:</p>
-<figure class="highlight ruby"><figcaption><span>Test</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Dervied.new.bar.should == <span class="string">'bar'</span> <span class="comment"># Passed</span></span><br><span class="line">Dervied.foo.should == <span class="string">'foo bar'</span> <span class="comment"># Failed</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>The reason of the test failure is that the method ‘foo’ is not defined!<br>So it is interesting, if we inherits the class, the class method of base class will be available on the subclass; but if we include a module, the class methods on the module will be available on the host class!</p>
-<p>As we discussed before(<a href="/blog/2012/08/23/ruby-class-inheritance">Ruby Class Inheritance</a>), the module mixed-in is equivalent to include insert a anonymous class with module’s instance methods into the ancestor chain of child class.</p>
-<p>So is there any way to make all tests passed with module approach? The answer is yes absolutely but we need some tricky thing to make it happen:</p>
-<figure class="highlight ruby"><figcaption><span>Exract to Module ver 2</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Base</span></span></span><br><span class="line">  <span class="class"><span class="keyword">module</span> <span class="title">ClassMethods</span></span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span></span></span><br><span class="line">      bar_result = new.bar</span><br><span class="line">      <span class="string">"foo <span class="subst">#&#123;bar_result&#125;</span>"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">bar</span></span></span><br><span class="line">    <span class="string">'bar'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">included</span><span class="params">(mod)</span></span></span><br><span class="line">    mode.extend ClassMethods</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>  </span></span><br><span class="line">  <span class="keyword">include</span> Base</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Dervied.new.bar.should == <span class="string">'bar'</span> <span class="comment"># Passed</span></span><br><span class="line">Dervied.foo.should == <span class="string">'foo bar'</span> <span class="comment"># Passed</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/11/20/ruby-class-inheritance-ii-differences-between-inheritance-and-mixin/" data-id="cimz4uds7005jnwsiqnhvk7oc" class="article-share-link">Share</a>
-      
-        <a href="http://timnew.me/blog/2012/11/20/ruby-class-inheritance-ii-differences-between-inheritance-and-mixin/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/">Class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inheritance/">Inheritance</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/module/">Module</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">Ruby</a></li></ul>
 
     </footer>
   </div>
@@ -876,10 +869,14 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/posts">
-      <h3 class="widget-title">Recent Posts</h3>
+      <h3 class="widget-title">Articles récents</h3>
     </a>
     <div class="widget recent-posts">
       <ul>
+        
+          <li>
+            <a href="/blog/2016/04/23/collection-filtering-algorithm-with-bit-operation-part-1/">Collection Filtering Algorithm with Bit Operation - Part.1</a>
+          </li>
         
           <li>
             <a href="/blog/2015/08/14/a-clean-way-to-test-rejected-promise/">A clean way to test rejected promise</a>
@@ -897,10 +894,6 @@ ga('send', 'pageview');
             <a href="/blog/2014/11/07/walkthrough-untrusted-the-continuing-adventures-of-dr-eval/">Walkthrough: Untrusted - the Continuing Adventures of Dr. Eval</a>
           </li>
         
-          <li>
-            <a href="/blog/2014/11/05/awesome-geek-game-untrusted-the-continuing-adventures-of-dr-eval/">Awesome geek game Untrusted - the Continuing Adventures of Dr. Eval</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -910,10 +903,10 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/tags">
-      <h3 class="widget-title">Tag Cloud</h3>
+      <h3 class="widget-title">Nuage de mot-clés</h3>
     </a>
     <div class="widget tagcloud">
-      <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/alfred/" style="font-size: 10px;">Alfred</a> <a href="/tags/android/" style="font-size: 20px;">Android</a> <a href="/tags/android-studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/automation/" style="font-size: 10px;">Automation</a> <a href="/tags/bit-slicer/" style="font-size: 10px;">Bit Slicer</a> <a href="/tags/boilerplate/" style="font-size: 10px;">Boilerplate</a> <a href="/tags/c/" style="font-size: 20px;">C#</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/css/" style="font-size: 10px;">CSS</a> <a href="/tags/cheat/" style="font-size: 10px;">Cheat</a> <a href="/tags/cheat-engine/" style="font-size: 10px;">Cheat Engine</a> <a href="/tags/class/" style="font-size: 10px;">Class</a> <a href="/tags/cocoa/" style="font-size: 10px;">Cocoa</a> <a href="/tags/command/" style="font-size: 10px;">Command</a> <a href="/tags/continues-delivery/" style="font-size: 10px;">Continues Delivery</a> <a href="/tags/continues-integration/" style="font-size: 10px;">Continues Integration</a> <a href="/tags/crack/" style="font-size: 10px;">Crack</a> <a href="/tags/d/" style="font-size: 10px;">D</a> <a href="/tags/debugger/" style="font-size: 10px;">Debugger</a> <a href="/tags/deploy/" style="font-size: 10px;">Deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">Deployment</a> <a href="/tags/design/" style="font-size: 10px;">Design</a> <a href="/tags/design-pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/event/" style="font-size: 10px;">Event</a> <a href="/tags/eventbus/" style="font-size: 10px;">EventBus</a> <a href="/tags/fp/" style="font-size: 10px;">FP</a> <a href="/tags/fswatcher/" style="font-size: 10px;">FSWatcher</a> <a href="/tags/gb2312/" style="font-size: 10px;">GB2312</a> <a href="/tags/gbk/" style="font-size: 10px;">GBK</a>
+      <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/alfred/" style="font-size: 10px;">Alfred</a> <a href="/tags/algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/android/" style="font-size: 20px;">Android</a> <a href="/tags/android-studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/automation/" style="font-size: 10px;">Automation</a> <a href="/tags/binary/" style="font-size: 10px;">Binary</a> <a href="/tags/bit-operation/" style="font-size: 10px;">Bit Operation</a> <a href="/tags/bit-slicer/" style="font-size: 10px;">Bit Slicer</a> <a href="/tags/bloom-filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/boilerplate/" style="font-size: 10px;">Boilerplate</a> <a href="/tags/c/" style="font-size: 20px;">C#</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/css/" style="font-size: 10px;">CSS</a> <a href="/tags/cheat/" style="font-size: 10px;">Cheat</a> <a href="/tags/cheat-engine/" style="font-size: 10px;">Cheat Engine</a> <a href="/tags/class/" style="font-size: 10px;">Class</a> <a href="/tags/cocoa/" style="font-size: 10px;">Cocoa</a> <a href="/tags/collection/" style="font-size: 10px;">Collection</a> <a href="/tags/command/" style="font-size: 10px;">Command</a> <a href="/tags/continues-delivery/" style="font-size: 10px;">Continues Delivery</a> <a href="/tags/continues-integration/" style="font-size: 10px;">Continues Integration</a> <a href="/tags/crack/" style="font-size: 10px;">Crack</a> <a href="/tags/d/" style="font-size: 10px;">D</a> <a href="/tags/debugger/" style="font-size: 10px;">Debugger</a> <a href="/tags/deploy/" style="font-size: 10px;">Deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">Deployment</a> <a href="/tags/design/" style="font-size: 10px;">Design</a> <a href="/tags/design-pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/event/" style="font-size: 10px;">Event</a>
     </div>
   </div>
 
@@ -922,10 +915,10 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/categories">
-      <h3 class="widget-title">Categories</h3>
+      <h3 class="widget-title">Catégories</h3>
     </a>
     <div class="widget category-list">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/">Cracking</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/game/">Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/">Design</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design/visual/">Visual</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/web/">Web</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/game/">Game</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/game/programming-game/">Programming Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/geek-toy/">Geek Toy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/">Package</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/package/chrome-extension/">Chrome Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/hexo/">Hexo</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/">Practice</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/practice/atom/">Atom</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/continues-integration/">Continues Integration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/devops/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/mac/">Mac</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/textmate/">TextMate</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/web/">Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/git/">git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">Programming</a><span class="category-list-count">72</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/android/">Android</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/arduino/">Arduino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/c/">C#</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/design-patterns/">Design Patterns</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">JavaScript</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/coffeescript/">CoffeeScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/postgressql/">PostgresSql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/powershell/">PowerShell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/regular-expression/">Regular Expression</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/ruby/">Ruby</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/shell/">Shell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/wpf/">WPF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/web/">Web</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/node-js/">node.js</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/thinking/">Thinking</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/">Cracking</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/game/">Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/">Design</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design/visual/">Visual</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/web/">Web</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/game/">Game</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/game/programming-game/">Programming Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/geek-toy/">Geek Toy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/">Package</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/package/chrome-extension/">Chrome Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/hexo/">Hexo</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/">Practice</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/practice/atom/">Atom</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/continues-integration/">Continues Integration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/devops/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/mac/">Mac</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/textmate/">TextMate</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/web/">Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/git/">git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">Programming</a><span class="category-list-count">73</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/android/">Android</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/arduino/">Arduino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/c/">C#</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/design-patterns/">Design Patterns</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">JavaScript</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/coffeescript/">CoffeeScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/postgressql/">PostgresSql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/powershell/">PowerShell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/regular-expression/">Regular Expression</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/ruby/">Ruby</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/shell/">Shell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/wpf/">WPF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/web/">Web</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/node-js/">node.js</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/thinking/">Thinking</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -937,7 +930,7 @@ ga('send', 'pageview');
       <h3 class="widget-title">Archives</h3>
     </a>
     <div class="widget archive-list">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -951,7 +944,7 @@ ga('send', 'pageview');
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 TimNew<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

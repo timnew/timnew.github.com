@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   <link href="https://pubsubhubbub.superfeedr.com/" rel="hub"/>
   <link href="http://timnew.me/"/>
-  <updated>2016-04-12T14:58:03.000Z</updated>
+  <updated>2016-04-24T09:29:12.000Z</updated>
   <id>http://timnew.me/</id>
   
   <author>
@@ -14,6 +14,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Collection Filtering Algorithm with Bit Operation - Part.1</title>
+    <link href="http://timnew.me/blog/2016/04/23/collection-filtering-algorithm-with-bit-operation-part-1/"/>
+    <id>http://timnew.me/blog/2016/04/23/collection-filtering-algorithm-with-bit-operation-part-1/</id>
+    <published>2016-04-23T09:46:30.000Z</published>
+    <updated>2016-04-24T09:29:12.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Background&quot;&gt;&lt;a href=&quot;#Background&quot; class=&quot;headerlink&quot; title=&quot;Background&quot;&gt;&lt;/a&gt;Background&lt;/h2&gt;&lt;p&gt;Collection must be the most commonly used data model in programming. And there are a number of data structure that represents collection in memory, in which &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Liked List&lt;/code&gt; must be the most well known ones.&lt;/p&gt;
+&lt;p&gt;When dealing with collection, &lt;code&gt;filtering&lt;/code&gt; must be one of the most widely used operation being used. Such as find item(s) satisfies specific criteria from the collection. Although filtering is used a lot, but it isn’t actually a simple or easy operation to apply, especially dealing with tremendous data volume.&lt;/p&gt;
+&lt;p&gt;In fact, there are a number of derived topics about collection filtering, which is impossible to cover them all in the article. This article will focus on &lt;code&gt;bit operation&lt;/code&gt;, probably a not widely known but really interesting topic to introduce.&lt;/p&gt;
+&lt;h2 id=&quot;Problem-Find-the-missing-integer&quot;&gt;&lt;a href=&quot;#Problem-Find-the-missing-integer&quot; class=&quot;headerlink&quot; title=&quot;Problem: Find the missing integer&quot;&gt;&lt;/a&gt;Problem: Find the missing integer&lt;/h2&gt;&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;&lt;br&gt;Suppose there is a collection of integers &lt;code&gt;L&lt;/code&gt;.&lt;br&gt;Name the collection that contains integers from 1 to &lt;code&gt;N&lt;/code&gt; as &lt;code&gt;G&lt;/code&gt;&lt;br&gt;Then &lt;code&gt;L&lt;/code&gt; contains all the elements of &lt;code&gt;G&lt;/code&gt; except one number &lt;code&gt;x&lt;/code&gt;.&lt;br&gt;Items in &lt;code&gt;L&lt;/code&gt; are in random order.&lt;br&gt;Find &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;TIP: &lt;/strong&gt; This problem be too easy to experienced developers and algorithm hackers. But it is a good opening words to the following 2 problems in this series. Also it reveals the core concept of some other advanced technologies, such as &lt;code&gt;CRC&lt;/code&gt; or &lt;code&gt;bloom filter&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When got this problem, the very intuitive(means do it manually by human being) idea is to compare the elements in &lt;code&gt;L&lt;/code&gt; and &lt;code&gt;G&lt;/code&gt;, find each element in &lt;code&gt;L&lt;/code&gt; and remove it from &lt;code&gt;G&lt;/code&gt;, then the only left item in &lt;code&gt;G&lt;/code&gt; is &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Here is the code:&lt;/p&gt;
+&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; Integer[] L&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; Integer N&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; Integer x&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;find_missing_x&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(L, N)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  G = [*(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;..N)] &lt;span class=&quot;comment&quot;&gt;# Create G with all integers from 1 to N&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  L.each &amp;#123; &lt;span class=&quot;params&quot;&gt;|i|&lt;/span&gt; G.delete(i) &amp;#125; &lt;span class=&quot;comment&quot;&gt;# Traverse L, and remove each item in L from G&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; G.last &lt;span class=&quot;comment&quot;&gt;# Return the only rest item from G&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Well this is a work but brute algorithm, which is not efficient in both time and space:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Instantiate &lt;code&gt;G&lt;/code&gt; means it has space complexity &lt;code&gt;N&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Find and remove &lt;code&gt;i&lt;/code&gt; from &lt;code&gt;G&lt;/code&gt; means it has time complexity at &lt;code&gt;O(N*Log(N))&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yes, the algorithm can be optimized, with bit operation. In fact the problem can be resolved with time complexity &lt;code&gt;O(N)&lt;/code&gt; and space complexity &lt;code&gt;O(1)&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Exclusive-Or-Operation&quot;&gt;&lt;a href=&quot;#Exclusive-Or-Operation&quot; class=&quot;headerlink&quot; title=&quot;Exclusive-Or Operation&quot;&gt;&lt;/a&gt;&lt;code&gt;Exclusive-Or&lt;/code&gt; Operation&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Exclusive-Or&lt;/code&gt;(Or &lt;code&gt;XOR&lt;/code&gt; for short, written as &lt;code&gt;^&lt;/code&gt; in this article) is a basic bit operation, here is an Venn Diagram explains it:&lt;/p&gt;
+&lt;img src=&quot;/blog/2016/04/23/collection-filtering-algorithm-with-bit-operation-part-1/xor_venn.png&quot; alt=&quot;XOR&quot; title=&quot;XOR&quot;&gt;
+&lt;p&gt;&lt;code&gt;XOR&lt;/code&gt; is an important bit operation because it has following interesting features:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A ^ B = B ^ A (aka &lt;strong&gt;Commutativity&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;(A ^ B) ^ C = A ^ (B ^ C) (aka &lt;strong&gt;Associativity&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;A ^ A = 0&lt;/li&gt;
+&lt;li&gt;A ^ 0 = A&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Commutativity and Associativity ensure that &lt;code&gt;XOR&lt;/code&gt; can be used despite of order. The 3rd and 4th feature establishes a critical position for &lt;code&gt;XOR&lt;/code&gt; in &lt;code&gt;cryptology&lt;/code&gt; and &lt;code&gt;encoding&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Solution-with-XOR&quot;&gt;&lt;a href=&quot;#Solution-with-XOR&quot; class=&quot;headerlink&quot; title=&quot;Solution: with XOR&quot;&gt;&lt;/a&gt;Solution: with &lt;code&gt;XOR&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;By making use of &lt;code&gt;XOR&lt;/code&gt;, previous problem can ben resolved in a much more graceful way:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Given &lt;code&gt;y&lt;/code&gt; is the &lt;code&gt;xor&lt;/code&gt; result of all items in &lt;code&gt;G&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;And &lt;code&gt;z&lt;/code&gt; is the &lt;code&gt;xor&lt;/code&gt; result of all items in &lt;code&gt;L&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Then &lt;code&gt;x = y ^ z&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; Integer[] L&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; Integer N&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; Integer x&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;find_missing_x&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(L, N)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  x = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# Set x to 0, since A ^ 0 = A&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;..N).each &amp;#123; &lt;span class=&quot;params&quot;&gt;|i|&lt;/span&gt; x ^= i &amp;#125; &lt;span class=&quot;comment&quot;&gt;# Calculate the xor result for G&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  L.each &amp;#123; &lt;span class=&quot;params&quot;&gt;|i|&lt;/span&gt; x ^= i &amp;#125; &lt;span class=&quot;comment&quot;&gt;# Keep xor all elements in L&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; x &lt;span class=&quot;comment&quot;&gt;# Return the only rest item from G&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Let’s prove it mathematically:&lt;br&gt;&lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;Given&lt;/span&gt; x&lt;span class=&quot;string&quot;&gt;&#39;= y ^ z&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Then  x&#39;&lt;/span&gt; = (n1&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; n2&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; n3&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; ...&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; x&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; ...&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; nN)&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; (n1&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; n2&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; n3&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; ...&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; nN)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Since&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; obeys commutativity and associativity&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Then  = (n1&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; n1)&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; (n2&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; n2)&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; ...&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; (nN&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; nN)&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; x&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;As n&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; n = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; and n&lt;span class=&quot;regexp&quot;&gt; ^&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; = n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Then  x&lt;span class=&quot;string&quot;&gt;&#39;= 0 ^ 0 ^ ... ^ 0 ^ x&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         = x&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Actually the code can be more concise by using &lt;code&gt;reduce&lt;/code&gt;, with 2-lines of code&lt;/p&gt;
+&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; Integer[] L&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; Integer N&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; Integer x&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;find_missing_x&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(L, N)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  x = (&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;..N).reduce(&amp;amp;&lt;span class=&quot;symbol&quot;&gt;:^&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;# Calculate the xor result for G&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  L.reduce(x, &amp;amp;&lt;span class=&quot;symbol&quot;&gt;:^&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;# Keep xor all elements in L and return&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Or &lt;code&gt;C&lt;/code&gt; version:&lt;br&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;find_missing_x&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; N, &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt;* L)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; x = N;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; N - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i++) &amp;#123; &lt;span class=&quot;comment&quot;&gt;// L has size of N-1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    x ^= i ^ L[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  return x;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Extending-problems&quot;&gt;&lt;a href=&quot;#Extending-problems&quot; class=&quot;headerlink&quot; title=&quot;Extending problems&quot;&gt;&lt;/a&gt;Extending problems&lt;/h2&gt;&lt;p&gt;So far the problem has been gracefully resolved. But it is yet the end, here is a couple of extending questions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If &lt;code&gt;G&lt;/code&gt; is collection with random but unique numbers (Not continues integer from 1 to &lt;code&gt;N&lt;/code&gt;). How to write the code?&lt;/li&gt;
+&lt;li&gt;Based on &lt;code&gt;1&lt;/code&gt;, if there are 2 numbers are missing? How to find them both?&lt;/li&gt;
+&lt;li&gt;Based on &lt;code&gt;1&lt;/code&gt;, but &lt;code&gt;L&lt;/code&gt; contains the members from &lt;code&gt;G&lt;/code&gt; except &lt;code&gt;x&lt;/code&gt;for exactly 2 times. That means &lt;code&gt;L&lt;/code&gt; might contain 0 or 1 &lt;code&gt;x&lt;/code&gt;, but exactly 2 for any other members from &lt;code&gt;G&lt;/code&gt;. How to find &lt;code&gt;x&lt;/code&gt;?&lt;/li&gt;
+&lt;li&gt;Based on &lt;code&gt;1&lt;/code&gt;, but &lt;code&gt;G&lt;/code&gt; isn’t a collection of integer, but a collection of web urls. How to find the one missing url?&lt;/li&gt;
+&lt;li&gt;Based on &lt;code&gt;4&lt;/code&gt;, &lt;code&gt;G&lt;/code&gt; is a collection of url, &lt;code&gt;L&lt;/code&gt; is subset of &lt;code&gt;G&lt;/code&gt; (might contains fewer members other than exactly &lt;code&gt;N&lt;/code&gt; - 1). How can we know a randomly picked member from &lt;code&gt;G&lt;/code&gt; is absolutely not contained by &lt;code&gt;L&lt;/code&gt;. Given the tolerance to mistake on saying a member from &lt;code&gt;G&lt;/code&gt; is in &lt;code&gt;L&lt;/code&gt; but it doesn’t.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These problems will be explained in the following posts.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Background&quot;&gt;&lt;a href=&quot;#Background&quot; class=&quot;headerlink&quot; title=&quot;Background&quot;&gt;&lt;/a&gt;Background&lt;/h2&gt;&lt;p&gt;Collection must be the most commonly u
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
+    
+      <category term="Algorithm" scheme="http://timnew.me/categories/programming/algorithm/"/>
+    
+    
+      <category term="Introduction" scheme="http://timnew.me/tags/introduction/"/>
+    
+      <category term="Bit Operation" scheme="http://timnew.me/tags/bit-operation/"/>
+    
+      <category term="Binary" scheme="http://timnew.me/tags/binary/"/>
+    
+      <category term="Logic" scheme="http://timnew.me/tags/logic/"/>
+    
+      <category term="Algorithm" scheme="http://timnew.me/tags/algorithm/"/>
+    
+      <category term="Collection" scheme="http://timnew.me/tags/collection/"/>
+    
+      <category term="Filtering" scheme="http://timnew.me/tags/filtering/"/>
+    
+      <category term="Bloom Filter" scheme="http://timnew.me/tags/bloom-filter/"/>
+    
+  </entry>
   
   <entry>
     <title>A clean way to test rejected promise</title>
@@ -686,6 +769,10 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="Web" scheme="http://timnew.me/categories/programming/web/"/>
     
     
+      <category term="effect" scheme="http://timnew.me/tags/effect/"/>
+    
+      <category term="animation" scheme="http://timnew.me/tags/animation/"/>
+    
       <category term="trello" scheme="http://timnew.me/tags/trello/"/>
     
       <category term="confetti" scheme="http://timnew.me/tags/confetti/"/>
@@ -693,10 +780,6 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="canvas" scheme="http://timnew.me/tags/canvas/"/>
     
       <category term="draw" scheme="http://timnew.me/tags/draw/"/>
-    
-      <category term="animation" scheme="http://timnew.me/tags/animation/"/>
-    
-      <category term="effect" scheme="http://timnew.me/tags/effect/"/>
     
       <category term="particle" scheme="http://timnew.me/tags/particle/"/>
     
@@ -887,15 +970,15 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="web" scheme="http://timnew.me/tags/web/"/>
     
-      <category term="animation" scheme="http://timnew.me/tags/animation/"/>
-    
-      <category term="effect" scheme="http://timnew.me/tags/effect/"/>
-    
       <category term="sharebox" scheme="http://timnew.me/tags/sharebox/"/>
     
       <category term="transition" scheme="http://timnew.me/tags/transition/"/>
     
       <category term="hover" scheme="http://timnew.me/tags/hover/"/>
+    
+      <category term="effect" scheme="http://timnew.me/tags/effect/"/>
+    
+      <category term="animation" scheme="http://timnew.me/tags/animation/"/>
     
   </entry>
   
@@ -999,9 +1082,9 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="hexo" scheme="http://timnew.me/tags/hexo/"/>
     
-      <category term="plugin" scheme="http://timnew.me/tags/plugin/"/>
-    
       <category term="image" scheme="http://timnew.me/tags/image/"/>
+    
+      <category term="plugin" scheme="http://timnew.me/tags/plugin/"/>
     
       <category term="management" scheme="http://timnew.me/tags/management/"/>
     
@@ -1590,15 +1673,15 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
     
       <category term="inheritance" scheme="http://timnew.me/tags/inheritance/"/>
     
-      <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
-    
       <category term="node.js" scheme="http://timnew.me/tags/node-js/"/>
+    
+      <category term="javascript" scheme="http://timnew.me/tags/javascript/"/>
     
       <category term="browser" scheme="http://timnew.me/tags/browser/"/>
     
-      <category term="class" scheme="http://timnew.me/tags/class/"/>
-    
       <category term="json" scheme="http://timnew.me/tags/json/"/>
+    
+      <category term="class" scheme="http://timnew.me/tags/class/"/>
     
       <category term="prototype" scheme="http://timnew.me/tags/prototype/"/>
     
@@ -1865,61 +1948,6 @@ $(function(){var $root = $(&#39;.article-entry&#39;);
       <category term="android.jar" scheme="http://timnew.me/tags/android-jar/"/>
     
       <category term="jar" scheme="http://timnew.me/tags/jar/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Is Android API document on ConsumerIrManager lying?</title>
-    <link href="http://timnew.me/blog/2014/05/28/is-android-api-document-on-consumerirmanager-lying/"/>
-    <id>http://timnew.me/blog/2014/05/28/is-android-api-document-on-consumerirmanager-lying/</id>
-    <published>2014-05-28T00:00:00.000Z</published>
-    <updated>2014-08-23T10:07:47.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Just found a shocking fact that Android API document on &lt;code&gt;ConsumerIrManger.transmit&lt;/code&gt; method is wrong!&lt;/p&gt;
-&lt;p&gt;KitKat has realised its own Infrared blaster API, which is incompatible with legacy Samsung private API. So I was working on &lt;a href=&quot;https://github.com/timnew/AndroidInfrared&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Infrared Library&lt;/a&gt; to make it adapted automatically on both Samsung private API and &lt;code&gt;Kit Kat&lt;/code&gt;official API.&lt;/p&gt;
-&lt;p&gt;After I finished the coding according the document, I found the app broke on my Galaxy Note 3 with &lt;code&gt;Kit Kat&lt;/code&gt;. It works perfect when running on &lt;code&gt;Jelly Bean&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;And I figured out an issue that it takes longer time to transmit the same seqeunce when I upgraded API. (When IR blaster is working, the LED indicator on the phone turns blue. And I found the time of indicator turning blue is significant longer than before.) And my &lt;a href=&quot;https://github.com/timnew/IRRecorder&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IRRecorder&lt;/a&gt; cannot recognize the sequence sent by my phone any longer.&lt;/p&gt;
-&lt;p&gt;After spent several hours, I figured out the reason. The pattern was encoded in a wrong way. But I’m pretty sure that I strictly followed the API document.&lt;/p&gt;
-&lt;p&gt;So I get a conculusion that &lt;strong&gt;the &lt;code&gt;ConsumerIrManager&lt;/code&gt; implementation on Samsung Note 3 is different to what described in Android API document.&lt;/strong&gt; However I’m not sure the reason is that the Android document is lying or Samsung implemented the driver in a wrong way.&lt;/p&gt;
-&lt;p&gt;Here is the technical details of the issue and its solution:&lt;/p&gt;
-&lt;p&gt;IR Command is trasmitted by turnning the IR blaster LED on and off for a certain period of time. So each IR command can be represented by a series of time periods, which indicates how long the led is on or off. The difference between Samsung API and Kit Kat APi is that how the time is mesured.&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;carrierFrequency&lt;/strong&gt; The IR carrier frequency in Hertz.&lt;br&gt;&lt;strong&gt;pattern&lt;/strong&gt; The alternating on/off pattern in microseconds to transmit.&lt;/p&gt;
-&lt;footer&gt;&lt;strong&gt;ConsumerIrManager.transmit(int carrierFrequency, int[] pattern)&lt;/strong&gt;&lt;cite&gt;&lt;a href=&quot;https://developer.android.com/reference/android/hardware/ConsumerIrManager.html#transmit(int,%20int[])&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Developer Reference&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;
-&lt;p&gt;According to the &lt;a href=&quot;https://developer.android.com/reference/android/hardware/ConsumerIrManager.html#transmit(int,%20int[]&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Developer Refernece&lt;/a&gt;), the time in KitKat is measured in the unit of microseconds.&lt;/p&gt;
-&lt;p&gt;But for Samsung, the time is mesured by the number of cycles. Take NEC encoding as example, the frequency is 38kHz. So the cycle time &lt;code&gt;T ~= 26us&lt;/code&gt;. BIT_MARK is &lt;code&gt;21 cycles&lt;/code&gt;, the period of time is around &lt;code&gt;26us x 21 ~= 546us&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;So ideally, regardless of lead-in and lead-out sequence, to send the code &lt;code&gt;0xA&lt;/code&gt; in NEC encoding, Samsung API needs &lt;code&gt;21 60 21 21 21 60 21 21&lt;/code&gt;; and Kit Kat API needs &lt;code&gt;560 1600 560 560 560 1600 560 560&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;But accroding to my experience, the Android Developer Reference is wrong. &lt;strong&gt;Even in KitKat, the time sequence is also measure by number of cycles instead of the number of microseconds!&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;So to fix the issue, you need some mathmatical work. Here is the conversion formula:&lt;/p&gt;
-&lt;figure class=&quot;highlight livecodeserver&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;n = t / T = t * f / &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;n: &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; cycles&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;t: &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; microseconds&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;T: &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; cycle &lt;span class=&quot;built_in&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; microseconds&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;f: &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; transmitting frequency &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; Hertz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Just found a shocking fact that Android API document on &lt;code&gt;ConsumerIrManger.transmit&lt;/code&gt; method is wrong!&lt;/p&gt;
-&lt;p&gt;KitKat has realise
-    
-    </summary>
-    
-      <category term="Programming" scheme="http://timnew.me/categories/programming/"/>
-    
-      <category term="Android" scheme="http://timnew.me/categories/programming/android/"/>
-    
-    
-      <category term="error" scheme="http://timnew.me/tags/error/"/>
-    
-      <category term="android" scheme="http://timnew.me/tags/android/"/>
-    
-      <category term="infrared" scheme="http://timnew.me/tags/infrared/"/>
-    
-      <category term="api" scheme="http://timnew.me/tags/api/"/>
-    
-      <category term="document" scheme="http://timnew.me/tags/document/"/>
-    
-      <category term="Samsung" scheme="http://timnew.me/tags/samsung/"/>
-    
-      <category term="lying" scheme="http://timnew.me/tags/lying/"/>
-    
-      <category term="kit kat" scheme="http://timnew.me/tags/kit-kat/"/>
     
   </entry>
   

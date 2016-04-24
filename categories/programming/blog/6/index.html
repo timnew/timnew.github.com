@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Programming | ThoughtWorkshop</title>
+  <title>Catégorie: Programming | ThoughtWorkshop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="timnew programming code software">
 <meta property="og:type" content="website">
@@ -83,9 +83,9 @@ ga('send', 'pageview');
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://timnew.me"></form>
@@ -95,6 +95,108 @@ ga('send', 'pageview');
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-use-postgres-multiple-schema-database-in-rails" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2012/07/17/use-postgres-multiple-schema-database-in-rails/" class="article-date">
+  <time datetime="2012-07-17T00:00:00.000Z" itemprop="datePublished">2012-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/ruby/">Ruby</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+  
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon "  style="background-color: #40A;"  >
+      <a href="http://timnew.me/categories/programming/">Programming</a>
+    </div>
+  </div>
+
+
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2012/07/17/use-postgres-multiple-schema-database-in-rails/">Use Postgres Multiple Schema Database in Rails</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Postgres provided a very interesting feature called “Schema” in addition to other “normal” database features, which provide a extra layer between database and tables. So with schema, you can have tables with same name in one database, if they are in different schemas.<br>To me schema is not a good idea! I assume “table-space” or even “namespace” could be a better name. In fact, there are a number of people agree that schema is not a good name:<br><blockquote><p>“Schema” is such a terrible name for this feature. When most people hear the term “schema” they think of a data definition of some sort. This is not what PostgreSQL schemas are. I’m sure the PostgreSQL devs had their reasons, but I really wish they would have named it more appropriately. “Namespaces” would have been apropos.</p>
+<p>Anywho, the easiest way for me to describe PostgreSQL schemas (besides telling you that they are, indeed, namespaces for tables) is to relate them to the UNIX execution path. When you run a UNIX command without specifying its absolute path, your shell will work its way down the $PATH until it finds an executable of the same name.</p>
+<footer><strong>Jerod Santo</strong><cite><a href="http://blog.jerodsanto.net/2011/07/building-multi-tenant-rails-apps-with-postgresql-schemas/" target="_blank" rel="external">blog.jerodsanto.net/2011/07/building-multi-tenant-rails-apps-with-postgresql-schemas</a></cite></footer></blockquote><br>And you can find more <a href="http://goo.gl/ghj4e" target="_blank" rel="external">here</a></p>
+<p>And there is a popular routine is to use the postgres schema for sub-domains. For example, you’re a BSS provider, you rend your BBS apps to different organizations. To the organizations. they want to have its own BBS app instance running independently, the most important is that data should be stored into separated spaces, and could be accessed from its own domain name. But to you, for administration, you want they share the same backend management console.<br>In this case the best way to solve the problem is to store the data owned by different subsystem into different schemas. But store all the administration data into a single schema or even in public schema.<br>The same guy Jerod has a <a href="http://blog.jerodsanto.net/2011/07/building-multi-tenant-rails-apps-with-postgresql-schemas/" target="_blank" rel="external">post</a> described how to build this kind of system in details. There are a bunch of posts described how to build the system like this, which could be found by <a href="http://goo.gl/HaByF" target="_blank" rel="external">googling</a> easily.<br>And there is even a <a href="https://github.com/bradrobertson/apartment" target="_blank" rel="external">ruby gem called apartment</a> from Brad Robertson to support this kind of system</p>
+<p>This idea looks fancy, but unless you 10000% certain that the sub-systems will keep its independent status and without any collaboration forever.<br>Or it sooner or later, you will find the “fancy idea” become a horrible idea.<br>When time goes by, there could be more and more and more features that required to add collaboration between sub-systems. Such as provide a unified authentication mechanism, so user can logged in once and switch between different systems easily. Or administrator might ask for a unified statistics graph for all sub-systems.<br>All these requirements are related to cross-schema query! To be honest, cross query in some cases could be painful!<br>And it brings trouble to all aspects in your system, such as data migration, test data generation, etc.</p>
+<p>That’s what exactly happens in my current project!<br>My current project is Rails 3 project, the codebase is brand new but built on a legacy multiple schema postgres database. And for some reason,<br>we must keep the multiple schema design unchanged. But our goal is to unify the separated subsystem into a more closed-collaborated system.</p>
+<p>Since ActiveRecord in Rails doesn’t include the native support to this fancy feature. Which means you will met problem during migration, or even preparing test data with factory-girl.</p>
+<p>Postgres allows to locate the table in different schemas with full qualified name like this <code>&lt;schema name&gt;.&lt;table name&gt;.&lt;column name&gt;</code>. The schema name is optional, when you omitted the schema name, Postgres will search the table in a file-system-path-like order called “<a href="http://www.postgresql.org/docs/8.1/static/ddl-schemas.html#DDL-SCHEMAS-PUBLIC" target="_blank" rel="external">search-path</a>“.</p>
+<p>And you can set and query current search path with Postgres SQL statements:</p>
+<figure class="highlight sql"><figcaption><span>Query and Set search_path</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> search_path;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> search_path <span class="keyword">TO</span> &lt;new_search_path&gt;;</span><br></pre></td></tr></table></figure>
+<p>Since ActiveRecord won’t add the full qualified schema name in front of the table name when it translate the ARel into SQL statements. So we can only support the multiple schema database with the search_path.</p>
+<p>Basically, it is a very natural idea that you can use the following ruby code to make ActiveRecord make query on different schemas:</p>
+<figure class="highlight ruby"><figcaption><span>Select Schema</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_schema_to_search_path</span><span class="params">(schema)</span></span></span><br><span class="line">  ActiveRecord::Base.connection.execute <span class="string">"SET search_path TO <span class="subst">#&#123;schema&#125;</span>, public;"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">restore_search_path</span></span></span><br><span class="line">  ActiveRecord::Base.connection.execute <span class="string">"SET search_path TO public;"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>This two methods work perfect when querying things from the database. But sooner or later, you will run into big trouble when you try to write data into database.</p>
+<p>In db migration or use factory_girl to generate test fixtures, you might found that the data you insert in different schemas finally goes into <strong>the first non-public schema</strong>. But all the query still works perfect!</p>
+<p>We found this problem occurs when the following conditions are satisfied:</p>
+<ol>
+<li>Query are happened in a Transaction.</li>
+<li>You insert data into multiple non-public schemas.</li>
+<li>You user <code>SET search_path TO</code> SQL statement to switch between schema rather than explicitly using full-qualified table name.</li>
+</ol>
+<p>And the most interesting thing is that:</p>
+<ol>
+<li>All the <code>SELECT</code> queries are executed on schemas correctly</li>
+<li>If you use <code>SHOW search_path;</code> to query current search path, you will got correct search path value.</li>
+<li>All data are inserted into first <code>non-public</code> schema that you actually wrote data into. So which means it you try to insert data into public schema, it won’t go wrong. Or you switched to a non-public schema, but actually you doesn’t insert any rows, it also won’t be impacted.</li>
+</ol>
+<p>To solve this problem, I spent 2 nights and 2 days to digged into the source code of ActiveRecord gem and pg gem (the Postgres database adapter).<br>And finally I solved the problem by using the attribute on PostgreSQLAdapter.</p>
+<p>Basically, instead of using the SQL query, you should use the <code>PostgreSQLAdapter#schema_search_path</code> and <code>PostgreSQLAdapter#schema_search_path=</code> to get and set the search path.<br>And if you dig into the source code, you will find the two methods does the exact same thing as we did except it assigned one more instance variable <code>@schema_search_path</code>.</p>
+<figure class="highlight ruby"><figcaption><span>methods on PostgreSQLAdapter</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Sets the schema search path to a string of comma-separated schema names.</span></span><br><span class="line"><span class="comment"># Names beginning with $ have to be quoted (e.g. $user =&gt; '$user').</span></span><br><span class="line"><span class="comment"># See: http://www.postgresql.org/docs/current/static/ddl-schemas.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This should be not be called manually but set in database.yml.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">schema_search_path=</span><span class="params">(schema_csv)</span></span></span><br><span class="line">  <span class="keyword">if</span> schema_csv</span><br><span class="line">    execute(<span class="string">"SET search_path TO <span class="subst">#&#123;schema_csv&#125;</span>"</span>, <span class="string">'SCHEMA'</span>)</span><br><span class="line">    @schema_search_path = schema_csv</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Returns the active schema search path.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">schema_search_path</span></span></span><br><span class="line">  @schema_search_path <span class="params">||</span>= query(<span class="string">'SHOW search_path'</span>, <span class="string">'SCHEMA'</span>)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>The most interesting thing is if you search the reference to <code>@schema_search_path</code>, you will find it is only used as a local cache of current search_path in the adapter, and it is initialized with the value from the query <code>SHOW search_path;</code> if it is nil, and then keep the value as the cache!<br>This implementation is buggy and caused the problems described before!</p>
+<p>If we use the SQL query to set the search path rather than calling <code>schema_search_path=</code>, we won’t set the <code>@schema_search_path</code> at sametime, ideally this value will remain nil by default. Then transaction or other object in ActiveRecord call <code>schema_search_path</code> to get current search path. The first time, the variable <code>@@schema_search_path</code> is nil, and will be initialized by the value from query <code>SHOW search_path;</code> and then won’t changed any more, since in the future this query won’t be executed any longer.<br>As a result, the schema will be switched successfully for the first time, but failed in the following.</p>
+<p>Which means at current stage, if you want to change search_path, the only correct way is to use <code>PostgreSQLAdapter#schema_search_path=</code>, and PLEASE PLEASE ignore the warning <code>&quot;This should be not be called manually but set in database.yml.&quot;</code> in the source code! It is really a misleading message!</p>
+<p>I understand current implementation is for performance consideration, but caching the value is absolutely not a good idea when you cannot keep things in sync and the sync is critical in some cases.<br>I’m planning to fix this issue in rails codebase and create a pull request to rails maintainer. Wish they could accept this fix. Or at least they should change the warning message.</p>
+<p>And besides of using the out-dated and mysterious PgTools mentioned in a lot of posts (I saw a lot of people mentioned this class, but I cannot find it anywhere even I from google or github. It is really a mystery). I create a new utility module called MultiSchema.</p>
+<script src="//gist.github.com/3129392.js"></script>
+<p>You can use it as the utility class in the old-fashioned way:</p>
+<figure class="highlight ruby"><figcaption><span>Procedure usage</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MultiSchema.with_in_schemas <span class="symbol">:except</span> =&gt; <span class="symbol">:public</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Play around the data in one schema</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Or you can use it in a DSL-like way:</p>
+<figure class="highlight ruby"><figcaption><span>DSL usage</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeMigration</span> &lt; ActiveRecord::Migration</span></span><br><span class="line"><span class="keyword">include</span> MultiSchema</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">change</span></span></span><br><span class="line">    with_in_schemas <span class="symbol">:except</span> =&gt; <span class="symbol">:public</span> <span class="keyword">do</span></span><br><span class="line">      <span class="comment"># Play around the data in one schema</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><code>with_in_schemas</code> method accept both <code>symbol</code> and <code>string</code>, and you can pass single value, array or hash to it.</p>
+<ul>
+<li><code>with_in_schemas</code> yield all user schemas in the database</li>
+<li><code>with_in_schemas :only =&gt; %w(schema1 schema2)</code> populates all given schemas.</li>
+<li><code>with_in_schemas :except =&gt; %w(schema1 schema2)</code> populates all except given schemas.</li>
+<li><code>with_in_schemas :except =&gt; [:public]</code> is equivalent to <code>with_in_schemas :except =&gt; [&#39;public&#39;]</code></li>
+<li><code>with_in_schemas :only =&gt; [:public]</code> is equivalent to <code>with_in_schemas :only =&gt; :public</code> and equivalent to <code>with_in_schemas :public</code></li>
+<li><code>with_in_schemas :except =&gt; [:public]</code> is equivalent to <code>with_in_schemas :except =&gt; :public</code></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://timnew.me/blog/2012/07/17/use-postgres-multiple-schema-database-in-rails/" data-id="cinedk71s0031chsil6so3cbk" class="article-share-link">Partager</a>
+      
+        <a href="http://timnew.me/blog/2012/07/17/use-postgres-multiple-schema-database-in-rails/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/active-record/">active record</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/">database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/multischema/">multischema</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgres/">postgres</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schema/">schema</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-handle-dynamic-argument-in-dynamic-language" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -151,9 +253,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/06/28/handle-dynamic-argument-in-dynamic-language/" data-id="cimz4udqt003hnwsikpgzz31g" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/06/28/handle-dynamic-argument-in-dynamic-language/" data-id="cinedk71r002zchsi8ldayixa" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/06/28/handle-dynamic-argument-in-dynamic-language/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/06/28/handle-dynamic-argument-in-dynamic-language/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dynamic/">dynamic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/static/">static</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/syntax-sugar/">syntax sugar</a></li></ul>
@@ -231,9 +333,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/06/27/the-cursed-null-in-postgres/" data-id="cimz4udqc002rnwsizv56kpyb" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/06/27/the-cursed-null-in-postgres/" data-id="cinedk71p002vchsippjp5v9l" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/06/27/the-cursed-null-in-postgres/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/06/27/the-cursed-null-in-postgres/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/null/">NULL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/">database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/equality-comparison/">equality comparison</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pivot/">pivot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pivot-table/">pivot table</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgres/">postgres</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
@@ -293,9 +395,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/06/21/a-pitfall-in-jquery-form-serialization/" data-id="cimz4udqa002onwsin87mb96d" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/06/21/a-pitfall-in-jquery-form-serialization/" data-id="cinedk71o002schsia83oa5p0" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/06/21/a-pitfall-in-jquery-form-serialization/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/06/21/a-pitfall-in-jquery-form-serialization/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/form/">form</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/id/">id</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/name/">name</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pitfall/">pitfall</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serialization/">serialization</a></li></ul>
@@ -356,9 +458,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/06/02/name-trap-in-rails/" data-id="cimz4udq4002inwsilaxjpd5v" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/06/02/name-trap-in-rails/" data-id="cinedk71m002ochsifh28wzh1" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/06/02/name-trap-in-rails/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/06/02/name-trap-in-rails/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/active-model/">active model</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/convention/">convention</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/name/">name</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pitfall/">pitfall</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/trap/">trap</a></li></ul>
@@ -421,9 +523,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/29/negative-index-in-coffee-script/" data-id="cimz4udq1002fnwsif837103g" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/29/negative-index-in-coffee-script/" data-id="cinedk71g002gchsipigam9bx" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/05/29/negative-index-in-coffee-script/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/05/29/negative-index-in-coffee-script/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coffeescript/">coffeescript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/index/">index</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/negative/">negative</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/slice/">slice</a></li></ul>
@@ -486,9 +588,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/" data-id="cimz4udpz002dnwsihxgbonww" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/" data-id="cinedk71e002dchsiz28b8taf" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/05/25/eigenclass-in-ruby/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigen/">eigen</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigenclass/">eigenclass</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meta-class/">meta class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meta-programming/">meta programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/singleton-class/">singleton class</a></li></ul>
@@ -559,9 +661,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/" data-id="cimz4udpy002anwsipxb27uwj" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/" data-id="cinedk71c002achsih4gycs1q" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/05/14/space-pitfall-in-coffee-script/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/best-practice/">best-practice</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coffee-script/">coffee-script</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pitfall/">pitfall</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/space/">space</a></li></ul>
@@ -623,9 +725,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/" data-id="cimz4udpj001unwsin6ruds31" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/" data-id="cinedk7190024chsi047fidbb" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/05/14/how-to-print-multiple-line-string-on-bash/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/multiline/">multiline</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/output/">output</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
@@ -716,89 +818,12 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/" data-id="cimz4udpu0024nwsilffzffww" class="article-share-link">Share</a>
+      <a data-url="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/" data-id="cinedk7170021chsid75mb3p7" class="article-share-link">Partager</a>
       
-        <a href="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://timnew.me/blog/2012/05/08/dynamic-singleton-methods-in-ruby/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meta-programming/">meta programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mixin/">mixin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/module/">module</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/singleton-method/">singleton method</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-exports-vs-module-exports-in-node-js" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2012/04/20/exports-vs-module-exports-in-node-js/" class="article-date">
-  <time datetime="2012-04-20T00:00:00.000Z" itemprop="datePublished">2012-04-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/programming/">Programming</a>►<a class="article-category-link" href="/categories/programming/node-js/">node.js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-  
-  <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #40A;"  >
-      <a href="http://timnew.me/categories/programming/">Programming</a>
-    </div>
-  </div>
-
-
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2012/04/20/exports-vs-module-exports-in-node-js/">exports vs module.exports in node.js</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I was confused about how require function works in node.js for a long time. I found when I require a module, sometimes I can get the object I want, but sometimes, I don’t I just got an empty object, which give an <a href="/blog/2012/03/21/a-way-to-expose-singleton-object-and-its-constructor-in-nodejs">imagination</a> that we cannot export the object by assigning it to exports, but it seems somehow we can export a function by assignment.</p>
-<p>Today, I re-read the <a href="http://docs.nodejs.org/api/modules.html#modules_the_module_object" target="_blank" rel="external">document</a> again, and I finally make clear that I misunderstood the “require” mechanism and how I did that.</p>
-<p>I clearly remember this sentence in the <a href="http://docs.nodejs.org/api/modules.html#modules_the_module_object" target="_blank" rel="external">doc</a></p>
-<blockquote>
-<p> In particular <strong>module.exports</strong> is the <strong>same</strong> as the <strong>exports</strong> object.</p>
-</blockquote>
-<p>So I believed that the exports is just a shortcut alias to module.exports, we can use one instead of another without worrying about the differences between them two.<br>But this understanding is proved to be wrong. exports and module.exports are different.</p>
-<p>Today I found this in the <a href="http://docs.nodejs.org/api/modules.html#modules_module_exports" target="_blank" rel="external">doc</a>:</p>
-<blockquote>
-<p>The <strong>exports</strong> object is <strong>created by</strong> the <strong>Module system</strong>. Sometimes this is <strong>not acceptable</strong>, many want their module to be an instance of some class. <strong>To do this assign the desired export object to module.exports.</strong></p>
-</blockquote>
-<p>So it says that module.exports is different from exports. And it you exports something by assignment, you need to assign it to module.exports.</p>
-<p>Let’s try to understand these sentences deeper by code examples.</p>
-<p>In the saying</p>
-<blockquote>
-<p>The <strong>exports</strong> object is <strong>created by</strong> the <strong>Module system</strong>.</p>
-</blockquote>
-<p>The word “created by” actually means when node.js try to load a javascript file, before executing any line of code in your file, the module system executes the following code first for you:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports</span><br></pre></td></tr></table></figure>
-<p>So the actual interface in node.js’s module system is module object. the actual exported object is <code>module.exports</code> not <code>exports</code>.<br>And the <code>exports</code> is just a normal variable, and there is not “magic” in it. So if you assign something to it, it is replaced absolutely.</p>
-<p>That’s why I failed to get the exported object I want when I assign the it to exports variable.</p>
-<p>So to export some variable as a whole, we should always assign it to <code>module.exports</code>.<br>And at same time, if there is no good excuse, we’d better to keep the convention that <code>exports</code> is the shortcut alias to <code>module.exports</code>. So we should also assign the module.exports to exports.</p>
-<p>As a conclusion, to export something in node.js by assignment, we should always follow the following pattern:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports = <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/04/20/exports-vs-module-exports-in-node-js/" data-id="cimz4udpd001mnwsifpziyvfj" class="article-share-link">Share</a>
-      
-        <a href="http://timnew.me/blog/2012/04/20/exports-vs-module-exports-in-node-js/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exports/">exports</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/module/">module</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
 
     </footer>
   </div>
@@ -822,10 +847,14 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/posts">
-      <h3 class="widget-title">Recent Posts</h3>
+      <h3 class="widget-title">Articles récents</h3>
     </a>
     <div class="widget recent-posts">
       <ul>
+        
+          <li>
+            <a href="/blog/2016/04/23/collection-filtering-algorithm-with-bit-operation-part-1/">Collection Filtering Algorithm with Bit Operation - Part.1</a>
+          </li>
         
           <li>
             <a href="/blog/2015/08/14/a-clean-way-to-test-rejected-promise/">A clean way to test rejected promise</a>
@@ -843,10 +872,6 @@ ga('send', 'pageview');
             <a href="/blog/2014/11/07/walkthrough-untrusted-the-continuing-adventures-of-dr-eval/">Walkthrough: Untrusted - the Continuing Adventures of Dr. Eval</a>
           </li>
         
-          <li>
-            <a href="/blog/2014/11/05/awesome-geek-game-untrusted-the-continuing-adventures-of-dr-eval/">Awesome geek game Untrusted - the Continuing Adventures of Dr. Eval</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -856,10 +881,10 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/tags">
-      <h3 class="widget-title">Tag Cloud</h3>
+      <h3 class="widget-title">Nuage de mot-clés</h3>
     </a>
     <div class="widget tagcloud">
-      <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/alfred/" style="font-size: 10px;">Alfred</a> <a href="/tags/android/" style="font-size: 20px;">Android</a> <a href="/tags/android-studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/automation/" style="font-size: 10px;">Automation</a> <a href="/tags/bit-slicer/" style="font-size: 10px;">Bit Slicer</a> <a href="/tags/boilerplate/" style="font-size: 10px;">Boilerplate</a> <a href="/tags/c/" style="font-size: 20px;">C#</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/css/" style="font-size: 10px;">CSS</a> <a href="/tags/cheat/" style="font-size: 10px;">Cheat</a> <a href="/tags/cheat-engine/" style="font-size: 10px;">Cheat Engine</a> <a href="/tags/class/" style="font-size: 10px;">Class</a> <a href="/tags/cocoa/" style="font-size: 10px;">Cocoa</a> <a href="/tags/command/" style="font-size: 10px;">Command</a> <a href="/tags/continues-delivery/" style="font-size: 10px;">Continues Delivery</a> <a href="/tags/continues-integration/" style="font-size: 10px;">Continues Integration</a> <a href="/tags/crack/" style="font-size: 10px;">Crack</a> <a href="/tags/d/" style="font-size: 10px;">D</a> <a href="/tags/debugger/" style="font-size: 10px;">Debugger</a> <a href="/tags/deploy/" style="font-size: 10px;">Deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">Deployment</a> <a href="/tags/design/" style="font-size: 10px;">Design</a> <a href="/tags/design-pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/event/" style="font-size: 10px;">Event</a> <a href="/tags/eventbus/" style="font-size: 10px;">EventBus</a> <a href="/tags/fp/" style="font-size: 10px;">FP</a> <a href="/tags/fswatcher/" style="font-size: 10px;">FSWatcher</a> <a href="/tags/gb2312/" style="font-size: 10px;">GB2312</a> <a href="/tags/gbk/" style="font-size: 10px;">GBK</a>
+      <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/alfred/" style="font-size: 10px;">Alfred</a> <a href="/tags/algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/android/" style="font-size: 20px;">Android</a> <a href="/tags/android-studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/automation/" style="font-size: 10px;">Automation</a> <a href="/tags/binary/" style="font-size: 10px;">Binary</a> <a href="/tags/bit-operation/" style="font-size: 10px;">Bit Operation</a> <a href="/tags/bit-slicer/" style="font-size: 10px;">Bit Slicer</a> <a href="/tags/bloom-filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/boilerplate/" style="font-size: 10px;">Boilerplate</a> <a href="/tags/c/" style="font-size: 20px;">C#</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/css/" style="font-size: 10px;">CSS</a> <a href="/tags/cheat/" style="font-size: 10px;">Cheat</a> <a href="/tags/cheat-engine/" style="font-size: 10px;">Cheat Engine</a> <a href="/tags/class/" style="font-size: 10px;">Class</a> <a href="/tags/cocoa/" style="font-size: 10px;">Cocoa</a> <a href="/tags/collection/" style="font-size: 10px;">Collection</a> <a href="/tags/command/" style="font-size: 10px;">Command</a> <a href="/tags/continues-delivery/" style="font-size: 10px;">Continues Delivery</a> <a href="/tags/continues-integration/" style="font-size: 10px;">Continues Integration</a> <a href="/tags/crack/" style="font-size: 10px;">Crack</a> <a href="/tags/d/" style="font-size: 10px;">D</a> <a href="/tags/debugger/" style="font-size: 10px;">Debugger</a> <a href="/tags/deploy/" style="font-size: 10px;">Deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">Deployment</a> <a href="/tags/design/" style="font-size: 10px;">Design</a> <a href="/tags/design-pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/event/" style="font-size: 10px;">Event</a>
     </div>
   </div>
 
@@ -868,10 +893,10 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/categories">
-      <h3 class="widget-title">Categories</h3>
+      <h3 class="widget-title">Catégories</h3>
     </a>
     <div class="widget category-list">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/">Cracking</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/game/">Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/">Design</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design/visual/">Visual</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/web/">Web</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/game/">Game</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/game/programming-game/">Programming Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/geek-toy/">Geek Toy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/">Package</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/package/chrome-extension/">Chrome Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/hexo/">Hexo</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/">Practice</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/practice/atom/">Atom</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/continues-integration/">Continues Integration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/devops/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/mac/">Mac</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/textmate/">TextMate</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/web/">Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/git/">git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">Programming</a><span class="category-list-count">72</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/android/">Android</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/arduino/">Arduino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/c/">C#</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/design-patterns/">Design Patterns</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">JavaScript</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/coffeescript/">CoffeeScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/postgressql/">PostgresSql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/powershell/">PowerShell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/regular-expression/">Regular Expression</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/ruby/">Ruby</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/shell/">Shell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/wpf/">WPF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/web/">Web</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/node-js/">node.js</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/thinking/">Thinking</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/">Cracking</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/game/">Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/">Design</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design/visual/">Visual</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/web/">Web</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/game/">Game</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/game/programming-game/">Programming Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/geek-toy/">Geek Toy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/">Package</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/package/chrome-extension/">Chrome Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/hexo/">Hexo</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/">Practice</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/practice/atom/">Atom</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/continues-integration/">Continues Integration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/devops/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/mac/">Mac</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/textmate/">TextMate</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/web/">Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/git/">git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">Programming</a><span class="category-list-count">73</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/android/">Android</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/arduino/">Arduino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/c/">C#</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/design-patterns/">Design Patterns</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">JavaScript</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/coffeescript/">CoffeeScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/postgressql/">PostgresSql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/powershell/">PowerShell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/regular-expression/">Regular Expression</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/ruby/">Ruby</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/shell/">Shell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/wpf/">WPF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/web/">Web</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/node-js/">node.js</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/thinking/">Thinking</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -883,7 +908,7 @@ ga('send', 'pageview');
       <h3 class="widget-title">Archives</h3>
     </a>
     <div class="widget archive-list">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -897,7 +922,7 @@ ga('send', 'pageview');
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 TimNew<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

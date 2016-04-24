@@ -941,7 +941,9 @@ body {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.4em;
   margin: 1.6em 20px;
-  text-align: center;
+}
+.article-entry blockquote p {
+  margin: 1em 0;
 }
 .article-entry blockquote footer {
   font-size: 14px;
