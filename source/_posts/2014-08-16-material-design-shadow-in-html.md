@@ -26,7 +26,7 @@ By referencing the [Shadow Definition] in the spec, I recreate the effect with p
 
 Clicking the div will shift the shadow depth.
 
-{% jsfiddle timnew/r3j6a92c/4 result,css,html,js %}
+{% jsfiddle timnew/r3j6a92c/16 result,css,html,js %}
 
 -----
 
