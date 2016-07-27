@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Categorie: Mac | ThoughtWorkshop</title>
+  <title>Category: Mac | ThoughtWorkshop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="timnew programming code software">
 <meta property="og:type" content="website">
@@ -88,7 +88,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://timnew.me"></form>
@@ -150,12 +150,80 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2014/05/26/create-shortcut-for-your-project-mingle-with-alfred/" data-id="cineg3iah006ry7sidhxh9f3y" class="article-share-link">Delen</a>
+      <a data-url="http://timnew.me/blog/2014/05/26/create-shortcut-for-your-project-mingle-with-alfred/" data-id="ciqg4g84a006g6nsihyzdgg4f" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2014/05/26/create-shortcut-for-your-project-mingle-with-alfred/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://timnew.me/blog/2014/05/26/create-shortcut-for-your-project-mingle-with-alfred/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/alfred/">Alfred</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/custom-search/">custom search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mingle/">mingle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shortcut/">shortcut</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-using-rvmed-ruby-in-mac-automator-workflow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" class="article-date">
+  <time datetime="2013-10-27T00:00:00.000Z" itemprop="datePublished">2013-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/practice/">Practice</a>►<a class="article-category-link" href="/categories/practice/mac/">Mac</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+  
+  <div class="ribbon-wrapper relative right">
+    <div class="ribbon "  style="background-color: #0A3;"  >
+      <a href="http://timnew.me/categories/practice/">Practice</a>
+    </div>
+  </div>
+
+
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/">Using RVMed Ruby in Mac Automator Workflow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>HINT</strong> This content is obsoleted on OSX 10.9 Mavericks</p>
+<h2 id="Embed-Ruby-into-Automator-Workflow"><a href="#Embed-Ruby-into-Automator-Workflow" class="headerlink" title="Embed Ruby into Automator Workflow"></a>Embed Ruby into Automator Workflow</h2><p>Automator workflow has the ability to execute ruby code, but it is not that obvious if you doesn’t know it.</p>
+<p>To embed ruby code into workflow, you need to create a “Run Shell Script” action first, then choose “/usr/bin/ruby” as the shell. Then the script in the text box will be parsed and executed as ruby code.</p>
+<img src="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/ruby_in_automator.png" alt="Ruby In Automator" title="Ruby In Automator">
+<p>So, from now on, you know how to embed ruby into automator workflow.</p>
+<h2 id="Use-RVM-ruby-instead-of-System-Ruby"><a href="#Use-RVM-ruby-instead-of-System-Ruby" class="headerlink" title="Use RVM ruby instead of System Ruby"></a>Use RVM ruby instead of System Ruby</h2><p>By default, Automator will load system ruby at <code>/usr/bin/ruby</code>, which is ruby v1.8.7 without bundler support. For most ruby developers, they must have installed some kind of ruby version manager, such as <code>RVM</code> or <code>rbenv</code>. As to me, I uses <code>RVM</code>. So I wish I could use RVMed versions of Ruby rather than the system ruby, could be ruby 1.9.3 or even ruby 2.0 with bundler support.</p>
+<p>To use the RVMed ruby, I tried several approaches by hacking different configurations or files. And at last, I made it doing this:</p>
+<p>RVM provides a ruby executable file at <code>~/.rvm/bin/ruby</code>. On the other hand, <code>/usr/bin/ruby</code> is actually a symbol link that pointed to ‘/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby’.</p>
+<p>So what we need to do is to replace the the symbol link with a new one pointed to <code>~/.rvm/bin/ruby</code>.</p>
+<figure class="highlight bash"><figcaption><span>Replace system ruby with RVMed ruby</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo mv /usr/bin/ruby /usr/bin/system_ruby</div><div class="line">sudo ln <span class="_">-s</span> /Users/timnew/.rvm/bin/ruby /usr/bin/ruby</div><div class="line"></div></pre></td></tr></table></figure>
+<p>(You might need to replace the <code>/Users/timnew/.rvm/bin/ruby</code> with the path to your ruby executable file)</p>
+<p>After doing this, done, you have the RVMed ruby in your Automator Workflow.</p>
+<p>You can try to excute the following code in Workflow to verify it:</p>
+<figure class="highlight ruby"><figcaption><span>Test Ruby Version</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">puts RUBY_VERSION</div></pre></td></tr></table></figure>
+<p>If you do it correct, then you should see ‘1.9.3’ or any other version of ruby you have configured.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" data-id="ciqg4g83t005l6nsi01mu0dug" class="article-share-link">Share</a>
+      
+        <a href="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/osx/">OSX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">RVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automator/">automator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/finder/">finder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/service/">service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 
     </footer>
   </div>
@@ -212,93 +280,25 @@ ga('send', 'pageview');
 <h2 id="3-Run-Ruby-Script-to-transcode-the-files"><a href="#3-Run-Ruby-Script-to-transcode-the-files" class="headerlink" title="3. Run Ruby Script to transcode the files"></a>3. Run Ruby Script to transcode the files</h2><p>Add a “Run Shell Script” action to execute the following ruby code, which is used to transcode the files passed to service. (For more detail about how to embed Ruby in workflow, check out <a href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/">Using RVMed Ruby in Mac Automator Workflow</a> )</p>
 <p>Make sure the input is passed as arugments to the ruby script.</p>
 
-<figure class="highlight ruby"><figcaption><span>Transcode the files</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">old_files = []</span><br><span class="line"></span><br><span class="line">ARGV.each <span class="keyword">do</span> <span class="params">|name|</span></span><br><span class="line">  <span class="keyword">next</span> <span class="keyword">until</span> File.file? name</span><br><span class="line">  backup_name = name + <span class="string">'.old'</span></span><br><span class="line">  File.rename name, backup_name</span><br><span class="line"></span><br><span class="line">  source = File.open backup_name, <span class="string">'r:GB2312:UTF-8'</span></span><br><span class="line">  dest = File.open name, <span class="string">'w'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> line = source.gets</span><br><span class="line">      dest.puts line</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  puts name</span><br><span class="line"></span><br><span class="line">  old_files &lt;&lt; backup_name</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">ENV[<span class="string">'Transcode_Backup_Files'</span>] = old_files.join(<span class="string">'|'</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>Transcode the files</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">old_files = []</div><div class="line"></div><div class="line">ARGV.each <span class="keyword">do</span> <span class="params">|name|</span></div><div class="line">  <span class="keyword">next</span> <span class="keyword">until</span> File.file? name</div><div class="line">  backup_name = name + <span class="string">'.old'</span></div><div class="line">  File.rename name, backup_name</div><div class="line"></div><div class="line">  source = File.open backup_name, <span class="string">'r:GB2312:UTF-8'</span></div><div class="line">  dest = File.open name, <span class="string">'w'</span></div><div class="line"></div><div class="line">  <span class="keyword">while</span> line = source.gets</div><div class="line">      dest.puts line</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  puts name</div><div class="line"></div><div class="line">  old_files &lt;&lt; backup_name</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">ENV[<span class="string">'Transcode_Backup_Files'</span>] = old_files.join(<span class="string">'|'</span>)</div><div class="line"></div></pre></td></tr></table></figure>
 <h2 id="4-Display-a-growl-message-when-processing-is-done"><a href="#4-Display-a-growl-message-when-processing-is-done" class="headerlink" title="4. Display a growl message when processing is done"></a>4. Display a growl message when processing is done</h2>
 <h2 id="5-Prompt-user-whether-to-keep-the-backup-files"><a href="#5-Prompt-user-whether-to-keep-the-backup-files" class="headerlink" title="5. Prompt user whether to keep the backup files"></a>5. Prompt user whether to keep the backup files</h2><p>I use a <code>Ask for confirmation</code> action to ask whether user want to keep the backup files.<br>The workflow will abort if user clicks “No”, make sure you updated the text on the buttons, and texts are put on right button.</p>
 
 <h2 id="6-Add-script-to-remove-backup-files"><a href="#6-Add-script-to-remove-backup-files" class="headerlink" title="6. Add script to remove backup files"></a>6. Add script to remove backup files</h2><p>Add another “Run Shell Script” aciton to execute another piece of ruby code.</p>
 
-<figure class="highlight ruby"><figcaption><span>Remove backup files</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> ENV[<span class="string">'Transcode_Backup_Files'</span>]</span><br><span class="line">    ENV[<span class="string">'Transcode_Backup_Files'</span>].split(<span class="string">'|'</span>).each <span class="keyword">do</span> <span class="params">|file|</span></span><br><span class="line">        File.delete file</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    ENV.delete <span class="string">'Transcode_Backup_Files'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>Remove backup files</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">if</span> ENV[<span class="string">'Transcode_Backup_Files'</span>]</div><div class="line">    ENV[<span class="string">'Transcode_Backup_Files'</span>].split(<span class="string">'|'</span>).each <span class="keyword">do</span> <span class="params">|file|</span></div><div class="line">        File.delete file</div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">    ENV.delete <span class="string">'Transcode_Backup_Files'</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div></pre></td></tr></table></figure>
 <h2 id="7-Display-notification-to-tell-user-that-backup-files-has-been-deleted"><a href="#7-Display-notification-to-tell-user-that-backup-files-has-been-deleted" class="headerlink" title="7. Display notification to tell user that backup files has been deleted"></a>7. Display notification to tell user that backup files has been deleted</h2>
 <p><strong>TIP:</strong> The transcode ruby script requires Ruby 1.9+, but Mac OS X default provides Ruby 1.8.3, which doesn’t support encoding. To interprets workflow embedded code with ruby 1.9+, please refers to <a href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/">Using RVMed Ruby in Mac Automator Workflow</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/" data-id="cineg3i9w005ny7si1n1rgjvu" class="article-share-link">Delen</a>
+      <a data-url="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/" data-id="ciqg4g842005r6nsi0cw2m88s" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://timnew.me/blog/2013/10/27/adjust-files-encoding-in-finder-context-menu-gb1312-to-utf-8-with-1-click/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gb2312/">GB2312</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gbk/">GBK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encoding/">encoding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lyrics/">lyrics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/messy-code/">messy code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/subtitle/">subtitle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/transcode/">transcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utf8/">utf8</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-using-rvmed-ruby-in-mac-automator-workflow" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" class="article-date">
-  <time datetime="2013-10-27T00:00:00.000Z" itemprop="datePublished">2013-10-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/practice/">Practice</a>►<a class="article-category-link" href="/categories/practice/mac/">Mac</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-  
-  <div class="ribbon-wrapper relative right">
-    <div class="ribbon "  style="background-color: #0A3;"  >
-      <a href="http://timnew.me/categories/practice/">Practice</a>
-    </div>
-  </div>
-
-
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/">Using RVMed Ruby in Mac Automator Workflow</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>HINT</strong> This content is obsoleted on OSX 10.9 Mavericks</p>
-<h2 id="Embed-Ruby-into-Automator-Workflow"><a href="#Embed-Ruby-into-Automator-Workflow" class="headerlink" title="Embed Ruby into Automator Workflow"></a>Embed Ruby into Automator Workflow</h2><p>Automator workflow has the ability to execute ruby code, but it is not that obvious if you doesn’t know it.</p>
-<p>To embed ruby code into workflow, you need to create a “Run Shell Script” action first, then choose “/usr/bin/ruby” as the shell. Then the script in the text box will be parsed and executed as ruby code.</p>
-<img src="/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/ruby_in_automator.png" alt="Ruby In Automator" title="Ruby In Automator">
-<p>So, from now on, you know how to embed ruby into automator workflow.</p>
-<h2 id="Use-RVM-ruby-instead-of-System-Ruby"><a href="#Use-RVM-ruby-instead-of-System-Ruby" class="headerlink" title="Use RVM ruby instead of System Ruby"></a>Use RVM ruby instead of System Ruby</h2><p>By default, Automator will load system ruby at <code>/usr/bin/ruby</code>, which is ruby v1.8.7 without bundler support. For most ruby developers, they must have installed some kind of ruby version manager, such as <code>RVM</code> or <code>rbenv</code>. As to me, I uses <code>RVM</code>. So I wish I could use RVMed versions of Ruby rather than the system ruby, could be ruby 1.9.3 or even ruby 2.0 with bundler support.</p>
-<p>To use the RVMed ruby, I tried several approaches by hacking different configurations or files. And at last, I made it doing this:</p>
-<p>RVM provides a ruby executable file at <code>~/.rvm/bin/ruby</code>. On the other hand, <code>/usr/bin/ruby</code> is actually a symbol link that pointed to ‘/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby’.</p>
-<p>So what we need to do is to replace the the symbol link with a new one pointed to <code>~/.rvm/bin/ruby</code>.</p>
-<figure class="highlight bash"><figcaption><span>Replace system ruby with RVMed ruby</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo mv /usr/bin/ruby /usr/bin/system_ruby</span><br><span class="line">sudo ln <span class="_">-s</span> /Users/timnew/.rvm/bin/ruby /usr/bin/ruby</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>(You might need to replace the <code>/Users/timnew/.rvm/bin/ruby</code> with the path to your ruby executable file)</p>
-<p>After doing this, done, you have the RVMed ruby in your Automator Workflow.</p>
-<p>You can try to excute the following code in Workflow to verify it:</p>
-<figure class="highlight ruby"><figcaption><span>Test Ruby Version</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puts RUBY_VERSION</span><br></pre></td></tr></table></figure>
-<p>If you do it correct, then you should see ‘1.9.3’ or any other version of ruby you have configured.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/" data-id="cineg3i9y005ry7si1iu70kvz" class="article-share-link">Delen</a>
-      
-        <a href="http://timnew.me/blog/2013/10/27/using-rvmed-ruby-in-mac-automator-workflow/#disqus_thread" class="article-comment-link">Commentaren</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/osx/">OSX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">RVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automator/">automator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/finder/">finder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/service/">service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 
     </footer>
   </div>
@@ -344,25 +344,25 @@ ga('send', 'pageview');
       
         <p>HomeBrew is a convenient package manager for Mac user. For some reason I prefer Home Brew to Mac Ports.<br>Brew has a younger package repository since it has shorter history comparing to MacPorts. Younger repository means less options. And sometime it is hard for you to install the old-fashioned tool with brew.</p>
 <p>Brew uses git to manage its formula repository, so you can list with git.<br>Typically, the repo is located at <code>/usr/local</code>. But since this path can be changed, so it is safer to reference this path via brew.<br>Brew call the repo path as prefix, so you can reference the path with <code>brew --prefix</code><br>You can use the following shell command to enter the brew repo.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> $(brew --prefix)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> $(brew --prefix)</div></pre></td></tr></table></figure>
 <p>Since brew load formula from local, so before we install the app with brew, we need to ensure the repo is updated. We can use the following command to update the brew repo:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Update brew</span></span><br><span class="line">brew update</span><br><span class="line"></span><br><span class="line"><span class="comment"># update with git</span></span><br><span class="line"><span class="built_in">cd</span> $(brew --prefix) &amp;&amp; git pull --rebase</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Update brew</span></div><div class="line">brew update</div><div class="line"></div><div class="line"><span class="comment"># update with git</span></div><div class="line"><span class="built_in">cd</span> $(brew --prefix) &amp;&amp; git pull --rebase</div></pre></td></tr></table></figure>
 <p>To install specific version of the app, we need to checkout the specific version of the formula, we can get the versions and related git revision by <code>brew versions</code> command, and checkout specific version, then install the app:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">brew versions postgresql</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output:</span></span><br><span class="line"><span class="comment"># 9.1.3    git checkout e088818 /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 9.1.2    git checkout dfcc838 /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 9.1.1    git checkout 4ef8fb0 /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 9.0.4    git checkout 2accac4 /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 9.0.3    git checkout b782d9d /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 9.0.2    git checkout 2c3b88a /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 9.0.1    git checkout b7fab6c /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 9.0.0    git checkout 1168d8f /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 8.4.4    git checkout c32bea0 /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 8.4.3    git checkout 9b2ef7c /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 8.4.1    git checkout 0495cf5 /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"><span class="comment"># 8.4.0    git checkout a82e823 /usr/local/Library/Formula/postgresql.rb</span></span><br><span class="line"></span><br><span class="line">git checkout a82e823 /usr/<span class="built_in">local</span>/Library/Formula/postgresql.rb</span><br><span class="line">brew install postgresql</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">brew versions postgresql</div><div class="line"></div><div class="line"><span class="comment"># Output:</span></div><div class="line"><span class="comment"># 9.1.3    git checkout e088818 /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 9.1.2    git checkout dfcc838 /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 9.1.1    git checkout 4ef8fb0 /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 9.0.4    git checkout 2accac4 /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 9.0.3    git checkout b782d9d /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 9.0.2    git checkout 2c3b88a /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 9.0.1    git checkout b7fab6c /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 9.0.0    git checkout 1168d8f /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 8.4.4    git checkout c32bea0 /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 8.4.3    git checkout 9b2ef7c /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 8.4.1    git checkout 0495cf5 /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"><span class="comment"># 8.4.0    git checkout a82e823 /usr/local/Library/Formula/postgresql.rb</span></div><div class="line"></div><div class="line">git checkout a82e823 /usr/<span class="built_in">local</span>/Library/Formula/postgresql.rb</div><div class="line">brew install postgresql</div></pre></td></tr></table></figure>
 <p>If we cannot find the specific version that we want (Such as Postgres 8.3.11). don’t be disappointed, we can try to search the version repository.<br>Some of the old-fashioned tool which is not included in brew’s master repo might be provided in version repository.</p>
 <p>Begin from Brew 0.9 provide the multiple repository support, user can use <code>brew tap</code> command to register alternative repositories besides the master repo. There are quite a some interesting alternative repos, such as versions and games.<br>These official alternative repos can be found on <a href="https://github.com/homebrew" target="_blank" rel="external">github</a></p>
 <p>The formulas in alternative repositories cannot be used directly, but luckily the official ones are included in the search result.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">brew search postgresql</span><br><span class="line"><span class="comment"># Output:</span></span><br><span class="line"><span class="comment"># postgresql</span></span><br><span class="line"><span class="comment"># homebrew/versions/postgresql8    homebrew/versions/postgresql9</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">brew search postgresql</div><div class="line"><span class="comment"># Output:</span></div><div class="line"><span class="comment"># postgresql</span></div><div class="line"><span class="comment"># homebrew/versions/postgresql8    homebrew/versions/postgresql9</span></div></pre></td></tr></table></figure>
 <p>In the search result, we can see there are 2 formulas are displayed with a path rather than just the formula name, which means these formulas are in a alternative repo.<br>The path to the formula follows the convention: <code>&lt;github username&gt;/&lt;repository name without &quot;homebrew-&quot;&gt;/&lt;formula name&gt;</code>.<br>So <code>homebrew/versions/postgresql8</code> means the file is located at <a href="https://raw.github.com/Homebrew/homebrew-versions/master/postgresql8.rb" target="_blank" rel="external">https://raw.github.com/Homebrew/homebrew-versions/master/postgresql8.rb</a></p>
 <p>To install it, we can install it directly or tap the repo first:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Install directly</span></span><br><span class="line">brew install homebrew/versions/postgresql8</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tap</span></span><br><span class="line">brew tap homebrew/versions</span><br><span class="line">brew install postgres8</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># Install directly</span></div><div class="line">brew install homebrew/versions/postgresql8</div><div class="line"></div><div class="line"><span class="comment"># Tap</span></div><div class="line">brew tap homebrew/versions</div><div class="line">brew install postgres8</div><div class="line"></div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/06/02/install-specific-version-of-tool-with-homebrew/" data-id="cineg3i7v002ky7si293nc3oa" class="article-share-link">Delen</a>
+      <a data-url="http://timnew.me/blog/2012/06/02/install-specific-version-of-tool-with-homebrew/" data-id="ciqg4g82g002n6nsimichrgxj" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2012/06/02/install-specific-version-of-tool-with-homebrew/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://timnew.me/blog/2012/06/02/install-specific-version-of-tool-with-homebrew/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brew/">brew</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/homebrew/">homebrew</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/package/">package</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgres/">postgres</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/repository/">repository</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/version/">version</a></li></ul>
@@ -422,9 +422,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/" data-id="cineg3i7j0021y7signvwhw0w" class="article-share-link">Delen</a>
+      <a data-url="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/" data-id="ciqg4g823001x6nsixasgfj22" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://timnew.me/blog/2012/05/09/steps-to-manually-uninstall-mysql-from-mac-os-x/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/trick/">trick</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uninstall/">uninstall</a></li></ul>
@@ -480,9 +480,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/" data-id="cineg3i7c001vy7sizuyxz76i" class="article-share-link">Delen</a>
+      <a data-url="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/" data-id="ciqg4g821001t6nsizjd8da2c" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://timnew.me/blog/2012/05/04/how-to-launch-mac-os-terminal-as-interactive-shell-rather-than-log-in-shell/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/configuration/">configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/terminal/">terminal</a></li></ul>
@@ -538,9 +538,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://timnew.me/blog/2012/04/26/bash-profile-on-mac-os-x/" data-id="cineg3i79001ry7siq203ibvc" class="article-share-link">Delen</a>
+      <a data-url="http://timnew.me/blog/2012/04/26/bash-profile-on-mac-os-x/" data-id="ciqg4g81x001m6nsixansrshr" class="article-share-link">Share</a>
       
-        <a href="http://timnew.me/blog/2012/04/26/bash-profile-on-mac-os-x/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://timnew.me/blog/2012/04/26/bash-profile-on-mac-os-x/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/configuration/">configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/profile/">profile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/terminal/">terminal</a></li></ul>
@@ -563,7 +563,7 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/posts">
-      <h3 class="widget-title">Recente berichten</h3>
+      <h3 class="widget-title">Recent Posts</h3>
     </a>
     <div class="widget recent-posts">
       <ul>
@@ -609,7 +609,7 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/categories">
-      <h3 class="widget-title">Categorieën</h3>
+      <h3 class="widget-title">Categories</h3>
     </a>
     <div class="widget category-list">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/">Cracking</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cracking/game/">Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/">Design</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design/visual/">Visual</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design/web/">Web</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/game/">Game</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/game/programming-game/">Programming Game</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/geek-toy/">Geek Toy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/">Package</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/package/chrome-extension/">Chrome Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/package/hexo/">Hexo</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/">Practice</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/practice/atom/">Atom</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/continues-integration/">Continues Integration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/devops/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/mac/">Mac</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/textmate/">TextMate</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/web/">Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/practice/git/">git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">Programming</a><span class="category-list-count">73</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/android/">Android</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/arduino/">Arduino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/c/">C#</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/chrome/">Chrome</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/design-patterns/">Design Patterns</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">JavaScript</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/coffeescript/">CoffeeScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/postgressql/">PostgresSql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/powershell/">PowerShell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/regular-expression/">Regular Expression</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/ruby/">Ruby</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/shell/">Shell</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/wpf/">WPF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/web/">Web</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/node-js/">node.js</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/thinking/">Thinking</a><span class="category-list-count">5</span></li></ul>
@@ -621,7 +621,7 @@ ga('send', 'pageview');
     
   <div class="widget-wrap">
     <a href="/archives">
-      <h3 class="widget-title">Archieven</h3>
+      <h3 class="widget-title">Archives</h3>
     </a>
     <div class="widget archive-list">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li></ul>
